@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigService {
 
-  private urlBase = 'http://localhost:3000/api/'
+  private urlBase = 'https://adidas-backend-trachdaik.c9users.io/api/'
   constructor() { }
 
   getBaseURL() {

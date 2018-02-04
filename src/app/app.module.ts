@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { CoreModule } from './core/core.module';
+
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -19,7 +21,8 @@ import { AppRoutes } from './app.routers';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

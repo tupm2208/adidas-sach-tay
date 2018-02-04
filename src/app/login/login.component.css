@@ -1,5 +1,7 @@
-body {
+.login-page {
     background-color: #00BCD4;
-    width: 100%;
-    height: 100%;
+    padding-left: 0;
+    max-width: 360px;
+    margin: 5% auto;
+    overflow-x: unset;
 }

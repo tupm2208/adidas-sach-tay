@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../core/api/login.service'
 declare var $: any;
 
 @Component({
@@ -8,22 +9,19 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-  }
+    
+    this.loginService.login({
+      sdt: '1234',
+      mk: 'nopass'
+    }).subscribe( res => {
 
-  ngAfterViewInit() {
+      console.log("success: ", res);
+    }, error => {
 
-    $.AdminBSB.browser.activate();
-    $.AdminBSB.leftSideBar.activate();
-    $.AdminBSB.rightSideBar.activate();
-    $.AdminBSB.navbar.activate();
-    $.AdminBSB.dropdownMenu.activate();
-    $.AdminBSB.input.activate();
-    $.AdminBSB.select.activate();
-    $.AdminBSB.search.activate();
-
-    setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+      console.log("error: ", error);
+    })
   }
 }
