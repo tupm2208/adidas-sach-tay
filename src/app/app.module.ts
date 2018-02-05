@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MatDialogModule } from '@angular/material';
 
 import { CoreModule } from './core/core.module';
 
@@ -23,6 +24,7 @@ import { AppRoutes } from './app.routers';
     FormsModule,
     HttpModule,
     CoreModule.forRoot(),
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
