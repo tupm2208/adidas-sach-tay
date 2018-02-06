@@ -24,13 +24,9 @@
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
+                                <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">cart</i>
                                 </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Thêm Khách Hàng</a></li>
-                                    <li><a href="javascript:void(0);">Tìm Kiếm</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -38,13 +34,10 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.makh" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="makh" placeholder="Tìm Kiếm Theo Mã Code">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.tenkh" placeholder="Tìm Kiếm Theo Tên">
-                                </div>
-                                <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
                                 </div>
                             </div>
                         </div>
@@ -56,10 +49,11 @@
                                     <tr>
                                         <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Loại Khách Hàng</th>
+                                        <th>Mã Hóa Đơn</th>
+                                        <th>Đặt Cọc</th>
+                                        <th>Tiền Hàng</th>
+                                        <th>Phí Ship</th>
+                                        <th>Tổng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
@@ -67,22 +61,24 @@
                                     <tr>
                                         <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Loại Khách Hàng</th>
+                                        <th>Mã Hóa Đơn</th>
+                                        <th>Đặt Cọc</th>
+                                        <th>Tiền Hàng</th>
+                                        <th>Phí Ship</th>
+                                        <th>Tổng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'makh': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}">
+                                    <tr *ngFor="let item of fakedData | user: {'makh': makh, 'tenkh': tenkh}">
                                         <td>{{item.makh}}</td>
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.sdt}}</td>
-                                        <td>{{item.email}}</td>
-                                        <td>{{item.diachi}}</td>
-                                        <td>{{item.loaikh}}</td>
-                                        <td>{{item.trangthai}}</td>
+                                        <td>{{item.mahd}}</td>
+                                        <td>{{item.datcoc}}</td>
+                                        <td>{{item.tienhang}}</td>
+                                        <td>{{item.ship}}</td>
+                                        <td>{{item.tong}}</td>
+                                        <td>{{"item.tong"}}</td>
                                     </tr>
                                 </tbody>
                             </table>

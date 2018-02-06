@@ -38,13 +38,10 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.makh" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="makh" placeholder="Tìm Kiếm Theo Mã Code">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.tenkh" placeholder="Tìm Kiếm Theo Tên">
-                                </div>
-                                <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
                                 </div>
                             </div>
                         </div>
@@ -56,10 +53,10 @@
                                     <tr>
                                         <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Loại Khách Hàng</th>
+                                        <th>Mã Đơn Hàng</th>
+                                        <th>Ngày Giao</th>
+                                        <th>Ngày Về Dự Kiến</th>
+                                        <th>Tổng Đơn Hàng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
@@ -67,21 +64,21 @@
                                     <tr>
                                         <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Loại Khách Hàng</th>
+                                        <th>Mã Đơn Hàng</th>
+                                        <th>Ngày Giao</th>
+                                        <th>Ngày Về Dự Kiến</th>
+                                        <th>Tổng Đơn Hàng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'makh': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}">
+                                    <tr *ngFor="let item of fakedData | user: {'makh': makh, 'tenkh': tenkh}">
                                         <td>{{item.makh}}</td>
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.sdt}}</td>
-                                        <td>{{item.email}}</td>
-                                        <td>{{item.diachi}}</td>
-                                        <td>{{item.loaikh}}</td>
+                                        <td>{{item.madh}}</td>
+                                        <td>{{item.ngaygiao}}</td>
+                                        <td>{{item.ngayve}}</td>
+                                        <td>{{item.tong}}</td>
                                         <td>{{item.trangthai}}</td>
                                     </tr>
                                 </tbody>

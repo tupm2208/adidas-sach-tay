@@ -8,6 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class UserComponent implements OnInit {
 
+  private name = false;
+  private text;
+
   constructor(
     private dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -16,4 +19,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
+  onBlurMethod(){
+    this.name = true;
+  }
+
+  onClickMethod() {
+
+    this.name = false;
+  }
 }
