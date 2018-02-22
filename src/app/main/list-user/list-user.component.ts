@@ -71,9 +71,9 @@ export class ListUserComponent implements OnInit {
   ];
 
   private peopleFilter = {
-    makh: '1',
+    makh: '',
     tenkh: '',
-    sdt: '672'
+    sdt: ''
   };
 
   constructor(
@@ -83,11 +83,13 @@ export class ListUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  openAddProductKind() {
+  openAddProductKind(data) {
 
     console.log("open");
 
-    let productKind = this.dialog.open(UserComponent);
+    let productKind = this.dialog.open(UserComponent, {
+      data: data
+    });
 
     productKind.afterClosed().subscribe(data => {
 

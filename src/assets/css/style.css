@@ -8051,3 +8051,9 @@ a {
 div.cdk-overlay-pane{
   max-width: fit-content!important;
 }
+
+.mat-dialog-content {
+  margin: 0!important;  
+  padding: 0!important; 
+  overflow: inherit!important;
+}

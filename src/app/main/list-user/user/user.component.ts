@@ -9,7 +9,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class UserComponent implements OnInit {
 
   private name = false;
+  private isNew = false;
   private text;
+  private toggle = {
+    name: false,
+    sdt: false,
+    mail: false,
+    address: false,
+    password: false,
+    code: false,
+    soluong: false,
+    datcoc: false
+  }
 
   constructor(
     private dialogRef: MatDialogRef<UserComponent>,
@@ -17,14 +28,28 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    this.isNew = this.data ? false: true;
+    
+    this.initToggle(this.isNew);
   }
 
-  onBlurMethod(){
-    this.name = true;
+  initToggle(data) {
+
+    for(let e in this.toggle) {
+
+      this.toggle[e] = data;
+    }
   }
 
-  onClickMethod() {
+  onBlurMethod(toggle){
+    
+    this.toggle[toggle] = false;
+  }
 
-    this.name = false;
+  onClickMethod(toggle) {
+
+    
+    this.toggle[toggle] = true;
   }
 }

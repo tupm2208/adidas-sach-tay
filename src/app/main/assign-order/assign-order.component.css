@@ -1,16 +1,45 @@
-#sortable1, #sortable2 {
-    border: 1px solid #eee;
-    width: 142px;
+#sortable1, #sortable2, #sortable3, #sortable4 {
+    
+    background-color: #c2e7ea;
+    width: 100%;
     min-height: 20px;
     list-style-type: none;
     margin: 0;
-    padding: 5px 0 0 0;
+    padding: 0px;
     float: left;
-    margin-right: 10px;
   }
-  #sortable1 li, #sortable2 li {
+  #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em;
-    width: 120px;
   }
+  
+div.select-person-header {
+  background-color: deepskyblue;
+  padding-top: 5px;
+  width: 100%;
+  border: 1px solid #c2e7ea;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.2em;
+  list-style-type: none;
+  min-height: 104px
+}
+
+.mat-form-field {
+    display: block !important;
+    color: white !important;
+}
+
+.mat-select-value {
+  color: white !important; 
+}
+
+.mat-raised-button {
+  min-width: 0px !important; 
+}
+
+.ui-selectable-helper {
+    border: 0px dotted black !important;
+}

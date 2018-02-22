@@ -1,0 +1,51 @@
+<div class="row" style="margin-bottom: -15px">
+  <div class="col-md-12 col-sm-12 col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Thông Tin Sản Phẩm
+      </div>
+      <div class="panel-body">
+        <form name="myform">
+          <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="form-group" style="clear: both">
+              <label for="lastname">Loại Sản Phẩm *</label>
+              <div>
+                  <select data-validation="required" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+              </div>
+              <span id="error_lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="clear: both">
+              <label for="phone">Tên Sản Phẩm *</label>
+              <input type="text" id="phone" name="phone" class="form-control">
+              <span id="error_phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label for="age">Số Lượng *</label>
+              <input id="age" name="age" class="form-control" type="number" min="1">
+              <span id="error_age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label for="disc">Mô Tả</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="form-group">
+              <label for="dob">Image *</label>
+              <app-image></app-image>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:center">
+  <button class="btn btn-success">Upload Sản Phẩm</button>
+  <button class="btn btn-warning" [mat-dialog-close]="true">Cancel</button>
+</div>

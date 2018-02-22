@@ -8,59 +8,21 @@ declare var $: any;
 })
 export class OrdersComponent implements OnInit {
 
-  private makh = '';
+  private sdt = '';
   private tenkh = '';
 
   private fakedData = [
     {
-      makh: "00001",
+      sdt: "0981349672",
       tenkh: "Pham Minh Tu",
-      madh: "01",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, {
-      makh: "00002",
-      tenkh: "Pham Minh Tu",
-      madh: "01",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, {
-      makh: "00003",
-      tenkh: "Pham Minh Tu",
-      madh: "04",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, {
-      makh: "00005",
-      tenkh: "Pham Minh Tu",
-      madh: "01",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, {
-      makh: "00006",
-      tenkh: "Pham Minh Tu",
-      madh: "01",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, {
-      makh: "00007",
-      tenkh: "Pham Minh Tu",
-      madh: "01",
-      ngaygiao: "2,000,000",
-      ngayve: "5,000,000",
-      tong: "50,000",
-      trangthai: "2,950,000"
-    }, 
+      masp: "01",
+      ngay: "22-07-2018",
+      gia: "5,000,000",
+      datcoc: "500,000",
+      ghichu: "adidas2018",
+      donhang: "EC2014 - 2",
+      trangthai: "Đang Về"
+    }
   ]
 
   constructor() { }

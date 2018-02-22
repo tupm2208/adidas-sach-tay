@@ -21,7 +21,6 @@ export class AppComponent {
             this.title = true;
             $.AdminBSB.browser.activate();
             $.AdminBSB.leftSideBar.activate();
-            $.AdminBSB.rightSideBar.activate();
             $.AdminBSB.navbar.activate();
             $.AdminBSB.dropdownMenu.activate();
             $.AdminBSB.input.activate();

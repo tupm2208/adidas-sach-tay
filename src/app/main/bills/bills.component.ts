@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { BillComponent } from './bill/bill.component';
 declare var $: any;
 
 @Component({
@@ -62,9 +64,21 @@ export class BillsComponent implements OnInit {
       tong: "2,950,000"
     }, 
   ]
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  openAddProductKind() {
+
+    let productKind = this.dialog.open(BillComponent, {
+      height: "80%"
+    })
+
+    productKind.afterClosed().subscribe( data => {
+
+      console.log("close product kind!");
+    })
   }
 
   ngAfterViewInit() {

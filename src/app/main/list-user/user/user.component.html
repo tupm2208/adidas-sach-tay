@@ -12,8 +12,8 @@
                           <i class="material-icons">person</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="false" (click)="onClickMethod()">{{text}}</label>
-                             <input type="text" class="form-control" [(ngModel)]="text" *ngIf="true" name="namesurname" placeholder="Name Surname" (blur)="onBlurMethod()" required autofocus> 
+                            <label class="form-control" *ngIf="!toggle.name" (click)="onClickMethod('name')">{{data.tenkh}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="data.tenkh" *ngIf="toggle.name" name="namesurname" placeholder="Name Surname" (blur)="onBlurMethod('name')" required autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -21,7 +21,8 @@
                           <i class="material-icons">phone</i>
                       </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone" placeholder="Số Điện Thoại" required>
+                            <label class="form-control" *ngIf="!toggle.sdt" (click)="onClickMethod('sdt')">{{data.sdt}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="data.sdt" *ngIf="toggle.sdt" name="namesurname" placeholder="Phone Number" (blur)="onBlurMethod('sdt')" required autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -29,7 +30,8 @@
                           <i class="material-icons">email</i>
                       </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                            <label class="form-control" *ngIf="!toggle.email" (click)="onClickMethod('email')">{{data.email}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="data.email" *ngIf="toggle.mail" name="email" placeholder="Email" (blur)="onBlurMethod('email')" required autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -37,7 +39,8 @@
                           <i class="material-icons">lock</i>
                       </span>
                         <div class="form-line">
-                            <input [type]="'password'" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <label class="" *ngIf="!toggle.address" (click)="onClickMethod('address')">{{data.diachi}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="data.diachi" *ngIf="toggle.address" name="address" placeholder="Address" (blur)="onBlurMethod('address')" required autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -45,20 +48,36 @@
                           <i class="material-icons">lock</i>
                       </span>
                         <div class="form-line">
-                            <input [type]="'password'" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Password" required>
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group" *ngIf="isNew">
                         <span class="input-group-addon">
                           <i class="material-icons">lock</i>
                       </span>
                         <div class="form-line">
-                            <input [type]="'password'" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Deposite" required>
+                        </div>
+                    </div>
+                    <div class="input-group" *ngIf="isNew">
+                        <span class="input-group-addon">
+                          <i class="material-icons">lock</i>
+                      </span>
+                        <div class="form-line">
+                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Product Code" required>
+                        </div>
+                    </div>
+                    <div class="input-group" *ngIf="isNew">
+                        <span class="input-group-addon">
+                          <i class="material-icons">lock</i>
+                      </span>
+                        <div class="form-line">
+                            <input [type]="'number'" class="form-control" name="confirm" minlength="6" placeholder="Quantity" required>
                         </div>
                     </div>
 
                     <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
-                        <a>Xem Lịch Sử Giao Dịch</a>
+                        <a mat-dialog-close routerLink="/home/history">Xem Lịch Sử Giao Dịch</a>
                     </div>
 
                     <div style="display: inline-block; width: 100%">

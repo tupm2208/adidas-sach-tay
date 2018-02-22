@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            User List
+                            Đơn Hàng
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -38,7 +38,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="makh" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
                                 </div>
                                 <div class="form-line">
                                     <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
@@ -51,34 +51,43 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Mã Đơn Hàng</th>
-                                        <th>Ngày Giao</th>
-                                        <th>Ngày Về Dự Kiến</th>
-                                        <th>Tổng Đơn Hàng</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Mã Sản Phẩm</th>
+                                        <th>Giá Bán</th>
+                                        <th>Đặt Cọc</th>
+                                        <th>Ngày</th>
+                                        <th>Ghi Chú</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Mã Khách Hàng</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>Mã Đơn Hàng</th>
-                                        <th>Ngày Giao</th>
-                                        <th>Ngày Về Dự Kiến</th>
-                                        <th>Tổng Đơn Hàng</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Mã Sản Phẩm</th>
+                                        <th>Giá Bán</th>
+                                        <th>Đặt Cọc</th>
+                                        <th>Ngày</th>
+                                        <th>Ghi Chú</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'makh': makh, 'tenkh': tenkh}">
-                                        <td>{{item.makh}}</td>
+                                    <tr *ngFor="let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}">
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.madh}}</td>
-                                        <td>{{item.ngaygiao}}</td>
-                                        <td>{{item.ngayve}}</td>
-                                        <td>{{item.tong}}</td>
+                                        <td>{{item.sdt}}</td>
+                                        <td>
+                                            <ul>
+                                                <li>{{item.masp}}</li>
+                                                <li>{{item.masp}}</li>
+                                                <li>{{item.masp}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>{{item.gia}}</td>
+                                        <td>{{item.datcoc}}</td>
+                                        <td>{{item.ngay}}</td>
+                                        <td>{{item.ghichu}}</td>
                                         <td>{{item.trangthai}}</td>
                                     </tr>
                                 </tbody>

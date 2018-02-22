@@ -4,6 +4,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { BillsComponent } from './bills/bills.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { AssignOrderComponent } from './assign-order/assign-order.component';
+import { HistoryComponent } from './history/history.component';
+import { TestComponent } from './test/test.component';
+import { ProductTableComponent } from './product-table/product-table.component';
 
 export const MainRoutes: Routes = [
     {
@@ -21,5 +24,14 @@ export const MainRoutes: Routes = [
     }, {
         path: 'assignment',
         component: AssignOrderComponent
+    }, {
+        path: 'history',
+        component: HistoryComponent
+    }, {
+        path: 'test',
+        component: TestComponent
+    }, {
+        path: 'product-table',
+        component: ProductTableComponent
     }
 ]

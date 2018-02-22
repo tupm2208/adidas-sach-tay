@@ -34,7 +34,7 @@ $.AdminBSB.options = {
         scrollBorderRadius: '0',
         scrollRailBorderRadius: '0',
         scrollActiveItemWhenPageLoad: true,
-        breakpointWidth: 1170
+        breakpointWidth: 1500
     },
     dropdownMenu: {
         effectIn: 'fadeIn',
@@ -57,7 +57,7 @@ $.AdminBSB.leftSideBar = {
             var $target = $(e.target);
             if (e.target.nodeName.toLowerCase() === 'i') { $target = $(e.target).parent(); }
 
-            if (!$target.hasClass('bars') && _this.isOpen() && $target.parents('#leftsidebar').length === 0) {
+            if (!$target.hasClass('bars') && _this.isOpen() && !$(e.target).hasClass('menu-toggle')) {
                 if (!$target.hasClass('js-right-sidebar')) $overlay.fadeOut();
                 $body.removeClass('overlay-open');
             }
@@ -443,16 +443,3 @@ $.AdminBSB.browser = {
         }
     }
     //==========================================================================================================================
-
-$(function() {
-    $.AdminBSB.browser.activate();
-    $.AdminBSB.leftSideBar.activate();
-    $.AdminBSB.rightSideBar.activate();
-    $.AdminBSB.navbar.activate();
-    $.AdminBSB.dropdownMenu.activate();
-    $.AdminBSB.input.activate();
-    $.AdminBSB.select.activate();
-    $.AdminBSB.search.activate();
-
-    setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
-});

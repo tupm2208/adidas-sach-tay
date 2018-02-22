@@ -1,23 +1,47 @@
 <section class="content">
-
-  <body>
-
-    <ul id="sortable1" class="connectedSortable">
-      <li class="ui-state-default">Item 1</li>
-      <li class="ui-state-default">Item 2</li>
-      <li class="ui-state-default">Item 3</li>
-      <li class="ui-state-default">Item 4</li>
-      <li class="ui-state-default">Item 5</li>
-    </ul>
-
-    <ul id="sortable2" class="connectedSortable">
-      <li class="ui-state-highlight">Item 1</li>
-      <li class="ui-state-highlight">Item 2</li>
-      <li class="ui-state-highlight">Item 3</li>
-      <li class="ui-state-highlight">Item 4</li>
-      <li class="ui-state-highlight">Item 5</li>
-    </ul>
-
-
-  </body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+        <div class="select-person-header">List Đặt Hàng </div>
+        <ul id="sortable1" class="connectedSortable">
+          <li class="ui-state-default">Item 1</li>
+          <li class="ui-state-default">Item 2</li>
+          <li class="ui-state-default">Item 3</li>
+          <li class="ui-state-default">Item 4</li>
+          <li class="ui-state-default">Item 5</li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+        <div class="select-person-header">
+          <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+            <mat-form-field [floatLabel]="'never'">
+              <mat-select placeholder="Mã Đơn Hàng">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+            <mat-form-field [floatLabel]="'never'">
+              <mat-select placeholder="Tài Khoản">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="accent" (click)="openAddProductKind()">select</button>
+        </div>
+        <ul id="sortable2" class="connectedSortable">
+          <li class="ui-state-highlight">Item 1</li>
+          <li class="ui-state-highlight">Item 2</li>
+          <li class="ui-state-highlight">Item 3</li>
+          <li class="ui-state-highlight">Item 4</li>
+          <li class="ui-state-highlight">Item 5</li>
+        </ul>
+      </div>
+    </div>
+  </div>  
 </section>

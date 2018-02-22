@@ -1,0 +1,59 @@
+#feedback { font-size: 1.4em; }
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: auto; }
+
+  #selectable1 .ui-selecting { background: #FECA40; }
+  #selectable1 .ui-selected { background: #F39814; color: white; }
+  #selectable1 { list-style-type: none; margin: 0; padding: 0; }
+  #selectable1 li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: auto; }
+
+  .ui-selectable-helper {
+    border: 0px dotted black !important;
+}
+
+
+body {
+    margin: 0;
+}
+
+
+.signup-page {
+    background-color: #00BCD4;
+    padding-left: 0;
+    max-width: 360px;
+    margin: 0% auto;
+    overflow-x: unset;
+}
+
+.card {
+     margin-bottom: 0px; 
+}
+
+/* CSS REQUIRED */
+.state-icon {
+    left: -5px;
+}
+.list-group-item-primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(66, 139, 202);
+}
+
+/* DEMO ONLY - REMOVES UNWANTED MARGIN */
+.well .list-group {
+    margin-bottom: 0px;
+}
+
+div.select-person-header {
+  background-color: deepskyblue;
+  padding-top: 5px;
+  width: 100%;
+  border: 1px solid #c2e7ea;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.2em;
+  list-style-type: none;
+  min-height: 104px
+}
