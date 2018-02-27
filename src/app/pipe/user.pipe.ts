@@ -6,11 +6,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UserPipe implements PipeTransform {
 
   transform(items: Array<any>, filter: { [key: string]: any }): Array<any> {
+
+    if(!items.length) return;
+
     return items.filter(item => {
 
       for(let key in filter) {
-
-        if(item[key].indexOf(filter[key]) == -1) {
+        
+        let str = item[key] + '';
+        if(str.indexOf(filter[key]) == -1) {
 
           return false;
         }

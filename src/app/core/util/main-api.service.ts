@@ -17,7 +17,7 @@ export class MainApiService {
     return this.http.get(url, params, options).map(res => {
 
       res = JSON.parse(res._body);
-      if (res.status) {
+      if (res.status !== 0 ) {
 
         return res;
       } else {
@@ -32,7 +32,7 @@ export class MainApiService {
     return this.http.post(url, params, options).map(res => {
 
       res = JSON.parse(res._body);
-      if (res.status) {
+      if (res.status !== 0 ) {
 
         return res;
       } else {

@@ -12,8 +12,8 @@
                           <i class="material-icons">person</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.name" (click)="onClickMethod('name')">{{data.tenkh}}</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.tenkh" *ngIf="toggle.name" name="namesurname" placeholder="Name Surname" (blur)="onBlurMethod('name')" required autofocus> 
+                            <label class="form-control" [ngStyle]="{'color':data.tenkh? '': 'red'}" *ngIf="!toggle.tenkh" (click)="onClickMethod('tenkh')">{{data.tenkh? data.tenkh: 'Nhập Tên Khách Hàng'}}</label>  
+                            <input type="text" class="form-control" *ngIf="toggle.tenkh" (blur)="onBlurMethod('tenkh')" [(ngModel)]="data.tenkh" name="tenkh" placeholder="Tên Khách Hàng" autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -21,8 +21,8 @@
                           <i class="material-icons">phone</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.sdt" (click)="onClickMethod('sdt')">{{data.sdt}}</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.sdt" *ngIf="toggle.sdt" name="namesurname" placeholder="Phone Number" (blur)="onBlurMethod('sdt')" required autofocus> 
+                            <label class="form-control" style="border-bottom: 1px solid #ced7e5!important;" [ngStyle]="{'color':data.sdt? '': 'red'}" *ngIf="!toggle.sdt" (click)="onClickMethod('sdt')">{{data.sdt? data.sdt: 'Nhập Số Điện Thoại'}}</label>  
+                            <input type="text" class="form-control" *ngIf="toggle.sdt" (blur)="onBlurMethod('sdt')" [(ngModel)]="data.sdt" name="sdt" placeholder="Số Điện Thoại" autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -30,58 +30,56 @@
                           <i class="material-icons">email</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.email" (click)="onClickMethod('email')">{{data.email}}</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.email" *ngIf="toggle.mail" name="email" placeholder="Email" (blur)="onBlurMethod('email')" required autofocus> 
+                            <label class="form-control" style="border-bottom: 1px solid #ced7e5!important;" *ngIf="!toggle.email" (click)="onClickMethod('email')">{{data.email || 'Nhập Email'}}</label>  
+                            <input type="text" class="form-control" *ngIf="toggle.email" (blur)="onBlurMethod('email')" [(ngModel)]="data.email" name="email" placeholder="Số Email" autofocus> 
                         </div>
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="material-icons">home</i>
+                      </span>
+                        <div class="form-line">
+                            <label class="" *ngIf="!toggle.diachi" (click)="onClickMethod('diachi')">{{data.diachi? data.diachi: 'Nhập Địa Chỉ'}}</label>  
+                            <input type="text" class="form-control" *ngIf="toggle.diachi" (blur)="onBlurMethod('diachi')" [(ngModel)]="data.diachi" name="diachi" placeholder="Số Địa Chỉ" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="material-icons">account_circle</i>
+                      </span>
+                        <div class="form-line">
+                            <label class="form-control" *ngIf="!toggle.maloainv" (click)="onClickMethod('maloainv')">{{data.maloainv? selectKind(data.maloainv): 'Loại'}}</label>
+                            <select [(ngModel)]="data.maloainv" *ngIf="toggle.maloainv" (mouseleave)="onBlurMethod('maloainv')" name="maloainv" class="form-control">
+                                <option>Loại Khách Hàng</option>
+                                <option value="2">Khách lẻ</option>
+                                <option value="3">Khách Buôn</option>
+                                <option value="5">Shipper</option>
+                                <option value="4">Người Mua</option>
+                                <option value="6">Người Nhận</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                           <i class="material-icons">lock</i>
                       </span>
                         <div class="form-line">
-                            <label class="" *ngIf="!toggle.address" (click)="onClickMethod('address')">{{data.diachi}}</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.diachi" *ngIf="toggle.address" name="address" placeholder="Address" (blur)="onBlurMethod('address')" required autofocus> 
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="material-icons">lock</i>
-                      </span>
-                        <div class="form-line">
-                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="input-group" *ngIf="isNew">
-                        <span class="input-group-addon">
-                          <i class="material-icons">lock</i>
-                      </span>
-                        <div class="form-line">
-                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Deposite" required>
-                        </div>
-                    </div>
-                    <div class="input-group" *ngIf="isNew">
-                        <span class="input-group-addon">
-                          <i class="material-icons">lock</i>
-                      </span>
-                        <div class="form-line">
-                            <input [type]="'text'" class="form-control" name="confirm" minlength="6" placeholder="Product Code" required>
-                        </div>
-                    </div>
-                    <div class="input-group" *ngIf="isNew">
-                        <span class="input-group-addon">
-                          <i class="material-icons">lock</i>
-                      </span>
-                        <div class="form-line">
-                            <input [type]="'number'" class="form-control" name="confirm" minlength="6" placeholder="Quantity" required>
+                            <label class="form-control" *ngIf="!toggle.mk" (click)="onClickMethod('mk')">{{data.mk? data.mk: 'Mật Khẩu'}}</label>  
+                            <input type="text" class="form-control" *ngIf="toggle.mk" (blur)="onBlurMethod('mk')" [(ngModel)]="data.mk" name="mk" placeholder="Số Địa Chỉ" autofocus>
                         </div>
                     </div>
 
                     <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
-                        <a mat-dialog-close routerLink="/home/history">Xem Lịch Sử Giao Dịch</a>
+                        <a (click)="order()"  [ngClass]="!data.tenkh || !data.sdt? 'disabled': ''">Đặt Hàng</a>
+                    </div>
+                    <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
+                        <a (click)="dialogRef.close();" routerLink="/home/history">Xem Lịch Sử Giao Dịch</a>
                     </div>
 
                     <div style="display: inline-block; width: 100%">
-                        <button class="btn btn-block btn-lg bg-cyan waves-effect" style="float:left" type="submit">UPDATE</button>
+                        <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="update()" style="float:left" type="submit">UPDATE</button>
                         <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
                     </div>
                     

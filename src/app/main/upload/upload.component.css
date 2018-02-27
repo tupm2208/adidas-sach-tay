@@ -1,3 +1,83 @@
+body {
+    margin: 0;
+}
+
+label.form-control{
+    /* padding: 11px 0px;
+    font-weight: 97; */
+    border: none!important; 
+    /* font-size: 16px; */
+    /* text-align: center; */
+}
+
+.input-group input[type="text"], .input-group .form-control {
+    border: ridge; 
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.signup-page {
+    background-color: #00BCD4;
+    padding-left: 0;
+    max-width: 100%;
+    margin: 0% auto;
+    overflow-x: unset;
+}
+
+.card {
+     margin-bottom: 0px; 
+}
+
+.btn-block {
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%
+}
+
+.btn-block + .btn-block {
+     margin-top: 0px; 
+}
+
+.input-group {
+    margin-bottom: 14px;
+}
+
+label {
+    /* font-weight: unset; */
+    width: 100%;
+}
+
+.unFill {
+    border-bottom: 1px solid red!important;
+}
+
+a.disabled {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: underline;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+#sign_up{
+
+    max-height: 400px;
+}
+
+.card {
+    box-shadow: 0;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
 .palel-primary {
     border-color: #bce8f1;
 }

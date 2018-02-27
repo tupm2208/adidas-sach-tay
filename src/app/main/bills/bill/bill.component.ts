@@ -18,3 +18,4 @@ export class BillComponent implements OnInit {
 
 }
 
+//theem trường hộp và ghi chú

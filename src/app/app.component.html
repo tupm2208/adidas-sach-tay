@@ -271,22 +271,11 @@
                         <span>Lich Su Giao Dich</span>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">view_list</i>
-                        <span>Tables</span>
+                <li [class]="router.url == '/home/receiver'? 'active': ''">
+                    <a routerLink="/home/receiver">
+                        <i class="material-icons">swap_calls</i>
+                        <span>Người Nhận</span>
                     </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="pages/tables/normal-tables.html">Normal Tables</a>
-                        </li>
-                        <li>
-                            <a href="pages/tables/jquery-datatable.html">Jquery Datatables</a>
-                        </li>
-                        <li>
-                            <a href="pages/tables/editable-table.html">Editable Tables</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">

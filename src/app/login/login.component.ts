@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
 
       if(res.status) {
 
+        this.storage.set('token', res.token);
         this.gotoHome();
       } else {
         $('.page-loader-wrapper').fadeOut();

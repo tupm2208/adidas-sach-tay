@@ -54,10 +54,13 @@
                                         <th>Tên Khách Hàng</th>
                                         <th>Số Điện Thoại</th>
                                         <th>Mã Sản Phẩm</th>
-                                        <th>Giá Bán</th>
+                                        <th>Tiền Yên</th>
                                         <th>Đặt Cọc</th>
                                         <th>Ngày</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Thương Hiệu</th>
                                         <th>Ghi Chú</th>
+                                        <th>Tỉ Giá</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
@@ -66,10 +69,13 @@
                                         <th>Tên Khách Hàng</th>
                                         <th>Số Điện Thoại</th>
                                         <th>Mã Sản Phẩm</th>
-                                        <th>Giá Bán</th>
+                                        <th>Tiền Yên</th>
                                         <th>Đặt Cọc</th>
                                         <th>Ngày</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Thương Hiệu</th>
                                         <th>Ghi Chú</th>
+                                        <th>Tỉ Giá</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
@@ -78,16 +84,17 @@
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
                                         <td>{{item.sdt}}</td>
                                         <td>
-                                            <ul>
-                                                <li>{{item.masp}}</li>
-                                                <li>{{item.masp}}</li>
-                                                <li>{{item.masp}}</li>
+                                            <ul *ngIf="item.listProduct">
+                                                <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
                                             </ul>
                                         </td>
-                                        <td>{{item.gia}}</td>
+                                        <td>{{item.tienyen}}</td>
                                         <td>{{item.datcoc}}</td>
                                         <td>{{item.ngay}}</td>
+                                        <td>{{item.taikhoan}}</td>
+                                        <td>{{item.thuonghieu}}</td>
                                         <td>{{item.ghichu}}</td>
+                                        <td>{{item.tigia}}</td>
                                         <td>{{item.trangthai}}</td>
                                     </tr>
                                 </tbody>

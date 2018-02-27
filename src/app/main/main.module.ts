@@ -29,6 +29,8 @@ import { ProductKindComponent} from './upload/product-kind/product-kind.componen
 import { ImageComponent} from './upload/image/image.component';
 import { FirmComponent} from './upload/firm/firm.component';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { ReceiverComponent } from './receiver/receiver.component';
+import { ChildProductComponent } from './list-user/user/child-product/child-product.component';
 
 
 
@@ -62,7 +64,9 @@ import { ProductTableComponent } from './product-table/product-table.component';
     ProductKindComponent,
     ImageComponent,
     FirmComponent,
-    ProductTableComponent
+    ProductTableComponent,
+    ReceiverComponent,
+    ChildProductComponent
   ],
   entryComponents: [
     UserComponent,

@@ -7,6 +7,7 @@ import { AssignOrderComponent } from './assign-order/assign-order.component';
 import { HistoryComponent } from './history/history.component';
 import { TestComponent } from './test/test.component';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { ReceiverComponent } from './receiver/receiver.component';
 
 export const MainRoutes: Routes = [
     {
@@ -33,5 +34,8 @@ export const MainRoutes: Routes = [
     }, {
         path: 'product-table',
         component: ProductTableComponent
+    }, {
+        path: 'receiver',
+        component: ReceiverComponent
     }
 ]

@@ -8050,6 +8050,7 @@ a {
 
 div.cdk-overlay-pane{
   max-width: fit-content!important;
+  max-height: 80%!important;
 }
 
 .mat-dialog-content {

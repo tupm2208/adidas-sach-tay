@@ -20,13 +20,17 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Danh Sách Hóa Đơn
+                            Đơn Hàng
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">cart</i>
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
                                 </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Thêm Khách Hàng</a></li>
+                                    <li><a href="javascript:void(0);">Tìm Kiếm</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -34,7 +38,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="makh" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
                                 </div>
                                 <div class="form-line">
                                     <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
@@ -50,12 +54,9 @@
                                         <th>Tên Khách Hàng</th>
                                         <th>Số Điện Thoại</th>
                                         <th>Mã Sản Phẩm</th>
-                                        <th>Ngày Đặt</th>
-                                        <th>Đặt Cọc</th>
-                                        <th>Phí Ship</th>
-                                        <th>Tiền Hàng</th>
-                                        <th>Khối Lượng</th>
-                                        <th>Tổng</th>
+                                        <th>Ngày</th>
+                                        <th>Ghi Chú</th>
+                                        <th>Tổng Khối Lượng(kg)</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
@@ -64,31 +65,27 @@
                                         <th>Tên Khách Hàng</th>
                                         <th>Số Điện Thoại</th>
                                         <th>Mã Sản Phẩm</th>
-                                        <th>Ngày Đặt</th>
-                                        <th>Đặt Cọc</th>
-                                        <th>Phí Ship</th>
-                                        <th>Tiền Hàng</th>
-                                        <th>Khối Lượng</th>
-                                        <th>Tổng</th>
+                                        <th>Ngày</th>
+                                        <th>Ghi Chú</th>
+                                        <th>Tổng Khối Lượng(kg)</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'makh': makh, 'tenkh': tenkh}">
+                                    <tr *ngFor="let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}">
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
                                         <td>{{item.sdt}}</td>
                                         <td>
-                                            <ul *ngIf="item.listProduct">
-                                                <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
+                                            <ul>
+                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
+                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
+                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
                                             </ul>
                                         </td>
                                         <td>{{item.ngay}}</td>
-                                        <td>{{item.datcoc}}</td>
-                                        <td>{{item.ship}}</td>
-                                        <td>{{item.tong}}</td>
-                                        <td>{{item.khoiluong}}</td>
-                                        <td>{{item.tong}}</td>
-                                        <td>{{item.trangthai}}</td>
+                                        <td>Ghi chú vs khách</td>
+                                        <td>3.0</td>
+                                        <td>Đã Nhận - Về đến Việt Nam - Đã Giao</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -19,7 +19,8 @@ export class TestComponent implements OnInit {
   open() {
 
     let productKind = this.dialog.open(UploadComponent, {
-      width: "80vw"
+      width: "80%",
+      height:'90%'
     })
 
     productKind.afterClosed().subscribe( data => {

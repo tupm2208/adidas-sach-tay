@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../core/api/order.service';
+import { OrderDetailService } from '../../core/api/order-detail.service';
+import { UserService } from '../../core/api/user.service';
 declare var $: any;
 
 @Component({
@@ -10,24 +13,36 @@ export class OrdersComponent implements OnInit {
 
   private sdt = '';
   private tenkh = '';
+  private listUser = [];
+  private fakedData = [];
 
-  private fakedData = [
-    {
-      sdt: "0981349672",
-      tenkh: "Pham Minh Tu",
-      masp: "01",
-      ngay: "22-07-2018",
-      gia: "5,000,000",
-      datcoc: "500,000",
-      ghichu: "adidas2018",
-      donhang: "EC2014 - 2",
-      trangthai: "Đang Về"
-    }
-  ]
-
-  constructor() { }
+  constructor(
+    private orderService: OrderService,
+    private orderDetailService: OrderDetailService,
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+    
+    this.orderService.list().subscribe( data => {
+
+      console.log("orderService LIST: ", data);
+      
+      this.fakedData = data;
+      this.fakedData.forEach(element => {
+        
+        this.userService.getById(element.makh).subscribe( user => {
+
+          element.tenkh = user.data.tenkh,
+          element.sdt = user.data.sdt
+        })
+
+        this.orderDetailService.getByParams({madh: element.madh}).subscribe( ct => {
+
+          element.listProduct = ct;
+        })
+      });
+    });
   }
 
   ngAfterViewInit() {

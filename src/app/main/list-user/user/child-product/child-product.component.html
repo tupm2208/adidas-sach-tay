@@ -1,0 +1,80 @@
+<div class="panel panel-primary">
+  <a (click)="deleteProduct()" class="input-group-addon" id="cancel">
+                          <i class="material-icons">cancel</i>
+                      </a>
+  <div class="panel-body">
+    <form name="myform">
+      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <div class="form-group">
+          <label for="age" [ngStyle]="{'color': product.masp? '':'red'}">Mã Sản Phẩm *</label>
+          <input id="masp" name="masp" class="form-control" [(ngModel)]="product.masp" type="text" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <label for="age">Số Lượng *</label>
+                <input id="age" name="soluong" class="form-control" [(ngModel)]="product.soluong" type="number" min="1">
+                <span id="error_age" class="text-danger"></span>
+            </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label for="age">Hộp *</label>
+                <a class="input-group-addon" style="padding: 0; border: 0"><i style="font-size: 35px" [ngStyle]="{'color': product.giuhop? '':'slategrey'}" (click)="toggleHop()" class="material-icons">check_circle</i></a>
+                <span id="error_age" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="age">Trang Web *</label>
+          <input id="age" name="trangweb" class="form-control" [(ngModel)]="product.trangweb" type="text" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="age">Giá Web *</label>
+          <input id="age" name="giaweb" class="form-control" [(ngModel)]="product.giaweb" type="number" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="age">Triết Khấu *</label>
+          <input id="age" name="trietkhau" class="form-control" [(ngModel)]="product.trietkhau" type="number" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="age">Khối Lượng *</label>
+          <input id="age" name="khoiluong" class="form-control" [(ngModel)]="product.khoiluong" type="number" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="age">Tỉ Giá *</label>
+          <input id="age" name="tigia" class="form-control" [(ngModel)]="product.tigia" type="number" min="1">
+          <span id="error_age" class="text-danger"></span>
+        </div>
+        <!-- <div class="form-group">
+          <label for="age">Thành Tiền *</label>
+          <label name="thanhtien" class="form-control" min="1"> </label>
+          <span id="error_age" class="text-danger"></span>
+        </div> -->
+        <!-- <div class="form-group" style="clear: both">
+          <label for="lastname">Loại Sản Phẩm *</label>
+          <div>
+            <select data-validation="required" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+          </div>
+          <span id="error_lastname" class="text-danger"></span>
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="disc">Mô Tả</label>
+          <textarea class="form-control" rows="3"></textarea>
+        </div> -->
+      </div>
+    </form>
+  </div>
+  <a (click)="duplicateProduct()" class="input-group-addon" id="addMore">
+                          <i class="material-icons">add</i>
+                      </a>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { UserComponent } from './user/user.component';
+import { UserService } from '../../core/api/user.service'
 declare var $: any;
 
 @Component({
@@ -10,65 +11,7 @@ declare var $: any;
 })
 export class ListUserComponent implements OnInit {
 
-  private fakedData = [
-    {
-      makh: '00001',
-      tenkh: "Phạm Minh Tư",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00002',
-      tenkh: "Phạm Văn Dũng",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00003',
-      tenkh: "Mai Thị Phương",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00004',
-      tenkh: "Phạm Ngọc Tân",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00005',
-      tenkh: "Ngô Trung Nghĩa",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00006',
-      tenkh: "Trần Quang Nghĩa",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    }, {
-      makh: '00007',
-      tenkh: "Vũ Thị Quang",
-      sdt: "0981349672",
-      email: "tu.phamminh.2207@gmail.com",
-      diachi: "Số nhà 10b - Ngách 34 - Ngõ Thịnh Hào 1 - Đường Tôn Đức Thắng - Phường Hàng Bột - Cuận Đống Đa - TP Hà Nội",
-      loaikh: 1,
-      trangthai: 3
-    },
-  ];
+  private fakedData = [];
 
   private peopleFilter = {
     makh: '',
@@ -77,10 +20,22 @@ export class ListUserComponent implements OnInit {
   };
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
+
+    this.userService.list().subscribe( data => {
+
+      console.log("user service", data);
+      this.fakedData = data;
+      setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+    }, error => {
+
+      console.log("user error: ", error);
+      setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+    })
   }
 
   openAddProductKind(data) {
@@ -97,8 +52,23 @@ export class ListUserComponent implements OnInit {
     })
   }
 
-  ngAfterViewInit() {
+  cutAddress(str) {
 
-    setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+    if(str && str.length > 15) {
+
+      return str.substring(0,14) + '...';
+    }
+
+    return str
+  }
+
+  mouseEnter(abc) {
+
+    console.log("abc: ", abc);
+  }
+
+  mouseLeave(bcd) {
+
+    console.log("bcd: ", bcd);
   }
 }
