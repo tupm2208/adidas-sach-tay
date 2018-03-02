@@ -28,4 +28,18 @@ export class BillService {
 
     return this.mainApi.post('hoadon?token=' + token, params);
   }
+
+  delete(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.delete('hoadon/'+ params.mahd + '?token=' + token);
+  }
+
+  search(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.post('hoadon/search', params);
+  }
 }

@@ -14,4 +14,11 @@ export class OrderService {
 
     return this.mainApi.get('donhang?token=' + token);
   }
+
+  create(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.post('donhang', params);
+  }
 }

@@ -1,10 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
-import { MatDialogModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { 
+  MatDialogModule, 
+  MatButtonModule, 
+  MatCheckboxModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatSidenavModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatTooltipModule, 
+  MatRadioModule,
+  MatAutocompleteModule
+} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 
 import { MainRoutes } from './main.routers';
@@ -43,7 +57,18 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     MatCheckboxModule,
     FormsModule,
     MatSelectModule,
-    MultiselectDropdownModule
+    MultiselectDropdownModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    MatRadioModule,
+    MatAutocompleteModule
   ],
   declarations: [
     MainComponent, 
@@ -74,7 +99,11 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     UploadComponent,
     ProductKindComponent,
     FirmComponent,
-    BillComponent
-  ]
+    BillComponent,
+    OrderComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+  ],
 })
 export class MainModule { }

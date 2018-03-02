@@ -59,7 +59,7 @@ export class MainApiService {
 
   public delete(url: string, params?: any, options?: any): Observable<any> {
 
-    return this.http.delete(url, params, options).map(res => {
+    return this.http.delete(url, options).map(res => {
 
       res = JSON.parse(res._body);
       if (res.status) {

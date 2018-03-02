@@ -5,8 +5,7 @@
     min-height: 20px;
     list-style-type: none;
     margin: 0;
-    padding: 0px;
-    float: left;
+    padding: 0px
   }
   #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{
     margin: 0 5px 5px 5px;
@@ -24,7 +23,6 @@ div.select-person-header {
   padding: 5px;
   font-size: 1.2em;
   list-style-type: none;
-  min-height: 104px
 }
 
 .mat-form-field {
@@ -42,4 +40,24 @@ div.select-person-header {
 
 .ui-selectable-helper {
     border: 0px dotted black !important;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.palel-primary {
+    border-color: #bce8f1;
+}
+
+.panel-primary>.panel-heading {
+    background: #bce8f1;
+}
+
+.panel-primary>.panel-body {
+    background-color: #EDEDED;
+}
+
+.mat-form-field-infix {
+    border-top: 0;
 }

@@ -9,6 +9,11 @@ import { UploadComponent } from '../upload/upload.component';
 })
 export class TestComponent implements OnInit {
 
+  checked = false;
+  indeterminate = false;
+  align = 'start';
+  disabled = false;
+
   constructor(
     private dialog: MatDialog
   ) { }

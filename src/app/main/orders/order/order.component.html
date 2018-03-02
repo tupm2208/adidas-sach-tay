@@ -1,3 +1,148 @@
-<p>
-  order works!
-</p>
+<body class="signup-page">
+  <div class="signup-box">
+    <div class="logo">
+      <a href="javascript:void(0);"><b>Đặt Hàng</b></a>
+      <!-- <small>Thông Tin Chi Tiết</small> -->
+    </div>
+    <div class="card" style="box-shadow: unset">
+      <div class="body">
+        <form id="sign_up" method="POST">
+          <div class="row">
+            <div class="col-md-6  col-sm-12 col-lg-6" style="margin-bottom: 20px">
+              <div class="select-person-header" style="min-width: 202px;">List Đặt Hàng </div>
+              <mat-card style="padding: 24px 0px; min-width: 240px">
+                <mat-card-content>
+                  <div class="container-fluid">
+                    <div class="row clearfix">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                          <div class="body" style="padding: 0">
+                            <div class="table-responsive">
+                              <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
+                                <thead>
+                                  <tr>
+                                    <th (click)="selectAll()">Tên</th>
+                                    <th>Mã SP | SL</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
+                                    <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.tenkh}}</td>
+                                    <td>
+                                      <div *ngFor="let prod of item.bills">{{prod.masp}} | {{prod.soluong}}</div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- #END# Basic Examples -->
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <div class="col-md-6  col-sm-12 col-lg-6" style="margin-bottom: 20px">
+              <div class="select-person-header" style="min-width: 202px">Đơn Hàng </div>
+              <mat-card style="padding: 24px 0px; min-width: 240px">
+                <mat-card-content>
+                  <div class="container-fluid">
+                    <div class="row clearfix">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                          <div class="body" style="padding: 0">
+                            <div class="table-responsive">
+                              <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
+                                <thead>
+                                  <tr>
+                                    <th>Mã SP</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giữ Hộp</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
+                                    <td>{{item.user.tenkh}}</td>
+                                    <td>{{prod.masp}} | {{prod.soluong}}</td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- #END# Basic Examples -->
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <form name="myform">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                      <div class="form-group">
+                        <label for="ship">Tiền Yên *</label>
+                        <input name="ship" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Đặt Cọc *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Tài Khoản *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Thương Hiệu *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Tỉ Giá *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Trạng Thái *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Ghi Chú *</label>
+                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: inline-block; width: 100%">
+            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="regist()" style="float:left" type="submit">UPDATE</button>
+            <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

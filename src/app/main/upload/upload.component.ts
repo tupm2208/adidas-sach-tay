@@ -62,12 +62,30 @@ export class UploadComponent implements OnInit {
   }
 
   addProduct(data) {
-
+    data.mahd = '';
     this.billDetailList.push(data);
   }
 
   deleteProduct(data) {
 
+    if(data.mahd) {
+
+      this.billDetailService.delete(data).subscribe(data => {
+
+        console.log("delete bill detail: ", data);
+
+         if(this.billDetailList.length == 0) {
+
+           if (this.data.bill.mahd) {
+
+             this.billService.delete(this.data.bill).subscribe(data => {
+
+               console.log("delete bill: ", this.data.bill);
+             });
+           }
+         }
+      })
+    }
     this.billDetailList.splice(this.billDetailList.indexOf(data),1);
 
     if(this.billDetailList.length == 0) {

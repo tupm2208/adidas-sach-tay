@@ -28,7 +28,7 @@ export class BillDetailService {
 
     params.token = this.storage.get('token');
 
-    return this.mainApi.put('chitiethd/' + params.mahd, params);
+    return this.mainApi.put('chitiethd/' + params.mahd + '/' + params.masp, params);
   }
 
   create(params): Observable<any> {
@@ -36,5 +36,12 @@ export class BillDetailService {
     params.token = this.storage.get('token');
 
     return this.mainApi.post('chitiethd', params);
+  }
+
+  delete(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.delete('chitiethd/' + params.mahd + '/' + params.masp + '?token=' + token);
   }
 }

@@ -62,9 +62,8 @@ export class HttpService {
   }
 
   public delete(url: string, params?: any, options?: any): Observable<any> {
-    return this.http.put(
+    return this.http.delete(
       this.getFullUrl(url),
-      this.serializeData(params),
       this.requestOptions(options)
     );
   }

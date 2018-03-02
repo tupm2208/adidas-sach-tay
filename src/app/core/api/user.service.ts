@@ -34,4 +34,11 @@ export class UserService {
 
     return this.mainApi.put('khachhang/' + params.makh, params);
   }
+
+  search(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.post('khachhang/search', params);
+  }
 }

@@ -94,7 +94,7 @@ export class UserComponent implements OnInit {
       this.userService.regist(this.data).subscribe( data => {
 
         console.log("regist data: ", data);
-
+        this.data.makh = data.data.makh;
         this.openOrderForm(data.data);
       })
     } else {
@@ -132,6 +132,7 @@ export class UserComponent implements OnInit {
 
       this.userService.regist(this.data).subscribe( data => {
 
+        this.data.makh = data.data.makh;
         console.log("regist data: ", data);
 
       })

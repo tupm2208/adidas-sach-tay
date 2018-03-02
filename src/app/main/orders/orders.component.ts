@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+
 import { OrderService } from '../../core/api/order.service';
 import { OrderDetailService } from '../../core/api/order-detail.service';
 import { UserService } from '../../core/api/user.service';
 declare var $: any;
+
+import { OrderComponent } from './order/order.component';
 
 @Component({
   selector: 'app-orders',
@@ -17,6 +21,7 @@ export class OrdersComponent implements OnInit {
   private fakedData = [];
 
   constructor(
+    private matDialg: MatDialog,
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private userService: UserService,
@@ -48,5 +53,17 @@ export class OrdersComponent implements OnInit {
   ngAfterViewInit() {
 
     setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+  }
+
+  gotoDetail(element) {
+
+    this.matDialg.open(OrderComponent, {
+      data: element,
+      maxHeight: '80%',
+      height: '80%'
+    }).afterClosed().subscribe( data => {
+
+      console.log("abc close", data);
+    })
   }
 }

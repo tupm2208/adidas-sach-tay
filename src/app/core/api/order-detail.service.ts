@@ -23,4 +23,11 @@ export class OrderDetailService {
     
     return this.mainApi.post('chitietdh/search', params);
   }
+
+  create(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.post('chitietdh', params);
+  }
 }

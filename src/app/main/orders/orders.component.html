@@ -83,7 +83,7 @@
                                     <tr *ngFor="let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}">
                                         <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
                                         <td>{{item.sdt}}</td>
-                                        <td>
+                                        <td (click)="gotoDetail(item)" >
                                             <ul *ngIf="item.listProduct">
                                                 <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
                                             </ul>
