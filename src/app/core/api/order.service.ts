@@ -21,4 +21,18 @@ export class OrderService {
 
     return this.mainApi.post('donhang', params);
   }
+
+  update(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.put('donhang', params);
+  }
+
+  delete(id): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.delete('donhang/'+ id +'?token=' + token);
+  }
 }

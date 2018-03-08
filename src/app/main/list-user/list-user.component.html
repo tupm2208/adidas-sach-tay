@@ -43,7 +43,7 @@
                                     <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.tenkh" placeholder="Tìm Kiếm Theo Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.sdt" placeholder="Tìm Kiếm Theo SDT">
                                 </div>
                             </div>
                         </div>
@@ -53,31 +53,31 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Mã KH</th>
+                                        <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
+                                        <th>SDT</th>
+                                        <!-- <th>Email</th> -->
+                                        <!-- <th>Địa Chỉ</th> -->
                                         <th>Loại KH</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Mã KH</th>
+                                        <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa Chỉ</th>
+                                        <th>SDT</th>
+                                        <!-- <th>Email</th> -->
+                                        <!-- <th>Địa Chỉ</th> -->
                                         <th>Loại KH</th>
                                     </tr>
                                 </tfoot>
                                 <tbody *ngIf="fakedData">
                                     <tr *ngFor="let item of fakedData | user: {'makh': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}">
-                                        <td>{{item.makh}}</td>
+                                        <!-- <td>{{item.makh}}</td> -->
                                         <td><a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
                                         <td>{{item.sdt}}</td>
-                                        <td>{{item.email}}</td>
-                                        <td>{{cutAddress(item.diachi)}}</td>
+                                        <!-- <td>{{item.email}}</td> -->
+                                        <!-- <td>{{cutAddress(item.diachi)}}</td> -->
                                         <td>{{item.maloainv}}</td>
                                     </tr>
                                 </tbody>

@@ -1,7 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { ProductKindComponent } from './product-kind/product-kind.component';
 import { FirmComponent } from './firm/firm.component';
+import { ErrorComponent } from '../popup/error/error.component';
+import { SuccessComponent } from '../popup/success/success.component';
 
 import { BillService } from '../../core/api/bill.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
@@ -25,6 +28,8 @@ export class UploadComponent implements OnInit {
     mahd: null,
     makh: null,
   }];
+
+  private isError = false;
 
   constructor(
     private dialogRef: MatDialogRef<UploadComponent>,
@@ -110,6 +115,9 @@ export class UploadComponent implements OnInit {
 
   registOrUpdate() {
 
+    let countErr = 0;
+    let countSuc = 0;
+
     this.billDetailList.forEach( element => {
 
       if(element.mahd) {
@@ -117,16 +125,49 @@ export class UploadComponent implements OnInit {
         this.billDetailService.update(element).subscribe( data => {
 
           console.log("update info of detail bill: ", data);
+
+          countSuc += 1;
+
+          if(countSuc == this.billDetailList.length) {
+
+            this.showSuccess();
+          } else if(countSuc + countErr == this.billDetailList.length) {
+
+            this.showError();
+          }
         }, error => {
 
+          countErr += 1;
           console.log("fail to update info of detail bill: ", error);
+
+          if(countSuc + countErr == this.billDetailList.length) {
+
+            this.showError();
+          }       
         })
       } else {
 
         element.mahd = this.data.bill.mahd;
         this.billDetailService.create(element).subscribe( data => {
 
-          console.log("create bill detail: ", data);
+          countSuc += 1;
+
+          if(countSuc == this.billDetailList.length) {
+
+            this.showSuccess();
+          } else if(countSuc + countErr == this.billDetailList.length) {
+
+            this.showError();
+          }
+        }, error => {
+
+          countErr += 1;
+          console.log("fail to update info of detail bill: ", error);
+
+          if(countSuc + countErr == this.billDetailList.length) {
+
+            this.showError();
+          }      
         })
       }
     })
@@ -159,5 +200,21 @@ export class UploadComponent implements OnInit {
     let day = new Date();
 
     return day.getMonth() + '/' + day.getDate() + '/' + day.getFullYear();
+  }
+
+  showError() {
+
+    this.dialog.open(ErrorComponent).afterClosed().subscribe(data => {
+
+      console.log("close error!");
+    })
+  }
+
+  showSuccess() {
+
+    this.dialog.open(SuccessComponent).afterClosed().subscribe( data => {
+
+      console.log("Close Success: ", data);
+    })
   }
 }

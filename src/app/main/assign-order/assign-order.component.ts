@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SelectProductComponent } from './select-product/select-product.component';
+
 import { UserService } from '../../core/api/user.service';
 import { BillService } from '../../core/api/bill.service';
 import { OrderService } from '../../core/api/order.service';
@@ -34,8 +35,6 @@ export class AssignOrderComponent implements OnInit {
   selectedUser = null;
 
   filterUser = '';
-
-  arr = [1,2,3,4,5,6,7,8,10];
 
   ps1 = null;
 

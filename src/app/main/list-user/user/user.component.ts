@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router'
+
 import { UploadComponent } from '../../upload/upload.component';
 import { UserService } from '../../../core/api/user.service';
 declare var $:any;
@@ -28,7 +30,8 @@ export class UserComponent implements OnInit {
     private dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -139,5 +142,13 @@ export class UserComponent implements OnInit {
     }
 
     this.dialogRef.close();
+  }
+
+  gotoHistory() {
+
+    if(this.data.makh)
+
+      this.router.navigate(['/home/history/' + this.data.makh]); 
+      this.dialogRef.close();
   }
 }

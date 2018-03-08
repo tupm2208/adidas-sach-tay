@@ -75,7 +75,7 @@
                         <a (click)="order()"  [ngClass]="!data.tenkh || !data.sdt? 'disabled': ''">Đặt Hàng</a>
                     </div>
                     <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
-                        <a (click)="dialogRef.close();" routerLink="/home/history">Xem Lịch Sử Giao Dịch</a>
+                        <a (click)="gotoHistory()">Xem Lịch Sử Giao Dịch</a>
                     </div>
 
                     <div style="display: inline-block; width: 100%">

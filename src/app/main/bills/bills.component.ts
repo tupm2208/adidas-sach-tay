@@ -51,7 +51,8 @@ export class BillsComponent implements OnInit {
   openAddProductKind() {
 
     let productKind = this.dialog.open(BillComponent, {
-      height: "80%"
+      height: "80%",
+      width: "80%"
     })
 
     productKind.afterClosed().subscribe( data => {

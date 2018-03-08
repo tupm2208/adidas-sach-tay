@@ -19,3 +19,20 @@ img {
     height: auto;
     width: auto\9; /* ie8 */
 }
+
+.container {
+    max-width: 800px;
+    font-size: .9em;
+}
+
+.form-control {
+     height: inherit; 
+     padding: 0px;
+}
+
+ @media screen and (max-width: 520px){
+
+    .container {
+        font-size: 0.8em;
+    }
+} 

@@ -45,6 +45,8 @@ import { FirmComponent} from './upload/firm/firm.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
 import { ChildProductComponent } from './list-user/user/child-product/child-product.component';
+import { ErrorComponent } from './popup/error/error.component';
+import { SuccessComponent } from './popup/success/success.component';
 
 
 
@@ -91,7 +93,9 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     FirmComponent,
     ProductTableComponent,
     ReceiverComponent,
-    ChildProductComponent
+    ChildProductComponent,
+    ErrorComponent,
+    SuccessComponent
   ],
   entryComponents: [
     UserComponent,
@@ -100,7 +104,9 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     ProductKindComponent,
     FirmComponent,
     BillComponent,
-    OrderComponent
+    OrderComponent,
+    ErrorComponent,
+    SuccessComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -26,7 +26,7 @@ export const MainRoutes: Routes = [
         path: 'assignment',
         component: AssignOrderComponent
     }, {
-        path: 'history',
+        path: 'history/:id',
         component: HistoryComponent
     }, {
         path: 'test',

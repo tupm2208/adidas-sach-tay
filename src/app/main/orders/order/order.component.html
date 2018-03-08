@@ -64,10 +64,10 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
-                                    <td>{{item.user.tenkh}}</td>
-                                    <td>{{prod.masp}} | {{prod.soluong}}</td>
-                                    <td></td>
+                                  <tr *ngFor="let item of result; let i = index">
+                                    <td>{{item.masp}}</td>
+                                    <td>{{item.soluong}}</td>
+                                    <td>{{item.giuhop}}</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -138,7 +138,7 @@
           </div>
 
           <div style="display: inline-block; width: 100%">
-            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="regist()" style="float:left" type="submit">UPDATE</button>
+            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" style="float:left" type="submit">UPDATE</button>
             <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
           </div>
         </form>

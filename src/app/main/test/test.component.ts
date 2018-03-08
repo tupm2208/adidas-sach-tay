@@ -19,6 +19,8 @@ export class TestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.main();
   }
 
   open() {
@@ -34,4 +36,32 @@ export class TestComponent implements OnInit {
     })
   }
 
+
+  abc() {
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+
+        let result = 0;
+
+        for (let i = 0; i <= 2000000000; i++) {
+
+          result++;
+        }
+
+        resolve(result);
+      }, 3000);
+    })
+  }
+
+async  main() {
+
+    let abcd = await this.abc().then((res) => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    })
+
+    console.log("i am waiting");
+  }
 }

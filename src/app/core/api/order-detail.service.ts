@@ -30,4 +30,18 @@ export class OrderDetailService {
 
     return this.mainApi.post('chitietdh', params);
   }
+
+  update(params): Observable<any> {
+
+    params.token = this.storage.get('token');
+
+    return this.mainApi.put('chitietdh', params);
+  }
+
+  delete(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.delete('chitietdh/' + params.madh + '/' +params.masp  + '?token=' + token);
+  }
 }

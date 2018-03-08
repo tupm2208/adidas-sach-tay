@@ -8,9 +8,9 @@
           <img src="assets\images\12733397_1699284923647052_4987102044634626443_n.jpg" >
         </div>
         <div class="col-md-9 col-xs-8 col-sm-8 col-lg-9">
-          <h4>Người Nhận</h4>
-          <h4>Số Điện Thoại</h4>
-          <h4>Địa Chỉ</h4>
+          <div><span>Người Nhận</span></div>
+          <div><span>Số Điện Thoại</span></div>
+          <div><span>Địa Chỉ</span></div>
         </div>
     </div>
     
@@ -20,52 +20,76 @@
     			<div class="panel-heading">
     				<h3 class="panel-title"><strong>Order summary</strong></h3>
     			</div>
-    			<div class="panel-body">
+    			<div class="panel-body" style="padding: 0px">
     				<div class="table-responsive">
     					<table class="table table-condensed">
     						<thead>
-                                <tr>
+                                <tr><td><strong>Ngày Đặt</strong></td>
         							<td><strong>Item</strong></td>
-        							<td class="text-center"><strong>Price</strong></td>
         							<td class="text-center"><strong>Quantity</strong></td>
-        							<td class="text-right"><strong>Totals</strong></td>
+									<td *ngIf="isMobie" class="text-center"><strong>Giá Web</strong></td>
+									<td *ngIf="isMobie" class="text-center"><strong>Triết Khấu</strong></td>
+        							<td *ngIf="isMobie" class="text-center"><strong>Tỉ Giá</strong></td>
+									<td class="text-right"><strong>Totals</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
+									<td>22/07/1997</td>
     								<td>BS-200</td>
-    								<td class="text-center">$10.99</td>
-    								<td class="text-center">1</td>
+									<td class="text-center">1</td>
+									<td *ngIf="isMobie"  class="text-center">1</td>
+									<td *ngIf="isMobie"  class="text-center">1</td>
+									<td *ngIf="isMobie"  class="text-center">1</td>
     								<td class="text-right">$10.99</td>
     							</tr>
                                 <tr>
+									<td class="no-line"></td>
         							<td>BS-400</td>
-    								<td class="text-center">$20.00</td>
-    								<td class="text-center">3</td>
+									<td class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
     								<td class="text-right">$60.00</td>
     							</tr>
                                 <tr>
+									<td class="no-line"></td>
             						<td>BS-1000</td>
-    								<td class="text-center">$600.00</td>
-    								<td class="text-center">1</td>
+									<td class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
+									<td *ngIf="isMobie" class="text-center">1</td>
     								<td class="text-right">$600.00</td>
     							</tr>
     							<tr>
-    								<td class="thick-line"></td>
-    								<td class="thick-line"></td>
+									<td class="no-line"></td>
+									<td *ngIf="isMobie" class="thick-line"></td>
+									<td *ngIf="isMobie" class="thick-line"></td>
+									<td *ngIf="isMobie" class="thick-line"></td>
+									<td class="thick-line"></td>
     								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-    								<td class="thick-line text-right">$670.99</td>
+    								<td class="thick-line text-right" style="position: relative">
+										<div class="form-line" style="position: absolute">
+											<input type="text" class="form-control" name="sdt" placeholder="Số Điện Thoại" autofocus>
+										</div>
+									</td>
     							</tr>
     							<tr>
     								<td class="no-line"></td>
-    								<td class="no-line"></td>
+									<td class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
     								<td class="no-line text-center"><strong>Shipping</strong></td>
     								<td class="no-line text-right">$15</td>
     							</tr>
     							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
+									<td class="no-line"></td>
+									<td class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
+									<td *ngIf="isMobie" class="no-line"></td>
     								<td class="no-line text-center"><strong>Total</strong></td>
     								<td class="no-line text-right">$685.99</td>
     							</tr>

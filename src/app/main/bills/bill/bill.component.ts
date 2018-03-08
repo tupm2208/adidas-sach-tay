@@ -8,12 +8,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class BillComponent implements OnInit {
 
+  isMobie = true;
+
   constructor(
     private dialogRef: MatDialogRef<BillComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
+    
+    this.isMobie = screen.width <= 414? false: true;
   }
 
 }
