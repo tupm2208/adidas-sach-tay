@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../core/api/login.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../core/util/storage.service';
+import { LoadingService } from '../core/util/loading.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +16,12 @@ export class LoginComponent implements OnInit {
   private mk;
   private saveFlag;
 
-  constructor(private loginService: LoginService, private router: Router, private storage: StorageService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private storage: StorageService,
+    private loading: LoadingService
+  ) { }
 
   getSavedAccount() {
 
@@ -27,6 +33,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     
     this.getSavedAccount();
+    // this.loading.show("login");
   }
 
   ngAfterViewInit() {
@@ -46,11 +53,17 @@ export class LoginComponent implements OnInit {
     //   });
     // });
 
-    setTimeout( () => $('.page-loader-wrapper').fadeOut(), 50);
+    // setTimeout( () => $('.page-loader-wrapper').fadeOut(), 50);
+    this.loading.show();
+
+    setTimeout( () => {
+
+      this.loading.hide();
+    }, 1000);
   }
 
   login() {
-    $('.page-loader-wrapper').fadeIn();
+    this.loading.show();
     this.checkBeforeSaving();
 
     this.loginService.login({
@@ -63,12 +76,12 @@ export class LoginComponent implements OnInit {
         this.storage.set('token', res.token);
         this.gotoHome();
       } else {
-        $('.page-loader-wrapper').fadeOut();
+        this.loading.hide();
       }
     }, error => {
 
       console.log("error: ", error);
-      $('.page-loader-wrapper').fadeOut();
+      this.loading.hide();
     })
   }
 

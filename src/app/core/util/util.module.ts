@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpResponseService } from './http-response.service';
 import { MainApiService } from './main-api.service';
 import { ConfigService } from '../config.service';
+import { LoadingService } from './loading.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ConfigService } from '../config.service';
     HttpService,
     MainApiService,
     StorageService,
-    ConfigService
+    ConfigService,
+    LoadingService
   ]
 })
 export class UtilModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { UserComponent } from './user/user.component';
 import { UserService } from '../../core/api/user.service'
+import { LoadingService } from '../../core/util/loading.service'
 declare var $: any;
 
 @Component({
@@ -22,19 +23,22 @@ export class ListUserComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private userService: UserService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
+
+    this.loading.show();
 
     this.userService.list().subscribe( data => {
 
       console.log("user service", data);
       this.fakedData = data;
-      setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+      setTimeout( () => { this.loading.hide() }, 50);
     }, error => {
 
       console.log("user error: ", error);
-      setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+      setTimeout( () => { this.loading.hide() }, 50);
     })
   }
 

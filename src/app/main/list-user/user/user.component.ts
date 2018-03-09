@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router'
 
+import { LoadingService } from '../../../core/util/loading.service';
 import { UploadComponent } from '../../upload/upload.component';
 import { UserService } from '../../../core/api/user.service';
 declare var $:any;
@@ -31,7 +32,8 @@ export class UserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -51,7 +53,6 @@ export class UserComponent implements OnInit {
     }
     this.initToggle(false);
   }
-
   initToggle(data) {
 
     for(let e in this.toggle) {
@@ -93,12 +94,16 @@ export class UserComponent implements OnInit {
   order() {
 
     if(!this.data.makh) {
-
+      this.loading.show("user");
       this.userService.regist(this.data).subscribe( data => {
-
+        
         console.log("regist data: ", data);
         this.data.makh = data.data.makh;
         this.openOrderForm(data.data);
+        this.loading.hide("user");
+      }, error => {
+
+        this.loading.hide("user");
       })
     } else {
 
@@ -125,11 +130,17 @@ export class UserComponent implements OnInit {
 
   update() {
 
+    this.loading.show("user");
+
     if (this.data.makh) {
 
       this.userService.update(this.data).subscribe(data => {
 
         console.log("data update: ", data);
+        this.loading.hide("user");
+      }, error => {
+
+        this.loading.hide("user");
       })
     } else {
 
@@ -137,7 +148,11 @@ export class UserComponent implements OnInit {
 
         this.data.makh = data.data.makh;
         console.log("regist data: ", data);
+        this.loading.hide("user");
 
+      }, error => {
+
+        this.loading.hide("user");
       })
     }
 
