@@ -40,8 +40,6 @@ import { TestComponent } from './test/test.component';
 
 import { UploadComponent} from './upload/upload.component';
 import { ProductKindComponent} from './upload/product-kind/product-kind.component';
-import { ImageComponent} from './upload/image/image.component';
-import { FirmComponent} from './upload/firm/firm.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
 import { ChildProductComponent } from './list-user/user/child-product/child-product.component';
@@ -87,8 +85,6 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     TestComponent,
     UploadComponent,
     ProductKindComponent,
-    ImageComponent,
-    FirmComponent,
     ProductTableComponent,
     ReceiverComponent,
     ChildProductComponent,
@@ -98,7 +94,6 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     SelectProductComponent,
     UploadComponent,
     ProductKindComponent,
-    FirmComponent,
     BillComponent,
     OrderComponent,
   ],
