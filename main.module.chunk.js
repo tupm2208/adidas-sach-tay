@@ -449,7 +449,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/bills/bills.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrapper\">\n        <div class=\"loader\">\n            <div class=\"preloader\">\n                <div class=\"spinner-layer pl-red\">\n                    <div class=\"circle-clipper left\">\n                        <div class=\"circle\"></div>\n                    </div>\n                    <div class=\"circle-clipper right\">\n                        <div class=\"circle\"></div>\n                    </div>\n                </div>\n            </div>\n            <p>Please wait...</p>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách Hóa Đơn\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a class=\"dropdown-toggle\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cart</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"makh\" placeholder=\"Tìm Kiếm Theo Mã Code\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}\">\n                                        <td><a (click)=\"order(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Đặt Hàng\">{{item.user.tenkh}}</a></td>\n                                        <td><a [routerLink]=\"['/home/history/' + item.makh]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Lịch Sử Đặt Hàng\">{{item.user.sdt}}</a></td>\n                                        <td>\n                                            <a (click)=\"openAddProductKind()\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Chi Tiết Hóa Đơn\">\n                                                <ul *ngIf=\"item.listProduct\">\n                                                    <li *ngFor=\"let product of item.listProduct\">{{product.masp}} - {{product.soluong}}</li>\n                                                </ul>\n                                            </a>\n                                        </td>\n                                        <td>{{item.ngay}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td>{{item.khoiluong}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td>{{item.trangthai}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrapper\">\n        <div class=\"loader\">\n            <div class=\"preloader\">\n                <div class=\"spinner-layer pl-red\">\n                    <div class=\"circle-clipper left\">\n                        <div class=\"circle\"></div>\n                    </div>\n                    <div class=\"circle-clipper right\">\n                        <div class=\"circle\"></div>\n                    </div>\n                </div>\n            </div>\n            <p>Please wait...</p>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách Hóa Đơn\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a class=\"dropdown-toggle\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cart</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"makh\" placeholder=\"Tìm Kiếm Theo Mã Code\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}\">\n                                        <td><a (click)=\"order(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Đặt Hàng\">\n                                            <div>{{item.user.tenkh}}</div>    \n                                            <div style=\"margin-top: 10px\">(Đặt Hàng)</div>\n                                        </a></td>\n                                        <td><a [routerLink]=\"['/home/history/' + item.makh]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Lịch Sử Đặt Hàng\">\n                                            <div>{{item.user.sdt}}</div>\n                                            <div style=\"margin-top: 10px\">(Đến Lịch Sử)</div>\n                                        </a></td>\n                                        <td>\n                                            <a (click)=\"openAddProductKind()\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Chi Tiết Hóa Đơn\">\n                                                <ul *ngIf=\"item.listMasp\">\n                                                    <li *ngFor=\"let product of item.listMasp\">{{product.masp}} - {{product.soluong}}</li>\n                                                </ul>\n                                            </a>\n                                        </td>\n                                        <td><a (click)=\"update(item)\">\n                                            <div>{{item.ngay}}</div>\n                                            <div style=\"margin-top: 10px\">Sửa</div>\n                                        </a></td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td>{{item.khoiluong}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td><a (click)=\"update(item)\">\n                                            <div>{{item.trangthai}}</div>\n                                            <div style=\"margin-top: 10px\">Sửa</div>\n                                        </a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -461,9 +461,10 @@ module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bill_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/bill/bill.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -479,12 +480,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var BillsComponent = /** @class */ (function () {
-    function BillsComponent(dialog, billService, billDetailService, userService) {
+    function BillsComponent(dialog, billService, billDetailService, userService, dialogService) {
         this.dialog = dialog;
         this.billService = billService;
         this.billDetailService = billDetailService;
         this.userService = userService;
+        this.dialogService = dialogService;
         this.tenkh = '';
         this.makh = '';
         this.fakedData = [];
@@ -505,11 +508,12 @@ var BillsComponent = /** @class */ (function () {
                     _this.userService.getById(element.makh).subscribe(function (user) {
                         userList[element.makh].tenkh = user.data.tenkh,
                             userList[element.makh].sdt = user.data.sdt;
+                        userList[element.makh].makh = user.data.makh;
                         console.log("called ", element);
                     });
                 }
                 _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (ct) {
-                    element.listProduct = ct;
+                    element.listMasp = ct;
                 });
             });
         });
@@ -526,6 +530,14 @@ var BillsComponent = /** @class */ (function () {
     BillsComponent.prototype.ngAfterViewInit = function () {
         setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
     };
+    BillsComponent.prototype.order = function (item) {
+        this.dialogService.openOrder({ user: item.user }).subscribe(function (data) {
+            console.log("data: order: ", data);
+        });
+    };
+    BillsComponent.prototype.update = function (item) {
+        this.dialogService.openOrder({ user: item.user, bill: item });
+    };
     BillsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-bills',
@@ -533,9 +545,10 @@ var BillsComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/main/bills/bills.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_3__core_api_bill_service__["a" /* BillService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_api_bill_detail_service__["a" /* BillDetailService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__["a" /* UserService */]])
+            __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__["a" /* BillService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */],
+            __WEBPACK_IMPORTED_MODULE_6__core_api_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_dialog_dialog_service__["a" /* DialogService */]])
     ], BillsComponent);
     return BillsComponent;
 }());
@@ -939,90 +952,6 @@ var ListUserComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/main/list-user/user/child-product/child-product.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n#cancel {\r\n    float: right;\r\n    position: relative;\r\n    bottom: 18px;\r\n    left: 10px;\r\n    margin-right: 10px;\r\n    border: 0;\r\n    color: red;\r\n    background-color: unset;\r\n}\r\n\r\n#addMore {\r\n    background-color: cyan;\r\n    color: white;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/list-user/user/child-product/child-product.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"panel panel-primary\">\n  <a (click)=\"deleteProduct()\" class=\"input-group-addon\" id=\"cancel\">\n                          <i class=\"material-icons\">cancel</i>\n                      </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.masp? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"masp\" name=\"masp\" class=\"form-control\" [(ngModel)]=\"product.masp\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"soluong\" class=\"form-control\" [(ngModel)]=\"product.soluong\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Trang Web *</label>\n          <input id=\"age\" name=\"trangweb\" class=\"form-control\" [(ngModel)]=\"product.trangweb\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"giaweb\" class=\"form-control\" [(ngModel)]=\"product.giaweb\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Triết Khấu *</label>\n          <input id=\"age\" name=\"trietkhau\" class=\"form-control\" [(ngModel)]=\"product.trietkhau\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"khoiluong\" class=\"form-control\" [(ngModel)]=\"product.khoiluong\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Tỉ Giá *</label>\n          <input id=\"age\" name=\"tigia\" class=\"form-control\" [(ngModel)]=\"product.tigia\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <!-- <div class=\"form-group\">\n          <label for=\"age\">Thành Tiền *</label>\n          <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\" style=\"clear: both\">\n          <label for=\"lastname\">Loại Sản Phẩm *</label>\n          <div>\n            <select data-validation=\"required\" class=\"form-control\">\n                    <option>1</option>\n                    <option>2</option>\n                    <option>3</option>\n                    <option>4</option>\n                    <option>5</option>\n                  </select>\n          </div>\n          <span id=\"error_lastname\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\">\n          <label for=\"disc\">Mô Tả</label>\n          <textarea class=\"form-control\" rows=\"3\"></textarea>\n        </div> -->\n      </div>\n    </form>\n  </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\">\n                          <i class=\"material-icons\">add</i>\n                      </a>\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/list-user/user/child-product/child-product.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChildProductComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ChildProductComponent = /** @class */ (function () {
-    function ChildProductComponent() {
-        this.delete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */]();
-        this.add = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */]();
-    }
-    ChildProductComponent.prototype.ngOnInit = function () {
-    };
-    ChildProductComponent.prototype.deleteProduct = function () {
-        this.delete.emit(this.product);
-    };
-    ChildProductComponent.prototype.duplicateProduct = function () {
-        this.add.emit(JSON.parse(JSON.stringify(this.product)));
-    };
-    ChildProductComponent.prototype.toggleHop = function () {
-        this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Input */])(),
-        __metadata("design:type", Object)
-    ], ChildProductComponent.prototype, "product", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Output */])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */])
-    ], ChildProductComponent.prototype, "delete", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Output */])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */])
-    ], ChildProductComponent.prototype, "add", void 0);
-    ChildProductComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-child-product',
-            template: __webpack_require__("../../../../../src/app/main/list-user/user/child-product/child-product.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/list-user/user/child-product/child-product.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], ChildProductComponent);
-    return ChildProductComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/main/list-user/user/user.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1057,8 +986,8 @@ module.exports = "<body class=\"signup-page\" id=\"user\">\r\n    <div class=\"s
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__upload_upload_component__ = __webpack_require__("../../../../../src/app/main/upload/upload.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1077,15 +1006,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
-
 var UserComponent = /** @class */ (function () {
-    function UserComponent(dialogRef, data, userService, dialog, router, loading) {
+    function UserComponent(dialogRef, data, userService, router, loading, dialogService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.userService = userService;
-        this.dialog = dialog;
         this.router = router;
         this.loading = loading;
+        this.dialogService = dialogService;
         this.isNew = false;
         this.listOrderProduct = [];
         this.toggle = {
@@ -1162,15 +1090,7 @@ var UserComponent = /** @class */ (function () {
         }
     };
     UserComponent.prototype.openOrderForm = function (data) {
-        var productKind = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__upload_upload_component__["a" /* UploadComponent */], {
-            width: "80%",
-            height: '90%',
-            data: {
-                user: data,
-                bill: null
-            }
-        });
-        productKind.afterClosed().subscribe(function (data) {
+        this.dialogService.openOrder({ user: data, bill: null }).subscribe(function (data) {
             console.log("close product kind!");
         });
     };
@@ -1211,10 +1131,10 @@ var UserComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/main/list-user/user/user.component.css")]
         }),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */]])
+            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_dialog_dialog_service__["a" /* DialogService */]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -1312,20 +1232,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__ = __webpack_require__("../../../../../src/app/main/assign-order/select-product/select-product.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__history_history_component__ = __webpack_require__("../../../../../src/app/main/history/history.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__test_test_component__ = __webpack_require__("../../../../../src/app/main/test/test.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__upload_upload_component__ = __webpack_require__("../../../../../src/app/main/upload/upload.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__upload_product_kind_product_kind_component__ = __webpack_require__("../../../../../src/app/main/upload/product-kind/product-kind.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__list_user_user_child_product_child_product_component__ = __webpack_require__("../../../../../src/app/main/list-user/user/child-product/child-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
-
 
 
 
@@ -1391,17 +1305,12 @@ var MainModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
                 __WEBPACK_IMPORTED_MODULE_20__history_history_component__["a" /* HistoryComponent */],
                 __WEBPACK_IMPORTED_MODULE_21__test_test_component__["a" /* TestComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__upload_upload_component__["a" /* UploadComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__upload_product_kind_product_kind_component__["a" /* ProductKindComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__product_table_product_table_component__["a" /* ProductTableComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__receiver_receiver_component__["a" /* ReceiverComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__list_user_user_child_product_child_product_component__["a" /* ChildProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__product_table_product_table_component__["a" /* ProductTableComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__receiver_receiver_component__["a" /* ReceiverComponent */],
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_9__list_user_user_user_component__["a" /* UserComponent */],
                 __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__upload_upload_component__["a" /* UploadComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__upload_product_kind_product_kind_component__["a" /* ProductKindComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__bills_bill_bill_component__["a" /* BillComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__orders_order_order_component__["a" /* OrderComponent */],
             ],
@@ -2089,8 +1998,6 @@ module.exports = "<section class=\"content\">\n  <a (click)=\"open()\">open toi 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__upload_upload_component__ = __webpack_require__("../../../../../src/app/main/upload/upload.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2136,11 +2043,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 
-
-
 var TestComponent = /** @class */ (function () {
-    function TestComponent(dialog) {
-        this.dialog = dialog;
+    function TestComponent() {
         this.checked = false;
         this.indeterminate = false;
         this.align = 'start';
@@ -2150,13 +2054,6 @@ var TestComponent = /** @class */ (function () {
         this.main();
     };
     TestComponent.prototype.open = function () {
-        var productKind = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__upload_upload_component__["a" /* UploadComponent */], {
-            width: "80%",
-            height: '90%'
-        });
-        productKind.afterClosed().subscribe(function (data) {
-            console.log("close product kind!");
-        });
     };
     TestComponent.prototype.abc = function () {
         return new Promise(function (resolve, reject) {
@@ -2193,307 +2090,9 @@ var TestComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/main/test/test.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/test/test.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */]])
+        __metadata("design:paramtypes", [])
     ], TestComponent);
     return TestComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/product-kind/product-kind.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/product-kind/product-kind.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div>\n  <div class=\"row\">\n    <div class=\"col-md-12 col-sm-12 col-lg-12\">\n      <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">Loại Sản Phẩm</div>\n        <div class=\"panel-body\">\n          <form name=\"myform\">\n            <div class=\"col-md-6 col-sm-6 col-lg-6\">\n              <div class=\"list-group\">\n                <div class=\"list-group-item list-group-item-success\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-warning\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-success\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-warning\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n              </div>\n            </div>\n            <div class=\"col-md-6 col-sm-6 col-lg-6\">\n              <div class=\"form-group\" style=\"text-align:center\">\n                <label for=\"age\">Thêm Loại Sản Phẩm *</label>\n                <input class=\"form-control\" type=\"text\">\n                <a class=\"btn btn-primary\" style=\"margin-top: 20px\">Thêm</a>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div style=\"text-align:center\">\n  <button class=\"btn btn-warning\" [mat-dialog-close]=\"true\">Back</button>\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/product-kind/product-kind.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductKindComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-var ProductKindComponent = /** @class */ (function () {
-    function ProductKindComponent(dialogRef, data) {
-        this.dialogRef = dialogRef;
-        this.data = data;
-    }
-    ProductKindComponent.prototype.ngOnInit = function () {
-    };
-    ProductKindComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-product-kind',
-            template: __webpack_require__("../../../../../src/app/main/upload/product-kind/product-kind.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/upload/product-kind/product-kind.component.css")]
-        }),
-        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object])
-    ], ProductKindComponent);
-    return ProductKindComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/upload.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 100%;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}\r\n\r\ntable, th, td {\r\n    border: 1px solid black;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth, td {\r\n    padding: 5px;\r\n    text-align: left;\r\n}\r\n\r\n#sign_up{\r\n\r\n    max-height: 400px;\r\n}\r\n\r\n.card {\r\n    -webkit-box-shadow: 0;\r\n            box-shadow: 0;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/upload.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-child-product [product]=\"billDetailList[0]\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 1\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-child-product [product]=\"item\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thành Tiền *</label>\n                                                <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"ship\">Phí Ship *</label>\n                                                <input [(ngModel)]=\"data.bill.ship\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Đặt Cọc *</label>\n                                                <input [(ngModel)]=\"data.bill.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/upload/upload.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-
-
-var UploadComponent = /** @class */ (function () {
-    function UploadComponent(dialogRef, data, billService, billDetailService, dialogService, loading) {
-        this.dialogRef = dialogRef;
-        this.data = data;
-        this.billService = billService;
-        this.billDetailService = billDetailService;
-        this.dialogService = dialogService;
-        this.loading = loading;
-        this.billDetailList = [{
-                masp: '',
-                soluong: 1,
-                trangweb: '',
-                giaweb: '',
-                trietkhau: '',
-                khoiluong: '',
-                tigia: '',
-                giuhop: 0,
-                mahd: null,
-                makh: null,
-            }];
-        this.isError = false;
-    }
-    UploadComponent.prototype.ngOnInit = function () {
-        console.log("data: ", this.data);
-        this.billDetailList[0].makh = this.data.user.makh;
-        if (this.data.bill && this.data.bill.masp) {
-            this.billDetailList = this.data.bill.listMasp;
-        }
-        if (!this.data.bill) {
-            this.data.bill = {
-                ngay: this.setDay(),
-                makh: this.data.user.makh,
-                trangthai: 1,
-                datcoc: '',
-                ship: ''
-            };
-        }
-    };
-    UploadComponent.prototype.ngAfterViewInit = function () {
-        $('app-upload').parent().parent().attr('id', 'upload');
-    };
-    UploadComponent.prototype.onClick = function () {
-        this.dialogRef.close();
-    };
-    UploadComponent.prototype.addProduct = function (data) {
-        data.mahd = '';
-        this.billDetailList.push(data);
-    };
-    UploadComponent.prototype.deleteProduct = function (data) {
-        var _this = this;
-        if (data.mahd) {
-            this.billDetailService.delete(data).subscribe(function (data) {
-                console.log("delete bill detail: ", data);
-                if (_this.billDetailList.length == 0) {
-                    if (_this.data.bill.mahd) {
-                        _this.billService.delete(_this.data.bill).subscribe(function (data) {
-                            console.log("delete bill: ", _this.data.bill);
-                        });
-                    }
-                }
-            });
-        }
-        this.billDetailList.splice(this.billDetailList.indexOf(data), 1);
-        if (this.billDetailList.length == 0) {
-            this.dialogRef.close();
-        }
-    };
-    UploadComponent.prototype.checkValid = function () {
-        for (var i = 0; i < this.billDetailList.length; i++) {
-            if (!this.billDetailList[i].masp || !this.billDetailList[i].soluong) {
-                return false;
-            }
-        }
-        return true;
-    };
-    UploadComponent.prototype.registOrUpdate = function () {
-        var _this = this;
-        var countErr = 0;
-        var countSuc = 0;
-        this.billDetailList.forEach(function (element) {
-            if (element.mahd) {
-                _this.billDetailService.update(element).subscribe(function (data) {
-                    console.log("update info of detail bill: ", data);
-                    countSuc += 1;
-                    if (countSuc == _this.billDetailList.length) {
-                        _this.showSuccess();
-                    }
-                    else if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
-                    }
-                }, function (error) {
-                    countErr += 1;
-                    console.log("fail to update info of detail bill: ", error);
-                    if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
-                    }
-                });
-            }
-            else {
-                element.mahd = _this.data.bill.mahd;
-                _this.billDetailService.create(element).subscribe(function (data) {
-                    countSuc += 1;
-                    if (countSuc == _this.billDetailList.length) {
-                        _this.showSuccess();
-                    }
-                    else if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
-                    }
-                }, function (error) {
-                    countErr += 1;
-                    console.log("fail to update info of detail bill: ", error);
-                    if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
-                    }
-                });
-            }
-        });
-    };
-    UploadComponent.prototype.regist = function () {
-        var _this = this;
-        if (!this.checkValid())
-            return;
-        this.loading.show('upload');
-        if (this.data.bill && this.data.bill.mahd) {
-            this.billService.update(this.data.bill).subscribe(function (data) {
-                console.log("put data bill: ", data);
-                _this.registOrUpdate();
-            });
-        }
-        else {
-            this.billService.create(this.data.bill).subscribe(function (data) {
-                console.log("create data bill: ", data);
-                _this.data.bill.mahd = data.data.mahd;
-                _this.registOrUpdate();
-            });
-        }
-    };
-    UploadComponent.prototype.setDay = function () {
-        var day = new Date();
-        return day.getMonth() + '/' + day.getDate() + '/' + day.getFullYear();
-    };
-    UploadComponent.prototype.showError = function () {
-        this.loading.hide('upload');
-        this.dialogService.showError().subscribe(function (data) {
-            console.log("close error!");
-        });
-    };
-    UploadComponent.prototype.showSuccess = function () {
-        var _this = this;
-        this.loading.hide('upload');
-        this.dialogService.showSuccess().subscribe(function (data) {
-            if (!data) {
-                _this.dialogRef.close();
-            }
-        });
-    };
-    UploadComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-upload',
-            template: __webpack_require__("../../../../../src/app/main/upload/upload.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/upload/upload.component.css")]
-        }),
-        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__core_api_bill_service__["a" /* BillService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_api_bill_detail_service__["a" /* BillDetailService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__["a" /* LoadingService */]])
-    ], UploadComponent);
-    return UploadComponent;
 }());
 
 
