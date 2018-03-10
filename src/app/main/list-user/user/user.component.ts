@@ -26,6 +26,7 @@ export class UserComponent implements OnInit {
     mk: false,
     maloainv: false
   }
+  private reload = null;
 
   constructor(
     private dialogRef: MatDialogRef<UserComponent>,
@@ -76,7 +77,7 @@ export class UserComponent implements OnInit {
 
   selectKind(type) {
 
-    if(type == 1) return "admin";
+    if(type == 1) return "admin"
 
     if(type == 2) return "Khách Lẻ";
 
@@ -101,6 +102,8 @@ export class UserComponent implements OnInit {
         this.data.makh = data.data.makh;
         this.openOrderForm(data.data);
         this.loading.hide("user");
+        this.data = data.data;
+        this.reload = this.data
       }, error => {
 
         this.loading.hide("user");
@@ -138,6 +141,7 @@ export class UserComponent implements OnInit {
 
         console.log("data update: ", data);
         this.loading.hide("user");
+        this.dialogRef.close(this.reload);
       }, error => {
 
         this.loading.hide("user");
@@ -149,14 +153,14 @@ export class UserComponent implements OnInit {
         this.data.makh = data.data.makh;
         console.log("regist data: ", data);
         this.loading.hide("user");
-
+        this.data = data.data;
+        this.reload = data.data;
+        this.dialogRef.close(this.reload);
       }, error => {
 
         this.loading.hide("user");
       })
     }
-
-    this.dialogRef.close();
   }
 
   gotoHistory() {

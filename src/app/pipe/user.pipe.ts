@@ -11,13 +11,34 @@ export class UserPipe implements PipeTransform {
 
     return items.filter(item => {
 
+      
       for(let key in filter) {
         
-        let str = item[key] + '';
-        if(str.indexOf(filter[key]) == -1) {
+        if(!item.hasOwnProperty(key)) continue;
+        
+        if(typeof(filter[key]) == 'object') {
 
-          return false;
+          for(let e in filter[key]) {
+
+            let str = item[key][e] + '';
+            
+            if (str.indexOf(filter[key][e]) == -1) {
+
+              return false;
+            }
+
+          }
+        } else {
+
+          let str = item[key] + '';
+
+          if (str.indexOf(filter[key]) == -1) {
+
+            return false;
+          }
         }
+        
+        
       }
 
       return true; // true if matches all fields

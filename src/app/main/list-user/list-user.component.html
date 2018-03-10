@@ -1,19 +1,4 @@
 <section class="content">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,8 +41,8 @@
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
                                         <th>SDT</th>
-                                        <!-- <th>Email</th> -->
-                                        <!-- <th>Địa Chỉ</th> -->
+                                        <th *ngIf="sc">Email</th> 
+                                        <th *ngIf="sc">Địa Chỉ</th> 
                                         <th>Loại KH</th>
                                     </tr>
                                 </thead>
@@ -66,8 +51,8 @@
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
                                         <th>SDT</th>
-                                        <!-- <th>Email</th> -->
-                                        <!-- <th>Địa Chỉ</th> -->
+                                        <th *ngIf="sc">Email</th> 
+                                        <th *ngIf="sc">Địa Chỉ</th> 
                                         <th>Loại KH</th>
                                     </tr>
                                 </tfoot>
@@ -76,8 +61,8 @@
                                         <!-- <td>{{item.makh}}</td> -->
                                         <td><a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
                                         <td>{{item.sdt}}</td>
-                                        <!-- <td>{{item.email}}</td> -->
-                                        <!-- <td>{{cutAddress(item.diachi)}}</td> -->
+                                         <td *ngIf="sc">{{item.email}}</td> 
+                                         <td *ngIf="sc">{{item.diachi}}</td> 
                                         <td>{{item.maloainv}}</td>
                                     </tr>
                                 </tbody>

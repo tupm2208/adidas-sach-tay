@@ -20,6 +20,8 @@ export class ListUserComponent implements OnInit {
     sdt: ''
   };
 
+  sc = screen.width <= 414? false: true;
+
   constructor(
     private dialog: MatDialog,
     private userService: UserService,
@@ -43,16 +45,16 @@ export class ListUserComponent implements OnInit {
   }
 
   openAddProductKind(data) {
-
-    console.log("open");
-
-    let productKind = this.dialog.open(UserComponent, {
+  
+    this.dialog.open(UserComponent, {
       data: data
-    });
+    }).afterClosed().subscribe(data => {
 
-    productKind.afterClosed().subscribe(data => {
+      console.log("close product kind!", data);
+      if(data && this.fakedData.indexOf(data) == -1) {
 
-      console.log("close product kind!");
+        this.fakedData = this.fakedData.concat([data]);
+      }
     })
   }
 

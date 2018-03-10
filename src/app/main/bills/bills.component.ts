@@ -29,16 +29,28 @@ export class BillsComponent implements OnInit {
 
     this.billService.list().subscribe( data => {
 
+      let userList: any = {};
+
       console.log("bill List: ", data);
       
       this.fakedData = data;
       this.fakedData.forEach(element => {
         
-        this.userService.getById(element.makh).subscribe( user => {
+        if(userList[element.makh]) {
 
-          element.tenkh = user.data.tenkh,
-          element.sdt = user.data.sdt
-        })
+          element.user = userList[element.makh]
+        } else {
+
+          userList[element.makh] = {};
+          element.user = userList[element.makh];
+          this.userService.getById(element.makh).subscribe(user => {
+            
+            userList[element.makh].tenkh = user.data.tenkh,
+            userList[element.makh].sdt = user.data.sdt
+
+            console.log("called ", element);
+          })
+        }
 
         this.billDetailService.getByParams({mahd: element.mahd}).subscribe( ct => {
 

@@ -1,13 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
-import { ProductKindComponent } from './product-kind/product-kind.component';
-import { FirmComponent } from './firm/firm.component';
-import { ErrorComponent } from '../popup/error/error.component';
-import { SuccessComponent } from '../popup/success/success.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { BillService } from '../../core/api/bill.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
+import { DialogService } from '../../core/dialog/dialog.service';
+import { LoadingService } from '../../core/util/loading.service';
+
+declare let $: any;
 
 @Component({
   selector: 'app-upload',
@@ -33,10 +32,11 @@ export class UploadComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<UploadComponent>,
-    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private billService: BillService,
-    private billDetailService: BillDetailService
+    private billDetailService: BillDetailService,
+    private dialogService: DialogService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -59,6 +59,11 @@ export class UploadComponent implements OnInit {
         ship: ''
       }
     }
+  }
+
+  ngAfterViewInit() {
+
+    $('app-upload').parent().parent().attr('id','upload');
   }
 
   onClick() {
@@ -177,6 +182,7 @@ export class UploadComponent implements OnInit {
 
     if(!this.checkValid()) return;
 
+    this.loading.show('upload');
     if(this.data.bill && this.data.bill.mahd) {
 
       this.billService.update(this.data.bill).subscribe( data => {
@@ -204,7 +210,8 @@ export class UploadComponent implements OnInit {
 
   showError() {
 
-    this.dialog.open(ErrorComponent).afterClosed().subscribe(data => {
+    this.loading.hide('upload');
+    this.dialogService.showError().subscribe( data => {
 
       console.log("close error!");
     })
@@ -212,9 +219,13 @@ export class UploadComponent implements OnInit {
 
   showSuccess() {
 
-    this.dialog.open(SuccessComponent).afterClosed().subscribe( data => {
+    this.loading.hide('upload');
+    this.dialogService.showSuccess().subscribe( data => {
 
-      console.log("Close Success: ", data);
+      if(!data) {
+
+        this.dialogRef.close();
+      }
     })
   }
 }

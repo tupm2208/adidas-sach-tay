@@ -80,7 +80,7 @@
 
                     <div style="display: inline-block; width: 100%">
                         <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="update()" style="float:left" type="submit">UPDATE</button>
-                        <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
+                        <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" (click)="dialogRef.close(reload)">CANCEL</button>
                     </div>
                     
                 </form>

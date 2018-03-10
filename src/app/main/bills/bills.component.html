@@ -74,13 +74,15 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'makh': makh, 'tenkh': tenkh}">
-                                        <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.sdt}}</td>
+                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}">
+                                        <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">{{item.user.tenkh}}</a></td>
+                                        <td><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">{{item.user.sdt}}</a></td>
                                         <td>
-                                            <ul *ngIf="item.listProduct">
-                                                <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
-                                            </ul>
+                                            <a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
+                                                <ul *ngIf="item.listProduct">
+                                                    <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
+                                                </ul>
+                                            </a>
                                         </td>
                                         <td>{{item.ngay}}</td>
                                         <td>{{item.datcoc}}</td>
