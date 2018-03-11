@@ -9,6 +9,10 @@ import { BillDetailService } from '../../../core/api/bill-detail.service';
 import { OrderService } from '../../../core/api/order.service';
 import { OrderDetailService } from '../../../core/api/order-detail.service'; 
 import { UserService } from '../../../core/api/user.service';
+import { LoadingService } from '../../../core/util/loading.service';
+import { PopupService } from '../../../core/dialog/popup/popup.service';
+
+declare let $: any;
 
 @Component({
   selector: 'app-order',
@@ -29,32 +33,59 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private dialogRef: MatDialogRef<OrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private loadingService: LoadingService,
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
 
+    console.log("init order data: ", this.data);
+    $('app-order').parent().parent().attr('id','app-order');
+
+    setTimeout( () => this.loadingService.show('app-order'), 0);
+
     this.billService.search({madh: this.data.madh}).subscribe( data => {
 
+      let i = 0;
       console.log("data bill Service: ", data);
       this.listBooked = data;
 
+      let userList: any = {};
+
       this.listBooked.forEach( element => {
 
-        this.userService.getById(element.makh).subscribe ( user => {
+        if(userList[element.makh]) {
 
-          console.log("user :", element.makh, user);
-          element.user = user.data;
-        });
+          element.user = userList[element.makh];
+        } else {
 
+          userList[element.makh] = {};
+
+          this.userService.getById(element.makh).subscribe(user => {
+
+            console.log("user :", element.makh, user);element.user = user.data;
+
+            for(let e in user.data) {
+
+              userList[element.makh][e] = user.data[e];
+            }
+            
+            element.user = userList[element.makh];
+          });
+        }
+        
         this.billDetailService.getByParams({mahd: element.mahd}).subscribe ( bills => {
 
-          console.log("bills: ", bills);
+          i++;
           element.bills = bills;
+
+          if(i == this.listBooked.length) {
+
+            this.loadingService.hide('app-order');
+          }
         })
       })
-
-      console.log("final data: ", this.listBooked);
     })
 
     this.orderDetailService.getByParams({madh: this.data.madh}).subscribe( data => {
@@ -67,8 +98,6 @@ export class OrderComponent implements OnInit {
   selectItem(item) {
 
     item.madh = item.madh? null: this.data.madh;
-
-    console.log("item: ", item);
     item.bills.forEach(elem => {
 
       let flag = true;
@@ -163,8 +192,6 @@ export class OrderComponent implements OnInit {
         }
       }
     })
-
-    console.log("test filter: ", )
   }
 
   returnArray(): Array<any> {
@@ -190,13 +217,13 @@ export class OrderComponent implements OnInit {
 
   async submit() {
 
+    this.loadingService.show('app-order');
     let flag = true;
 
-    let result = await Observable.forkJoin(...this.promisList()).toPromise().then
-    ( data => {
+    let result = await Observable.forkJoin(...this.promisList()).toPromise().then( data => {
 
       this.counter ++;
-      console.log("counter in promise: ", this.counter.toString());
+      
       this.returnArray().forEach( element => {
 
         element.bills.forEach(elem => {
@@ -205,7 +232,6 @@ export class OrderComponent implements OnInit {
         });
       })
     })
-    console.log("counter out promise: ", this.counter.toString());
     
     this.checkOrder();
   }
@@ -264,12 +290,33 @@ export class OrderComponent implements OnInit {
       this.orderService.delete(this.data.madh).subscribe( data => {
 
         console.log("delete order: ", data);
+
+        this.loadingService.hide('app-order');
+        this.popupService.showSuccess().subscribe( data => {
+
+          console.log("success: ", data);
+          this.dialogRef.close();
+        })
+      }, error => {
+
+        this.loadingService.hide('app-order');
+        this.popupService.showError();
       })
     } else {
 
       this.orderService.update(this.data).subscribe( data => {
 
         console.log("update order: ", data);
+
+        this.loadingService.hide('app-order');
+        this.popupService.showSuccess().subscribe( data => {
+
+          this.dialogRef.close();
+        })
+      }, error => {
+
+        this.loadingService.hide('app-order');
+        this.popupService.showError();
       })
     }
   }

@@ -8,7 +8,7 @@
       <div class="body">
         <form id="sign_up" method="POST">
           <div class="row">
-            <div class="col-md-6  col-sm-12 col-lg-6" style="margin-bottom: 20px">
+            <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
               <div class="select-person-header" style="min-width: 202px;">List Đặt Hàng </div>
               <mat-card style="padding: 24px 0px; min-width: 240px">
                 <mat-card-content>
@@ -45,7 +45,7 @@
               </mat-card>
             </div>
 
-            <div class="col-md-6  col-sm-12 col-lg-6" style="margin-bottom: 20px">
+            <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
               <div class="select-person-header" style="min-width: 202px">Đơn Hàng </div>
               <mat-card style="padding: 24px 0px; min-width: 240px">
                 <mat-card-content>
@@ -83,7 +83,7 @@
               </mat-card>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-body">
                   <form name="myform">
@@ -91,43 +91,43 @@
 
                       <div class="form-group">
                         <label for="ship">Tiền Yên *</label>
-                        <input name="ship" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.tienyen" name="ship" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Đặt Cọc *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.datcoc" name="thanhtien" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Tài Khoản *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.taikhoan" name="thanhtien" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Thương Hiệu *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.thuonghieu" name="thanhtien" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Tỉ Giá *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.tigia" name="thanhtien" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Trạng Thái *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.trangthai" name="thanhtien" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Ghi Chú *</label>
-                        <input name="thanhtien" class="form-control" min="1" type="text">
+                        <textarea [(ngModel)]="data.ghichu" name="thanhtien" class="form-control" min="3" type="text"></textarea>
                         <span id="error_age" class="text-danger"></span>
                       </div>
                     </div>

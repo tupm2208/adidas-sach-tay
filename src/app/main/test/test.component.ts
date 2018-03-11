@@ -1,6 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { UploadComponent } from '../upload/upload.component';
 
 @Component({
   selector: 'app-test',
@@ -15,7 +13,7 @@ export class TestComponent implements OnInit {
   disabled = false;
 
   constructor(
-    private dialog: MatDialog
+    // private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -24,16 +22,6 @@ export class TestComponent implements OnInit {
   }
 
   open() {
-
-    let productKind = this.dialog.open(UploadComponent, {
-      width: "80%",
-      height:'90%'
-    })
-
-    productKind.afterClosed().subscribe( data => {
-
-      console.log("close product kind!");
-    })
   }
 
 

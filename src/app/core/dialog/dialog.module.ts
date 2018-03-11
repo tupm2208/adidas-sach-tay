@@ -19,9 +19,13 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DialogService } from './dialog.service';
+import { PopupService } from './popup/popup.service';
 
 import { ErrorComponent } from './popup/error/error.component';
 import { SuccessComponent } from './popup/success/success.component';
+import { UploadComponent} from './product/upload/upload.component';
+import { ProductKindComponent} from './product/upload/product-kind/product-kind.component';
+import { ChildProductComponent } from './product/upload/child-product/child-product.component';
 
 @NgModule({
   imports: [
@@ -45,14 +49,21 @@ import { SuccessComponent } from './popup/success/success.component';
   ],
   declarations: [
     ErrorComponent,
-    SuccessComponent
+    SuccessComponent,
+    UploadComponent,
+    UploadComponent,
+    ProductKindComponent,
+    ChildProductComponent
   ],
   entryComponents: [
     ErrorComponent,
-    SuccessComponent
+    SuccessComponent,
+    UploadComponent,
+    ProductKindComponent,
   ],
   providers: [
-    DialogService
+    DialogService,
+    PopupService
   ]
 })
 export class DialogModule { }

@@ -1,19 +1,4 @@
 <section class="content">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -75,22 +60,34 @@
                                 </tfoot>
                                 <tbody>
                                     <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}">
-                                        <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">{{item.user.tenkh}}</a></td>
-                                        <td><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">{{item.user.sdt}}</a></td>
+                                        <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">
+                                            <div>{{item.user.tenkh}}</div>    
+                                            <div style="margin-top: 10px">(Đặt Hàng)</div>
+                                        </a></td>
+                                        <td><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
+                                            <div>{{item.user.sdt}}</div>
+                                            <div style="margin-top: 10px">(Đến Lịch Sử)</div>
+                                        </a></td>
                                         <td>
-                                            <a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
-                                                <ul *ngIf="item.listProduct">
-                                                    <li *ngFor="let product of item.listProduct">{{product.masp}} - {{product.soluong}}</li>
+                                            <a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
+                                                <ul *ngIf="item.listMasp">
+                                                    <li *ngFor="let product of item.listMasp">{{product.masp}} - {{product.soluong}}</li>
                                                 </ul>
                                             </a>
                                         </td>
-                                        <td>{{item.ngay}}</td>
+                                        <td><a (click)="update(item)">
+                                            <div>{{item.ngay}}</div>
+                                            <div style="margin-top: 10px">Sửa</div>
+                                        </a></td>
                                         <td>{{item.datcoc}}</td>
                                         <td>{{item.ship}}</td>
                                         <td>{{item.tong}}</td>
                                         <td>{{item.khoiluong}}</td>
                                         <td>{{item.tong}}</td>
-                                        <td>{{item.trangthai}}</td>
+                                        <td><a (click)="update(item)">
+                                            <div>{{item.trangthai}}</div>
+                                            <div style="margin-top: 10px">Sửa</div>
+                                        </a></td>
                                     </tr>
                                 </tbody>
                             </table>

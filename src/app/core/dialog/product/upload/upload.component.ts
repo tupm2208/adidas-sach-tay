@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { BillService } from '../../core/api/bill.service';
-import { BillDetailService } from '../../core/api/bill-detail.service';
-import { DialogService } from '../../core/dialog/dialog.service';
-import { LoadingService } from '../../core/util/loading.service';
+import { BillService } from '../../../api/bill.service';
+import { BillDetailService } from '../../../api/bill-detail.service';
+import { PopupService } from '../../popup/popup.service';
+import { LoadingService } from '../../../util/loading.service';
 
 declare let $: any;
 
@@ -35,7 +35,7 @@ export class UploadComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private billService: BillService,
     private billDetailService: BillDetailService,
-    private dialogService: DialogService,
+    private popupDialog: PopupService,
     private loading: LoadingService
   ) { }
 
@@ -44,7 +44,7 @@ export class UploadComponent implements OnInit {
 
     this.billDetailList[0].makh = this.data.user.makh;
 
-    if(this.data.bill && this.data.bill.masp) {
+    if(this.data.bill && this.data.bill.mahd && this.data.bill.listMasp) {
 
       this.billDetailList = this.data.bill.listMasp;
     }
@@ -205,13 +205,13 @@ export class UploadComponent implements OnInit {
 
     let day = new Date();
 
-    return day.getMonth() + '/' + day.getDate() + '/' + day.getFullYear();
+    return day.getMonth() + 1 + '/' + day.getDate() + '/' + day.getFullYear();
   }
 
   showError() {
 
     this.loading.hide('upload');
-    this.dialogService.showError().subscribe( data => {
+    this.popupDialog.showError().subscribe( data => {
 
       console.log("close error!");
     })
@@ -220,7 +220,7 @@ export class UploadComponent implements OnInit {
   showSuccess() {
 
     this.loading.hide('upload');
-    this.dialogService.showSuccess().subscribe( data => {
+    this.popupDialog.showSuccess().subscribe( data => {
 
       if(!data) {
 

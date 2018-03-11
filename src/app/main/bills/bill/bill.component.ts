@@ -12,12 +12,26 @@ export class BillComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<BillComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) private data: any
   ) { }
 
   ngOnInit() {
     
     this.isMobie = screen.width <= 414? false: true;
+
+    console.log("this.data: ", this.data);
+  }
+
+  subTotal() {
+
+    let sum = 0;
+
+    this.data.listMasp.forEach(element => {
+      
+      sum += element.giaweb * element.trietkhau * element.tigia;
+    });
+
+    return sum;
   }
 
 }

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { OrderService } from '../../core/api/order.service';
 import { OrderDetailService } from '../../core/api/order-detail.service';
 import { UserService } from '../../core/api/user.service';
+import { LoadingService } from '../../core/util/loading.service';
 declare var $: any;
 
 import { OrderComponent } from './order/order.component';
@@ -25,15 +26,22 @@ export class OrdersComponent implements OnInit {
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private userService: UserService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
+
+    this.loadingService.show();
     
     this.orderService.list().subscribe( data => {
 
       console.log("orderService LIST: ", data);
+
+      let i = 0;
       
       this.fakedData = data;
+
+      if(data.length == 0) this.loadingService.hide();
       this.fakedData.forEach(element => {
         
         this.userService.getById(element.makh).subscribe( user => {
@@ -44,15 +52,16 @@ export class OrdersComponent implements OnInit {
 
         this.orderDetailService.getByParams({madh: element.madh}).subscribe( ct => {
 
+          i++;
           element.listProduct = ct;
+
+          if(i == this.fakedData.length) {
+
+            this.loadingService.hide();
+          }
         })
       });
     });
-  }
-
-  ngAfterViewInit() {
-
-    setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
   }
 
   gotoDetail(element) {

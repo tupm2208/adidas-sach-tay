@@ -38,11 +38,9 @@ import { SelectProductComponent } from './assign-order/select-product/select-pro
 import { HistoryComponent } from './history/history.component';
 import { TestComponent } from './test/test.component';
 
-import { UploadComponent} from './upload/upload.component';
-import { ProductKindComponent} from './upload/product-kind/product-kind.component';
+
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
-import { ChildProductComponent } from './list-user/user/child-product/child-product.component';
 
 
 
@@ -83,17 +81,12 @@ import { ChildProductComponent } from './list-user/user/child-product/child-prod
     SelectProductComponent,
     HistoryComponent,
     TestComponent,
-    UploadComponent,
-    ProductKindComponent,
     ProductTableComponent,
     ReceiverComponent,
-    ChildProductComponent,
   ],
   entryComponents: [
     UserComponent,
     SelectProductComponent,
-    UploadComponent,
-    ProductKindComponent,
     BillComponent,
     OrderComponent,
   ],

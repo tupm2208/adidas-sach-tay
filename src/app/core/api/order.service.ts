@@ -25,8 +25,8 @@ export class OrderService {
   update(params): Observable<any> {
 
     params.token = this.storage.get('token');
-
-    return this.mainApi.put('donhang', params);
+    console.log("update madh = ", params.madh);
+    return this.mainApi.put('donhang/' + params.madh, params);
   }
 
   delete(id): Observable<any> {

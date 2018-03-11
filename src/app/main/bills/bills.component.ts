@@ -1,9 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BillComponent } from './bill/bill.component';
+
+import { DialogService } from '../../core/dialog/dialog.service';
 import { BillService } from '../../core/api/bill.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
 import { UserService } from '../../core/api/user.service';
+import { LoadingService } from '../../core/util/loading.service';
+
 declare var $: any;
 
 @Component({
@@ -22,10 +26,14 @@ export class BillsComponent implements OnInit {
     private dialog: MatDialog,
     private billService: BillService,
     private billDetailService: BillDetailService,
-    private userService: UserService
+    private userService: UserService,
+    private dialogService: DialogService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
+
+    this.loadingService.show();
 
     this.billService.list().subscribe( data => {
 
@@ -34,6 +42,7 @@ export class BillsComponent implements OnInit {
       console.log("bill List: ", data);
       
       this.fakedData = data;
+      let i = 0;
       this.fakedData.forEach(element => {
         
         if(userList[element.makh]) {
@@ -47,34 +56,48 @@ export class BillsComponent implements OnInit {
             
             userList[element.makh].tenkh = user.data.tenkh,
             userList[element.makh].sdt = user.data.sdt
-
-            console.log("called ", element);
+            userList[element.makh].makh = user.data.makh;
           })
         }
 
         this.billDetailService.getByParams({mahd: element.mahd}).subscribe( ct => {
 
-          element.listProduct = ct;
+          element.listMasp = ct;
+          i += 1;
+          
+          if(i == this.fakedData.length) {
+
+            this.loadingService.hide();
+          }
         })
       });
     });
   }
 
-  openAddProductKind() {
+  openAddProductKind(item) {
 
     let productKind = this.dialog.open(BillComponent, {
       height: "80%",
-      width: "80%"
+      width: "80%",
+      data: item
     })
 
     productKind.afterClosed().subscribe( data => {
 
-      console.log("close product kind!");
+      console.log("data close");
     })
   }
 
-  ngAfterViewInit() {
+  order(item) {
 
-    setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+    this.dialogService.openOrder({user: item.user}).subscribe( data => {
+
+      console.log("data: order: ", data);
+    })
+  }
+
+  update(item) {
+
+    this.dialogService.openOrder({user: item.user, bill: item});
   }
 }

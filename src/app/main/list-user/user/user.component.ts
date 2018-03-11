@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router'
 
 import { LoadingService } from '../../../core/util/loading.service';
-import { UploadComponent } from '../../upload/upload.component';
 import { UserService } from '../../../core/api/user.service';
+import { DialogService } from '../../../core/dialog/dialog.service';
 declare var $:any;
 
 @Component({
@@ -32,9 +32,9 @@ export class UserComponent implements OnInit {
     private dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
-    private dialog: MatDialog,
     private router: Router,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit() {
@@ -116,16 +116,9 @@ export class UserComponent implements OnInit {
 
   openOrderForm(data) {
 
-    let productKind = this.dialog.open(UploadComponent, {
-      width: "80%",
-      height:'90%',
-      data: {
-        user: data,
-        bill: null
-      }
-    })
+    
 
-    productKind.afterClosed().subscribe( data => {
+    this.dialogService.openOrder({user: data, bill: null}).subscribe( data => {
 
       console.log("close product kind!");
     })
