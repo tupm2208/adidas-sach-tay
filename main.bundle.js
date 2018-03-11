@@ -522,7 +522,8 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.update = function (params) {
         params.token = this.storage.get('token');
-        return this.mainApi.put('donhang', params);
+        console.log("update madh = ", params.madh);
+        return this.mainApi.put('donhang/' + params.madh, params);
     };
     OrderService.prototype.delete = function (id) {
         var token = this.storage.get('token');
@@ -1331,7 +1332,7 @@ var UploadComponent = /** @class */ (function () {
     };
     UploadComponent.prototype.setDay = function () {
         var day = new Date();
-        return day.getMonth() + '/' + day.getDate() + '/' + day.getFullYear();
+        return day.getMonth() + 1 + '/' + day.getDate() + '/' + day.getFullYear();
     };
     UploadComponent.prototype.showError = function () {
         this.loading.hide('upload');
