@@ -1419,7 +1419,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/orders/order/order.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n      <!-- <small>Thông Tin Chi Tiết</small> -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-6  col-sm-12 col-lg-6\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.bills\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-6  col-sm-12 col-lg-6\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of result; let i = index\">\n                                    <td>{{item.masp}}</td>\n                                    <td>{{item.soluong}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Trạng Thái *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <input name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n      <!-- <small>Thông Tin Chi Tiết</small> -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.bills\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of result; let i = index\">\n                                    <td>{{item.masp}}</td>\n                                    <td>{{item.soluong}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"data.tienyen\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"data.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"data.taikhoan\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"data.thuonghieu\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"data.tigia\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Trạng Thái *</label>\n                        <input [(ngModel)]=\"data.trangthai\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea [(ngModel)]=\"data.ghichu\" name=\"thanhtien\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
 
 /***/ }),
 
@@ -1437,6 +1437,8 @@ module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1494,8 +1496,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
+
 var OrderComponent = /** @class */ (function () {
-    function OrderComponent(userService, billService, billDetailService, orderService, orderDetailService, dialogRef, data) {
+    function OrderComponent(userService, billService, billDetailService, orderService, orderDetailService, dialogRef, data, loadingService, popupService) {
         this.userService = userService;
         this.billService = billService;
         this.billDetailService = billDetailService;
@@ -1503,26 +1507,45 @@ var OrderComponent = /** @class */ (function () {
         this.orderDetailService = orderDetailService;
         this.dialogRef = dialogRef;
         this.data = data;
+        this.loadingService = loadingService;
+        this.popupService = popupService;
         this.listBooked = [];
         this.result = [];
         this.counter = 0;
     }
     OrderComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log("init order data: ", this.data);
+        $('app-order').parent().parent().attr('id', 'app-order');
+        setTimeout(function () { return _this.loadingService.show('app-order'); }, 0);
         this.billService.search({ madh: this.data.madh }).subscribe(function (data) {
+            var i = 0;
             console.log("data bill Service: ", data);
             _this.listBooked = data;
+            var userList = {};
             _this.listBooked.forEach(function (element) {
-                _this.userService.getById(element.makh).subscribe(function (user) {
-                    console.log("user :", element.makh, user);
-                    element.user = user.data;
-                });
+                if (userList[element.makh]) {
+                    element.user = userList[element.makh];
+                }
+                else {
+                    userList[element.makh] = {};
+                    _this.userService.getById(element.makh).subscribe(function (user) {
+                        console.log("user :", element.makh, user);
+                        element.user = user.data;
+                        for (var e in user.data) {
+                            userList[element.makh][e] = user.data[e];
+                        }
+                        element.user = userList[element.makh];
+                    });
+                }
                 _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (bills) {
-                    console.log("bills: ", bills);
+                    i++;
                     element.bills = bills;
+                    if (i == _this.listBooked.length) {
+                        _this.loadingService.hide('app-order');
+                    }
                 });
             });
-            console.log("final data: ", _this.listBooked);
         });
         this.orderDetailService.getByParams({ madh: this.data.madh }).subscribe(function (data) {
             console.log("don hang chi tiet: ", data);
@@ -1532,7 +1555,6 @@ var OrderComponent = /** @class */ (function () {
     OrderComponent.prototype.selectItem = function (item) {
         var _this = this;
         item.madh = item.madh ? null : this.data.madh;
-        console.log("item: ", item);
         item.bills.forEach(function (elem) {
             var flag = true;
             _this.result.forEach(function (element) {
@@ -1602,7 +1624,6 @@ var OrderComponent = /** @class */ (function () {
                 }
             }
         });
-        console.log("test filter: ");
     };
     OrderComponent.prototype.returnArray = function () {
         return this.listBooked.filter(function (element) {
@@ -1625,10 +1646,10 @@ var OrderComponent = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.loadingService.show('app-order');
                         flag = true;
                         return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.promisList()).toPromise().then(function (data) {
                                 _this.counter++;
-                                console.log("counter in promise: ", _this.counter.toString());
                                 _this.returnArray().forEach(function (element) {
                                     element.bills.forEach(function (elem) {
                                         _this.checkAndCountNum(elem);
@@ -1637,7 +1658,6 @@ var OrderComponent = /** @class */ (function () {
                             })];
                     case 1:
                         result = _a.sent();
-                        console.log("counter out promise: ", this.counter.toString());
                         this.checkOrder();
                         return [2 /*return*/];
                 }
@@ -1665,6 +1685,7 @@ var OrderComponent = /** @class */ (function () {
     };
     OrderComponent.prototype.checkOrder = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
             var flag;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -1685,11 +1706,26 @@ var OrderComponent = /** @class */ (function () {
                         if (flag) {
                             this.orderService.delete(this.data.madh).subscribe(function (data) {
                                 console.log("delete order: ", data);
+                                _this.loadingService.hide('app-order');
+                                _this.popupService.showSuccess().subscribe(function (data) {
+                                    console.log("success: ", data);
+                                    _this.dialogRef.close();
+                                });
+                            }, function (error) {
+                                _this.loadingService.hide('app-order');
+                                _this.popupService.showError();
                             });
                         }
                         else {
                             this.orderService.update(this.data).subscribe(function (data) {
                                 console.log("update order: ", data);
+                                _this.loadingService.hide('app-order');
+                                _this.popupService.showSuccess().subscribe(function (data) {
+                                    _this.dialogRef.close();
+                                });
+                            }, function (error) {
+                                _this.loadingService.hide('app-order');
+                                _this.popupService.showError();
                             });
                         }
                         return [2 /*return*/];
@@ -1709,7 +1745,8 @@ var OrderComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */],
             __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__["a" /* OrderService */],
             __WEBPACK_IMPORTED_MODULE_7__core_api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object])
+            __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_9__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_10__core_dialog_popup_popup_service__["a" /* PopupService */]])
     ], OrderComponent);
     return OrderComponent;
 }());
@@ -1753,7 +1790,8 @@ module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__order_order_component__ = __webpack_require__("../../../../../src/app/main/orders/order/order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__order_order_component__ = __webpack_require__("../../../../../src/app/main/orders/order/order.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1769,12 +1807,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OrdersComponent = /** @class */ (function () {
-    function OrdersComponent(matDialg, orderService, orderDetailService, userService) {
+    function OrdersComponent(matDialg, orderService, orderDetailService, userService, loadingService) {
         this.matDialg = matDialg;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.userService = userService;
+        this.loadingService = loadingService;
         this.sdt = '';
         this.tenkh = '';
         this.listUser = [];
@@ -1782,25 +1822,30 @@ var OrdersComponent = /** @class */ (function () {
     }
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loadingService.show();
         this.orderService.list().subscribe(function (data) {
             console.log("orderService LIST: ", data);
+            var i = 0;
             _this.fakedData = data;
+            if (data.length == 0)
+                _this.loadingService.hide();
             _this.fakedData.forEach(function (element) {
                 _this.userService.getById(element.makh).subscribe(function (user) {
                     element.tenkh = user.data.tenkh,
                         element.sdt = user.data.sdt;
                 });
                 _this.orderDetailService.getByParams({ madh: element.madh }).subscribe(function (ct) {
+                    i++;
                     element.listProduct = ct;
+                    if (i == _this.fakedData.length) {
+                        _this.loadingService.hide();
+                    }
                 });
             });
         });
     };
-    OrdersComponent.prototype.ngAfterViewInit = function () {
-        setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
-    };
     OrdersComponent.prototype.gotoDetail = function (element) {
-        this.matDialg.open(__WEBPACK_IMPORTED_MODULE_5__order_order_component__["a" /* OrderComponent */], {
+        this.matDialg.open(__WEBPACK_IMPORTED_MODULE_6__order_order_component__["a" /* OrderComponent */], {
             data: element,
             maxHeight: '80%',
             height: '80%'
@@ -1817,7 +1862,8 @@ var OrdersComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_2__core_api_order_service__["a" /* OrderService */],
             __WEBPACK_IMPORTED_MODULE_3__core_api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__["a" /* UserService */]])
+            __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__["a" /* LoadingService */]])
     ], OrdersComponent);
     return OrdersComponent;
 }());
