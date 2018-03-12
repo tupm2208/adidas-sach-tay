@@ -6,6 +6,7 @@ import { HttpResponseService } from './http-response.service';
 import { MainApiService } from './main-api.service';
 import { ConfigService } from '../config.service';
 import { LoadingService } from './loading.service';
+import { FormatService } from './format.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { LoadingService } from './loading.service';
     MainApiService,
     StorageService,
     ConfigService,
-    LoadingService
+    LoadingService,
+    FormatService
   ]
 })
 export class UtilModule { }

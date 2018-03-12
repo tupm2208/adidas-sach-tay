@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { SelectProductComponent } from './select-product/select-product.component';
+import { Router } from '@angular/router';
+import { LoadingService } from '../../core/util/loading.service';
 
 import { UserService } from '../../core/api/user.service';
 import { BillService } from '../../core/api/bill.service';
@@ -18,7 +18,7 @@ declare var $: any;
   selector: 'app-assign-order',
   templateUrl: './assign-order.component.html',
   styleUrls: ['./assign-order.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class AssignOrderComponent implements OnInit {
 
@@ -39,20 +39,35 @@ export class AssignOrderComponent implements OnInit {
   ps1 = null;
 
   constructor(
-    private dialog: MatDialog,
     private userService: UserService,
     private billService: BillService,
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
-    private billDetailService: BillDetailService
+    private billDetailService: BillDetailService,
+    private router: Router,
+    private loadingService: LoadingService
    ) { }
 
   ngOnInit() {
+
+    this.result = [];
+
+    this.data = {};
+
+    this.options = [];
+
+    this.myControl = new FormControl();
+
+    this.loadingService.show();
 
     this.billService.search({madh: null}).subscribe( data => {
 
       console.log("data bill Service: ", data);
       this.listBooked = data;
+
+      let i = 0;
+
+      if(i == data.length) this.loadingService.hide();
 
       this.listBooked.forEach( element => {
 
@@ -64,12 +79,22 @@ export class AssignOrderComponent implements OnInit {
 
         this.billDetailService.getByParams({mahd: element.mahd}).subscribe ( bills => {
 
-          console.log("bills: ", bills);
           element.bills = bills;
+
+          i ++;
+
+          if(i == this.listBooked.length) this.loadingService.hide();
+        }, error => {
+
+          i ++;
+          
+          if(i == this.listBooked.length) this.loadingService.hide();
         })
       })
 
-      console.log("final data: ", this.listBooked);
+    }, error => {
+
+      this.loadingService.hide();
     })
 
     this.userService.search({maloainv: 4}).subscribe( data => {
@@ -93,18 +118,6 @@ export class AssignOrderComponent implements OnInit {
       }
 
       this.selectedUser = null;
-    })
-  }
-
-  openAddProductKind() {
-
-    console.log("open");
-
-    let productKind = this.dialog.open(SelectProductComponent);
-
-    productKind.afterClosed().subscribe(data => {
-
-      console.log("close product kind!");
     })
   }
 
@@ -150,8 +163,11 @@ export class AssignOrderComponent implements OnInit {
       }
       
     })
+  }
 
-    console.log("result: ", this.result);
+  refreshPage() {
+
+    this.ngOnInit();
   }
 
   selectAll() {
@@ -193,12 +209,21 @@ export class AssignOrderComponent implements OnInit {
 
   submit() {
 
-    if(!this.checkBeforeOrder()) return;
+    this.loadingService.show();
+
+    if(!this.checkBeforeOrder()) {
+
+      this.loadingService.hide();
+      return;
+    }
 
     this.data.makh = this.selectedUser.makh;
+    this.data.ngay = new Date().getTime();
     this.orderService.create(this.data).subscribe( data => {
 
       console.log("return data: ", data);
+
+      let i = 0;
 
       this.listBooked.forEach( element => {
 
@@ -208,8 +233,18 @@ export class AssignOrderComponent implements OnInit {
 
           this.billService.update(element).subscribe( data => {
 
+            i++
             console.log("create ok: ", data);
+
+            if (i == this.result.length + this.listBooked.length) {
+
+              this.loadingService.hide();
+              this.refreshPage();
+            }
           })
+        } else {
+
+          i++;
         }
       })
 
@@ -220,7 +255,13 @@ export class AssignOrderComponent implements OnInit {
 
         this.orderDetailService.create(element).subscribe( data => {
 
-          console.log("orderDetailService: ", data);
+          i++;
+          
+          if(i == this.result.length + this.listBooked.length) {
+
+            this.loadingService.hide();
+            this.refreshPage();
+          }
         })
       })
     })

@@ -2,6 +2,10 @@
     margin-bottom: 0px; 
 }
 
-.input-group .form-line {
-    width: 30%;
+.input-group#input-user .form-line {
+    width: 33.33333333%;
+}
+
+.form-control button.btn-default{
+    display: none!important;
 }

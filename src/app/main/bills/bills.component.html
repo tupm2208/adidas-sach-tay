@@ -19,10 +19,22 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="makh" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tendh" placeholder="Đơn Hàng">
+                                </div>
+                                <div class="form-group">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
                                 </div>
                             </div>
                         </div>
@@ -32,39 +44,39 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Mã Sản Phẩm</th>
-                                        <th>Ngày Đặt</th>
-                                        <th>Đặt Cọc</th>
-                                        <th>Phí Ship</th>
-                                        <th>Tiền Hàng</th>
-                                        <th>Khối Lượng</th>
-                                        <th>Tổng</th>
+                                        <th (click)="sr = !sr">Tên KH</th>
+                                        <th *ngIf="sr">Số Điện Thoại</th>
+                                        <th>Mã SP</th>
+                                        <th *ngIf="sr">Ngày Đặt</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Phí Ship</th>
+                                        <th *ngIf="sr">Tiền Hàng</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Tổng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Mã Sản Phẩm</th>
-                                        <th>Ngày Đặt</th>
-                                        <th>Đặt Cọc</th>
-                                        <th>Phí Ship</th>
-                                        <th>Tiền Hàng</th>
-                                        <th>Khối Lượng</th>
-                                        <th>Tổng</th>
+                                        <th (click)="sr = !sr">Tên KH</th>
+                                        <th *ngIf="sr">Số Điện Thoại</th>
+                                        <th>Mã SP</th>
+                                        <th *ngIf="sr">Ngày Đặt</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Phí Ship</th>
+                                        <th *ngIf="sr">Tiền Hàng</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Tổng</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}">
+                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'tendh': tendh} | time: {'from': from, 'to': to}">
                                         <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">
                                             <div>{{item.user.tenkh}}</div>    
                                             <div style="margin-top: 10px">(Đặt Hàng)</div>
                                         </a></td>
-                                        <td><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
+                                        <td  *ngIf="sr"><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
                                             <div>{{item.user.sdt}}</div>
                                             <div style="margin-top: 10px">(Đến Lịch Sử)</div>
                                         </a></td>
@@ -75,15 +87,15 @@
                                                 </ul>
                                             </a>
                                         </td>
-                                        <td><a (click)="update(item)">
-                                            <div>{{item.ngay}}</div>
+                                        <td *ngIf="sr"><a (click)="update(item)">
+                                            <div>{{formatService.formatDate(item.ngay)}}</div>
                                             <div style="margin-top: 10px">Sửa</div>
                                         </a></td>
-                                        <td>{{item.datcoc}}</td>
-                                        <td>{{item.ship}}</td>
-                                        <td>{{item.tong}}</td>
-                                        <td>{{item.khoiluong}}</td>
-                                        <td>{{item.tong}}</td>
+                                        <td *ngIf="sr">{{item.datcoc}}</td>
+                                        <td *ngIf="sr">{{item.ship}}</td>
+                                        <td *ngIf="sr">{{item.tong}}</td>
+                                        <td *ngIf="sr">{{item.khoiluong}}</td>
+                                        <td *ngIf="sr">{{item.tong}}</td>
                                         <td><a (click)="update(item)">
                                             <div>{{item.trangthai}}</div>
                                             <div style="margin-top: 10px">Sửa</div>

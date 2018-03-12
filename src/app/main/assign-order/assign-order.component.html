@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="container">
+  <div *ngIf="listBooked.length" class="container">
     <div class="row">
       <div class="col-md-4  col-sm-6 col-lg-4">
         <div class="select-person-header">Tạo Đơn Hàng </div>
@@ -17,6 +17,11 @@
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <label for="age">Mã Đơn Hàng *</label>
+                  <input id="age" name="tendh" [(ngModel)]="data.tendh" class="form-control" type="text" min="1">
+                  <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Thương Hiệu *</label>
@@ -131,4 +136,10 @@
       </div>
     </div>
   </div>  
+  <body *ngIf="!listBooked.length" class="four-zero-four">
+    <div class="four-zero-four-container">
+        <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
+        <div class="error-message">Không Có Đơn Đặt Hàng</div>
+    </div>
+</body>
 </section>

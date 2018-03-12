@@ -7,6 +7,7 @@ import { BillService } from '../../core/api/bill.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
 import { UserService } from '../../core/api/user.service';
 import { LoadingService } from '../../core/util/loading.service';
+import { FormatService } from '../../core/util/format.service';
 
 declare var $: any;
 
@@ -18,7 +19,10 @@ declare var $: any;
 export class BillsComponent implements OnInit {
 
   private tenkh = '';
-  private makh = '';
+  private tendh = '';
+  private from: any = '';
+  private to: any = '';
+  private sr = true;
 
   private fakedData = [];
 
@@ -28,10 +32,13 @@ export class BillsComponent implements OnInit {
     private billDetailService: BillDetailService,
     private userService: UserService,
     private dialogService: DialogService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private formatService: FormatService
   ) { }
 
   ngOnInit() {
+
+    this.sr = screen.width <= 412? false: true;
 
     this.loadingService.show();
 
@@ -41,6 +48,8 @@ export class BillsComponent implements OnInit {
 
       console.log("bill List: ", data);
       
+      if(!data.length) this.loadingService.hide();
+
       this.fakedData = data;
       let i = 0;
       this.fakedData.forEach(element => {
@@ -71,6 +80,9 @@ export class BillsComponent implements OnInit {
           }
         })
       });
+    }, error => {
+
+      this.loadingService.hide();
     });
   }
 
@@ -98,6 +110,14 @@ export class BillsComponent implements OnInit {
 
   update(item) {
 
-    this.dialogService.openOrder({user: item.user, bill: item});
+    this.dialogService.openOrder({user: item.user, bill: item}).subscribe( data => {
+
+      if(!item.listMasp.length) {
+
+        this.fakedData.splice(this.fakedData.indexOf(item), 1);
+
+        this.fakedData = this.fakedData.concat([]);
+      }
+    })
   }
 }

@@ -52,7 +52,7 @@ export class UploadComponent implements OnInit {
     if(!this.data.bill) {
 
       this.data.bill = {
-        ngay: this.setDay(),
+        ngay: this.getTime(),
         makh: this.data.user.makh,
         trangthai: 1,
         datcoc: '',
@@ -69,6 +69,15 @@ export class UploadComponent implements OnInit {
   onClick() {
 
     this.dialogRef.close();
+  }
+
+  getTime() {
+
+    let a = new Date;
+
+    console.log("a: ", a, a.getTime());
+
+    return a.getTime();
   }
 
   addProduct(data) {
@@ -199,13 +208,6 @@ export class UploadComponent implements OnInit {
         this.registOrUpdate();
       })
     }
-  }
-
-  setDay() {
-
-    let day = new Date();
-
-    return day.getMonth() + 1 + '/' + day.getDate() + '/' + day.getFullYear();
   }
 
   showError() {

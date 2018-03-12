@@ -90,6 +90,12 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 
                       <div class="form-group">
+                        <label for="ship">Mã Đơn Hàng *</label>
+                        <input [(ngModel)]="data.tendh" name="tendh" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
                         <label for="ship">Tiền Yên *</label>
                         <input [(ngModel)]="data.tienyen" name="ship" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
@@ -97,37 +103,37 @@
 
                       <div class="form-group">
                         <label for="age">Đặt Cọc *</label>
-                        <input [(ngModel)]="data.datcoc" name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.datcoc" name="thanhtien7" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Tài Khoản *</label>
-                        <input [(ngModel)]="data.taikhoan" name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.taikhoan" name="thanhtien6" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Thương Hiệu *</label>
-                        <input [(ngModel)]="data.thuonghieu" name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.thuonghieu" name="thanhtien5" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Tỉ Giá *</label>
-                        <input [(ngModel)]="data.tigia" name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.tigia" name="thanhtien4" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Trạng Thái *</label>
-                        <input [(ngModel)]="data.trangthai" name="thanhtien" class="form-control" min="1" type="text">
+                        <input [(ngModel)]="data.trangthai" name="thanhtien3" class="form-control" min="1" type="text">
                         <span id="error_age" class="text-danger"></span>
                       </div>
 
                       <div class="form-group">
                         <label for="age">Ghi Chú *</label>
-                        <textarea [(ngModel)]="data.ghichu" name="thanhtien" class="form-control" min="3" type="text"></textarea>
+                        <textarea [(ngModel)]="data.ghichu" name="thanhtien2" class="form-control" min="3" type="text"></textarea>
                         <span id="error_age" class="text-danger"></span>
                       </div>
                     </div>

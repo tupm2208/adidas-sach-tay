@@ -16,7 +16,9 @@ import {
   MatInputModule,
   MatTooltipModule, 
   MatRadioModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatDatepickerModule, 
+  MatNativeDateModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
@@ -27,6 +29,7 @@ import { UserComponent } from './list-user/user/user.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { UserPipe } from '../pipe/user.pipe';
+import { TimePipe } from '../pipe/time.pipe';
 import { OrderComponent } from './orders/order/order.component';
 import { OrdersComponent } from './orders/orders.component';
 import { BillsComponent } from './bills/bills.component';
@@ -64,13 +67,16 @@ import { ReceiverComponent } from './receiver/receiver.component';
     MatSidenavModule,
     MatTooltipModule,
     MatRadioModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   declarations: [
     MainComponent, 
     ListUserComponent, 
     UserComponent,
     UserPipe,
+    TimePipe,
     OrderComponent,
     OrdersComponent,
     BillsComponent,

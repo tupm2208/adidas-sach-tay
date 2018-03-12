@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { UserComponent } from './user/user.component';
 import { UserService } from '../../core/api/user.service'
@@ -8,7 +8,8 @@ declare var $: any;
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.css']
+  styleUrls: ['./list-user.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListUserComponent implements OnInit {
 
@@ -76,5 +77,22 @@ export class ListUserComponent implements OnInit {
   mouseLeave(bcd) {
 
     console.log("bcd: ", bcd);
+  }
+
+  selectKind(type) {
+
+    if(type == 1) return "admin"
+
+    if(type == 2) return "Khách Lẻ";
+
+    if(type == 3) return "Khách Buôn";
+
+    if(type == 5) return "Shipper";
+
+    if(type == 4) return "Người Mua";
+
+    if(type == 6) return "Người Nhận";
+
+    return "unknown";
   }
 }

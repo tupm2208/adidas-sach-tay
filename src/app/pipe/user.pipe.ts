@@ -7,7 +7,7 @@ export class UserPipe implements PipeTransform {
 
   transform(items: Array<any>, filter: { [key: string]: any }): Array<any> {
 
-    if(!items.length) return;
+    if(!items.length) return [];
 
     return items.filter(item => {
 

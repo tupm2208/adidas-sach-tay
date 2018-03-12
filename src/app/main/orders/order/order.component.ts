@@ -295,7 +295,7 @@ export class OrderComponent implements OnInit {
         this.popupService.showSuccess().subscribe( data => {
 
           console.log("success: ", data);
-          this.dialogRef.close();
+          this.dialogRef.close(2);
         })
       }, error => {
 
@@ -311,7 +311,7 @@ export class OrderComponent implements OnInit {
         this.loadingService.hide('app-order');
         this.popupService.showSuccess().subscribe( data => {
 
-          this.dialogRef.close();
+          this.dialogRef.close(1);
         })
       }, error => {
 
