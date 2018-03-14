@@ -3,9 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router'
 
-import { LoadingService } from '../../../core/util/loading.service';
-import { UserService } from '../../../core/api/user.service';
-import { DialogService } from '../../../core/dialog/dialog.service';
+import { LoadingService } from '../../../util/loading.service';
+import { UserService } from '../../../api/user.service';
+import { DialogService } from '../../../dialog/dialog.service';
 declare var $:any;
 
 @Component({

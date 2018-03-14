@@ -6,6 +6,11 @@ import 'rxjs/add/operator/switchMap';
 import { UserService } from '../../core/api/user.service';
 import { BillService } from '../../core/api/bill.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
+import { OrderService } from '../../core/api/order.service';
+import { LoadingService } from '../../core/util/loading.service';
+import { DialogService } from '../../core/dialog/dialog.service';
+import { FormatService } from '../../core/util/format.service';
+import { UserDialogService } from '../../core/dialog/user/user-dialog.service';
 
 declare var $:any;
 
@@ -16,19 +21,9 @@ declare var $:any;
 })
 export class HistoryComponent implements OnInit {
 
-  private code = '';
-  private fakedData = [
-    {
-      mahd: '011',
-      ngay: "22-12-2017",
-      masp: "EC2001",
-      ship: "20,000",
-      datcoc: '2,000,000',
-      tonggt: "5,000,000",
-      sum:"2,980,000",
-      trangthai: "Hoàn Tất"
-    }
-  ]
+  private tendh = '';
+  user: any = {};
+  private fakedData: any = []
 
   constructor(
     private route: ActivatedRoute,
@@ -36,9 +31,16 @@ export class HistoryComponent implements OnInit {
     private userService: UserService,
     private billService: BillService,
     private billDetailService: BillDetailService,
+    private orderService: OrderService,
+    private loadingService: LoadingService,
+    private dialogService: DialogService,
+    private formatService: FormatService,
+    private userDialog: UserDialogService
   ) { }
 
   ngOnInit() {
+
+    this.loadingService.show();
 
     let id = this.route.snapshot.paramMap.get('id');
 
@@ -46,22 +48,139 @@ export class HistoryComponent implements OnInit {
 
       this.billService.search({makh: id}).subscribe( bills => {
 
-        bills.forEach(element => {
+        this.fakedData = bills;
+
+        if(!bills.length) this.loadingService.hide();
+
+        let dh: any = {};
+        
+        let count = 0;
+
+        this.fakedData.forEach(element => {
+
+          if(element.madh) if(dh[element.madh]) {
+
+            element.order = dh[element.madh];
+          } else{ 
+
+            dh[element.madh] = {};
+
+            this.orderService.getById(element.madh).subscribe( data => {
+
+              console.log("donhang: ", data);
+              element.order = data.data;
+              
+              for(let i in data.data) {
+
+                dh[element.madh][i] = data.data[i];
+              }
+            })
+          }
           
           this.billDetailService.getByParams({mahd: element.mahd}).subscribe( detailList => {
 
-            element.list = detailList;
+            element.listMasp = detailList;
+            count++;
+
+            if(count == this.fakedData.length) {
+
+              this.loadingService.hide();
+            }
+          }, error => {
+
+            count++;
+
+            if(count == this.fakedData.length) {
+
+              this.loadingService.hide();
+            }
           })
         });
 
         console.log("user: ", user);
         console.log("bills: ", bills);
+        
+        this.user =user.data;
+      })
+    }, error => {
+
+      this.loadingService.hide();
+    })
+  }
+
+  updateUser() {
+
+    this.userDialog.openUserDetail(this.user).subscribe( data => {
+
+      console.log("user: ", data);
+    })
+  }
+
+  openOrder(item) {
+
+    if(!item.order) return;
+
+    this.dialogService.gotoOrder(item.order).subscribe( data => {
+
+      this.billService.getById(item.mahd).subscribe ( bill => {
+        
+        for( let e in bill.data) {
+
+          item[e] = bill.data[e];
+        }
+
+        if(!item['madh']) item.order = null;
       })
     })
   }
 
-  ngAfterViewInit() {
+  gotoDetail(item) {
 
-    setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+    this.dialogService.openOrder({user: this.user, bill: item}).subscribe( data => {
+
+      if(data == -2) {
+
+        this.fakedData.splice(this.fakedData.indexOf(item),1);
+
+        this.fakedData = this.fakedData.concat([]);
+
+        return;
+      }
+
+      this.billService.getById(item.mahd).subscribe( data => {
+
+        for(let e in data.data){
+
+          item[e] = data.data[e];
+        }
+
+        this.billDetailService.getByParams({mahd: item.mahd}).subscribe( detailList => {
+
+          if(!detailList.length) {
+
+            this.fakedData.splice(this.fakedData.indexOf(item), 1);
+
+            this.fakedData = this.fakedData.concat([]);
+            return;
+          }
+
+            item.listMasp = detailList;
+
+          }, error => {
+
+          })
+      })
+    })
+  }
+
+  addBill() {
+
+    this.dialogService.openOrder({user: this.user}).subscribe( data => {
+
+      if(typeof(data) == "object") {
+        
+        this.fakedData = this.fakedData.concat([data]);
+      }
+    })
   }
 }

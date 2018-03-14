@@ -25,12 +25,10 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { MainRoutes } from './main.routers';
 import { ListUserComponent } from './list-user/list-user.component';
-import { UserComponent } from './list-user/user/user.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { UserPipe } from '../pipe/user.pipe';
 import { TimePipe } from '../pipe/time.pipe';
-import { OrderComponent } from './orders/order/order.component';
 import { OrdersComponent } from './orders/orders.component';
 import { BillsComponent } from './bills/bills.component';
 import { BillComponent } from './bills/bill/bill.component';
@@ -74,10 +72,8 @@ import { ReceiverComponent } from './receiver/receiver.component';
   declarations: [
     MainComponent, 
     ListUserComponent, 
-    UserComponent,
     UserPipe,
     TimePipe,
-    OrderComponent,
     OrdersComponent,
     BillsComponent,
     BillComponent,
@@ -91,10 +87,8 @@ import { ReceiverComponent } from './receiver/receiver.component';
     ReceiverComponent,
   ],
   entryComponents: [
-    UserComponent,
     SelectProductComponent,
     BillComponent,
-    OrderComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

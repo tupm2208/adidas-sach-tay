@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { UserComponent } from './user/user.component';
 import { UserService } from '../../core/api/user.service'
 import { LoadingService } from '../../core/util/loading.service'
+import { UserDialogService } from '../../core/dialog/user/user-dialog.service';
 declare var $: any;
 
 @Component({
@@ -24,9 +23,9 @@ export class ListUserComponent implements OnInit {
   sc = screen.width <= 414? false: true;
 
   constructor(
-    private dialog: MatDialog,
     private userService: UserService,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private userDialog: UserDialogService
   ) { }
 
   ngOnInit() {
@@ -47,9 +46,7 @@ export class ListUserComponent implements OnInit {
 
   openAddProductKind(data) {
   
-    this.dialog.open(UserComponent, {
-      data: data
-    }).afterClosed().subscribe(data => {
+    this.userDialog.openUserDetail(data).subscribe(data => {
 
       console.log("close product kind!", data);
       if(data && this.fakedData.indexOf(data) == -1) {
@@ -67,16 +64,6 @@ export class ListUserComponent implements OnInit {
     }
 
     return str
-  }
-
-  mouseEnter(abc) {
-
-    console.log("abc: ", abc);
-  }
-
-  mouseLeave(bcd) {
-
-    console.log("bcd: ", bcd);
   }
 
   selectKind(type) {

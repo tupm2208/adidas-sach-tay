@@ -6,9 +6,8 @@ import { OrderDetailService } from '../../core/api/order-detail.service';
 import { UserService } from '../../core/api/user.service';
 import { LoadingService } from '../../core/util/loading.service';
 import { FormatService } from '../../core/util/format.service';
+import { DialogService } from '../../core/dialog/dialog.service';
 declare var $: any;
-
-import { OrderComponent } from './order/order.component';
 
 @Component({
   selector: 'app-orders',
@@ -31,7 +30,8 @@ export class OrdersComponent implements OnInit {
     private orderDetailService: OrderDetailService,
     private userService: UserService,
     private loadingService: LoadingService,
-    private formatService: FormatService
+    private formatService: FormatService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit() {
@@ -84,11 +84,7 @@ export class OrdersComponent implements OnInit {
 
   gotoDetail(element) {
 
-    this.matDialg.open(OrderComponent, {
-      data: element,
-      maxHeight: '80%',
-      height: '80%'
-    }).afterClosed().subscribe( data => {
+    this.dialogService.gotoOrder(element).subscribe( data => {
 
       if(data == 2) {
 

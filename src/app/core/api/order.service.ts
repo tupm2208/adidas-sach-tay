@@ -15,6 +15,13 @@ export class OrderService {
     return this.mainApi.get('donhang?token=' + token);
   }
 
+  getById(id): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.get('donhang/' + id + '?token=' + token);
+  }
+
   create(params): Observable<any> {
 
     params.token = this.storage.get('token');

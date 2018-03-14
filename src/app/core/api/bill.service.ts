@@ -22,6 +22,13 @@ export class BillService {
     return this.mainApi.put('hoadon/' + params.mahd + '?token=' + token, params);
   }
 
+  getById(id): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    return this.mainApi.get('hoadon/' + id + '?token=' + token);
+  }
+
   create(params): Observable<any> {
 
     let token = this.storage.get('token');

@@ -9,13 +9,13 @@
                 <form id="sign_up" method="POST">
                     <div class="row">
                         <div class="col-md-12" *ngIf="billDetailList.length == 1">
-                            <app-child-product [product]="billDetailList[0]" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
+                            <app-child-product [product]="billDetailList[0]" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="billDetailList.length > 1">
                         <div class="col-md-6 col-lg-6 col-sm-6" *ngFor="let item of billDetailList">
-                            <app-child-product [product]="item" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
+                            <app-child-product [product]="item" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
                         </div>
 
                     </div>

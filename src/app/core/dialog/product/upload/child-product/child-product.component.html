@@ -1,19 +1,23 @@
 <div class="panel panel-primary">
-  <li class="dropdown" style="list-style-type: none;">
+  <li *ngIf="product.mahd" class="dropdown" style="list-style-type: none;">
     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" class="input-group-addon" id="cancel" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">cancel</i>
                                 </a>
     <ul class="dropdown-menu pull-right" style="border-radius: 10px; min-width: 0px; padding: 5px;">
       <li>
-        <button (click)="deleteProduct()" class="btn btn-primary" style="border-radius: 10px;">confirm</button><button _ngcontent-c6="" style="margin-left: 10px;border-radius: 10px;" class="btn btn-danger">cancel</button></li>
+        <button (click)="deleteProduct()" class="btn btn-primary" style="border-radius: 10px;">confirm</button><button _ngcontent-c6="" style="margin-left: 10px;border-radius: 10px;" class="btn btn-danger">cancel</button>
+      </li>
     </ul>
   </li>
+  <a id="cancel"*ngIf="!product.mahd" (click)="deleteProduct()" class="dropdown-toggle" data-toggle="dropdown" role="button" class="input-group-addon" id="cancel" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">cancel</i>
+                                </a>
   <div class="panel-body">
     <form name="myform">
       <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
         <div class="form-group">
           <label for="age" [ngStyle]="{'color': product.masp? '':'red'}">Mã Sản Phẩm *</label>
-          <input id="masp" name="masp" class="form-control" [(ngModel)]="product.masp" type="text" min="1">
+          <input id="masp" name="masp" class="form-control" [disabled]="product.mahd" [(ngModel)]="product.masp" type="text" min="1">
           <span id="error_age" class="text-danger"></span>
         </div>
         <div class="form-group">

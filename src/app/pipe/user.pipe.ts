@@ -11,7 +11,6 @@ export class UserPipe implements PipeTransform {
 
     return items.filter(item => {
 
-      
       for(let key in filter) {
         
         if(!item.hasOwnProperty(key)) continue;
@@ -31,6 +30,8 @@ export class UserPipe implements PipeTransform {
         } else {
 
           let str = item[key] + '';
+
+          if(item['makh'] && item['makh'] == 1) { return false }
 
           if (str.indexOf(filter[key]) == -1) {
 

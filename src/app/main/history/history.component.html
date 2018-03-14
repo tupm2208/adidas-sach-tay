@@ -1,30 +1,15 @@
 <section class="content">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Lịch Sử Giao Dịch Của: <a>PHẠM MINH TƯ</a>
+                            Lịch Sử Giao Dịch Của: <a (click)="updateUser()">{{user.tenkh}}</a>
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
-                                <a class="dropdown-toggle"  aria-haspopup="true" aria-expanded="false">
+                                <a (click)="addBill()" class="dropdown-toggle"  aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">add</i>
                                 </a>
                             </li>
@@ -34,7 +19,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="code" placeholder="Tìm Kiếm Theo Mã Code">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tendh" placeholder="Mã Đơn Hàng">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +29,7 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Mã Hóa Đơn</th>
+                                        <th>Mã Đơn Hàng</th>
                                         <th>Ngày</th>
                                         <th>Mã Sản Phẩm</th>
                                         <th>Phí Ship</th>
@@ -56,7 +41,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Mã Hóa Đơn</th>
+                                        <th>>Mã Đơn Hàng</th>
                                         <th>Ngày</th>
                                         <th>Mã Sản Phẩm</th>
                                         <th>Phí Ship</th>
@@ -67,13 +52,11 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                     <tr *ngFor="let item of fakedData | user: {'mahd': code}">
-                                        <td><a>{{item.mahd}}</a></td>
-                                        <td>{{item.ngay}}</td>
-                                        <td><ul>
-                                                <li>{{item.masp}}</li>
-                                                <li>{{item.masp}}</li>
-                                                <li>{{item.masp}}</li>
+                                     <tr *ngFor="let item of fakedData | user: {'order': {'tendh': tendh}}">
+                                        <td><a (click)="openOrder(item)">{{item?.order?.tendh}}</a></td>
+                                        <td>{{formatService.formatDate(item.ngay)}}</td>
+                                        <td (click)="gotoDetail(item)"><ul>
+                                                <li *ngFor="let it of item.listMasp">{{it.masp}}</li>
                                             </ul></td>
                                         <td>{{item.ship}}</td>
                                         <td>{{item.datcoc}}</td>

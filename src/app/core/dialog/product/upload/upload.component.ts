@@ -29,6 +29,7 @@ export class UploadComponent implements OnInit {
   }];
 
   private isError = false;
+  private isNew = false;
 
   constructor(
     private dialogRef: MatDialogRef<UploadComponent>,
@@ -75,13 +76,11 @@ export class UploadComponent implements OnInit {
 
     let a = new Date;
 
-    console.log("a: ", a, a.getTime());
-
     return a.getTime();
   }
 
   addProduct(data) {
-    data.mahd = '';
+    data.mahd = null;
     this.billDetailList.push(data);
   }
 
@@ -89,28 +88,44 @@ export class UploadComponent implements OnInit {
 
     if(data.mahd) {
 
-      this.billDetailService.delete(data).subscribe(data => {
+      this.loading.show('upload');
 
-        console.log("delete bill detail: ", data);
+      this.billDetailService.delete(data).subscribe(del => {
 
-         if(this.billDetailList.length == 0) {
+        this.billDetailList.splice(this.billDetailList.indexOf(data),1);
 
-           if (this.data.bill.mahd) {
+        this.loading.hide('upload');
 
-             this.billService.delete(this.data.bill).subscribe(data => {
+        if (this.billDetailList.length == 0) {
+          
+          if (this.data.bill.mahd) {
+            this.loading.show('upload');
+            this.dialogRef.close(-2);
+            this.billService.delete(this.data.bill).subscribe(data => {
 
-               console.log("delete bill: ", this.data.bill);
-             });
-           }
-         }
+              console.log("delete bill: ", this.data.bill);
+              this.loading.hide('upload');
+            }, error => {
+
+              this.loading.hide('upload');
+            });
+          }
+        }
+      }, error => {
+
+        this.popupDialog.showError();
+        this.loading.hide('upload');
       })
-    }
-    this.billDetailList.splice(this.billDetailList.indexOf(data),1);
+    } else {
 
-    if(this.billDetailList.length == 0) {
+      this.billDetailList.splice(this.billDetailList.indexOf(data), 1);
 
-      this.dialogRef.close();
+      if (this.billDetailList.length == 0) {
+
+        this.dialogRef.close();
+      }
     }
+    
     
   }
 
@@ -138,8 +153,6 @@ export class UploadComponent implements OnInit {
 
         this.billDetailService.update(element).subscribe( data => {
 
-          console.log("update info of detail bill: ", data);
-
           countSuc += 1;
 
           if(countSuc == this.billDetailList.length) {
@@ -152,7 +165,6 @@ export class UploadComponent implements OnInit {
         }, error => {
 
           countErr += 1;
-          console.log("fail to update info of detail bill: ", error);
 
           if(countSuc + countErr == this.billDetailList.length) {
 
@@ -175,8 +187,8 @@ export class UploadComponent implements OnInit {
           }
         }, error => {
 
+          element.mahd = null;
           countErr += 1;
-          console.log("fail to update info of detail bill: ", error);
 
           if(countSuc + countErr == this.billDetailList.length) {
 
@@ -203,8 +215,10 @@ export class UploadComponent implements OnInit {
 
       this.billService.create(this.data.bill).subscribe( data => {
 
+        this.isNew = true;
         console.log("create data bill: ", data);
         this.data.bill.mahd = data.data.mahd;
+        this.data.bill.listMasp = this.billDetailList;
         this.registOrUpdate();
       })
     }
@@ -224,9 +238,12 @@ export class UploadComponent implements OnInit {
     this.loading.hide('upload');
     this.popupDialog.showSuccess().subscribe( data => {
 
-      if(!data) {
+      if(this.isNew) {
 
-        this.dialogRef.close();
+          this.dialogRef.close(this.data.bill);
+      }else {
+
+          this.dialogRef.close(-1);
       }
     })
   }

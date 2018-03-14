@@ -4,13 +4,13 @@ import {Observable}     from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
 //service
-import { BillService } from '../../../core/api/bill.service';
-import { BillDetailService } from '../../../core/api/bill-detail.service';
-import { OrderService } from '../../../core/api/order.service';
-import { OrderDetailService } from '../../../core/api/order-detail.service'; 
-import { UserService } from '../../../core/api/user.service';
-import { LoadingService } from '../../../core/util/loading.service';
-import { PopupService } from '../../../core/dialog/popup/popup.service';
+import { BillService } from '../../../api/bill.service';
+import { BillDetailService } from '../../../api/bill-detail.service';
+import { OrderService } from '../../../api/order.service';
+import { OrderDetailService } from '../../../api/order-detail.service'; 
+import { UserService } from '../../../api/user.service';
+import { LoadingService } from '../../../util/loading.service';
+import { PopupService } from '../../../dialog/popup/popup.service';
 
 declare let $: any;
 
