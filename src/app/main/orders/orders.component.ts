@@ -43,34 +43,53 @@ export class OrdersComponent implements OnInit {
 
     this.loadingService.show();
     
-    this.orderService.list().subscribe( data => {
+    this.orderDetailService.getByParams({}).subscribe( data => {
 
-      console.log("orderService LIST: ", data);
+      let userList: any = {};
 
-      let i = 0;
+      console.log("bill List: ", data);
       
+      if(!data.length) this.loadingService.hide();
+
       this.fakedData = data;
 
-      if(data.length == 0) this.loadingService.hide();
+      this.formatService.formatData(this.fakedData,"madh");
+      
+      let i = 0;
       this.fakedData.forEach(element => {
         
-        this.userService.getById(element.makh).subscribe( user => {
+        if(userList[element.makh]) {
 
-          element.tenkh = user.data.tenkh,
-          element.sdt = user.data.sdt
-        })
+          element.user = userList[element.makh];
+          i += 1;
+        } else {
 
-        this.orderDetailService.getByParams({madh: element.madh}).subscribe( ct => {
+          userList[element.makh] = {};
+          element.user = userList[element.makh];
+          this.userService.getById(element.makh).subscribe(user => {
+            
+            userList[element.makh].tenkh = user.data.tenkh,
+            userList[element.makh].sdt = user.data.sdt
+            userList[element.makh].makh = user.data.makh;
 
-          i++;
-          element.listProduct = ct;
+            i += 1;
 
-          if(i == this.fakedData.length) {
+            if (i == this.fakedData.length) {
 
-            this.loadingService.hide();
-          }
-        })
+              this.loadingService.hide();
+            }
+          }, error => {
+
+            i += 1;
+
+            if (i == this.fakedData.length) {
+
+              this.loadingService.hide();
+            }
+          })
+        }
       });
+      console.log("faked order data: ", this.fakedData);
     }, error => {
 
       this.loadingService.hide();

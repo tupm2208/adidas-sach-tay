@@ -8,6 +8,9 @@ import { OrderService } from './order.service';
 import { OrderDetailService } from './order-detail.service';
 import { BillService } from './bill.service';
 import { BillDetailService } from './bill-detail.service';
+import { ReceiveService } from './receive.service';
+import { ReceiveDetailService } from './receive-detail.service';
+
 
 @NgModule({
   imports: [
@@ -22,7 +25,9 @@ import { BillDetailService } from './bill-detail.service';
     OrderService,
     OrderDetailService,
     BillService,
-    BillDetailService
+    BillDetailService,
+    ReceiveService,
+    ReceiveDetailService
   ]
 })
 export class ApiModule {}

@@ -1,99 +1,145 @@
 <section class="content">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+  <div *ngIf="listBooked.length" class="container">
+    <div class="row">
+      <div class="col-md-4  col-sm-6 col-lg-4">
+        <div class="select-person-header">Tạo Đơn Hàng </div>
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <form name="myform">
+              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="form-group">
+                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Mã Sản Phẩm *</label>
+                  <mat-form-field class="example-full-width" [floatLabel]="'never'">
+                    <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of options | user: {'tenkh': filterUser}" [value]="option.tenkh">
+                        {{ option.tenkh }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
                 </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>
-                            Đơn Hàng
-                        </h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Thêm Khách Hàng</a></li>
-                                    <li><a href="javascript:void(0);">Tìm Kiếm</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="body">
-                        <div id="sign_up" method="POST">
-                            <div class="input-group">
-                                <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="sdt" placeholder="Tìm Kiếm Theo Số Điện Thoại">
-                                </div>
-                                <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tìm Kiếm Theo Tên">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Mã Sản Phẩm</th>
-                                        <th>Ngày</th>
-                                        <th>Ghi Chú</th>
-                                        <th>Tổng Khối Lượng(kg)</th>
-                                        <th>Trạng Thái</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Tên Khách Hàng</th>
-                                        <th>Số Điện Thoại</th>
-                                        <th>Mã Sản Phẩm</th>
-                                        <th>Ngày</th>
-                                        <th>Ghi Chú</th>
-                                        <th>Tổng Khối Lượng(kg)</th>
-                                        <th>Trạng Thái</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}">
-                                        <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.sdt}}</td>
-                                        <td>
-                                            <ul>
-                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
-                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
-                                                <li>{{item.masp}} - 5sp - 3 hộp</li>
-                                            </ul>
-                                        </td>
-                                        <td>{{item.ngay}}</td>
-                                        <td>Ghi chú vs khách</td>
-                                        <td>3.0</td>
-                                        <td>Đã Nhận - Về đến Việt Nam - Đã Giao</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label for="age">Mã Đơn Hàng *</label>
+                  <input id="age" name="tendh" [(ngModel)]="data.tendh" class="form-control" type="text" min="1">
+                  <span id="error_age" class="text-danger"></span>
                 </div>
-            </div>
+                <div class="form-group">
+                  <label for="age">Thương Hiệu *</label>
+                  <input id="age" name="trangweb" [(ngModel)]="data.thuonghieu" class="form-control" type="text" min="1">
+                  <span id="error_age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label for="age">Tài Khoản *</label>
+                  <input id="age" name="giaweb" [(ngModel)]="data.taikhoan" class="form-control" type="text" min="1">
+                  <span id="error_age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label for="age">Đặt Cọc *</label>
+                  <input id="age" name="trietkhau" [(ngModel)]="data.datcoc" class="form-control" type="number" min="1">
+                  <span id="error_age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label for="age">Tỉ Giá *</label>
+                  <input id="age" name="khoiluong" [(ngModel)]="data.tigia" class="form-control" type="number" min="1">
+                  <span id="error_age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label for="age">Ghi Chú *</label>
+                  <textarea class="form-control" name="ghichu" [(ngModel)]="data.ghichu" rows="3"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <!-- #END# Basic Examples -->
+      </div>
+      <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
+        <div class="select-person-header">List Đặt Hàng </div>
+        <mat-card style="padding: 24px 0px;">
+          <mat-card-content>
+            <div class="container-fluid">
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                    <div class="body" style="padding: 0">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
+                          <thead>
+                            <tr>
+                              <th (click)="selectAll()">Tên</th>
+                              <th>Mã SP | SL</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
+                              <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.tenkh}}</td>
+                              <td>
+                                <div *ngFor="let prod of item.bills">{{prod.masp}} | {{prod.soluong}}</div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- #END# Basic Examples -->
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4" style="margin-bottom: 20px">
+        <div class="select-person-header">Result </div>
+        <mat-card>
+          <mat-card-content>
+            <div class="container-fluid">
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                    <div class="body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                          <thead>
+                            <tr>
+                              <th>Mã SP</th>
+                              <th>Số Lượng</th>
+                              <th>Giữ Hộp</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>Mã SP</th>
+                              <th>Số Lượng</th>
+                              <th>Giữ Hộp</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr *ngFor="let item of result">
+                              <td>{{item.masp}}</td>
+                              <td>{{item.soluong}}</td>
+                              <td>{{item.giuhop}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- #END# Basic Examples -->
+            </div>
+            <div style="display: inline-block; width: 100%">
+              <button class="btn btn-block btn-lg bg-cyan waves-effect" style="" (click)="submit()" type="submit">Submit</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
+  </div>  
+  <body *ngIf="!listBooked.length" class="four-zero-four">
+    <div class="four-zero-four-container">
+        <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
+        <div class="error-message">Không Có Đơn Đặt Hàng</div>
+    </div>
+</body>
 </section>

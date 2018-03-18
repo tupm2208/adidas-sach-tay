@@ -29,7 +29,7 @@
                                   <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
                                     <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.tenkh}}</td>
                                     <td>
-                                      <div *ngFor="let prod of item.bills">{{prod.masp}} | {{prod.soluong}}</div>
+                                      <div *ngFor="let prod of item.chitiethds">{{prod.masp}} | {{prod.soluong}}</div>
                                     </td>
                                   </tr>
                                 </tbody>

@@ -42,7 +42,7 @@ export class BillsComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.billService.list().subscribe( data => {
+    this.billDetailService.getByParams({}).subscribe( data => {
 
       let userList: any = {};
 
@@ -51,12 +51,16 @@ export class BillsComponent implements OnInit {
       if(!data.length) this.loadingService.hide();
 
       this.fakedData = data;
+
+      this.formatService.formatData(this.fakedData,"mahd");
+      
       let i = 0;
       this.fakedData.forEach(element => {
         
         if(userList[element.makh]) {
 
-          element.user = userList[element.makh]
+          element.user = userList[element.makh];
+          i += 1;
         } else {
 
           userList[element.makh] = {};
@@ -66,20 +70,25 @@ export class BillsComponent implements OnInit {
             userList[element.makh].tenkh = user.data.tenkh,
             userList[element.makh].sdt = user.data.sdt
             userList[element.makh].makh = user.data.makh;
+
+            i += 1;
+
+            if (i == this.fakedData.length) {
+
+              this.loadingService.hide();
+            }
+          }, error => {
+
+            i += 1;
+
+            if (i == this.fakedData.length) {
+
+              this.loadingService.hide();
+            }
           })
         }
-
-        this.billDetailService.getByParams({mahd: element.mahd}).subscribe( ct => {
-
-          element.listMasp = ct;
-          i += 1;
-          
-          if(i == this.fakedData.length) {
-
-            this.loadingService.hide();
-          }
-        })
       });
+      console.log("faked bill data: ", this.fakedData);
     }, error => {
 
       this.loadingService.hide();

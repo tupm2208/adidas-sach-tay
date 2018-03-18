@@ -218,6 +218,7 @@ export class AssignOrderComponent implements OnInit {
     }
 
     this.data.makh = this.selectedUser.makh;
+    this.data.trangthai = 2;
     this.data.ngay = new Date().getTime();
     this.orderService.create(this.data).subscribe( data => {
 
@@ -230,6 +231,7 @@ export class AssignOrderComponent implements OnInit {
         if(element.madh) {
 
           element.madh = data.data.madh;
+          element.trangthai = 2;
 
           this.billService.update(element).subscribe( data => {
 
@@ -241,6 +243,10 @@ export class AssignOrderComponent implements OnInit {
               this.loadingService.hide();
               this.refreshPage();
             }
+          }, error => {
+
+            element.madh = null;
+            element.trangthai = 1;
           })
         } else {
 

@@ -11,6 +11,7 @@ import { OrderDetailService } from '../../../api/order-detail.service';
 import { UserService } from '../../../api/user.service';
 import { LoadingService } from '../../../util/loading.service';
 import { PopupService } from '../../../dialog/popup/popup.service';
+import { FormatService } from '../../../util/format.service';
 
 declare let $: any;
 
@@ -35,7 +36,8 @@ export class OrderComponent implements OnInit {
     private dialogRef: MatDialogRef<OrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private loadingService: LoadingService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private formatService: FormatService
   ) { }
 
   ngOnInit() {
@@ -45,11 +47,15 @@ export class OrderComponent implements OnInit {
 
     setTimeout( () => this.loadingService.show('app-order'), 0);
 
-    this.billService.search({madh: this.data.madh}).subscribe( data => {
+    this.billDetailService.getByParams({madh: this.data.madh}).subscribe( data => {
 
       let i = 0;
       console.log("data bill Service: ", data);
       this.listBooked = data;
+
+      this.formatService.formatData(this.listBooked,"mahd");
+
+      console.log("list booked: ", this.listBooked);
 
       let userList: any = {};
 
@@ -58,13 +64,14 @@ export class OrderComponent implements OnInit {
         if(userList[element.makh]) {
 
           element.user = userList[element.makh];
+          i++;
         } else {
 
           userList[element.makh] = {};
 
           this.userService.getById(element.makh).subscribe(user => {
-
-            console.log("user :", element.makh, user);element.user = user.data;
+            
+            element.user = user.data;
 
             for(let e in user.data) {
 
@@ -72,33 +79,30 @@ export class OrderComponent implements OnInit {
             }
             
             element.user = userList[element.makh];
+
+            i++;
+
+            if (i == this.listBooked.length) {
+
+              this.loadingService.hide('app-order');
+            }
           });
         }
-        
-        this.billDetailService.getByParams({mahd: element.mahd}).subscribe ( bills => {
-
-          i++;
-          element.bills = bills;
-
-          if(i == this.listBooked.length) {
-
-            this.loadingService.hide('app-order');
-          }
-        })
       })
     })
 
     this.orderDetailService.getByParams({madh: this.data.madh}).subscribe( data => {
 
-      console.log("don hang chi tiet: ", data);
-      this.result = data;
+      this.formatService.formatData(data,'madh');
+
+      this.result = data[0].chitietdhs;
     })
   }
 
   selectItem(item) {
 
     item.madh = item.madh? null: this.data.madh;
-    item.bills.forEach(elem => {
+    item.chitiethds.forEach(elem => {
 
       let flag = true;
       this.result.forEach(element => {
@@ -226,7 +230,7 @@ export class OrderComponent implements OnInit {
       
       this.returnArray().forEach( element => {
 
-        element.bills.forEach(elem => {
+        element.chitiethds.forEach(elem => {
 
           this.checkAndCountNum(elem);
         });

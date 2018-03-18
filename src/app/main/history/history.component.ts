@@ -46,9 +46,11 @@ export class HistoryComponent implements OnInit {
 
     this.userService.getById(id).subscribe( user => {
 
-      this.billService.search({makh: id}).subscribe( bills => {
+      this.billDetailService.getByParams({makh: id}).subscribe( bills => {
 
         this.fakedData = bills;
+
+        this.formatService.formatData(this.fakedData,"mahd");
 
         if(!bills.length) this.loadingService.hide();
 
@@ -58,43 +60,43 @@ export class HistoryComponent implements OnInit {
 
         this.fakedData.forEach(element => {
 
-          if(element.madh) if(dh[element.madh]) {
+          if(element.madh) {
 
-            element.order = dh[element.madh];
-          } else{ 
+            if (dh[element.madh]) {
 
-            dh[element.madh] = {};
+              element.order = dh[element.madh];
+              count++;
+            } else {
 
-            this.orderService.getById(element.madh).subscribe( data => {
+              dh[element.madh] = {};
 
-              console.log("donhang: ", data);
-              element.order = data.data;
-              
-              for(let i in data.data) {
+              this.orderService.getById(element.madh).subscribe(data => {
 
-                dh[element.madh][i] = data.data[i];
-              }
-            })
-          }
-          
-          this.billDetailService.getByParams({mahd: element.mahd}).subscribe( detailList => {
+                console.log("donhang: ", data);
+                element.order = data.data;
 
-            element.listMasp = detailList;
-            count++;
+                for (let i in data.data) {
 
-            if(count == this.fakedData.length) {
+                  dh[element.madh][i] = data.data[i];
+                }
 
-              this.loadingService.hide();
+                count++;
+
+                if (count == this.fakedData.length) {
+
+                  this.loadingService.hide();
+                }
+              }, error => {
+
+                count++;
+
+                if (count == this.fakedData.length) {
+
+                  this.loadingService.hide();
+                }
+              })
             }
-          }, error => {
-
-            count++;
-
-            if(count == this.fakedData.length) {
-
-              this.loadingService.hide();
-            }
-          })
+          } else count++;
         });
 
         console.log("user: ", user);

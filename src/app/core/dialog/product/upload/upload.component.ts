@@ -45,9 +45,9 @@ export class UploadComponent implements OnInit {
 
     this.billDetailList[0].makh = this.data.user.makh;
 
-    if(this.data.bill && this.data.bill.mahd && this.data.bill.listMasp) {
+    if(this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
 
-      this.billDetailList = this.data.bill.listMasp;
+      this.billDetailList = this.data.bill.chitiethds;
     }
 
     if(!this.data.bill) {
@@ -218,7 +218,7 @@ export class UploadComponent implements OnInit {
         this.isNew = true;
         console.log("create data bill: ", data);
         this.data.bill.mahd = data.data.mahd;
-        this.data.bill.listMasp = this.billDetailList;
+        this.data.bill.chitiethds = this.billDetailList;
         this.registOrUpdate();
       })
     }
