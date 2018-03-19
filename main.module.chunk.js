@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n  #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n  div.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n  .mat-form-field {\r\n    display: block !important;\r\n    color: white !important;\r\n}\r\n  .mat-select-value {\r\n  color: white !important; \r\n}\r\n  .mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n  .ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n  .form-group {\r\n    margin-bottom: 0px;\r\n}\r\n  .palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n  .panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n  .panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n  .mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
+exports.push([module.i, "#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n  #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n  div.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n  .mat-form-field {\r\n    display: block !important;\r\n}\r\n  .mat-select-value {\r\n  color: white !important; \r\n}\r\n  .mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n  .ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n  .form-group {\r\n    margin-bottom: 0px;\r\n}\r\n  .palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n  .panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n  .panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n  .mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
 
 // exports
 
@@ -21,7 +21,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/assign-order/assign-order.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-4  col-sm-6 col-lg-4\">\n        <div class=\"select-person-header\">Tạo Đơn Hàng </div>\n        <div class=\"panel panel-primary\">\n          <div class=\"panel-body\">\n            <form name=\"myform\">\n              <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                <div class=\"form-group\">\n                  <label for=\"age\" [ngStyle]=\"{'color': selectedUser? '': 'red'}\" >Mã Sản Phẩm *</label>\n                  <mat-form-field class=\"example-full-width\" [floatLabel]=\"'never'\">\n                    <input type=\"text\" placeholder=\"Nhập Tên...\" style=\"color: #555\" aria-label=\"Assignee\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\n                    <mat-autocomplete #auto=\"matAutocomplete\">\n                      <mat-option *ngFor=\"let option of options | user: {'tenkh': filterUser}\" [value]=\"option.tenkh\">\n                        {{ option.tenkh }}\n                      </mat-option>\n                    </mat-autocomplete>\n                  </mat-form-field>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Thương Hiệu *</label>\n                  <input id=\"age\" name=\"trangweb\" [(ngModel)]=\"data.thuonghieu\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tài Khoản *</label>\n                  <input id=\"age\" name=\"giaweb\" [(ngModel)]=\"data.taikhoan\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Đặt Cọc *</label>\n                  <input id=\"age\" name=\"trietkhau\" [(ngModel)]=\"data.datcoc\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tỉ Giá *</label>\n                  <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"data.tigia\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Ghi Chú *</label>\n                  <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"data.ghichu\" rows=\"3\"></textarea>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">List Đặt Hàng </div>\n        <mat-card style=\"padding: 24px 0px;\">\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\" style=\"padding: 0\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                          <thead>\n                            <tr>\n                              <th (click)=\"selectAll()\">Tên</th>\n                              <th>Mã SP | SL</th>\n                            </tr>\n                          </thead>\n                          <tbody>\n                            <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                              <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                              <td>\n                                <div *ngFor=\"let prod of item.bills\">{{prod.masp}} | {{prod.soluong}}</div>\n                              </td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n      <div class=\"col-md-4 col-sm-12 col-xs-12 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">Result </div>\n        <mat-card>\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                          <thead>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </thead>\n                          <tfoot>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </tfoot>\n                          <tbody>\n                            <tr *ngFor=\"let item of result\">\n                              <td>{{item.masp}}</td>\n                              <td>{{item.soluong}}</td>\n                              <td>{{item.giuhop}}</td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n            <div style=\"display: inline-block; width: 100%\">\n              <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" style=\"\" (click)=\"submit()\" type=\"submit\">Submit</button>\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n    </div>\n  </div>  \n</section>"
+module.exports = "<section class=\"content\">\n  <div *ngIf=\"listBooked.length\" class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-4  col-sm-6 col-lg-4\">\n        <div class=\"select-person-header\">Tạo Đơn Hàng </div>\n        <div class=\"panel panel-primary\">\n          <div class=\"panel-body\">\n            <form name=\"myform\">\n              <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                <div class=\"form-group\">\n                  <label for=\"age\" [ngStyle]=\"{'color': selectedUser? '': 'red'}\" >Mã Sản Phẩm *</label>\n                  <mat-form-field class=\"example-full-width\" [floatLabel]=\"'never'\">\n                    <input type=\"text\" placeholder=\"Nhập Tên...\" style=\"color: #555\" aria-label=\"Assignee\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\n                    <mat-autocomplete #auto=\"matAutocomplete\">\n                      <mat-option *ngFor=\"let option of options | user: {'tenkh': filterUser}\" [value]=\"option.tenkh\">\n                        {{ option.tenkh }}\n                      </mat-option>\n                    </mat-autocomplete>\n                  </mat-form-field>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Mã Đơn Hàng *</label>\n                  <input id=\"age\" name=\"madh\" [(ngModel)]=\"orderData.madh\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Thương Hiệu *</label>\n                  <input id=\"age\" name=\"trangweb\" [(ngModel)]=\"orderData.thuonghieu\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tài Khoản *</label>\n                  <input id=\"age\" name=\"giaweb\" [(ngModel)]=\"orderData.taikhoan\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Đặt Cọc *</label>\n                  <input id=\"age\" name=\"trietkhau\" [(ngModel)]=\"orderData.datcoc\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tỉ Giá *</label>\n                  <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"orderData.tigia\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Ghi Chú *</label>\n                  <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"orderData.ghichu\" rows=\"3\"></textarea>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">List Đặt Hàng </div>\n        <mat-card style=\"padding: 24px 0px;\">\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\" style=\"padding: 0\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                          <thead>\n                            <tr>\n                              <th (click)=\"selectAll()\">Tên</th>\n                              <th>Mã SP | SL</th>\n                            </tr>\n                          </thead>\n                          <tbody>\n                            <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                              <td (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                              <td>\n                                <div *ngFor=\"let prod of item.chitiethds\">{{prod.masp}} | {{prod.soluong}}</div>\n                              </td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n      <div class=\"col-md-4 col-sm-12 col-xs-12 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">Result </div>\n        <mat-card>\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                          <thead>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </thead>\n                          <tfoot>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </tfoot>\n                          <tbody>\n                            <tr *ngFor=\"let item of orderData.result\">\n                              <td>{{item.masp}}</td>\n                              <td>{{item.soluong}}</td>\n                              <td>{{item.giuhop}}</td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n            <div style=\"display: inline-block; width: 100%\">\n              <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" style=\"\" (click)=\"submit()\" type=\"submit\">Submit</button>\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n    </div>\n  </div>  \n  <body *ngIf=\"!listBooked.length\" class=\"four-zero-four\">\n    <div class=\"four-zero-four-container\">\n        <div class=\"error-code\"><i class=\"material-icons\" style=\"font-size: inherit;color: darkgrey;\">face</i></div>\n        <div class=\"error-message\">Không Có Đơn Đặt Hàng</div>\n    </div>\n</body>\n</section>"
 
 /***/ }),
 
@@ -31,14 +31,16 @@ module.exports = "<section class=\"content\">\n  <div class=\"container\">\n    
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssignOrderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_product_select_product_component__ = __webpack_require__("../../../../../src/app/main/assign-order/select-product/select-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,18 +59,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AssignOrderComponent = /** @class */ (function () {
-    function AssignOrderComponent(dialog, userService, billService, orderService, orderDetailService, billDetailService) {
-        this.dialog = dialog;
+    function AssignOrderComponent(userService, billService, orderService, orderDetailService, billDetailService, router, loadingService, mainService, popupService) {
         this.userService = userService;
         this.billService = billService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.billDetailService = billDetailService;
-        this.myControl = new __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormControl */]();
+        this.router = router;
+        this.loadingService = loadingService;
+        this.mainService = mainService;
+        this.popupService = popupService;
+        this.myControl = new __WEBPACK_IMPORTED_MODULE_10__angular_forms__["c" /* FormControl */]();
         this.listBooked = [];
-        this.result = [];
-        this.data = {};
+        this.orderData = {};
         this.name = name;
         this.options = [];
         this.selectedUser = null;
@@ -77,25 +83,19 @@ var AssignOrderComponent = /** @class */ (function () {
     }
     AssignOrderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.billService.search({ madh: null }).subscribe(function (data) {
-            console.log("data bill Service: ", data);
-            _this.listBooked = data;
-            _this.listBooked.forEach(function (element) {
-                _this.userService.getById(element.makh).subscribe(function (user) {
-                    console.log("user :", element.makh, user);
-                    element.user = user.data;
-                });
-                _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (bills) {
-                    console.log("bills: ", bills);
-                    element.bills = bills;
-                });
-            });
-            console.log("final data: ", _this.listBooked);
-        });
+        this.orderData = {};
+        this.orderData.result = [];
+        this.options = [];
+        this.myControl = new __WEBPACK_IMPORTED_MODULE_10__angular_forms__["c" /* FormControl */]();
+        this.loadingService.show();
+        this.getListBill();
         this.userService.search({ maloainv: 4 }).subscribe(function (data) {
-            console.log("user data: ", data);
             _this.options = data;
         });
+        this.subcribeUser();
+    };
+    AssignOrderComponent.prototype.subcribeUser = function () {
+        var _this = this;
         this.myControl.valueChanges.subscribe(function (data) {
             _this.filterUser = data;
             for (var i = 0; i < _this.options.length; i++) {
@@ -107,20 +107,21 @@ var AssignOrderComponent = /** @class */ (function () {
             _this.selectedUser = null;
         });
     };
-    AssignOrderComponent.prototype.openAddProductKind = function () {
-        console.log("open");
-        var productKind = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__select_product_select_product_component__["a" /* SelectProductComponent */]);
-        productKind.afterClosed().subscribe(function (data) {
-            console.log("close product kind!");
+    AssignOrderComponent.prototype.getListBill = function () {
+        var _this = this;
+        this.mainService.listBill({ madh: null }).subscribe(function (data) {
+            _this.listBooked = data;
+            console.log("book: ", _this.listBooked);
+            _this.loadingService.hide();
         });
     };
     AssignOrderComponent.prototype.selectItem = function (item) {
         var _this = this;
         item.madh = !item.madh;
         console.log("item: ", item);
-        item.bills.forEach(function (elem) {
+        item.chitiethds.forEach(function (elem) {
             var flag = true;
-            _this.result.forEach(function (element) {
+            _this.orderData.result.forEach(function (element) {
                 if (element.masp == elem.masp) {
                     flag = false;
                     if (item.madh) {
@@ -129,7 +130,7 @@ var AssignOrderComponent = /** @class */ (function () {
                     }
                     else {
                         if (element.soluong == elem.soluong) {
-                            _this.result.splice(_this.result.indexOf(element), 1);
+                            _this.orderData.result.splice(_this.orderData.result.indexOf(element), 1);
                         }
                         else {
                             element.soluong -= elem.soluong;
@@ -140,14 +141,19 @@ var AssignOrderComponent = /** @class */ (function () {
                 }
             });
             if (flag) {
-                _this.result.push({
+                _this.orderData.result.push({
                     masp: elem.masp,
                     soluong: elem.soluong,
                     giuhop: elem.giuhop
                 });
             }
         });
-        console.log("result: ", this.result);
+    };
+    AssignOrderComponent.prototype.refreshPage = function () {
+        var _this = this;
+        this.popupService.showSuccess().subscribe(function () {
+            _this.ngOnInit();
+        });
     };
     AssignOrderComponent.prototype.selectAll = function () {
         var _this = this;
@@ -172,32 +178,60 @@ var AssignOrderComponent = /** @class */ (function () {
     AssignOrderComponent.prototype.checkBeforeOrder = function () {
         if (!this.selectedUser)
             return false;
-        if (!this.result.length)
+        if (!this.orderData.result.length)
+            return false;
+        if (!this.orderData.madh)
             return false;
         return true;
     };
     AssignOrderComponent.prototype.submit = function () {
         var _this = this;
-        if (!this.checkBeforeOrder())
+        this.loadingService.show();
+        if (!this.checkBeforeOrder()) {
+            this.popupService.showError();
+            this.loadingService.hide();
             return;
-        this.data.makh = this.selectedUser.makh;
-        this.orderService.create(this.data).subscribe(function (data) {
+        }
+        this.orderData.makh = this.selectedUser.makh;
+        this.orderData.trangthai = 2;
+        this.orderData.ngay = new Date().getTime();
+        this.orderService.create(this.orderData).subscribe(function (data) {
             console.log("return data: ", data);
+            var i = 0;
             _this.listBooked.forEach(function (element) {
                 if (element.madh) {
                     element.madh = data.data.madh;
+                    element.trangthai = 2;
                     _this.billService.update(element).subscribe(function (data) {
+                        i++;
                         console.log("create ok: ", data);
+                        if (i == _this.orderData.result.length + _this.listBooked.length) {
+                            _this.loadingService.hide();
+                            _this.refreshPage();
+                        }
+                    }, function (error) {
+                        element.madh = null;
+                        element.trangthai = 1;
                     });
                 }
+                else {
+                    i++;
+                }
             });
-            _this.result.forEach(function (element) {
+            _this.orderData.result.forEach(function (element) {
                 element.madh = data.data.madh;
                 element.makh = _this.selectedUser.makh;
                 _this.orderDetailService.create(element).subscribe(function (data) {
-                    console.log("orderDetailService: ", data);
+                    i++;
+                    if (i == _this.orderData.result.length + _this.listBooked.length) {
+                        _this.loadingService.hide();
+                        _this.refreshPage();
+                    }
                 });
             });
+        }, function (error) {
+            _this.loadingService.hide();
+            _this.popupService.showError();
         });
     };
     AssignOrderComponent = __decorate([
@@ -205,14 +239,16 @@ var AssignOrderComponent = /** @class */ (function () {
             selector: 'app-assign-order',
             template: __webpack_require__("../../../../../src/app/main/assign-order/assign-order.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/assign-order/assign-order.component.css")],
-            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ViewEncapsulation */].None
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__["a" /* UserService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__core_api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__["a" /* BillService */],
             __WEBPACK_IMPORTED_MODULE_5__core_api_order_service__["a" /* OrderService */],
             __WEBPACK_IMPORTED_MODULE_6__core_api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_7__core_api_bill_detail_service__["a" /* BillDetailService */]])
+            __WEBPACK_IMPORTED_MODULE_7__core_api_bill_detail_service__["a" /* BillDetailService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_dialog_popup_popup_service__["a" /* PopupService */]])
     ], AssignOrderComponent);
     return AssignOrderComponent;
 }());
@@ -347,7 +383,7 @@ var SelectProductComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/main/assign-order/select-product/select-product.component.css")]
         }),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object])
     ], SelectProductComponent);
     return SelectProductComponent;
 }());
@@ -426,7 +462,7 @@ var BillComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/main/bills/bill/bill.component.css")]
         }),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object])
     ], BillComponent);
     return BillComponent;
 }());
@@ -457,7 +493,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/bills/bills.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách Hóa Đơn\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a class=\"dropdown-toggle\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cart</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"makh\" placeholder=\"Tìm Kiếm Theo Mã Code\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày Đặt</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Phí Ship</th>\n                                        <th>Tiền Hàng</th>\n                                        <th>Khối Lượng</th>\n                                        <th>Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh}\">\n                                        <td><a (click)=\"order(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Đặt Hàng\">\n                                            <div>{{item.user.tenkh}}</div>    \n                                            <div style=\"margin-top: 10px\">(Đặt Hàng)</div>\n                                        </a></td>\n                                        <td><a [routerLink]=\"['/home/history/' + item.makh]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Lịch Sử Đặt Hàng\">\n                                            <div>{{item.user.sdt}}</div>\n                                            <div style=\"margin-top: 10px\">(Đến Lịch Sử)</div>\n                                        </a></td>\n                                        <td>\n                                            <a (click)=\"openAddProductKind(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Chi Tiết Hóa Đơn\">\n                                                <ul *ngIf=\"item.listMasp\">\n                                                    <li *ngFor=\"let product of item.listMasp\">{{product.masp}} - {{product.soluong}}</li>\n                                                </ul>\n                                            </a>\n                                        </td>\n                                        <td><a (click)=\"update(item)\">\n                                            <div>{{item.ngay}}</div>\n                                            <div style=\"margin-top: 10px\">Sửa</div>\n                                        </a></td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td>{{item.khoiluong}}</td>\n                                        <td>{{item.tong}}</td>\n                                        <td><a (click)=\"update(item)\">\n                                            <div>{{item.trangthai}}</div>\n                                            <div style=\"margin-top: 10px\">Sửa</div>\n                                        </a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách Hóa Đơn\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a class=\"dropdown-toggle\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cart</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Đơn Hàng\">\n                                </div>\n                                <div class=\"form-group\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên KH</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th *ngIf=\"sr\">Mã ĐH</th>\n                                        <th>Mã SP</th>\n                                        <th *ngIf=\"sr\">Ngày Đặt</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Phí Ship</th>\n                                        <th *ngIf=\"sr\">Tiền Hàng</th>\n                                        <th *ngIf=\"sr\">Khối Lượng</th>\n                                        <th *ngIf=\"sr\">Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên KH</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th *ngIf=\"sr\">Mã ĐH</th>\n                                        <th>Mã SP</th>\n                                        <th *ngIf=\"sr\">Ngày Đặt</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Phí Ship</th>\n                                        <th *ngIf=\"sr\">Tiền Hàng</th>\n                                        <th *ngIf=\"sr\">Khối Lượng</th>\n                                        <th *ngIf=\"sr\">Tổng</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'madh': madh} | time: {'from': from, 'to': to}\">\n                                        <td><a (click)=\"order(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Đặt Hàng\">\n                                            <div><i class=\"material-icons\">add_shopping_cart</i>{{item.user.tenkh}}</div> \n                                        </a></td>\n                                        <td  *ngIf=\"sr\"><a [routerLink]=\"['/home/history/' + item.makh]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Lịch Sử Đặt Hàng\">\n                                            <div><i class=\"material-icons\">history</i><i>{{item.user.sdt}}</i></div>\n                                        </a></td>\n                                        <td *ngIf=\"sr\" (click)=\"openOrder(item)\"><a>{{item.madh}}</a></td>\n                                        <td>\n                                            <a (click)=\"openAddProductKind(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Chi Tiết Hóa Đơn\">\n                                                <ul style=\"padding-left: 15px;\" *ngIf=\"item.chitiethds\">\n                                                    <li *ngFor=\"let product of item.chitiethds\">{{product.masp}} - {{product.soluong}}</li>\n                                                </ul>\n                                            </a>\n                                        </td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.ship}}</td>\n                                        <td *ngIf=\"sr\">{{item.tong}}</td>\n                                        <td *ngIf=\"sr\">{{item.khoiluong}}</td>\n                                        <td *ngIf=\"sr\">{{item.tong}}</td>\n                                        <td><a (click)=\"update(item)\">\n                                            <div><i class=\"material-icons\">settings</i>{{item.trangthai}}</div>\n                                        </a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -474,6 +510,8 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -483,6 +521,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
 
 
 
@@ -492,28 +567,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var BillsComponent = /** @class */ (function () {
-    function BillsComponent(dialog, billService, billDetailService, userService, dialogService, loadingService) {
+    function BillsComponent(dialog, billService, billDetailService, userService, dialogService, loadingService, formatService, mainService) {
         this.dialog = dialog;
         this.billService = billService;
         this.billDetailService = billDetailService;
         this.userService = userService;
         this.dialogService = dialogService;
         this.loadingService = loadingService;
+        this.formatService = formatService;
+        this.mainService = mainService;
         this.tenkh = '';
-        this.makh = '';
+        this.madh = '';
+        this.from = '';
+        this.to = '';
+        this.sr = true;
         this.fakedData = [];
     }
     BillsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.sr = screen.width <= 412 ? false : true;
         this.loadingService.show();
-        this.billService.list().subscribe(function (data) {
+        this.billDetailService.getByParams({}).subscribe(function (data) {
             var userList = {};
             console.log("bill List: ", data);
+            if (!data.length)
+                _this.loadingService.hide();
             _this.fakedData = data;
+            _this.formatService.formatData(_this.fakedData, "mahd");
             var i = 0;
             _this.fakedData.forEach(function (element) {
                 if (userList[element.makh]) {
                     element.user = userList[element.makh];
+                    i += 1;
                 }
                 else {
                     userList[element.makh] = {};
@@ -522,15 +607,35 @@ var BillsComponent = /** @class */ (function () {
                         userList[element.makh].tenkh = user.data.tenkh,
                             userList[element.makh].sdt = user.data.sdt;
                         userList[element.makh].makh = user.data.makh;
+                        i += 1;
+                        if (i == _this.fakedData.length) {
+                            _this.loadingService.hide();
+                        }
+                    }, function (error) {
+                        i += 1;
+                        if (i == _this.fakedData.length) {
+                            _this.loadingService.hide();
+                        }
                     });
                 }
-                _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (ct) {
-                    element.listMasp = ct;
-                    i += 1;
-                    if (i == _this.fakedData.length) {
-                        _this.loadingService.hide();
-                    }
-                });
+            });
+            console.log("faked bill data: ", _this.fakedData);
+        }, function (error) {
+            _this.loadingService.hide();
+        });
+    };
+    BillsComponent.prototype.getListBills = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.mainService.listBill({}).subscribe(function (data) {
+                            _this.fakedData = data;
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -546,11 +651,28 @@ var BillsComponent = /** @class */ (function () {
     };
     BillsComponent.prototype.order = function (item) {
         this.dialogService.openOrder({ user: item.user }).subscribe(function (data) {
-            console.log("data: order: ", data);
+            console.log("data order: ", data);
         });
     };
+    BillsComponent.prototype.openOrder = function (item) {
+        var _this = this;
+        if (item.madh)
+            this.dialogService.gotoOrder(item.madh).subscribe(function (data) {
+                _this.mainService.listBill({ mahd: item.mahd }).subscribe(function (listItem) {
+                    var index = _this.fakedData.indexOf(item);
+                    _this.fakedData.splice(index, 1, listItem[0]);
+                    _this.fakedData = _this.fakedData.concat([]);
+                });
+            });
+    };
     BillsComponent.prototype.update = function (item) {
-        this.dialogService.openOrder({ user: item.user, bill: item });
+        var _this = this;
+        this.dialogService.openOrder({ user: item.user, bill: item }).subscribe(function (data) {
+            if (!item.listMasp) {
+                _this.fakedData.splice(_this.fakedData.indexOf(item), 1);
+                _this.fakedData = _this.fakedData.concat([]);
+            }
+        });
     };
     BillsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -558,12 +680,14 @@ var BillsComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/main/bills/bills.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/bills/bills.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__["a" /* BillService */],
             __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */],
             __WEBPACK_IMPORTED_MODULE_6__core_api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_3__core_dialog_dialog_service__["a" /* DialogService */],
-            __WEBPACK_IMPORTED_MODULE_7__core_util_loading_service__["a" /* LoadingService */]])
+            __WEBPACK_IMPORTED_MODULE_7__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_api_main_service__["a" /* MainService */]])
     ], BillsComponent);
     return BillsComponent;
 }());
@@ -593,7 +717,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrapper\">\n        <div class=\"loader\">\n            <div class=\"preloader\">\n                <div class=\"spinner-layer pl-red\">\n                    <div class=\"circle-clipper left\">\n                        <div class=\"circle\"></div>\n                    </div>\n                    <div class=\"circle-clipper right\">\n                        <div class=\"circle\"></div>\n                    </div>\n                </div>\n            </div>\n            <p>Please wait...</p>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử Giao Dịch Của: <a>PHẠM MINH TƯ</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"code\" placeholder=\"Tìm Kiếm Theo Mã Code\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Mã Hóa Đơn</th>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Giá trị Sản Phẩm</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Mã Hóa Đơn</th>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Giá trị Sản Phẩm</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr *ngFor=\"let item of fakedData | user: {'mahd': code}\">\n                                        <td><a>{{item.mahd}}</a></td>\n                                        <td>{{item.ngay}}</td>\n                                        <td><ul>\n                                                <li>{{item.masp}}</li>\n                                                <li>{{item.masp}}</li>\n                                                <li>{{item.masp}}</li>\n                                            </ul></td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.tonggt}}</td>\n                                        <td>{{item.sum}}</td>\n                                        <td>{{item.trangthai}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử Giao Dịch Của: <a (click)=\"updateUser()\">{{user.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Mã Đơn Hàng</th>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Giá trị Sản Phẩm</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>>Mã Đơn Hàng</th>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Giá trị Sản Phẩm</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr *ngFor=\"let item of fakedData | user: {'order': {'madh': madh}}\">\n                                        <td><a (click)=\"openOrder(item)\">{{item?.order?.madh}}</a></td>\n                                        <td>{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><ul>\n                                                <li *ngFor=\"let it of item.chitiethds\">{{it.masp}}</li>\n                                            </ul></td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.tonggt}}</td>\n                                        <td>{{item.sum}}</td>\n                                        <td>{{item.trangthai}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -608,6 +732,11 @@ module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_dialog_user_user_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/user/user-dialog.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -624,44 +753,126 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
 var HistoryComponent = /** @class */ (function () {
-    function HistoryComponent(route, router, userService, billService, billDetailService) {
+    function HistoryComponent(route, router, userService, billService, billDetailService, orderService, loadingService, dialogService, formatService, userDialog) {
         this.route = route;
         this.router = router;
         this.userService = userService;
         this.billService = billService;
         this.billDetailService = billDetailService;
-        this.code = '';
-        this.fakedData = [
-            {
-                mahd: '011',
-                ngay: "22-12-2017",
-                masp: "EC2001",
-                ship: "20,000",
-                datcoc: '2,000,000',
-                tonggt: "5,000,000",
-                sum: "2,980,000",
-                trangthai: "Hoàn Tất"
-            }
-        ];
+        this.orderService = orderService;
+        this.loadingService = loadingService;
+        this.dialogService = dialogService;
+        this.formatService = formatService;
+        this.userDialog = userDialog;
+        this.madh = '';
+        this.user = {};
+        this.fakedData = [];
     }
     HistoryComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loadingService.show();
         var id = this.route.snapshot.paramMap.get('id');
         this.userService.getById(id).subscribe(function (user) {
-            _this.billService.search({ makh: id }).subscribe(function (bills) {
-                bills.forEach(function (element) {
-                    _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (detailList) {
-                        element.list = detailList;
-                    });
+            _this.billDetailService.getByParams({ makh: id }).subscribe(function (bills) {
+                _this.fakedData = bills;
+                _this.formatService.formatData(_this.fakedData, "mahd");
+                if (!bills.length)
+                    _this.loadingService.hide();
+                var dh = {};
+                var count = 0;
+                _this.fakedData.forEach(function (element) {
+                    if (element.madh) {
+                        if (dh[element.madh]) {
+                            element.order = dh[element.madh];
+                            count++;
+                        }
+                        else {
+                            dh[element.madh] = {};
+                            _this.orderService.getById(element.madh).subscribe(function (data) {
+                                console.log("donhang: ", data);
+                                element.order = data.data;
+                                for (var i in data.data) {
+                                    dh[element.madh][i] = data.data[i];
+                                }
+                                count++;
+                                if (count == _this.fakedData.length) {
+                                    _this.loadingService.hide();
+                                }
+                            }, function (error) {
+                                count++;
+                                if (count == _this.fakedData.length) {
+                                    _this.loadingService.hide();
+                                }
+                            });
+                        }
+                    }
+                    else
+                        count++;
                 });
                 console.log("user: ", user);
                 console.log("bills: ", bills);
+                _this.user = user.data;
+            });
+        }, function (error) {
+            _this.loadingService.hide();
+        });
+    };
+    HistoryComponent.prototype.updateUser = function () {
+        this.userDialog.openUserDetail(this.user).subscribe(function (data) {
+            console.log("user: ", data);
+        });
+    };
+    HistoryComponent.prototype.openOrder = function (item) {
+        var _this = this;
+        if (!item.order)
+            return;
+        this.dialogService.gotoOrder(item.order).subscribe(function (data) {
+            _this.billService.getById(item.mahd).subscribe(function (bill) {
+                for (var e in bill.data) {
+                    item[e] = bill.data[e];
+                }
+                if (!item['madh'])
+                    item.order = null;
             });
         });
     };
-    HistoryComponent.prototype.ngAfterViewInit = function () {
-        setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+    HistoryComponent.prototype.gotoDetail = function (item) {
+        var _this = this;
+        this.dialogService.openOrder({ user: this.user, bill: item }).subscribe(function (data) {
+            if (data == -2) {
+                _this.fakedData.splice(_this.fakedData.indexOf(item), 1);
+                _this.fakedData = _this.fakedData.concat([]);
+                return;
+            }
+            _this.billService.getById(item.mahd).subscribe(function (data) {
+                for (var e in data.data) {
+                    item[e] = data.data[e];
+                }
+                _this.billDetailService.getByParams({ mahd: item.mahd }).subscribe(function (detailList) {
+                    if (!detailList.length) {
+                        _this.fakedData.splice(_this.fakedData.indexOf(item), 1);
+                        _this.fakedData = _this.fakedData.concat([]);
+                        return;
+                    }
+                    item.listMasp = detailList;
+                }, function (error) {
+                });
+            });
+        });
+    };
+    HistoryComponent.prototype.addBill = function () {
+        var _this = this;
+        this.dialogService.openOrder({ user: this.user }).subscribe(function (data) {
+            if (typeof (data) == "object") {
+                _this.fakedData = _this.fakedData.concat([data]);
+            }
+        });
     };
     HistoryComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -673,7 +884,12 @@ var HistoryComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__["a" /* BillService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */]])
+            __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */],
+            __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_10__core_dialog_user_user_dialog_service__["a" /* UserDialogService */]])
     ], HistoryComponent);
     return HistoryComponent;
 }());
@@ -861,7 +1077,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group .form-line {\r\n    width: 30%;\r\n}", ""]);
+exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group#input-user .form-line {\r\n    width: 33.33333333%;\r\n}\r\n\r\n.form-control button.btn-default{\r\n    display: none!important;\r\n}", ""]);
 
 // exports
 
@@ -874,7 +1090,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/list-user/list-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"row clearfix\">\r\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n                <div class=\"card\">\r\n                    <div class=\"header\">\r\n                        <h2>\r\n                            User List\r\n                        </h2>\r\n                        <ul class=\"header-dropdown m-r--5\">\r\n                            <li class=\"dropdown\">\r\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                                    <i class=\"material-icons\">more_vert</i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu pull-right\">\r\n                                    <li><a (click)=\"openAddProductKind(null)\">Thêm Khách Hàng</a></li>\r\n                                </ul>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                    <div class=\"body\">\r\n                        <div id=\"sign_up\" method=\"POST\">\r\n                            <div class=\"input-group\">\r\n                                <div class=\"form-line\">\r\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"peopleFilter.makh\" placeholder=\"Tìm Kiếm Theo Mã Code\">\r\n                                </div>\r\n                                <div class=\"form-line\">\r\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"peopleFilter.tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\r\n                                </div>\r\n                                <div class=\"form-line\">\r\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"peopleFilter.sdt\" placeholder=\"Tìm Kiếm Theo SDT\">\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"body\">\r\n                        <div class=\"table-responsive\">\r\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\r\n                                <thead>\r\n                                    <tr>\r\n                                        <!-- <th>Mã KH</th> -->\r\n                                        <th>Tên KH</th>\r\n                                        <th>SDT</th>\r\n                                        <th *ngIf=\"sc\">Email</th> \r\n                                        <th *ngIf=\"sc\">Địa Chỉ</th> \r\n                                        <th>Loại KH</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tfoot>\r\n                                    <tr>\r\n                                        <!-- <th>Mã KH</th> -->\r\n                                        <th>Tên KH</th>\r\n                                        <th>SDT</th>\r\n                                        <th *ngIf=\"sc\">Email</th> \r\n                                        <th *ngIf=\"sc\">Địa Chỉ</th> \r\n                                        <th>Loại KH</th>\r\n                                    </tr>\r\n                                </tfoot>\r\n                                <tbody *ngIf=\"fakedData\">\r\n                                    <tr *ngFor=\"let item of fakedData | user: {'makh': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}\">\r\n                                        <!-- <td>{{item.makh}}</td> -->\r\n                                        <td><a (click)=\"openAddProductKind(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Thông Tin Chi Tiết Khách Hàng\">{{item.tenkh}}</a></td>\r\n                                        <td>{{item.sdt}}</td>\r\n                                         <td *ngIf=\"sc\">{{item.email}}</td> \r\n                                         <td *ngIf=\"sc\">{{item.diachi}}</td> \r\n                                        <td>{{item.maloainv}}</td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- #END# Basic Examples -->\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"content\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"row clearfix\">\r\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n                <div class=\"card\">\r\n                    <div class=\"header\">\r\n                        <h2>\r\n                            User List\r\n                        </h2>\r\n                        <ul class=\"header-dropdown m-r--5\">\r\n                            <li class=\"dropdown\">\r\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                                    <i class=\"material-icons\">more_vert</i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu pull-right\">\r\n                                    <li><a (click)=\"openAddProductKind(null)\">Thêm Khách Hàng</a></li>\r\n                                </ul>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                    <div class=\"body\">\r\n                        <div id=\"sign_up\" method=\"POST\">\r\n                            <div class=\"input-group\" id=\"input-user\">\r\n                                <div class=\"form-line\" style=\"display: inline-block; position: absolute; right: 0\">\r\n                                    <select [(ngModel)]=\"peopleFilter.makh\" class=\"form-control\" style=\"position: absolute; top:0;border-bottom: 1px solid #ccc;\">\r\n                                        <option value=\"\">Loại Khách Hàng</option>\r\n                                        <option value=\"2\">Khách lẻ</option>\r\n                                        <option value=\"3\">Khách Buôn</option>\r\n                                        <option value=\"5\">Shipper</option>\r\n                                        <option value=\"4\">Người Mua</option>\r\n                                        <option value=\"6\">Người Nhận</option>\r\n                                    </select>\r\n                                </div>\r\n                                <div class=\"form-line\">\r\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"peopleFilter.tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\r\n                                </div>\r\n                                <div class=\"form-line\">\r\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"peopleFilter.sdt\" placeholder=\"Tìm Kiếm Theo SDT\">\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"body\">\r\n                        <div class=\"table-responsive\">\r\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\r\n                                <thead>\r\n                                    <tr>\r\n                                        <!-- <th>Mã KH</th> -->\r\n                                        <th>Tên KH</th>\r\n                                        <th>SDT</th>\r\n                                        <th *ngIf=\"sc\">Email</th> \r\n                                        <th *ngIf=\"sc\">Địa Chỉ</th> \r\n                                        <th>Loại KH</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tfoot>\r\n                                    <tr>\r\n                                        <!-- <th>Mã KH</th> -->\r\n                                        <th>Tên KH</th>\r\n                                        <th>SDT</th>\r\n                                        <th *ngIf=\"sc\">Email</th> \r\n                                        <th *ngIf=\"sc\">Địa Chỉ</th> \r\n                                        <th>Loại KH</th>\r\n                                    </tr>\r\n                                </tfoot>\r\n                                <tbody *ngIf=\"fakedData\">\r\n                                    <tr *ngFor=\"let item of fakedData | user: {'maloainv': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}\">\r\n                                        <!-- <td>{{item.makh}}</td> -->\r\n                                        <td><a (click)=\"openAddProductKind(item)\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Thông Tin Chi Tiết Khách Hàng\">{{item.tenkh}}</a></td>\r\n                                        <td>{{item.sdt}}</td>\r\n                                         <td *ngIf=\"sc\">{{item.email}}</td> \r\n                                         <td *ngIf=\"sc\">{{item.diachi}}</td> \r\n                                        <td>{{selectKind(item.maloainv)}}</td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- #END# Basic Examples -->\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -884,10 +1100,9 @@ module.exports = "<section class=\"content\">\r\n    <div class=\"container-flui
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListUserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_user_component__ = __webpack_require__("../../../../../src/app/main/list-user/user/user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_dialog_user_user_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/user/user-dialog.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -901,12 +1116,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ListUserComponent = /** @class */ (function () {
-    function ListUserComponent(dialog, userService, loading) {
-        this.dialog = dialog;
+    function ListUserComponent(userService, loading, userDialog) {
         this.userService = userService;
         this.loading = loading;
+        this.userDialog = userDialog;
         this.fakedData = [];
         this.peopleFilter = {
             makh: '',
@@ -929,9 +1143,7 @@ var ListUserComponent = /** @class */ (function () {
     };
     ListUserComponent.prototype.openAddProductKind = function (data) {
         var _this = this;
-        this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__user_user_component__["a" /* UserComponent */], {
-            data: data
-        }).afterClosed().subscribe(function (data) {
+        this.userDialog.openUserDetail(data).subscribe(function (data) {
             console.log("close product kind!", data);
             if (data && _this.fakedData.indexOf(data) == -1) {
                 _this.fakedData = _this.fakedData.concat([data]);
@@ -944,133 +1156,7 @@ var ListUserComponent = /** @class */ (function () {
         }
         return str;
     };
-    ListUserComponent.prototype.mouseEnter = function (abc) {
-        console.log("abc: ", abc);
-    };
-    ListUserComponent.prototype.mouseLeave = function (bcd) {
-        console.log("bcd: ", bcd);
-    };
-    ListUserComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-list-user',
-            template: __webpack_require__("../../../../../src/app/main/list-user/list-user.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/list-user/list-user.component.css")]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_3__core_api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_util_loading_service__["a" /* LoadingService */]])
-    ], ListUserComponent);
-    return ListUserComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/list-user/user/user.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 360px;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/list-user/user/user.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<body class=\"signup-page\" id=\"user\">\r\n    <div class=\"signup-box\">\r\n        <div class=\"logo\">\r\n            <a href=\"javascript:void(0);\"><b>Khách Hàng</b></a>\r\n            <small>Thông Tin Chi Tiết</small>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"body\">\r\n                <form id=\"sign_up\" method=\"POST\">\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">person</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"form-control\" [ngStyle]=\"{'color':data.tenkh? '': 'red'}\" *ngIf=\"!toggle.tenkh\" (click)=\"onClickMethod('tenkh')\">{{data.tenkh? data.tenkh: 'Nhập Tên Khách Hàng'}}</label>  \r\n                            <input type=\"text\" class=\"form-control\" *ngIf=\"toggle.tenkh\" (blur)=\"onBlurMethod('tenkh')\" [(ngModel)]=\"data.tenkh\" name=\"tenkh\" placeholder=\"Tên Khách Hàng\" autofocus> \r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">phone</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"form-control\" style=\"border-bottom: 1px solid #ced7e5!important;\" [ngStyle]=\"{'color':data.sdt? '': 'red'}\" *ngIf=\"!toggle.sdt\" (click)=\"onClickMethod('sdt')\">{{data.sdt? data.sdt: 'Nhập Số Điện Thoại'}}</label>  \r\n                            <input type=\"text\" class=\"form-control\" *ngIf=\"toggle.sdt\" (blur)=\"onBlurMethod('sdt')\" [(ngModel)]=\"data.sdt\" name=\"sdt\" placeholder=\"Số Điện Thoại\" autofocus> \r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">email</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"form-control\" style=\"border-bottom: 1px solid #ced7e5!important;\" *ngIf=\"!toggle.email\" (click)=\"onClickMethod('email')\">{{data.email || 'Nhập Email'}}</label>  \r\n                            <input type=\"text\" class=\"form-control\" *ngIf=\"toggle.email\" (blur)=\"onBlurMethod('email')\" [(ngModel)]=\"data.email\" name=\"email\" placeholder=\"Số Email\" autofocus> \r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">home</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"\" *ngIf=\"!toggle.diachi\" (click)=\"onClickMethod('diachi')\">{{data.diachi? data.diachi: 'Nhập Địa Chỉ'}}</label>  \r\n                            <input type=\"text\" class=\"form-control\" *ngIf=\"toggle.diachi\" (blur)=\"onBlurMethod('diachi')\" [(ngModel)]=\"data.diachi\" name=\"diachi\" placeholder=\"Số Địa Chỉ\" autofocus>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">account_circle</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"form-control\" *ngIf=\"!toggle.maloainv\" (click)=\"onClickMethod('maloainv')\">{{data.maloainv? selectKind(data.maloainv): 'Loại'}}</label>\r\n                            <select [(ngModel)]=\"data.maloainv\" *ngIf=\"toggle.maloainv\" (mouseleave)=\"onBlurMethod('maloainv')\" name=\"maloainv\" class=\"form-control\">\r\n                                <option>Loại Khách Hàng</option>\r\n                                <option value=\"2\">Khách lẻ</option>\r\n                                <option value=\"3\">Khách Buôn</option>\r\n                                <option value=\"5\">Shipper</option>\r\n                                <option value=\"4\">Người Mua</option>\r\n                                <option value=\"6\">Người Nhận</option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">lock</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <label class=\"form-control\" *ngIf=\"!toggle.mk\" (click)=\"onClickMethod('mk')\">{{data.mk? data.mk: 'Mật Khẩu'}}</label>  \r\n                            <input type=\"text\" class=\"form-control\" *ngIf=\"toggle.mk\" (blur)=\"onBlurMethod('mk')\" [(ngModel)]=\"data.mk\" name=\"mk\" placeholder=\"Số Địa Chỉ\" autofocus>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\r\n                        <a (click)=\"order()\"  [ngClass]=\"!data.tenkh || !data.sdt? 'disabled': ''\">Đặt Hàng</a>\r\n                    </div>\r\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\r\n                        <a (click)=\"gotoHistory()\">Xem Lịch Sử Giao Dịch</a>\r\n                    </div>\r\n\r\n                    <div style=\"display: inline-block; width: 100%\">\r\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"update()\" style=\"float:left\" type=\"submit\">UPDATE</button>\r\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" (click)=\"dialogRef.close(reload)\">CANCEL</button>\r\n                    </div>\r\n                    \r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/list-user/user/user.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-
-
-var UserComponent = /** @class */ (function () {
-    function UserComponent(dialogRef, data, userService, router, loading, dialogService) {
-        this.dialogRef = dialogRef;
-        this.data = data;
-        this.userService = userService;
-        this.router = router;
-        this.loading = loading;
-        this.dialogService = dialogService;
-        this.isNew = false;
-        this.listOrderProduct = [];
-        this.toggle = {
-            tenkh: false,
-            sdt: false,
-            email: false,
-            diachi: false,
-            makh: false,
-            mk: false,
-            maloainv: false
-        };
-        this.reload = null;
-    }
-    UserComponent.prototype.ngOnInit = function () {
-        if (!this.data) {
-            this.data = {
-                tenkh: '',
-                sdt: '',
-                email: '',
-                diachi: '',
-                makh: null,
-                mk: 'adidas',
-                maloainv: 2
-            };
-        }
-        this.initToggle(false);
-    };
-    UserComponent.prototype.initToggle = function (data) {
-        for (var e in this.toggle) {
-            this.toggle[e] = data;
-        }
-    };
-    UserComponent.prototype.onBlurMethod = function (toggle) {
-        this.toggle[toggle] = false;
-    };
-    UserComponent.prototype.onClickMethod = function (toggle) {
-        this.toggle[toggle] = true;
-        setTimeout(function () {
-            $("input[name='" + toggle + "']").focus();
-        }, 100);
-    };
-    UserComponent.prototype.selectKind = function (type) {
+    ListUserComponent.prototype.selectKind = function (type) {
         if (type == 1)
             return "admin";
         if (type == 2)
@@ -1083,75 +1169,20 @@ var UserComponent = /** @class */ (function () {
             return "Người Mua";
         if (type == 6)
             return "Người Nhận";
-        return "Chưa Chọn";
+        return "unknown";
     };
-    UserComponent.prototype.order = function () {
-        var _this = this;
-        if (!this.data.makh) {
-            this.loading.show("user");
-            this.userService.regist(this.data).subscribe(function (data) {
-                console.log("regist data: ", data);
-                _this.data.makh = data.data.makh;
-                _this.openOrderForm(data.data);
-                _this.loading.hide("user");
-                _this.data = data.data;
-                _this.reload = _this.data;
-            }, function (error) {
-                _this.loading.hide("user");
-            });
-        }
-        else {
-            this.openOrderForm(this.data);
-        }
-    };
-    UserComponent.prototype.openOrderForm = function (data) {
-        this.dialogService.openOrder({ user: data, bill: null }).subscribe(function (data) {
-            console.log("close product kind!");
-        });
-    };
-    UserComponent.prototype.update = function () {
-        var _this = this;
-        this.loading.show("user");
-        if (this.data.makh) {
-            this.userService.update(this.data).subscribe(function (data) {
-                console.log("data update: ", data);
-                _this.loading.hide("user");
-                _this.dialogRef.close(_this.reload);
-            }, function (error) {
-                _this.loading.hide("user");
-            });
-        }
-        else {
-            this.userService.regist(this.data).subscribe(function (data) {
-                _this.data.makh = data.data.makh;
-                console.log("regist data: ", data);
-                _this.loading.hide("user");
-                _this.data = data.data;
-                _this.reload = data.data;
-                _this.dialogRef.close(_this.reload);
-            }, function (error) {
-                _this.loading.hide("user");
-            });
-        }
-    };
-    UserComponent.prototype.gotoHistory = function () {
-        if (this.data.makh)
-            this.router.navigate(['/home/history/' + this.data.makh]);
-        this.dialogRef.close();
-    };
-    UserComponent = __decorate([
+    ListUserComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-user',
-            template: __webpack_require__("../../../../../src/app/main/list-user/user/user.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/list-user/user/user.component.css")]
+            selector: 'app-list-user',
+            template: __webpack_require__("../../../../../src/app/main/list-user/list-user.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/main/list-user/list-user.component.css")],
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ViewEncapsulation */].None
         }),
-        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_dialog_dialog_service__["a" /* DialogService */]])
-    ], UserComponent);
-    return UserComponent;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_api_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_dialog_user_user_dialog_service__["a" /* UserDialogService */]])
+    ], ListUserComponent);
+    return ListUserComponent;
 }());
 
 
@@ -1234,28 +1265,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_select__ = __webpack_require__("../../../material/esm5/select.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__main_routers__ = __webpack_require__("../../../../../src/app/main/main.routers.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__list_user_list_user_component__ = __webpack_require__("../../../../../src/app/main/list-user/list-user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__list_user_user_user_component__ = __webpack_require__("../../../../../src/app/main/list-user/user/user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pipe_user_pipe__ = __webpack_require__("../../../../../src/app/pipe/user.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__orders_order_order_component__ = __webpack_require__("../../../../../src/app/main/orders/order/order.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__ = __webpack_require__("../../../../../src/app/main/orders/orders.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bills_bills_component__ = __webpack_require__("../../../../../src/app/main/bills/bills.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bills_bill_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/bill/bill.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__list_product_list_product_component__ = __webpack_require__("../../../../../src/app/main/list-product/list-product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__list_product_product_product_component__ = __webpack_require__("../../../../../src/app/main/list-product/product/product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__assign_order_assign_order_component__ = __webpack_require__("../../../../../src/app/main/assign-order/assign-order.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__ = __webpack_require__("../../../../../src/app/main/assign-order/select-product/select-product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__history_history_component__ = __webpack_require__("../../../../../src/app/main/history/history.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__test_test_component__ = __webpack_require__("../../../../../src/app/main/test/test.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pipe_user_pipe__ = __webpack_require__("../../../../../src/app/pipe/user.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pipe_time_pipe__ = __webpack_require__("../../../../../src/app/pipe/time.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__orders_orders_component__ = __webpack_require__("../../../../../src/app/main/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bills_bills_component__ = __webpack_require__("../../../../../src/app/main/bills/bills.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bills_bill_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/bill/bill.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__list_product_list_product_component__ = __webpack_require__("../../../../../src/app/main/list-product/list-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__list_product_product_product_component__ = __webpack_require__("../../../../../src/app/main/list-product/product/product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__assign_order_assign_order_component__ = __webpack_require__("../../../../../src/app/main/assign-order/assign-order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__assign_order_select_product_select_product_component__ = __webpack_require__("../../../../../src/app/main/assign-order/select-product/select-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__history_history_component__ = __webpack_require__("../../../../../src/app/main/history/history.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__test_test_component__ = __webpack_require__("../../../../../src/app/main/test/test.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1287,47 +1316,46 @@ var MainModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* CommonModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forChild(__WEBPACK_IMPORTED_MODULE_7__main_routers__["a" /* MainRoutes */]),
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["g" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["h" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_material__["c" /* MatButtonModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_material__["e" /* MatCheckboxModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_forms__["e" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_6__angular_material_select__["a" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_10_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["i" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_9_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["j" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["l" /* MatInputModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_forms__["j" /* ReactiveFormsModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["l" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["p" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["j" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["m" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["r" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MatIconModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["o" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["q" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["m" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material__["b" /* MatAutocompleteModule */]
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["q" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["s" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["o" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["b" /* MatAutocompleteModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["f" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material__["n" /* MatNativeDateModule */]
             ],
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_3__main_component__["a" /* MainComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__list_user_list_user_component__["a" /* ListUserComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__list_user_user_user_component__["a" /* UserComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__pipe_user_pipe__["a" /* UserPipe */],
-                __WEBPACK_IMPORTED_MODULE_12__orders_order_order_component__["a" /* OrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__["a" /* OrdersComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__bills_bills_component__["a" /* BillsComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__bills_bill_bill_component__["a" /* BillComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__list_product_list_product_component__["a" /* ListProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__list_product_product_product_component__["a" /* ProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__assign_order_assign_order_component__["a" /* AssignOrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__history_history_component__["a" /* HistoryComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__test_test_component__["a" /* TestComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__product_table_product_table_component__["a" /* ProductTableComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__receiver_receiver_component__["a" /* ReceiverComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__pipe_user_pipe__["a" /* UserPipe */],
+                __WEBPACK_IMPORTED_MODULE_11__pipe_time_pipe__["a" /* TimePipe */],
+                __WEBPACK_IMPORTED_MODULE_12__orders_orders_component__["a" /* OrdersComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__bills_bills_component__["a" /* BillsComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__bills_bill_bill_component__["a" /* BillComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__list_product_list_product_component__["a" /* ListProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__list_product_product_product_component__["a" /* ProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__assign_order_assign_order_component__["a" /* AssignOrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__history_history_component__["a" /* HistoryComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__test_test_component__["a" /* TestComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__product_table_product_table_component__["a" /* ProductTableComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__receiver_receiver_component__["a" /* ReceiverComponent */],
             ],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_9__list_user_user_user_component__["a" /* UserComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__bills_bill_bill_component__["a" /* BillComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__orders_order_order_component__["a" /* OrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__bills_bill_bill_component__["a" /* BillComponent */],
             ],
             schemas: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* CUSTOM_ELEMENTS_SCHEMA */],
@@ -1398,363 +1426,6 @@ var MainRoutes = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/main/orders/order/order.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 100%;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n    min-width: 340px;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}\r\n\r\ntable, th, td {\r\n    border: 1px solid black;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth, td {\r\n    padding: 5px;\r\n    text-align: left;\r\n}\r\n\r\n#sign_up{\r\n\r\n    max-height: 400px;\r\n}\r\n\r\n.card {\r\n    -webkit-box-shadow: 0;\r\n            box-shadow: 0;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n\r\n#sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n\r\ndiv.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n\r\n.mat-form-field {\r\n    display: block !important;\r\n    color: white !important;\r\n}\r\n\r\n.mat-select-value {\r\n  color: white !important; \r\n}\r\n\r\n.mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n\r\n.ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n.mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/orders/order/order.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n      <!-- <small>Thông Tin Chi Tiết</small> -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.bills\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of result; let i = index\">\n                                    <td>{{item.masp}}</td>\n                                    <td>{{item.soluong}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"data.tienyen\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"data.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"data.taikhoan\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"data.thuonghieu\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"data.tigia\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Trạng Thái *</label>\n                        <input [(ngModel)]=\"data.trangthai\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea [(ngModel)]=\"data.ghichu\" name=\"thanhtien\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/main/orders/order/order.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_forkJoin__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/forkJoin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-//service
-
-
-
-
-
-
-
-var OrderComponent = /** @class */ (function () {
-    function OrderComponent(userService, billService, billDetailService, orderService, orderDetailService, dialogRef, data, loadingService, popupService) {
-        this.userService = userService;
-        this.billService = billService;
-        this.billDetailService = billDetailService;
-        this.orderService = orderService;
-        this.orderDetailService = orderDetailService;
-        this.dialogRef = dialogRef;
-        this.data = data;
-        this.loadingService = loadingService;
-        this.popupService = popupService;
-        this.listBooked = [];
-        this.result = [];
-        this.counter = 0;
-    }
-    OrderComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        console.log("init order data: ", this.data);
-        $('app-order').parent().parent().attr('id', 'app-order');
-        setTimeout(function () { return _this.loadingService.show('app-order'); }, 0);
-        this.billService.search({ madh: this.data.madh }).subscribe(function (data) {
-            var i = 0;
-            console.log("data bill Service: ", data);
-            _this.listBooked = data;
-            var userList = {};
-            _this.listBooked.forEach(function (element) {
-                if (userList[element.makh]) {
-                    element.user = userList[element.makh];
-                }
-                else {
-                    userList[element.makh] = {};
-                    _this.userService.getById(element.makh).subscribe(function (user) {
-                        console.log("user :", element.makh, user);
-                        element.user = user.data;
-                        for (var e in user.data) {
-                            userList[element.makh][e] = user.data[e];
-                        }
-                        element.user = userList[element.makh];
-                    });
-                }
-                _this.billDetailService.getByParams({ mahd: element.mahd }).subscribe(function (bills) {
-                    i++;
-                    element.bills = bills;
-                    if (i == _this.listBooked.length) {
-                        _this.loadingService.hide('app-order');
-                    }
-                });
-            });
-        });
-        this.orderDetailService.getByParams({ madh: this.data.madh }).subscribe(function (data) {
-            console.log("don hang chi tiet: ", data);
-            _this.result = data;
-        });
-    };
-    OrderComponent.prototype.selectItem = function (item) {
-        var _this = this;
-        item.madh = item.madh ? null : this.data.madh;
-        item.bills.forEach(function (elem) {
-            var flag = true;
-            _this.result.forEach(function (element) {
-                if (element.masp == elem.masp) {
-                    flag = false;
-                    if (item.madh) {
-                        element.soluong += elem.soluong;
-                        element.giuhop += elem.giuhop;
-                    }
-                    else {
-                        if (element.soluong == elem.soluong) {
-                            _this.result.splice(_this.result.indexOf(element), 1);
-                        }
-                        else {
-                            element.soluong -= elem.soluong;
-                            element.giuhop -= elem.giuhop;
-                        }
-                    }
-                    return;
-                }
-            });
-            if (flag) {
-                _this.result.push({
-                    masp: elem.masp,
-                    soluong: elem.soluong,
-                    giuhop: elem.giuhop,
-                    madh: _this.data.madh,
-                    makh: _this.data.makh
-                });
-            }
-        });
-        console.log("result: ", this.result);
-    };
-    OrderComponent.prototype.checkAndCountNum = function (billDetail) {
-        var flag = true;
-        this.result.forEach(function (element) {
-            if (element.masp == billDetail.masp) {
-                flag = false;
-                element.flag = true;
-            }
-        });
-        if (flag) {
-            this.result.push({
-                masp: billDetail.masp,
-                soluong: 0,
-                giuhop: 0
-            });
-            this.checkAndCountNum(billDetail);
-        }
-    };
-    OrderComponent.prototype.selectAll = function () {
-        var _this = this;
-        var flag = true;
-        this.listBooked.forEach(function (element) {
-            if (!element.madh) {
-                flag = false;
-                return;
-            }
-        });
-        this.listBooked.forEach(function (element) {
-            if (flag) {
-                _this.selectItem(element);
-            }
-            else {
-                if (!element.madh) {
-                    _this.selectItem(element);
-                }
-            }
-        });
-    };
-    OrderComponent.prototype.returnArray = function () {
-        return this.listBooked.filter(function (element) {
-            return element.madh ? false : true;
-        });
-    };
-    OrderComponent.prototype.promisList = function () {
-        var _this = this;
-        var a = [];
-        this.returnArray().forEach(function (element) {
-            a.push(_this.billService.update(element));
-        });
-        console.log("a: ", a);
-        return a;
-    };
-    OrderComponent.prototype.submit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var flag, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.loadingService.show('app-order');
-                        flag = true;
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.promisList()).toPromise().then(function (data) {
-                                _this.counter++;
-                                _this.returnArray().forEach(function (element) {
-                                    element.bills.forEach(function (elem) {
-                                        _this.checkAndCountNum(elem);
-                                    });
-                                });
-                            })];
-                    case 1:
-                        result = _a.sent();
-                        this.checkOrder();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    OrderComponent.prototype.updateProductList = function () {
-        return this.result.filter(function (element) {
-            return element.flag ? true : false;
-        });
-    };
-    OrderComponent.prototype.obserProductList = function () {
-        var _this = this;
-        var a = [];
-        this.updateProductList().forEach(function (element) {
-            if (element.soluong == 0) {
-                a.push(_this.orderDetailService.delete({ madh: _this.data.madh, masp: element.masp }));
-            }
-            else {
-                element.madh = _this.data.madh;
-                a.push(_this.orderDetailService.update(element));
-            }
-        });
-        return a;
-    };
-    OrderComponent.prototype.checkOrder = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var flag;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.obserProductList()).toPromise().then(function (data) {
-                            console.log("data: checkORder: ", data);
-                        }).catch(function (error) {
-                            console.log("catch: ", error);
-                        })];
-                    case 1:
-                        _a.sent();
-                        flag = true;
-                        this.result.forEach(function (element) {
-                            if (element.soluong) {
-                                flag = false;
-                                return;
-                            }
-                        });
-                        if (flag) {
-                            this.orderService.delete(this.data.madh).subscribe(function (data) {
-                                console.log("delete order: ", data);
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showSuccess().subscribe(function (data) {
-                                    console.log("success: ", data);
-                                    _this.dialogRef.close();
-                                });
-                            }, function (error) {
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showError();
-                            });
-                        }
-                        else {
-                            this.orderService.update(this.data).subscribe(function (data) {
-                                console.log("update order: ", data);
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showSuccess().subscribe(function (data) {
-                                    _this.dialogRef.close();
-                                });
-                            }, function (error) {
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showError();
-                            });
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    OrderComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-order',
-            template: __webpack_require__("../../../../../src/app/main/orders/order/order.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/main/orders/order/order.component.css")]
-        }),
-        __param(6, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__core_api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_api_bill_service__["a" /* BillService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_api_bill_detail_service__["a" /* BillDetailService */],
-            __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__["a" /* OrderService */],
-            __WEBPACK_IMPORTED_MODULE_7__core_api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_9__core_util_loading_service__["a" /* LoadingService */],
-            __WEBPACK_IMPORTED_MODULE_10__core_dialog_popup_popup_service__["a" /* PopupService */]])
-    ], OrderComponent);
-    return OrderComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/main/orders/orders.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1776,7 +1447,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrapper\">\n        <div class=\"loader\">\n            <div class=\"preloader\">\n                <div class=\"spinner-layer pl-red\">\n                    <div class=\"circle-clipper left\">\n                        <div class=\"circle\"></div>\n                    </div>\n                    <div class=\"circle-clipper right\">\n                        <div class=\"circle\"></div>\n                    </div>\n                </div>\n            </div>\n            <p>Please wait...</p>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"sdt\" placeholder=\"Tìm Kiếm Theo Số Điện Thoại\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tiền Yên</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Ngày</th>\n                                        <th>Tài Khoản</th>\n                                        <th>Thương Hiệu</th>\n                                        <th>Ghi Chú</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tiền Yên</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Ngày</th>\n                                        <th>Tài Khoản</th>\n                                        <th>Thương Hiệu</th>\n                                        <th>Ghi Chú</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}\">\n                                        <td><a (click)=\"openAddProductKind()\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Thông Tin Chi Tiết Khách Hàng\">{{item.tenkh}}</a></td>\n                                        <td>{{item.sdt}}</td>\n                                        <td (click)=\"gotoDetail(item)\" >\n                                            <ul *ngIf=\"item.listProduct\">\n                                                <li *ngFor=\"let product of item.listProduct\">{{product.masp}} - {{product.soluong}}</li>\n                                            </ul>\n                                        </td>\n                                        <td>{{item.tienyen}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.ngay}}</td>\n                                        <td>{{item.taikhoan}}</td>\n                                        <td>{{item.thuonghieu}}</td>\n                                        <td>{{item.ghichu}}</td>\n                                        <td>{{item.tigia}}</td>\n                                        <td>{{item.trangthai}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\">\n                                        <td><a (click)=\"openAddProductKind()\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Thông Tin Chi Tiết Khách Hàng\">{{item?.user?.tenkh}}</a></td>\n                                        <td *ngIf=\"sr\">{{item?.user?.sdt}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.madh}}</a></td>\n                                        <td *ngIf=\"sr\">\n                                            <ul *ngIf=\"item.chitietdhs\">\n                                                <li *ngFor=\"let product of item.chitietdhs\" ><span style=\"\">{{product.masp}}</span><span  style=\"float: right;width: 21px;letter-spacing: 0px;text-align: right;\">{{product.soluong}}</span><span style=\"float: right\">|</span></li>\n                                            </ul>\n                                        </td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td *ngIf=\"sr\">{{item.taikhoan}}</td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td *ngIf=\"sr\">{{item.ghichu}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td>{{item.trangthai}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -1787,11 +1458,10 @@ module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrap
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__order_order_component__ = __webpack_require__("../../../../../src/app/main/orders/order/order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1807,50 +1477,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var OrdersComponent = /** @class */ (function () {
-    function OrdersComponent(matDialg, orderService, orderDetailService, userService, loadingService) {
+    function OrdersComponent(matDialg, loadingService, formatService, dialogService, mainService) {
         this.matDialg = matDialg;
-        this.orderService = orderService;
-        this.orderDetailService = orderDetailService;
-        this.userService = userService;
         this.loadingService = loadingService;
-        this.sdt = '';
+        this.formatService = formatService;
+        this.dialogService = dialogService;
+        this.mainService = mainService;
+        this.madh = '';
         this.tenkh = '';
-        this.listUser = [];
         this.fakedData = [];
+        this.sr = true;
     }
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.sr = screen.width <= 412 ? false : true;
+        this.fakedData = [];
         this.loadingService.show();
-        this.orderService.list().subscribe(function (data) {
-            console.log("orderService LIST: ", data);
-            var i = 0;
+        this.mainService.listOrder({}).subscribe(function (data) {
+            console.log("main service data: ", data);
             _this.fakedData = data;
-            if (data.length == 0)
-                _this.loadingService.hide();
-            _this.fakedData.forEach(function (element) {
-                _this.userService.getById(element.makh).subscribe(function (user) {
-                    element.tenkh = user.data.tenkh,
-                        element.sdt = user.data.sdt;
-                });
-                _this.orderDetailService.getByParams({ madh: element.madh }).subscribe(function (ct) {
-                    i++;
-                    element.listProduct = ct;
-                    if (i == _this.fakedData.length) {
-                        _this.loadingService.hide();
-                    }
-                });
-            });
+            _this.loadingService.hide();
         });
     };
+    OrdersComponent.prototype.formatDate = function (data) {
+        return this.formatService.formatDate(data);
+    };
     OrdersComponent.prototype.gotoDetail = function (element) {
-        this.matDialg.open(__WEBPACK_IMPORTED_MODULE_6__order_order_component__["a" /* OrderComponent */], {
-            data: element,
-            maxHeight: '80%',
-            height: '80%'
-        }).afterClosed().subscribe(function (data) {
-            console.log("abc close", data);
+        var _this = this;
+        this.dialogService.gotoOrder(element.madh).subscribe(function (data) {
+            if (data == 2) {
+                _this.fakedData.splice(_this.fakedData.indexOf(element), 1);
+                _this.fakedData = _this.fakedData.concat([]);
+            }
+            else if (data == 1) {
+                _this.mainService.listOrder({ makh: element.makh, madh: element.madh }).subscribe(function (listItem) {
+                    _this.fakedData.splice(_this.fakedData.indexOf(element), 1, listItem[0]);
+                    _this.fakedData = _this.fakedData.concat([]);
+                });
+            }
         });
     };
     OrdersComponent = __decorate([
@@ -1859,11 +1524,11 @@ var OrdersComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/main/orders/orders.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/orders/orders.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_2__core_api_order_service__["a" /* OrderService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_5__core_util_loading_service__["a" /* LoadingService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */]])
     ], OrdersComponent);
     return OrdersComponent;
 }());
@@ -1957,7 +1622,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n  #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n  div.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n  .mat-form-field {\r\n    display: block !important;\r\n}\r\n  .mat-select-value {\r\n  color: white !important; \r\n}\r\n  .mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n  .ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n  .form-group {\r\n    margin-bottom: 0px;\r\n}\r\n  .palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n  .panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n  .panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n  .mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
 
 // exports
 
@@ -1970,7 +1635,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/receiver/receiver.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"page-loader-wrapper\">\n        <div class=\"loader\">\n            <div class=\"preloader\">\n                <div class=\"spinner-layer pl-red\">\n                    <div class=\"circle-clipper left\">\n                        <div class=\"circle\"></div>\n                    </div>\n                    <div class=\"circle-clipper right\">\n                        <div class=\"circle\"></div>\n                    </div>\n                </div>\n            </div>\n            <p>Please wait...</p>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"sdt\" placeholder=\"Tìm Kiếm Theo Số Điện Thoại\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tìm Kiếm Theo Tên\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày</th>\n                                        <th>Ghi Chú</th>\n                                        <th>Tổng Khối Lượng(kg)</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th>Số Điện Thoại</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Ngày</th>\n                                        <th>Ghi Chú</th>\n                                        <th>Tổng Khối Lượng(kg)</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'sdt': sdt, 'tenkh': tenkh}\">\n                                        <td><a (click)=\"openAddProductKind()\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Click Để Xem Thông Tin Chi Tiết Khách Hàng\">{{item.tenkh}}</a></td>\n                                        <td>{{item.sdt}}</td>\n                                        <td>\n                                            <ul>\n                                                <li>{{item.masp}} - 5sp - 3 hộp</li>\n                                                <li>{{item.masp}} - 5sp - 3 hộp</li>\n                                                <li>{{item.masp}} - 5sp - 3 hộp</li>\n                                            </ul>\n                                        </td>\n                                        <td>{{item.ngay}}</td>\n                                        <td>Ghi chú vs khách</td>\n                                        <td>3.0</td>\n                                        <td>Đã Nhận - Về đến Việt Nam - Đã Giao</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n  <div *ngIf=\"listBooked.length\" class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-4  col-sm-6 col-lg-4\">\n        <div class=\"select-person-header\">Tạo Đơn Hàng </div>\n        <div class=\"panel panel-primary\">\n          <div class=\"panel-body\">\n            <form name=\"myform\">\n              <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                <div class=\"form-group\">\n                  <label for=\"age\" [ngStyle]=\"{'color': selectedUser? '': 'red'}\" >Mã Sản Phẩm *</label>\n                  <mat-form-field class=\"example-full-width\" [floatLabel]=\"'never'\">\n                    <input type=\"text\" placeholder=\"Nhập Tên...\" style=\"color: #555\" aria-label=\"Assignee\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\n                    <mat-autocomplete #auto=\"matAutocomplete\">\n                      <mat-option *ngFor=\"let option of options | user: {'tenkh': filterUser}\" [value]=\"option.tenkh\">\n                        {{ option.tenkh }}\n                      </mat-option>\n                    </mat-autocomplete>\n                  </mat-form-field>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Mã Đơn Hàng *</label>\n                  <input id=\"age\" name=\"madh\" [(ngModel)]=\"data.madh\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Thương Hiệu *</label>\n                  <input id=\"age\" name=\"trangweb\" [(ngModel)]=\"data.thuonghieu\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tài Khoản *</label>\n                  <input id=\"age\" name=\"giaweb\" [(ngModel)]=\"data.taikhoan\" class=\"form-control\" type=\"text\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Đặt Cọc *</label>\n                  <input id=\"age\" name=\"trietkhau\" [(ngModel)]=\"data.datcoc\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Tỉ Giá *</label>\n                  <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"data.tigia\" class=\"form-control\" type=\"number\" min=\"1\">\n                  <span id=\"error_age\" class=\"text-danger\"></span>\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"age\">Ghi Chú *</label>\n                  <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"data.ghichu\" rows=\"3\"></textarea>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">List Đặt Hàng </div>\n        <mat-card style=\"padding: 24px 0px;\">\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\" style=\"padding: 0\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                          <thead>\n                            <tr>\n                              <th (click)=\"selectAll()\">Tên</th>\n                              <th>Mã SP | SL</th>\n                            </tr>\n                          </thead>\n                          <tbody>\n                            <tr *ngFor=\"let item of listBooked; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                              <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                              <td>\n                                <div *ngFor=\"let prod of item.bills\">{{prod.masp}} | {{prod.soluong}}</div>\n                              </td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n      <div class=\"col-md-4 col-sm-12 col-xs-12 col-lg-4\" style=\"margin-bottom: 20px\">\n        <div class=\"select-person-header\">Result </div>\n        <mat-card>\n          <mat-card-content>\n            <div class=\"container-fluid\">\n              <div class=\"row clearfix\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <div class=\"card\">\n                    <div class=\"body\">\n                      <div class=\"table-responsive\">\n                        <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                          <thead>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </thead>\n                          <tfoot>\n                            <tr>\n                              <th>Mã SP</th>\n                              <th>Số Lượng</th>\n                              <th>Giữ Hộp</th>\n                            </tr>\n                          </tfoot>\n                          <tbody>\n                            <tr *ngFor=\"let item of result\">\n                              <td>{{item.masp}}</td>\n                              <td>{{item.soluong}}</td>\n                              <td>{{item.giuhop}}</td>\n                            </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <!-- #END# Basic Examples -->\n            </div>\n            <div style=\"display: inline-block; width: 100%\">\n              <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" style=\"\" (click)=\"submit()\" type=\"submit\">Submit</button>\n            </div>\n          </mat-card-content>\n        </mat-card>\n      </div>\n    </div>\n  </div>  \n  <body *ngIf=\"!listBooked.length\" class=\"four-zero-four\">\n    <div class=\"four-zero-four-container\">\n        <div class=\"error-code\"><i class=\"material-icons\" style=\"font-size: inherit;color: darkgrey;\">face</i></div>\n        <div class=\"error-message\">Không Có Đơn Đặt Hàng</div>\n    </div>\n</body>\n</section>"
 
 /***/ }),
 
@@ -2160,6 +1825,43 @@ var TestComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/pipe/time.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var TimePipe = /** @class */ (function () {
+    function TimePipe() {
+    }
+    TimePipe.prototype.transform = function (items, filter) {
+        if (!filter)
+            return items;
+        return items.filter(function (item) {
+            var from = filter['from'] ? filter['from'].getTime() : 0;
+            var to = filter['to'] ? filter['to'].getTime() : new Date().getTime();
+            return item.ngay > from && item.ngay < to ? true : false; // true if matches all fields
+        });
+    };
+    TimePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* Pipe */])({
+            name: 'time'
+        })
+    ], TimePipe);
+    return TimePipe;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/pipe/user.pipe.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2178,7 +1880,7 @@ var UserPipe = /** @class */ (function () {
     }
     UserPipe.prototype.transform = function (items, filter) {
         if (!items.length)
-            return;
+            return [];
         return items.filter(function (item) {
             for (var key in filter) {
                 if (!item.hasOwnProperty(key))
@@ -2193,6 +1895,9 @@ var UserPipe = /** @class */ (function () {
                 }
                 else {
                     var str = item[key] + '';
+                    if (item['makh'] && item['makh'] == 1) {
+                        return false;
+                    }
                     if (str.indexOf(filter[key]) == -1) {
                         return false;
                     }
@@ -2880,21 +2585,6 @@ MultiSelectSearchFilter.ctorParameters = function () { return []; };
 
 
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "../../../../rxjs/_esm5/add/observable/forkJoin.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_forkJoin__ = __webpack_require__("../../../../rxjs/_esm5/observable/forkJoin.js");
-/** PURE_IMPORTS_START .._.._Observable,.._.._observable_forkJoin PURE_IMPORTS_END */
-
-
-__WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */].forkJoin = __WEBPACK_IMPORTED_MODULE_1__observable_forkJoin__["a" /* forkJoin */];
-//# sourceMappingURL=forkJoin.js.map 
-
 
 /***/ }),
 
