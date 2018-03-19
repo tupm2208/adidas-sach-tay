@@ -21,7 +21,7 @@ declare var $:any;
 })
 export class HistoryComponent implements OnInit {
 
-  private tendh = '';
+  private madh = '';
   user: any = {};
   private fakedData: any = []
 

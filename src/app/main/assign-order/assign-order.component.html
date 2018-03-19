@@ -20,32 +20,32 @@
                 </div>
                 <div class="form-group">
                   <label for="age">Mã Đơn Hàng *</label>
-                  <input id="age" name="tendh" [(ngModel)]="data.tendh" class="form-control" type="text" min="1">
+                  <input id="age" name="madh" [(ngModel)]="orderData.madh" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Thương Hiệu *</label>
-                  <input id="age" name="trangweb" [(ngModel)]="data.thuonghieu" class="form-control" type="text" min="1">
+                  <input id="age" name="trangweb" [(ngModel)]="orderData.thuonghieu" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Tài Khoản *</label>
-                  <input id="age" name="giaweb" [(ngModel)]="data.taikhoan" class="form-control" type="text" min="1">
+                  <input id="age" name="giaweb" [(ngModel)]="orderData.taikhoan" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Đặt Cọc *</label>
-                  <input id="age" name="trietkhau" [(ngModel)]="data.datcoc" class="form-control" type="number" min="1">
+                  <input id="age" name="trietkhau" [(ngModel)]="orderData.datcoc" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Tỉ Giá *</label>
-                  <input id="age" name="khoiluong" [(ngModel)]="data.tigia" class="form-control" type="number" min="1">
+                  <input id="age" name="khoiluong" [(ngModel)]="orderData.tigia" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Ghi Chú *</label>
-                  <textarea class="form-control" name="ghichu" [(ngModel)]="data.ghichu" rows="3"></textarea>
+                  <textarea class="form-control" name="ghichu" [(ngModel)]="orderData.ghichu" rows="3"></textarea>
                 </div>
               </div>
             </form>
@@ -71,9 +71,9 @@
                           </thead>
                           <tbody>
                             <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
-                              <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.tenkh}}</td>
+                              <td (click)="selectItem(item)">{{item.user.tenkh}}</td>
                               <td>
-                                <div *ngFor="let prod of item.bills">{{prod.masp}} | {{prod.soluong}}</div>
+                                <div *ngFor="let prod of item.chitiethds">{{prod.masp}} | {{prod.soluong}}</div>
                               </td>
                             </tr>
                           </tbody>
@@ -114,7 +114,7 @@
                             </tr>
                           </tfoot>
                           <tbody>
-                            <tr *ngFor="let item of result">
+                            <tr *ngFor="let item of orderData.result">
                               <td>{{item.masp}}</td>
                               <td>{{item.soluong}}</td>
                               <td>{{item.giuhop}}</td>

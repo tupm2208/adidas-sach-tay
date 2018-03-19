@@ -64,4 +64,12 @@ export class FormatService {
       }
     };
   }
+
+  copyObject(src, des) {
+
+    for(let e in src) {
+
+      des[e] = src[e];
+    }
+  }
 }

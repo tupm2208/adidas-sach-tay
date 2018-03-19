@@ -22,7 +22,7 @@
                                     <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tendh" placeholder="Đơn Hàng">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Đơn Hàng">
                                 </div>
                                 <div class="form-group">
                                      <mat-form-field> 
@@ -46,6 +46,7 @@
                                     <tr>
                                         <th (click)="sr = !sr">Tên KH</th>
                                         <th *ngIf="sr">Số Điện Thoại</th>
+                                        <th *ngIf="sr">Mã ĐH</th>
                                         <th>Mã SP</th>
                                         <th *ngIf="sr">Ngày Đặt</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
@@ -60,6 +61,7 @@
                                     <tr>
                                         <th (click)="sr = !sr">Tên KH</th>
                                         <th *ngIf="sr">Số Điện Thoại</th>
+                                        <th *ngIf="sr">Mã ĐH</th>
                                         <th>Mã SP</th>
                                         <th *ngIf="sr">Ngày Đặt</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
@@ -71,34 +73,29 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'tendh': tendh} | time: {'from': from, 'to': to}">
+                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'madh': madh} | time: {'from': from, 'to': to}">
                                         <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">
-                                            <div>{{item.user.tenkh}}</div>    
-                                            <div style="margin-top: 10px">(Đặt Hàng)</div>
+                                            <div><i class="material-icons">add_shopping_cart</i>{{item.user.tenkh}}</div> 
                                         </a></td>
                                         <td  *ngIf="sr"><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
-                                            <div>{{item.user.sdt}}</div>
-                                            <div style="margin-top: 10px">(Đến Lịch Sử)</div>
+                                            <div><i class="material-icons">history</i><i>{{item.user.sdt}}</i></div>
                                         </a></td>
+                                        <td *ngIf="sr" (click)="openOrder(item)"><a>{{item.madh}}</a></td>
                                         <td>
                                             <a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
-                                                <ul *ngIf="item.chitiethds">
+                                                <ul style="padding-left: 15px;" *ngIf="item.chitiethds">
                                                     <li *ngFor="let product of item.chitiethds">{{product.masp}} - {{product.soluong}}</li>
                                                 </ul>
                                             </a>
                                         </td>
-                                        <td *ngIf="sr"><a (click)="update(item)">
-                                            <div>{{formatService.formatDate(item.ngay)}}</div>
-                                            <div style="margin-top: 10px">Sửa</div>
-                                        </a></td>
+                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
                                         <td *ngIf="sr">{{item.datcoc}}</td>
                                         <td *ngIf="sr">{{item.ship}}</td>
                                         <td *ngIf="sr">{{item.tong}}</td>
                                         <td *ngIf="sr">{{item.khoiluong}}</td>
                                         <td *ngIf="sr">{{item.tong}}</td>
                                         <td><a (click)="update(item)">
-                                            <div>{{item.trangthai}}</div>
-                                            <div style="margin-top: 10px">Sửa</div>
+                                            <div><i class="material-icons">settings</i>{{item.trangthai}}</div>
                                         </a></td>
                                     </tr>
                                 </tbody>

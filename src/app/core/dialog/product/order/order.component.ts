@@ -12,6 +12,7 @@ import { UserService } from '../../../api/user.service';
 import { LoadingService } from '../../../util/loading.service';
 import { PopupService } from '../../../dialog/popup/popup.service';
 import { FormatService } from '../../../util/format.service';
+import { MainService } from '../../../api/main.service';
 
 declare let $: any;
 
@@ -22,8 +23,9 @@ declare let $: any;
 })
 export class OrderComponent implements OnInit {
 
-  listBooked = [];
+  listBills = [];
   result = [];
+  orderData: any = {};
 
   counter = 0;
 
@@ -34,78 +36,53 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private dialogRef: MatDialogRef<OrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public madh: any,
     private loadingService: LoadingService,
     private popupService: PopupService,
-    private formatService: FormatService
+    private formatService: FormatService,
+    private mainService: MainService
   ) { }
 
   ngOnInit() {
 
-    console.log("init order data: ", this.data);
+    console.log("init order data: ", this.madh);
     $('app-order').parent().parent().attr('id','app-order');
 
     setTimeout( () => this.loadingService.show('app-order'), 0);
 
-    this.billDetailService.getByParams({madh: this.data.madh}).subscribe( data => {
+    this.getBills();
 
-      let i = 0;
-      console.log("data bill Service: ", data);
-      this.listBooked = data;
+    this.getOrder();
+  }
 
-      this.formatService.formatData(this.listBooked,"mahd");
+  getBills() {
 
-      console.log("list booked: ", this.listBooked);
+    this.mainService.listBill({madh: this.madh}).subscribe( data => {
 
-      let userList: any = {};
-
-      this.listBooked.forEach( element => {
-
-        if(userList[element.makh]) {
-
-          element.user = userList[element.makh];
-          i++;
-        } else {
-
-          userList[element.makh] = {};
-
-          this.userService.getById(element.makh).subscribe(user => {
-            
-            element.user = user.data;
-
-            for(let e in user.data) {
-
-              userList[element.makh][e] = user.data[e];
-            }
-            
-            element.user = userList[element.makh];
-
-            i++;
-
-            if (i == this.listBooked.length) {
-
-              this.loadingService.hide('app-order');
-            }
-          });
-        }
-      })
+      this.listBills = data;
+      this.loadingService.hide('app-order');
+      console.log("bill list data: ", data);
     })
+  }
 
-    this.orderDetailService.getByParams({madh: this.data.madh}).subscribe( data => {
+  getOrder() {
 
-      this.formatService.formatData(data,'madh');
+    this.mainService.listOrder({madh: this.madh}).subscribe( data => {
 
-      this.result = data[0].chitietdhs;
+      this.orderData = data[0];
+
+      delete this.orderData.tongsl;
+      delete this.orderData.giuhop;
     })
   }
 
   selectItem(item) {
 
-    item.madh = item.madh? null: this.data.madh;
+    item.madh = item.madh? null: this.madh;
     item.chitiethds.forEach(elem => {
 
       let flag = true;
-      this.result.forEach(element => {
+      this.orderData.chitietdhs.forEach(element => {
 
         if (element.masp == elem.masp) {
 
@@ -118,7 +95,7 @@ export class OrderComponent implements OnInit {
 
             if(element.soluong == elem.soluong) {
 
-              this.result.splice(this.result.indexOf(element), 1);
+              this.orderData.chitietdhs.splice(this.orderData.chitietdhs.indexOf(element), 1);
             } else {
 
               element.soluong -= elem.soluong;
@@ -131,25 +108,22 @@ export class OrderComponent implements OnInit {
 
       if(flag) {
 
-        this.result.push({
+        this.orderData.chitietdhs.push({
           masp: elem.masp,
           soluong: elem.soluong,
           giuhop: elem.giuhop,
-          madh: this.data.madh,
-          makh: this.data.makh
+          madh: this.orderData.madh,
+          makh: this.orderData.makh
         })
       }
-      
     })
-
-    console.log("result: ", this.result);
   }
 
   checkAndCountNum(billDetail) {
 
     let flag = true;
 
-    this.result.forEach(element => {
+    this.orderData.chitietdhs.forEach(element => {
 
       if(element.masp == billDetail.masp) {
 
@@ -160,7 +134,7 @@ export class OrderComponent implements OnInit {
 
     if(flag) {
 
-      this.result.push({
+      this.orderData.chitietdhs.push({
         masp: billDetail.masp,
         soluong: 0,
         giuhop: 0
@@ -174,7 +148,7 @@ export class OrderComponent implements OnInit {
 
     let flag = true;
 
-    this.listBooked.forEach( element => {
+    this.listBills.forEach( element => {
 
       if(!element.madh) {
 
@@ -183,7 +157,7 @@ export class OrderComponent implements OnInit {
       }
     })
 
-    this.listBooked.forEach( element => {
+    this.listBills.forEach( element => {
 
       if(flag) {
 
@@ -200,7 +174,7 @@ export class OrderComponent implements OnInit {
 
   returnArray(): Array<any> {
 
-    return this.listBooked.filter( element => {
+    return this.listBills.filter( element => {
 
       return element.madh? false: true;
     })
@@ -242,7 +216,7 @@ export class OrderComponent implements OnInit {
 
   updateProductList(): Array<any> {
 
-    return this.result.filter( element => {
+    return this.orderData.chitietdhs.filter( element => {
 
       return element.flag? true: false;
     }) 
@@ -256,10 +230,10 @@ export class OrderComponent implements OnInit {
       
       if(element.soluong == 0) {
 
-        a.push(this.orderDetailService.delete({madh: this.data.madh, masp: element.masp}))
+        a.push(this.orderDetailService.delete({madh: this.madh, masp: element.masp}))
       } else {
 
-        element.madh = this.data.madh;
+        element.madh = this.madh;
         a.push(this.orderDetailService.update(element));
       }
     });
@@ -280,7 +254,7 @@ export class OrderComponent implements OnInit {
 
     let flag = true;
 
-    this.result.forEach( element => {
+    this.orderData.chitietdhs.forEach( element => {
 
       if(element.soluong) {
 
@@ -291,7 +265,7 @@ export class OrderComponent implements OnInit {
 
     if(flag) {
 
-      this.orderService.delete(this.data.madh).subscribe( data => {
+      this.orderService.delete(this.madh).subscribe( data => {
 
         console.log("delete order: ", data);
 
@@ -308,7 +282,7 @@ export class OrderComponent implements OnInit {
       })
     } else {
 
-      this.orderService.update(this.data).subscribe( data => {
+      this.orderService.update(this.orderData).subscribe( data => {
 
         console.log("update order: ", data);
 

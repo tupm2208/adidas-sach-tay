@@ -7,6 +7,8 @@ import { BillService } from '../../core/api/bill.service';
 import { OrderService } from '../../core/api/order.service';
 import { OrderDetailService } from '../../core/api/order-detail.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
+import { MainService } from '../../core/api/main.service';
+import { PopupService } from '../../core/dialog/popup/popup.service';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -25,15 +27,10 @@ export class AssignOrderComponent implements OnInit {
   myControl = new FormControl();
 
   listBooked = [];
-  result = [];
-
-  data: any = {};
-
+  orderData: any = {};
   name = name;
   options = [];
-
   selectedUser = null;
-
   filterUser = '';
 
   ps1 = null;
@@ -45,14 +42,15 @@ export class AssignOrderComponent implements OnInit {
     private orderDetailService: OrderDetailService,
     private billDetailService: BillDetailService,
     private router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private mainService: MainService,
+    private popupService: PopupService
    ) { }
 
   ngOnInit() {
 
-    this.result = [];
-
-    this.data = {};
+    this.orderData = {};
+    this.orderData.result = [];
 
     this.options = [];
 
@@ -60,48 +58,17 @@ export class AssignOrderComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.billService.search({madh: null}).subscribe( data => {
-
-      console.log("data bill Service: ", data);
-      this.listBooked = data;
-
-      let i = 0;
-
-      if(i == data.length) this.loadingService.hide();
-
-      this.listBooked.forEach( element => {
-
-        this.userService.getById(element.makh).subscribe ( user => {
-
-          console.log("user :", element.makh, user);
-          element.user = user.data;
-        });
-
-        this.billDetailService.getByParams({mahd: element.mahd}).subscribe ( bills => {
-
-          element.bills = bills;
-
-          i ++;
-
-          if(i == this.listBooked.length) this.loadingService.hide();
-        }, error => {
-
-          i ++;
-          
-          if(i == this.listBooked.length) this.loadingService.hide();
-        })
-      })
-
-    }, error => {
-
-      this.loadingService.hide();
-    })
+    this.getListBill();
 
     this.userService.search({maloainv: 4}).subscribe( data => {
       
-      console.log("user data: ", data);
       this.options = data;
     })
+
+    this.subcribeUser();
+  }
+
+  subcribeUser() {
 
     this.myControl.valueChanges.subscribe( data => {
 
@@ -121,15 +88,26 @@ export class AssignOrderComponent implements OnInit {
     })
   }
 
+  getListBill() {
+
+    this.mainService.listBill({madh: null}).subscribe( data => {
+
+      this.listBooked = data;
+
+      console.log("book: ", this.listBooked);
+      this.loadingService.hide();
+    })
+  }
+
   selectItem(item) {
 
     item.madh = !item.madh;
 
     console.log("item: ", item);
-    item.bills.forEach(elem => {
+    item.chitiethds.forEach(elem => {
 
       let flag = true;
-      this.result.forEach(element => {
+      this.orderData.result.forEach(element => {
 
         if (element.masp == elem.masp) {
 
@@ -142,7 +120,7 @@ export class AssignOrderComponent implements OnInit {
 
             if(element.soluong == elem.soluong) {
 
-              this.result.splice(this.result.indexOf(element), 1);
+              this.orderData.result.splice(this.orderData.result.indexOf(element), 1);
             } else {
 
               element.soluong -= elem.soluong;
@@ -155,7 +133,7 @@ export class AssignOrderComponent implements OnInit {
 
       if(flag) {
 
-        this.result.push({
+        this.orderData.result.push({
           masp: elem.masp,
           soluong: elem.soluong,
           giuhop: elem.giuhop
@@ -167,7 +145,10 @@ export class AssignOrderComponent implements OnInit {
 
   refreshPage() {
 
-    this.ngOnInit();
+    this.popupService.showSuccess().subscribe( () => {
+
+      this.ngOnInit();
+    })
   }
 
   selectAll() {
@@ -202,7 +183,9 @@ export class AssignOrderComponent implements OnInit {
 
     if(!this.selectedUser) return false;
 
-    if(!this.result.length) return false;
+    if(!this.orderData.result.length) return false;
+
+    if(!this.orderData.madh) return false;
 
     return true;
   }
@@ -213,14 +196,15 @@ export class AssignOrderComponent implements OnInit {
 
     if(!this.checkBeforeOrder()) {
 
+      this.popupService.showError();
       this.loadingService.hide();
       return;
     }
 
-    this.data.makh = this.selectedUser.makh;
-    this.data.trangthai = 2;
-    this.data.ngay = new Date().getTime();
-    this.orderService.create(this.data).subscribe( data => {
+    this.orderData.makh = this.selectedUser.makh;
+    this.orderData.trangthai = 2;
+    this.orderData.ngay = new Date().getTime();
+    this.orderService.create(this.orderData).subscribe( data => {
 
       console.log("return data: ", data);
 
@@ -238,7 +222,7 @@ export class AssignOrderComponent implements OnInit {
             i++
             console.log("create ok: ", data);
 
-            if (i == this.result.length + this.listBooked.length) {
+            if (i == this.orderData.result.length + this.listBooked.length) {
 
               this.loadingService.hide();
               this.refreshPage();
@@ -254,7 +238,7 @@ export class AssignOrderComponent implements OnInit {
         }
       })
 
-      this.result.forEach( element => {
+      this.orderData.result.forEach( element => {
 
         element.madh = data.data.madh;
         element.makh = this.selectedUser.makh;
@@ -263,13 +247,17 @@ export class AssignOrderComponent implements OnInit {
 
           i++;
           
-          if(i == this.result.length + this.listBooked.length) {
+          if(i == this.orderData.result.length + this.listBooked.length) {
 
             this.loadingService.hide();
             this.refreshPage();
           }
         })
       })
+    }, error => {
+
+      this.loadingService.hide();
+      this.popupService.showError();
     })
   }
 }

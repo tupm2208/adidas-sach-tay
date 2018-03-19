@@ -35,7 +35,7 @@ export class OrderDetailService {
 
     params.token = this.storage.get('token');
 
-    return this.mainApi.put('chitietdh', params);
+    return this.mainApi.put('chitietdh/' + params.madh + '/' +params.masp , params);
   }
 
   delete(params): Observable<any> {

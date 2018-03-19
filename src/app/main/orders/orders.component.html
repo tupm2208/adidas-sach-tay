@@ -26,7 +26,7 @@
                                     <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tendh" placeholder="Mã ĐH">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
                                 </div>
                                 <div class="form-group" style="margin: 0">
                                      <mat-form-field> 
@@ -79,10 +79,10 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'tendh': tendh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}">
-                                        <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.user.tenkh}}</a></td>
-                                        <td *ngIf="sr">{{item.user.sdt}}</td>
-                                        <td (click)="gotoDetail(item)"><a>{{item.tendh}}</a></td>
+                                    <tr *ngFor="let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}">
+                                        <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item?.user?.tenkh}}</a></td>
+                                        <td *ngIf="sr">{{item?.user?.sdt}}</td>
+                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
                                         <td *ngIf="sr">
                                             <ul *ngIf="item.chitietdhs">
                                                 <li *ngFor="let product of item.chitietdhs" ><span style="">{{product.masp}}</span><span  style="float: right;width: 21px;letter-spacing: 0px;text-align: right;">{{product.soluong}}</span><span style="float: right">|</span></li>
