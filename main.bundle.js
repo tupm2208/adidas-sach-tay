@@ -4,20 +4,26 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./client/client.module": [
+		"../../../../../src/app/client/client.module.ts",
+		"client.module",
+		"common"
+	],
 	"./login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
 		"login.module"
 	],
 	"./main/main.module": [
 		"../../../../../src/app/main/main.module.ts",
-		"main.module"
+		"main.module",
+		"common"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -50,7 +56,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a href=\"javascript:void(0);\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a href=\"javascript:void(0);\" class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\" routerLink=\"/home\">ADMINBSB - MATERIAL DESIGN</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n                <img src=\"assets/images/user.png\" width=\"48\" height=\"48\" alt=\"User\" />\r\n            </div>\r\n            <div class=\"info-container\">\r\n                <div class=\"name\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">John Doe</div>\r\n                <div class=\"email\">john.doe@example.com</div>\r\n                <div class=\"btn-group user-helper-dropdown\">\r\n                    <i class=\"material-icons\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">keyboard_arrow_down</i>\r\n                    <ul class=\"dropdown-menu pull-right\">\r\n                        <li><a href=\"javascript:void(0);\"><i class=\"material-icons\">person</i>Profile</a></li>\r\n                        <li role=\"seperator\" class=\"divider\"></li>\r\n                        <li><a href=\"javascript:void(0);\"><i class=\"material-icons\">group</i>Followers</a></li>\r\n                        <li><a href=\"javascript:void(0);\"><i class=\"material-icons\">shopping_cart</i>Sales</a></li>\r\n                        <li><a href=\"javascript:void(0);\"><i class=\"material-icons\">favorite</i>Likes</a></li>\r\n                        <li role=\"seperator\" class=\"divider\"></li>\r\n                        <li><a href=\"javascript:void(0);\"><i class=\"material-icons\">input</i>Sign Out</a></li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                    <a routerLink=\"/home/orders\">\r\n                        <i class=\"material-icons\">text_fields</i>\r\n                        <span>Danh Sách Đơn Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                    <a routerLink=\"/home/bills\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Đặt Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                    <a routerLink=\"/home/receiver\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                    <a routerLink=\"/home/assignment\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Tạo Đơn</span>\r\n                    </a>\r\n                </li>\r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">AdminBSB - Material Design</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
+module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a href=\"javascript:void(0);\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a href=\"javascript:void(0);\" class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\" routerLink=\"/home\">ADMINBSB - MATERIAL DESIGN</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                    <a routerLink=\"/home/orders\">\r\n                        <i class=\"material-icons\">text_fields</i>\r\n                        <span>Danh Sách Đơn Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                    <a routerLink=\"/home/bills\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Đặt Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\r\n                    <a routerLink=\"/home/receive-list\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Nhận Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                    <a routerLink=\"/home/assignment\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Tạo Đơn</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                    <a routerLink=\"/home/receiver\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>                \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/client'? 'active': ''\">\r\n                    <a routerLink=\"/client\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">AdminBSB - Material Design</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -78,7 +84,7 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
         this.title = true;
         this.router.events.subscribe(function (val) {
-            if (_this.router.url.indexOf('home') != -1) {
+            if (_this.router.url.indexOf('home') != -1 || _this.router.url.indexOf('client') != -1) {
                 setTimeout(function () {
                     if (_this.title == false) {
                         _this.title = true;
@@ -186,6 +192,9 @@ var AppRoutes = [{
     }, {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
+    }, {
+        path: 'client',
+        loadChildren: './client/client.module#ClientModule'
     }
 ];
 
@@ -469,6 +478,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+// import 'rxjs/add/observable/forkJoin';
 
 
 
@@ -580,6 +590,67 @@ var MainService = /** @class */ (function () {
                 }
             }, function (error) {
                 observer.next([]);
+                observer.complete();
+            });
+        });
+    };
+    MainService.prototype.listReceive = function (optionParams) {
+        var _this = this;
+        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
+            _this.receiveDetailService.getByParams(optionParams).subscribe(function (data) {
+                _this.formatService.formatData(data, "manh");
+                var users = {};
+                var count = 0;
+                data.forEach(function (element) {
+                    if (!element.makh) {
+                        element.user = {};
+                        count++;
+                        if (count == data.length) {
+                            observer.next(data);
+                            observer.complete();
+                        }
+                        return;
+                    }
+                    if (users[element.makh]) {
+                        element.user = users[element.makh];
+                        count++;
+                    }
+                    else {
+                        users[element.makh] = {};
+                        _this.userService.getById(element.makh).subscribe(function (user) {
+                            _this.formatService.copyObject(user.data, users[element.makh]);
+                            element.user = users[element.makh];
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        }, function (error) {
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        });
+                    }
+                });
+                if (!data.length) {
+                    observer.next([]);
+                    observer.complete();
+                }
+            }, function (error) {
+                observer.next([]);
+                observer.complete();
+            });
+        });
+    };
+    MainService.prototype.sendRequest = function (array) {
+        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
+            __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */], array).subscribe(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, function (err) {
+                observer.error(err);
                 observer.complete();
             });
         });
@@ -705,6 +776,11 @@ var OrderService = /** @class */ (function () {
         var token = this.storage.get('token');
         return this.mainApi.delete('donhang/' + id + '?token=' + token);
     };
+    OrderService.prototype.getByParams = function (params) {
+        var token = this.storage.get('token');
+        params.token = token;
+        return this.mainApi.post('donhang/search', params);
+    };
     OrderService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
@@ -804,7 +880,7 @@ var ReceiveService = /** @class */ (function () {
     };
     ReceiveService.prototype.update = function (params) {
         var token = this.storage.get('token');
-        return this.mainApi.put('nhanhang/' + params.mahd + '?token=' + token, params);
+        return this.mainApi.put('nhanhang/' + params.manh + '?token=' + token, params);
     };
     ReceiveService.prototype.getById = function (id) {
         var token = this.storage.get('token');
@@ -816,7 +892,7 @@ var ReceiveService = /** @class */ (function () {
     };
     ReceiveService.prototype.delete = function (params) {
         var token = this.storage.get('token');
-        return this.mainApi.delete('nhanhang/' + params.mahd + '?token=' + token);
+        return this.mainApi.delete('nhanhang/' + params.manh + '?token=' + token);
     };
     ReceiveService.prototype.search = function (params) {
         params.token = this.storage.get('token');
@@ -992,12 +1068,16 @@ var CoreModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__ = __webpack_require__("../../../../../src/app/core/dialog/popup/wanning/wanning.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__ = __webpack_require__("../../../../../src/app/core/dialog/user/user/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pipe_pipe_module__ = __webpack_require__("../../../../../src/app/pipe/pipe.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1035,7 +1115,8 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatAutocompleteModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatSelectModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* ReactiveFormsModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* ReactiveFormsModule */],
+                __WEBPACK_IMPORTED_MODULE_16__pipe_pipe_module__["a" /* PipeModule */]
             ],
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
@@ -1046,7 +1127,8 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__product_upload_child_product_child_product_component__["a" /* ChildProductComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__["a" /* WanningComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__["a" /* OrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */]
+                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
@@ -1055,7 +1137,8 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__product_upload_product_kind_product_kind_component__["a" /* ProductKindComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__["a" /* WanningComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__["a" /* OrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */]
+                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__dialog_service__["a" /* DialogService */],
@@ -1080,6 +1163,7 @@ var DialogModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_upload_upload_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/upload.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__product_order_order_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__product_receive_detail_receive_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1093,11 +1177,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var DialogService = /** @class */ (function () {
     function DialogService(dialog) {
         this.dialog = dialog;
     }
-    DialogService.prototype.openOrder = function (params) {
+    DialogService.prototype.openBill = function (params) {
         return this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__product_upload_upload_component__["a" /* UploadComponent */], {
             width: "80%",
             height: '90%',
@@ -1107,7 +1192,12 @@ var DialogService = /** @class */ (function () {
     DialogService.prototype.gotoOrder = function (params) {
         return this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__product_order_order_component__["a" /* OrderComponent */], {
             data: params,
-            maxHeight: '80%',
+            height: '80%'
+        }).afterClosed();
+    };
+    DialogService.prototype.openReceive = function (manh) {
+        return this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */], {
+            data: manh,
             height: '80%'
         }).afterClosed();
     };
@@ -1398,7 +1488,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/order/order.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <small>Mã Đơn Hàng: {{orderData.madh}}</small> \n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBills; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                                    <td *ngIf=\"item.chitiethds\">\n                                      <div *ngFor=\"let prod of item.chitiethds\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of orderData.chitietdhs; let i = index\">\n                                    <td>{{item.masp}}</td>\n                                    <td>{{item.soluong}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"orderData.tienyen\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"orderData.datcoc\" name=\"thanhtien7\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"orderData.taikhoan\" name=\"thanhtien6\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"orderData.thuonghieu\" name=\"thanhtien5\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"orderData.tigia\" name=\"thanhtien4\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Trạng Thái *</label>\n                        <input [(ngModel)]=\"orderData.trangthai\" name=\"thanhtien3\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea [(ngModel)]=\"orderData.ghichu\" name=\"thanhtien2\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <small>Mã Đơn Hàng: {{orderData.madh}}</small> \n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBills; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.tenkh}}</td>\n                                    <td *ngIf=\"item.chitiethds\">\n                                      <div *ngFor=\"let prod of item.chitiethds\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of orderData.chitietdhs; let i = index\">\n                                    <td>{{item.masp}}</td>\n                                    <td>{{item.soluong}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"orderData.tienyen\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"orderData.datcoc\" name=\"thanhtien7\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"orderData.taikhoan\" name=\"thanhtien6\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"orderData.thuonghieu\" name=\"thanhtien5\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"orderData.tigia\" name=\"thanhtien4\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"lastname\">Trạng Thái *</label>\n                        <div>\n                          <select data-validation=\"required\" name=\"trangthai\" [disabled]=\"orderData.trangthai>4\" [(ngModel)]=\"orderData.trangthai\" class=\"form-control\">\n                            <option value=\"3\">Chưa Thanh Toán</option>\n                            <option value=\"4\">Đã Thanh Toán</option>\n                            <option disabled value=\"5\">Về Kho Nhật</option>\n                            <option disabled value=\"6\">Về Kho Việt Nam</option>\n                            <option disabled value=\"7\">Hoàn Tất</option>\n                          </select>\n                        </div>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea [(ngModel)]=\"orderData.ghichu\" name=\"thanhtien2\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
 
 /***/ }),
 
@@ -1412,14 +1502,12 @@ module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_forkJoin__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/forkJoin.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_order_detail_service__ = __webpack_require__("../../../../../src/app/core/api/order-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1479,13 +1567,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
-
 var OrderComponent = /** @class */ (function () {
-    function OrderComponent(userService, billService, billDetailService, orderService, orderDetailService, dialogRef, madh, loadingService, popupService, formatService, mainService) {
-        this.userService = userService;
+    function OrderComponent(billService, orderService, orderDetailService, dialogRef, madh, loadingService, popupService, formatService, mainService) {
         this.billService = billService;
-        this.billDetailService = billDetailService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.dialogRef = dialogRef;
@@ -1525,6 +1609,10 @@ var OrderComponent = /** @class */ (function () {
     };
     OrderComponent.prototype.selectItem = function (item) {
         var _this = this;
+        if (this.orderData.trangthai != 3) {
+            this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Đơn Đặt Hàng");
+            return;
+        }
         item.madh = item.madh ? null : this.madh;
         item.chitiethds.forEach(function (elem) {
             var flag = true;
@@ -1532,10 +1620,12 @@ var OrderComponent = /** @class */ (function () {
                 if (element.masp == elem.masp) {
                     flag = false;
                     if (item.madh) {
+                        item.trangthai = 3;
                         element.soluong += elem.soluong;
                         element.giuhop += elem.giuhop;
                     }
                     else {
+                        item.trangthai = 2;
                         if (element.soluong == elem.soluong) {
                             _this.orderData.chitietdhs.splice(_this.orderData.chitietdhs.indexOf(element), 1);
                         }
@@ -1577,6 +1667,10 @@ var OrderComponent = /** @class */ (function () {
     };
     OrderComponent.prototype.selectAll = function () {
         var _this = this;
+        if (this.orderData.trangthai != 3) {
+            this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Khỏi Đơn Hàng!");
+            return;
+        }
         var flag = true;
         this.listBills.forEach(function (element) {
             if (!element.madh) {
@@ -1709,18 +1803,233 @@ var OrderComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.html"),
             styles: [__webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.css")]
         }),
-        __param(6, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__api_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_4__api_bill_service__["a" /* BillService */],
-            __WEBPACK_IMPORTED_MODULE_5__api_bill_detail_service__["a" /* BillDetailService */],
-            __WEBPACK_IMPORTED_MODULE_6__api_order_service__["a" /* OrderService */],
-            __WEBPACK_IMPORTED_MODULE_7__api_order_detail_service__["a" /* OrderDetailService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_9__util_loading_service__["a" /* LoadingService */],
-            __WEBPACK_IMPORTED_MODULE_10__dialog_popup_popup_service__["a" /* PopupService */],
-            __WEBPACK_IMPORTED_MODULE_11__util_format_service__["a" /* FormatService */],
-            __WEBPACK_IMPORTED_MODULE_12__api_main_service__["a" /* MainService */]])
+        __param(4, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__api_bill_service__["a" /* BillService */],
+            __WEBPACK_IMPORTED_MODULE_5__api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_6__api_order_detail_service__["a" /* OrderDetailService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_7__util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_8__dialog_popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_9__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_10__api_main_service__["a" /* MainService */]])
     ], OrderComponent);
     return OrderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 100%;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n    min-width: 340px;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}\r\n\r\ntable, th, td {\r\n    border: 1px solid black;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth, td {\r\n    padding: 5px;\r\n    text-align: left;\r\n}\r\n\r\n#sign_up{\r\n\r\n    max-height: 400px;\r\n}\r\n\r\n.card {\r\n    -webkit-box-shadow: 0;\r\n            box-shadow: 0;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n\r\n#sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n\r\ndiv.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n\r\n.mat-form-field {\r\n    display: block !important;\r\n    color: white !important;\r\n}\r\n\r\n.mat-select-value {\r\n  color: white !important; \r\n}\r\n\r\n.mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n\r\n.ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n.mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <!-- <small>Mã Đơn Hàng: {{orderData.madh}}</small>  -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n\n            <div class=\" col-md-6  col-sm-6 col-lg-6\" style=\"margin-bottom: 20px; min-width: 50%;\">\n              <div class=\"select-person-header\">List Đơn </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Mã Đơn</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder; let i = index\" [ngStyle]=\"{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td (click)=\"selectItem(item)\">{{item.madh}} | {{item.tongsl}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.chitietdhs\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <!-- <div class=\" col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\">Result </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã Đơn</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder | user: {'manh': receiveData.manh}\">\n                                    <td>{{item.madh}}</td>\n                                    <td>{{item.tongsl}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div> -->\n\n            <div class=\"col-md-6  col-sm-6 col-lg-6\" style=\"min-width: 50%;\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                      <div class=\"form-group\">\n                        <label for=\"age\">Khối Lượng *</label>\n                        <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"receiveData.khoiluong\" class=\"form-control\" type=\"text\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đơn Giá *</label>\n                        <input id=\"age\" name=\"dongia\" [(ngModel)]=\"receiveData.dongia\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Phụ Phí *</label>\n                        <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"receiveData.phuphi\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thành Tiền *</label>\n                        <span id=\"age\" class=\"form-control\">{{receiveData.khoiluong * receiveData.dongia + receiveData.phuphi}}</span>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"lastname\">Trạng Thái *</label>\n                        <div>\n                          <select data-validation=\"required\" name=\"trangthai\" [disabled]=\"receiveData.trangthai>7\" [(ngModel)]=\"receiveData.trangthai\" class=\"form-control\">\n                            <option value=\"5\">Chưa Về Kho Nhật</option>\n                            <option value=\"6\">Về Kho Nhật</option>\n                            <option value=\"7\">Về Kho Việt Nam</option>\n                            <option disabled value=\"8\">Hoàn Tất</option>\n                          </select>\n                        </div>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"receiveData.ghichu\" rows=\"3\"></textarea>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReceiveDetailComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_receive_detail_service__ = __webpack_require__("../../../../../src/app/core/api/receive-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+
+
+var ReceiveDetailComponent = /** @class */ (function () {
+    function ReceiveDetailComponent(loadingService, formatService, mainService, popupService, orderService, receiveService, receiveDetailService, dialogRef, manh) {
+        this.loadingService = loadingService;
+        this.formatService = formatService;
+        this.mainService = mainService;
+        this.popupService = popupService;
+        this.orderService = orderService;
+        this.receiveService = receiveService;
+        this.receiveDetailService = receiveDetailService;
+        this.dialogRef = dialogRef;
+        this.manh = manh;
+        this.listOrder = [];
+        this.receiveData = {};
+    }
+    ReceiveDetailComponent.prototype.ngOnInit = function () {
+        $('app-order').parent().parent().attr('id', 'app-receove-detail');
+        this.loadingService.show('app-receove-detail');
+        this.getListOrder();
+        this.getReceive();
+    };
+    ReceiveDetailComponent.prototype.getReceive = function () {
+        var _this = this;
+        this.mainService.listReceive({ manh: this.manh }).subscribe(function (data) {
+            _this.receiveData = data[0];
+        }, function (error) {
+        });
+    };
+    ReceiveDetailComponent.prototype.getListOrder = function () {
+        var _this = this;
+        this.mainService.listOrder({ manh: this.manh }).subscribe(function (data) {
+            _this.listOrder = data;
+            _this.loadingService.hide('app-receove-detail');
+            console.log("list order: ", _this.listOrder);
+        });
+    };
+    ReceiveDetailComponent.prototype.selectItem = function (item) {
+        item.manh = item.manh ? null : this.receiveData.manh;
+    };
+    ReceiveDetailComponent.prototype.refreshPage = function () {
+        this.popupService.showSuccess().subscribe(function () {
+        });
+    };
+    ReceiveDetailComponent.prototype.selectAll = function () {
+        var _this = this;
+        var flag = true;
+        this.listOrder.forEach(function (element) {
+            if (!element.manh) {
+                flag = false;
+                return;
+            }
+        });
+        this.listOrder.forEach(function (element) {
+            if (flag) {
+                _this.selectItem(element);
+            }
+            else {
+                if (!element.manh) {
+                    _this.selectItem(element);
+                }
+            }
+        });
+    };
+    ReceiveDetailComponent.prototype.deleteArray = function () {
+        var _this = this;
+        var count = 0;
+        this.listOrder.forEach(function (element) {
+            if (!element.manh) {
+                element.trangthai = 4;
+                _this.orderService.update(element).subscribe(function (order) {
+                    _this.receiveDetailService.delete({ manh: _this.receiveData.manh, madh: element.madh }).subscribe(function (resD) {
+                        console.log("resD: ", resD);
+                        count++;
+                        if (count == _this.listOrder.length) {
+                            _this.checkToDeleteReceive();
+                        }
+                    });
+                }, function (error) {
+                    element.trangthai = 5;
+                    element.manh = _this.receiveData.manh;
+                });
+            }
+            else {
+                _this.finish();
+            }
+        });
+    };
+    ReceiveDetailComponent.prototype.finish = function () {
+        var _this = this;
+        this.loadingService.hide('app-receove-detail');
+        this.popupService.showSuccess().subscribe(function (data) {
+            _this.dialogRef.close();
+        });
+    };
+    ReceiveDetailComponent.prototype.checkToDeleteReceive = function () {
+        var _this = this;
+        var flag = true;
+        this.listOrder.forEach(function (element) {
+            if (element.manh) {
+                flag = false;
+                return;
+            }
+        });
+        if (flag) {
+            this.receiveService.delete(this.receiveData).subscribe(function (data) {
+                console.log("delete ok!", _this.receiveData.madh);
+                _this.finish();
+            }, function (error) {
+                console.log("erro: ", error);
+                _this.finish();
+            });
+        }
+        else {
+            this.finish();
+        }
+    };
+    ReceiveDetailComponent.prototype.submit = function () {
+        var _this = this;
+        if (!this.checkBeforeSubmit()) {
+            this.popupService.showError();
+            return;
+        }
+        this.loadingService.show('app-receove-detail');
+        this.receiveService.update(this.receiveData).subscribe(function (res) {
+            _this.deleteArray();
+        }, function (error) {
+            _this.loadingService.hide('app-receove-detail');
+            _this.popupService.showError();
+        });
+    };
+    ReceiveDetailComponent.prototype.checkBeforeSubmit = function () {
+        if (!this.receiveData.chitietnhs.length)
+            return false;
+        return true;
+    };
+    ReceiveDetailComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-receive-detail',
+            template: __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.css")]
+        }),
+        __param(8, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_2__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_3__api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_4__dialog_popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_5__api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_6__api_receive_service__["a" /* ReceiveService */],
+            __WEBPACK_IMPORTED_MODULE_7__api_receive_detail_service__["a" /* ReceiveDetailService */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["i" /* MatDialogRef */], Object])
+    ], ReceiveDetailComponent);
+    return ReceiveDetailComponent;
 }());
 
 
@@ -1748,7 +2057,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/upload/child-product/child-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.mahd\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.mahd\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.masp? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"masp\" name=\"masp\" class=\"form-control\" [disabled]=\"product.mahd\" [(ngModel)]=\"product.masp\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"soluong\" class=\"form-control\" [(ngModel)]=\"product.soluong\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Trang Web *</label>\n          <input id=\"age\" name=\"trangweb\" class=\"form-control\" [(ngModel)]=\"product.trangweb\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"giaweb\" class=\"form-control\" [(ngModel)]=\"product.giaweb\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Triết Khấu *</label>\n          <input id=\"age\" name=\"trietkhau\" class=\"form-control\" [(ngModel)]=\"product.trietkhau\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"khoiluong\" class=\"form-control\" [(ngModel)]=\"product.khoiluong\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Tỉ Giá *</label>\n          <input id=\"age\" name=\"tigia\" class=\"form-control\" [(ngModel)]=\"product.tigia\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <!-- <div class=\"form-group\">\n          <label for=\"age\">Thành Tiền *</label>\n          <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\" style=\"clear: both\">\n          <label for=\"lastname\">Loại Sản Phẩm *</label>\n          <div>\n            <select data-validation=\"required\" class=\"form-control\">\n                    <option>1</option>\n                    <option>2</option>\n                    <option>3</option>\n                    <option>4</option>\n                    <option>5</option>\n                  </select>\n          </div>\n          <span id=\"error_lastname\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\">\n          <label for=\"disc\">Mô Tả</label>\n          <textarea class=\"form-control\" rows=\"3\"></textarea>\n        </div> -->\n      </div>\n    </form>\n  </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\">\n                          <i class=\"material-icons\">add</i>\n                      </a>\n</div>"
+module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.mahd\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.mahd\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.masp? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"masp\" name=\"masp\" class=\"form-control\" [disabled]=\"product.mahd\" [(ngModel)]=\"product.masp\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"soluong\" class=\"form-control\" [disabled]=\"madh\" [(ngModel)]=\"product.soluong\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a [ngClass]=\"madh?'disabled':''\" class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"giaweb\" class=\"form-control\" [(ngModel)]=\"product.giaweb\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Triết Khấu *</label>\n          <input id=\"age\" name=\"trietkhau\" class=\"form-control\" [(ngModel)]=\"product.trietkhau\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"khoiluong\" class=\"form-control\" [(ngModel)]=\"product.khoiluong\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Tỉ Giá *</label>\n          <input id=\"age\" name=\"tigia\" class=\"form-control\" [(ngModel)]=\"product.tigia\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <!-- <div class=\"form-group\">\n          <label for=\"age\">Thành Tiền *</label>\n          <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\" style=\"clear: both\">\n          <label for=\"lastname\">Loại Sản Phẩm *</label>\n          <div>\n            <select data-validation=\"required\" class=\"form-control\">\n                    <option>1</option>\n                    <option>2</option>\n                    <option>3</option>\n                    <option>4</option>\n                    <option>5</option>\n                  </select>\n          </div>\n          <span id=\"error_lastname\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\">\n          <label for=\"disc\">Mô Tả</label>\n          <textarea class=\"form-control\" rows=\"3\"></textarea>\n        </div> -->\n      </div>\n    </form>\n  </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\">\n                          <i class=\"material-icons\">add</i>\n                      </a>\n</div>"
 
 /***/ }),
 
@@ -1793,6 +2102,8 @@ var ChildProductComponent = /** @class */ (function () {
         this.add.emit(JSON.parse(JSON.stringify(this.product)));
     };
     ChildProductComponent.prototype.toggleHop = function () {
+        if (this.madh)
+            return;
         this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
     };
     __decorate([
@@ -1916,7 +2227,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/upload/upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-child-product [product]=\"billDetailList[0]\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 1\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-child-product [product]=\"item\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thành Tiền *</label>\n                                                <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"ship\">Phí Ship *</label>\n                                                <input [(ngModel)]=\"data.bill.ship\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Đặt Cọc *</label>\n                                                <input [(ngModel)]=\"data.bill.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-child-product [product]=\"billDetailList[0]\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 1\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-child-product [product]=\"item\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thành Tiền *</label>\n                                                <label name=\"thanhtien\" class=\"form-control\" min=\"1\">{{calculate() | number:'1.2-2'}}</label>\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thương Hiệu *</label>\n                                                <input id=\"age\" name=\"thuonghieu\" class=\"form-control\" [ngStyle]=\"{'color': data.bill.thuonghieu? '':'red'}\" [(ngModel)]=\"data.bill.thuonghieu\" type=\"text\" min=\"1\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"ship\">Phí Ship *</label>\n                                                <input [(ngModel)]=\"data.bill.ship\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Đặt Cọc *</label>\n                                                <input [(ngModel)]=\"data.bill.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -1982,9 +2293,10 @@ var UploadComponent = /** @class */ (function () {
             this.data.bill = {
                 ngay: this.getTime(),
                 makh: this.data.user.makh,
-                trangthai: 1,
+                trangthai: 2,
                 datcoc: '',
-                ship: ''
+                ship: '',
+                thuonghieu: 'adidas'
             };
         }
     };
@@ -2091,6 +2403,9 @@ var UploadComponent = /** @class */ (function () {
             this.billService.update(this.data.bill).subscribe(function (data) {
                 console.log("put data bill: ", data);
                 _this.registOrUpdate();
+            }, function (error) {
+                _this.loading.hide('upload');
+                _this.popupDialog.showError();
             });
         }
         else {
@@ -2100,6 +2415,9 @@ var UploadComponent = /** @class */ (function () {
                 _this.data.bill.mahd = data.data.mahd;
                 _this.data.bill.chitiethds = _this.billDetailList;
                 _this.registOrUpdate();
+            }, function (error) {
+                _this.popupDialog.showError();
+                _this.loading.hide('upload');
             });
         }
     };
@@ -2120,6 +2438,13 @@ var UploadComponent = /** @class */ (function () {
                 _this.dialogRef.close(-1);
             }
         });
+    };
+    UploadComponent.prototype.calculate = function () {
+        var sum = 0;
+        this.billDetailList.forEach(function (element) {
+            sum += element.giaweb * element.tigia * (1 + element.trietkhau) * element.soluong;
+        });
+        return sum;
     };
     UploadComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -2305,7 +2630,7 @@ var UserComponent = /** @class */ (function () {
             this.userService.regist(this.data).subscribe(function (data) {
                 console.log("regist data: ", data);
                 _this.data.makh = data.data.makh;
-                _this.openOrderForm(data.data);
+                _this.openBillForm(data.data);
                 _this.loading.hide("user");
                 _this.data = data.data;
                 _this.reload = _this.data;
@@ -2314,11 +2639,11 @@ var UserComponent = /** @class */ (function () {
             });
         }
         else {
-            this.openOrderForm(this.data);
+            this.openBillForm(this.data);
         }
     };
-    UserComponent.prototype.openOrderForm = function (data) {
-        this.dialogService.openOrder({ user: data, bill: null }).subscribe(function (data) {
+    UserComponent.prototype.openBillForm = function (data) {
+        this.dialogService.openBill({ user: data, bill: null }).subscribe(function (data) {
             console.log("close product kind!");
         });
     };
@@ -2436,6 +2761,29 @@ var FormatService = /** @class */ (function () {
         for (var e in src) {
             des[e] = src[e];
         }
+    };
+    FormatService.prototype.statusType = function (type) {
+        switch (type) {
+            case 1: return "Chưa Duyệt";
+            case 2: return "Đã Đặt Hàng";
+            case 3: return "Chưa Thanh Toán";
+            case 4: return "Đã Thanh Toán";
+            case 5: return "Chưa Về Kho Nhật";
+            case 6: return "Về Kho Nhật";
+            case 7: return "Về Kho Việt Nam";
+            case 8: return "Hoàn Tất";
+            default: return "Chưa Đặt Trạng Thái";
+        }
+    };
+    FormatService.prototype.convertToArrayObservable = function (methodCallback, array, compareCallback, params, property) {
+        var res = [];
+        array.forEach(function (element) {
+            if (compareCallback(element)) {
+                params[property] = element[property];
+                res.push(methodCallback(params));
+            }
+        });
+        return res;
     };
     FormatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Injectable */])(),
@@ -3046,6 +3394,155 @@ var UtilModule = /** @class */ (function () {
         })
     ], UtilModule);
     return UtilModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipe/pipe.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipeModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__time_pipe__ = __webpack_require__("../../../../../src/app/pipe/time.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_pipe__ = __webpack_require__("../../../../../src/app/pipe/user.pipe.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var PipeModule = /** @class */ (function () {
+    function PipeModule() {
+    }
+    PipeModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]
+            ],
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__time_pipe__["a" /* TimePipe */],
+                __WEBPACK_IMPORTED_MODULE_3__user_pipe__["a" /* UserPipe */]
+            ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_2__time_pipe__["a" /* TimePipe */],
+                __WEBPACK_IMPORTED_MODULE_3__user_pipe__["a" /* UserPipe */]
+            ]
+        })
+    ], PipeModule);
+    return PipeModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipe/time.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var TimePipe = /** @class */ (function () {
+    function TimePipe() {
+    }
+    TimePipe.prototype.transform = function (items, filter) {
+        if (!filter)
+            return items;
+        return items.filter(function (item) {
+            var from = filter['from'] ? filter['from'].getTime() : 0;
+            var to = filter['to'] ? filter['to'].getTime() : new Date().getTime();
+            return item.ngay > from && item.ngay < to ? true : false; // true if matches all fields
+        });
+    };
+    TimePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* Pipe */])({
+            name: 'time'
+        })
+    ], TimePipe);
+    return TimePipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipe/user.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var UserPipe = /** @class */ (function () {
+    function UserPipe() {
+    }
+    UserPipe.prototype.transform = function (items, filter) {
+        if (!items.length)
+            return [];
+        return items.filter(function (item) {
+            for (var key in filter) {
+                if (!item.hasOwnProperty(key))
+                    continue;
+                if (Array.isArray(item[key])) {
+                    for (var i = 0; i < item[key].length; i++) {
+                        var lc = true;
+                        for (var e in filter[key]) {
+                            var str = item[key][i][e] + '';
+                            if (str.toUpperCase().indexOf(filter[key][e].toUpperCase()) == -1) {
+                                lc = false;
+                            }
+                        }
+                        return lc;
+                    }
+                }
+                else if (typeof (filter[key]) == 'object') {
+                    for (var e in filter[key]) {
+                        var str = item[key][e] + '';
+                        if (str.toUpperCase().indexOf(filter[key][e].toUpperCase()) == -1) {
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    var str = item[key] + '';
+                    if (item['makh'] && item['makh'] == 1) {
+                        return false;
+                    }
+                    if (str.toUpperCase().indexOf(filter[key].toUpperCase()) == -1) {
+                        return false;
+                    }
+                }
+            }
+            return true; // true if matches all fields
+        });
+    };
+    UserPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* Pipe */])({
+            name: 'user'
+        })
+    ], UserPipe);
+    return UserPipe;
 }());
 
 

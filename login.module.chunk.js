@@ -95,9 +95,10 @@ var LoginComponent = /** @class */ (function () {
             sdt: this.sdt,
             mk: this.mk
         }).subscribe(function (res) {
+            console.log("login succeess: ", res);
             if (res.status) {
                 _this.storage.set('token', res.token);
-                _this.gotoHome();
+                _this.gotoHome(res);
             }
             else {
                 _this.loading.hide();
@@ -122,8 +123,25 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.changeCheck = function () {
         this.saveFlag = !this.saveFlag;
     };
-    LoginComponent.prototype.gotoHome = function () {
-        this.router.navigate(['/home']);
+    LoginComponent.prototype.gotoHome = function (res) {
+        switch (res.maloainv) {
+            case 1:
+                this.router.navigate(['/home']);
+                break;
+            case 2:
+            case 3:
+                this.router.navigate(['/client/' + res.makh]);
+                break;
+            case 4:
+                this.router.navigate(['/payment']);
+                break;
+            case 4:
+                this.router.navigate(['/receiver']);
+                break;
+            default:
+                console.log("invalid request");
+                break;
+        }
     };
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -206,13 +224,6 @@ var LoginRouters = [
         path: 'regist',
         component: __WEBPACK_IMPORTED_MODULE_1__regist_regist_component__["a" /* RegistComponent */]
     }
-    // , {
-    //     path: 'list',
-    //     component: ListComponent
-    // }, {
-    //     path: 'upload',
-    //     component: UploadComponent
-    // }
 ];
 
 
