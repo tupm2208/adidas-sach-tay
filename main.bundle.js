@@ -6,8 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./client/client.module": [
 		"../../../../../src/app/client/client.module.ts",
-		"client.module",
-		"common"
+		"client.module"
 	],
 	"./login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
@@ -15,15 +14,14 @@ var map = {
 	],
 	"./main/main.module": [
 		"../../../../../src/app/main/main.module.ts",
-		"main.module",
-		"common"
+		"main.module"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+	return __webpack_require__.e(ids[1]).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -56,7 +54,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a href=\"javascript:void(0);\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a href=\"javascript:void(0);\" class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\" routerLink=\"/home\">ADMINBSB - MATERIAL DESIGN</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                    <a routerLink=\"/home/orders\">\r\n                        <i class=\"material-icons\">text_fields</i>\r\n                        <span>Danh Sách Đơn Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                    <a routerLink=\"/home/bills\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Đặt Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\r\n                    <a routerLink=\"/home/receive-list\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Nhận Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                    <a routerLink=\"/home/assignment\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Tạo Đơn</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                    <a routerLink=\"/home/receiver\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>                \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/client'? 'active': ''\">\r\n                    <a routerLink=\"/client\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">AdminBSB - Material Design</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
+module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a href=\"javascript:void(0);\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a href=\"javascript:void(0);\" class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\" routerLink=\"/home\">ADMINBSB - MATERIAL DESIGN</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                    <a routerLink=\"/home/orders\">\r\n                        <i class=\"material-icons\">text_fields</i>\r\n                        <span>Danh Sách Đơn Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                    <a routerLink=\"/home/bills\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Đặt Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\r\n                    <a routerLink=\"/home/receive-list\">\r\n                        <i class=\"material-icons\">layers</i>\r\n                        <span>Danh Sách Nhận Hàng</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                    <a routerLink=\"/home/assignment\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Tạo Đơn</span>\r\n                    </a>\r\n                </li>\r\n                <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                    <a routerLink=\"/home/receiver\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>                \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/client'? 'active': ''\">\r\n                    <a routerLink=\"/client\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li [class]=\"router.url == '/client/waiting'? 'active': ''\">\r\n                    <a routerLink=\"/client/waiting\">\r\n                        <i class=\"material-icons\">history</i>\r\n                        <span>Chưa Duyệt</span>\r\n                    </a>\r\n                </li>  \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">AdminBSB - Material Design</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -219,12 +217,16 @@ var AppRoutes = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__receive_detail_service__ = __webpack_require__("../../../../../src/app/core/api/receive-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__waiting_bill_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill-detail.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -258,7 +260,9 @@ var ApiModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__bill_detail_service__["a" /* BillDetailService */],
                 __WEBPACK_IMPORTED_MODULE_10__receive_service__["a" /* ReceiveService */],
                 __WEBPACK_IMPORTED_MODULE_11__receive_detail_service__["a" /* ReceiveDetailService */],
-                __WEBPACK_IMPORTED_MODULE_12__main_service__["a" /* MainService */]
+                __WEBPACK_IMPORTED_MODULE_12__main_service__["a" /* MainService */],
+                __WEBPACK_IMPORTED_MODULE_13__waiting_bill_service__["a" /* WaitingBillService */],
+                __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__["a" /* WaitingBillDetailService */]
             ]
         })
     ], ApiModule);
@@ -467,6 +471,8 @@ var LoginService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__receive_detail_service__ = __webpack_require__("../../../../../src/app/core/api/receive-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__waiting_bill_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__waiting_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill-detail.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -487,8 +493,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var MainService = /** @class */ (function () {
-    function MainService(userService, orderService, orderDetailService, billService, billDetailService, receiveService, receiveDetailService, formatService) {
+    function MainService(userService, orderService, orderDetailService, billService, billDetailService, receiveService, receiveDetailService, formatService, waitingBillService, waitingBillDetailService) {
         this.userService = userService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
@@ -497,6 +505,8 @@ var MainService = /** @class */ (function () {
         this.receiveService = receiveService;
         this.receiveDetailService = receiveDetailService;
         this.formatService = formatService;
+        this.waitingBillService = waitingBillService;
+        this.waitingBillDetailService = waitingBillDetailService;
     }
     MainService.prototype.listOrder = function (optionParams) {
         var _this = this;
@@ -644,6 +654,56 @@ var MainService = /** @class */ (function () {
             });
         });
     };
+    MainService.prototype.listWaitingBill = function (optionParams) {
+        var _this = this;
+        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
+            _this.waitingBillDetailService.getByParams(optionParams).subscribe(function (data) {
+                _this.formatService.formatData(data, "mahd");
+                var users = {};
+                var count = 0;
+                data.forEach(function (element) {
+                    if (!element.makh) {
+                        element.user = {};
+                        count++;
+                        if (count == data.length) {
+                            observer.next(data);
+                            observer.complete();
+                        }
+                        return;
+                    }
+                    if (users[element.makh]) {
+                        element.user = users[element.makh];
+                        count++;
+                    }
+                    else {
+                        users[element.makh] = {};
+                        _this.userService.getById(element.makh).subscribe(function (user) {
+                            _this.formatService.copyObject(user.data, users[element.makh]);
+                            element.user = users[element.makh];
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        }, function (error) {
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        });
+                    }
+                });
+                if (!data.length) {
+                    observer.next([]);
+                    observer.complete();
+                }
+            }, function (error) {
+                observer.next([]);
+                observer.complete();
+            });
+        });
+    };
     MainService.prototype.sendRequest = function (array) {
         return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
             __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */], array).subscribe(function (res) {
@@ -664,7 +724,9 @@ var MainService = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_6__bill_detail_service__["a" /* BillDetailService */],
             __WEBPACK_IMPORTED_MODULE_7__receive_service__["a" /* ReceiveService */],
             __WEBPACK_IMPORTED_MODULE_8__receive_detail_service__["a" /* ReceiveDetailService */],
-            __WEBPACK_IMPORTED_MODULE_9__util_format_service__["a" /* FormatService */]])
+            __WEBPACK_IMPORTED_MODULE_9__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_10__waiting_bill_service__["a" /* WaitingBillService */],
+            __WEBPACK_IMPORTED_MODULE_11__waiting_bill_detail_service__["a" /* WaitingBillDetailService */]])
     ], MainService);
     return MainService;
 }());
@@ -965,6 +1027,123 @@ var UserService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/core/api/waiting-bill-detail.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingBillDetailService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WaitingBillDetailService = /** @class */ (function () {
+    function WaitingBillDetailService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+    }
+    WaitingBillDetailService.prototype.list = function () {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyetcthd?token=' + token);
+    };
+    WaitingBillDetailService.prototype.getByParams = function (params) {
+        var token = this.storage.get('token');
+        params.token = token;
+        return this.mainApi.post('choduyetcthd/search', params);
+    };
+    WaitingBillDetailService.prototype.update = function (params) {
+        params.token = this.storage.get('token');
+        return this.mainApi.put('choduyetcthd/' + params.mahd + '/' + params.masp, params);
+    };
+    WaitingBillDetailService.prototype.create = function (params) {
+        params.token = this.storage.get('token');
+        return this.mainApi.post('choduyetcthd', params);
+    };
+    WaitingBillDetailService.prototype.delete = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.delete('choduyetcthd/' + params.mahd + '/' + params.masp + '?token=' + token);
+    };
+    WaitingBillDetailService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], WaitingBillDetailService);
+    return WaitingBillDetailService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/api/waiting-bill.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingBillService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WaitingBillService = /** @class */ (function () {
+    function WaitingBillService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+    }
+    WaitingBillService.prototype.list = function () {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyethd?token=' + token);
+    };
+    WaitingBillService.prototype.update = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.put('choduyethd/' + params.mahd + '?token=' + token, params);
+    };
+    WaitingBillService.prototype.getById = function (id) {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyethd/' + id + '?token=' + token);
+    };
+    WaitingBillService.prototype.create = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.post('choduyethd?token=' + token, params);
+    };
+    WaitingBillService.prototype.delete = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.delete('choduyethd/' + params.mahd + '?token=' + token);
+    };
+    WaitingBillService.prototype.search = function (params) {
+        params.token = this.storage.get('token');
+        return this.mainApi.post('choduyethd/search', params);
+    };
+    WaitingBillService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], WaitingBillService);
+    return WaitingBillService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/core/config.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1048,6 +1227,368 @@ var CoreModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/core/dialog/client/book/book.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 100%;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}\r\n\r\ntable, th, td {\r\n    border: 1px solid black;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth, td {\r\n    padding: 5px;\r\n    text-align: left;\r\n}\r\n\r\n#sign_up{\r\n\r\n    max-height: 400px;\r\n}\r\n\r\n.card {\r\n    -webkit-box-shadow: 0;\r\n            box-shadow: 0;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/book/book.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-prod-detail [product]=\"billDetailList[0]\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 1\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-prod-detail [product]=\"item\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thành Tiền *</label>\n                                                <label name=\"thanhtien\" class=\"form-control\" min=\"1\">{{calculate() | number:'1.2-2'}}</label>\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thương Hiệu *</label>\n                                                <input id=\"age\" name=\"thuonghieu\" class=\"form-control\" [ngStyle]=\"{'color': data.bill.thuonghieu? '':'red'}\" [(ngModel)]=\"data.bill.thuonghieu\" type=\"text\" min=\"1\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"ship\">Phí Ship *</label>\n                                                <input [(ngModel)]=\"data.bill.ship\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Đặt Cọc *</label>\n                                                <input [(ngModel)]=\"data.bill.datcoc\" name=\"thanhtien\" class=\"form-control\" min=\"1\" type=\"text\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/book/book.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_waiting_bill_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_waiting_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+var BookComponent = /** @class */ (function () {
+    function BookComponent(dialogRef, data, waitingBillService, waitingBillDetailService, popupDialog, loading) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.waitingBillService = waitingBillService;
+        this.waitingBillDetailService = waitingBillDetailService;
+        this.popupDialog = popupDialog;
+        this.loading = loading;
+        this.billDetailList = [{
+                masp: '',
+                soluong: 1,
+                trangweb: '',
+                giaweb: '',
+                trietkhau: '',
+                khoiluong: '',
+                tigia: '',
+                giuhop: 0,
+                mahd: null,
+                makh: null,
+            }];
+        this.isNew = true;
+        this.isError = false;
+    }
+    BookComponent.prototype.ngOnInit = function () {
+        console.log("data: ", this.data);
+        this.billDetailList[0].makh = this.data.user.makh;
+        this.billDetailList[0].maduyetkh = this.data.user.maduyetkh;
+        if (this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
+            this.billDetailList = this.data.bill.chitiethds;
+        }
+        if (this.data.bill && this.data.bill.mahd && this.data.bill.choduyetcthds) {
+            this.billDetailList = this.data.bill.choduyetcthds;
+        }
+        if (!this.data.bill) {
+            this.isNew = true;
+            this.data.bill = {
+                ngay: this.getTime(),
+                makh: this.data.user.makh,
+                maduyetkh: this.data.user.maduyetkh,
+                trangthai: 2,
+                datcoc: '',
+                ship: '',
+                thuonghieu: 'adidas'
+            };
+        }
+    };
+    BookComponent.prototype.ngAfterViewInit = function () {
+        $('app-book').parent().parent().attr('id', 'upload');
+    };
+    BookComponent.prototype.onClick = function () {
+        this.dialogRef.close();
+    };
+    BookComponent.prototype.getTime = function () {
+        var a = new Date;
+        return a.getTime();
+    };
+    BookComponent.prototype.addProduct = function (data) {
+        data.mahd = null;
+        this.billDetailList.push(data);
+    };
+    BookComponent.prototype.deleteProduct = function (data) {
+        var _this = this;
+        this.billDetailList.splice(this.billDetailList.indexOf(data), 1);
+        if (this.billDetailList.length == 0) {
+            if (this.data.bill.mahd) {
+                this.loading.show('upload');
+                this.waitingBillService.delete(this.data.bill).subscribe(function (data) {
+                    console.log("delete bill: ", _this.data.bill);
+                    _this.loading.hide('upload');
+                    _this.dialogRef.close();
+                }, function (error) {
+                    _this.loading.hide('upload');
+                });
+            }
+            else {
+                this.dialogRef.close();
+            }
+        }
+    };
+    BookComponent.prototype.checkValid = function () {
+        for (var i = 0; i < this.billDetailList.length; i++) {
+            if (!this.billDetailList[i].masp || !this.billDetailList[i].soluong) {
+                return false;
+            }
+        }
+        return true;
+    };
+    BookComponent.prototype.registOrUpdate = function () {
+        var _this = this;
+        var countErr = 0;
+        var countSuc = 0;
+        this.billDetailList.forEach(function (element) {
+            element.mahd = _this.data.bill.mahd;
+            _this.waitingBillDetailService.create(element).subscribe(function (data) {
+                countSuc += 1;
+                if (countSuc == _this.billDetailList.length) {
+                    _this.showSuccess();
+                }
+                else if (countSuc + countErr == _this.billDetailList.length) {
+                    _this.showError();
+                }
+            }, function (error) {
+                element.mahd = null;
+                countErr += 1;
+                if (countSuc + countErr == _this.billDetailList.length) {
+                    _this.showError();
+                }
+            });
+        });
+    };
+    BookComponent.prototype.createBill = function () {
+        var _this = this;
+        this.waitingBillService.create(this.data.bill).subscribe(function (data) {
+            console.log("create data bill: ", data);
+            _this.data.bill.mahd = data.data.mahd;
+            _this.data.bill.chitiethds = _this.billDetailList;
+            _this.registOrUpdate();
+        }, function (error) {
+            _this.popupDialog.showError();
+            _this.loading.hide('upload');
+        });
+    };
+    BookComponent.prototype.regist = function () {
+        var _this = this;
+        if (!this.checkValid())
+            return;
+        this.loading.show('upload');
+        this.waitingBillService.delete(this.data.bill).subscribe(function (data) {
+            console.log("delete ok: ", data);
+            _this.createBill();
+        }, function (error) {
+            _this.loading.hide('upload');
+            _this.popupDialog.showError();
+        });
+    };
+    BookComponent.prototype.showError = function () {
+        this.loading.hide('upload');
+        this.popupDialog.showError().subscribe(function (data) {
+            console.log("close error!");
+        });
+    };
+    BookComponent.prototype.showSuccess = function () {
+        var _this = this;
+        this.loading.hide('upload');
+        this.popupDialog.showSuccess().subscribe(function (data) {
+            _this.data.bill.choduyetcthds = _this.billDetailList;
+            _this.dialogRef.close(_this.isNew ? _this.data.bill : null);
+        });
+    };
+    BookComponent.prototype.calculate = function () {
+        var sum = 0;
+        this.billDetailList.forEach(function (element) {
+            sum += element.giaweb * element.tigia * (1 + element.trietkhau) * element.soluong;
+        });
+        return sum;
+    };
+    BookComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-book',
+            template: __webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__api_waiting_bill_service__["a" /* WaitingBillService */],
+            __WEBPACK_IMPORTED_MODULE_3__api_waiting_bill_detail_service__["a" /* WaitingBillDetailService */],
+            __WEBPACK_IMPORTED_MODULE_4__popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_5__util_loading_service__["a" /* LoadingService */]])
+    ], BookComponent);
+    return BookComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n#cancel {\r\n    float: right;\r\n    position: relative;\r\n    bottom: 18px;\r\n    left: 10px;\r\n    margin-right: 10px;\r\n    border: 0;\r\n    color: red;\r\n    background-color: unset;\r\n}\r\n\r\n#addMore {\r\n    background-color: cyan;\r\n    color: white;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.mahd\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.mahd\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.masp? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"masp\" name=\"masp\" class=\"form-control\" [disabled]=\"product.mahd\" [(ngModel)]=\"product.masp\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"soluong\" class=\"form-control\"  [(ngModel)]=\"product.soluong\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"giaweb\" class=\"form-control\" [(ngModel)]=\"product.giaweb\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Triết Khấu *</label>\n          <input id=\"age\" name=\"trietkhau\" class=\"form-control\" [(ngModel)]=\"product.trietkhau\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"khoiluong\" class=\"form-control\" [(ngModel)]=\"product.khoiluong\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Tỉ Giá *</label>\n          <input id=\"age\" name=\"tigia\" class=\"form-control\" [(ngModel)]=\"product.tigia\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\"><i class=\"material-icons\">add</i></a>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProdDetailComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ProdDetailComponent = /** @class */ (function () {
+    function ProdDetailComponent(popup) {
+        this.popup = popup;
+        this.delete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */]();
+        this.add = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */]();
+    }
+    ProdDetailComponent.prototype.ngOnInit = function () {
+    };
+    ProdDetailComponent.prototype.deleteProduct = function () {
+        this.delete.emit(this.product);
+    };
+    ProdDetailComponent.prototype.duplicateProduct = function () {
+        this.add.emit(JSON.parse(JSON.stringify(this.product)));
+    };
+    ProdDetailComponent.prototype.toggleHop = function () {
+        this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Input */])(),
+        __metadata("design:type", Object)
+    ], ProdDetailComponent.prototype, "product", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */])
+    ], ProdDetailComponent.prototype, "delete", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* EventEmitter */])
+    ], ProdDetailComponent.prototype, "add", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Input */])(),
+        __metadata("design:type", Object)
+    ], ProdDetailComponent.prototype, "madh", void 0);
+    ProdDetailComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-prod-detail',
+            template: __webpack_require__("../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__popup_popup_service__["a" /* PopupService */]])
+    ], ProdDetailComponent);
+    return ProdDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/client.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__book_book_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ClientService = /** @class */ (function () {
+    function ClientService(dialog) {
+        this.dialog = dialog;
+    }
+    ClientService.prototype.openBook = function (params) {
+        return this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__book_book_component__["a" /* BookComponent */], {
+            data: params,
+            height: '90%',
+            width: "80%"
+        }).afterClosed();
+    };
+    ClientService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */]])
+    ], ClientService);
+    return ClientService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/core/dialog/dialog.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1063,19 +1604,23 @@ var CoreModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__ = __webpack_require__("../../../../../src/app/core/dialog/popup/error/error.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__popup_success_success_component__ = __webpack_require__("../../../../../src/app/core/dialog/popup/success/success.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__product_upload_upload_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/upload.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__product_upload_product_kind_product_kind_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__product_upload_child_product_child_product_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/child-product/child-product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__ = __webpack_require__("../../../../../src/app/core/dialog/popup/wanning/wanning.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__ = __webpack_require__("../../../../../src/app/core/dialog/user/user/user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pipe_pipe_module__ = __webpack_require__("../../../../../src/app/pipe/pipe.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__product_upload_child_product_child_product_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/child-product/child-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__popup_wanning_wanning_component__ = __webpack_require__("../../../../../src/app/core/dialog/popup/wanning/wanning.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__product_order_order_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__user_user_user_component__ = __webpack_require__("../../../../../src/app/core/dialog/user/user/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__product_receive_detail_receive_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pipe_pipe_module__ = __webpack_require__("../../../../../src/app/pipe/pipe.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__client_client_service__ = __webpack_require__("../../../../../src/app/core/dialog/client/client.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1116,34 +1661,36 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatSelectModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* ReactiveFormsModule */],
-                __WEBPACK_IMPORTED_MODULE_16__pipe_pipe_module__["a" /* PipeModule */]
+                __WEBPACK_IMPORTED_MODULE_15__pipe_pipe_module__["a" /* PipeModule */]
             ],
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__popup_success_success_component__["a" /* SuccessComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__product_upload_upload_component__["a" /* UploadComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__product_upload_upload_component__["a" /* UploadComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__product_upload_product_kind_product_kind_component__["a" /* ProductKindComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__product_upload_child_product_child_product_component__["a" /* ChildProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__["a" /* WanningComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__["a" /* OrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */]
+                __WEBPACK_IMPORTED_MODULE_10__product_upload_child_product_child_product_component__["a" /* ChildProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__popup_wanning_wanning_component__["a" /* WanningComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__product_order_order_component__["a" /* OrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__user_user_user_component__["a" /* UserComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__["a" /* BookComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__["a" /* ProdDetailComponent */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__popup_success_success_component__["a" /* SuccessComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__product_upload_upload_component__["a" /* UploadComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__product_upload_product_kind_product_kind_component__["a" /* ProductKindComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__popup_wanning_wanning_component__["a" /* WanningComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__product_order_order_component__["a" /* OrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__user_user_user_component__["a" /* UserComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__popup_wanning_wanning_component__["a" /* WanningComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__product_order_order_component__["a" /* OrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__user_user_user_component__["a" /* UserComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__["a" /* BookComponent */],
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__dialog_service__["a" /* DialogService */],
                 __WEBPACK_IMPORTED_MODULE_5__popup_popup_service__["a" /* PopupService */],
-                __WEBPACK_IMPORTED_MODULE_6__user_user_dialog_service__["a" /* UserDialogService */]
+                __WEBPACK_IMPORTED_MODULE_6__user_user_dialog_service__["a" /* UserDialogService */],
+                __WEBPACK_IMPORTED_MODULE_18__client_client_service__["a" /* ClientService */]
             ]
         })
     ], DialogModule);
@@ -1915,6 +2462,10 @@ var ReceiveDetailComponent = /** @class */ (function () {
         });
     };
     ReceiveDetailComponent.prototype.selectItem = function (item) {
+        if (this.receiveData.trangthai > 5) {
+            this.popupService.showWanning("Không Thể Thêm Bớt Khi Đơn Hàng Không Ở Trạng Thái 'Chưa Về Kho Nhật'");
+            return;
+        }
         item.manh = item.manh ? null : this.receiveData.manh;
     };
     ReceiveDetailComponent.prototype.refreshPage = function () {
@@ -2131,75 +2682,6 @@ var ChildProductComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__popup_popup_service__["a" /* PopupService */]])
     ], ChildProductComponent);
     return ChildProductComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div>\n  <div class=\"row\">\n    <div class=\"col-md-12 col-sm-12 col-lg-12\">\n      <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">Loại Sản Phẩm</div>\n        <div class=\"panel-body\">\n          <form name=\"myform\">\n            <div class=\"col-md-6 col-sm-6 col-lg-6\">\n              <div class=\"list-group\">\n                <div class=\"list-group-item list-group-item-success\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-warning\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-success\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n                <div class=\"list-group-item list-group-item-warning\">\n                  <label>First item</label>\n                  <input type=\"text\" class=\"form-control\">\n                </div>\n              </div>\n            </div>\n            <div class=\"col-md-6 col-sm-6 col-lg-6\">\n              <div class=\"form-group\" style=\"text-align:center\">\n                <label for=\"age\">Thêm Loại Sản Phẩm *</label>\n                <input class=\"form-control\" type=\"text\">\n                <a class=\"btn btn-primary\" style=\"margin-top: 20px\">Thêm</a>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div style=\"text-align:center\">\n  <button class=\"btn btn-warning\" [mat-dialog-close]=\"true\">Back</button>\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductKindComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-var ProductKindComponent = /** @class */ (function () {
-    function ProductKindComponent(dialogRef, data) {
-        this.dialogRef = dialogRef;
-        this.data = data;
-    }
-    ProductKindComponent.prototype.ngOnInit = function () {
-    };
-    ProductKindComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-product-kind',
-            template: __webpack_require__("../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/core/dialog/product/upload/product-kind/product-kind.component.css")]
-        }),
-        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object])
-    ], ProductKindComponent);
-    return ProductKindComponent;
 }());
 
 

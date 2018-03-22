@@ -98,6 +98,7 @@ var LoginComponent = /** @class */ (function () {
             console.log("login succeess: ", res);
             if (res.status) {
                 _this.storage.set('token', res.token);
+                _this.storage.set('userInfo', { makh: res.makh, maduyetkh: res.maduyetkh, maloainv: res.maloainv });
                 _this.gotoHome(res);
             }
             else {
@@ -130,7 +131,7 @@ var LoginComponent = /** @class */ (function () {
                 break;
             case 2:
             case 3:
-                this.router.navigate(['/client/' + res.makh]);
+                this.router.navigate(['/client/']);
                 break;
             case 4:
                 this.router.navigate(['/payment']);
