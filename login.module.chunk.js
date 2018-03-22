@@ -136,8 +136,8 @@ var LoginComponent = /** @class */ (function () {
             case 4:
                 this.router.navigate(['/payment']);
                 break;
-            case 4:
-                this.router.navigate(['/receiver']);
+            case 6:
+                this.router.navigate(['/receiver-consumer']);
                 break;
             default:
                 console.log("invalid request");

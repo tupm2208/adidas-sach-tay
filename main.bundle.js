@@ -15,6 +15,14 @@ var map = {
 	"./main/main.module": [
 		"../../../../../src/app/main/main.module.ts",
 		"main.module"
+	],
+	"./payment/payment.module": [
+		"../../../../../src/app/payment/payment.module.ts",
+		"payment.module"
+	],
+	"./receiver/receiver.module": [
+		"../../../../../src/app/receiver/receiver.module.ts",
+		"receiver.module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -54,7 +62,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\" routerLink=\"/home\">ADMINBSB - MATERIAL DESIGN</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>  \r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">add_shopping_cart</i>\r\n                        <span>Người Thanh Toán</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                            <a routerLink=\"/home/orders\">\r\n                                <i class=\"material-icons\">list</i>\r\n                                <span>Danh Sách Đơn Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                            <a routerLink=\"/home/assignment\">\r\n                               <i class=\"material-icons\">widgets</i>\r\n                                <span>Tạo Đơn</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">view_list</i>\r\n                        <span>Khách Hàng</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                            <a routerLink=\"/home/bills\">\r\n                                <i class=\"material-icons\">layers</i>\r\n                                <span>Danh Sách Đặt Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Duyệt Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Người Nhận Hàng</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\r\n                            <a routerLink=\"/home/receive-list\">\r\n                                <i class=\"material-icons\">layers</i>\r\n                                <span>Danh Sách Nhận Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                            <a routerLink=\"/home/receiver\">\r\n                                <i class=\"material-icons\">swap_calls</i>\r\n                                <span>Giao Đơn</span>\r\n                            </a>\r\n                        </li>  \r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Duyệt Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                \r\n                \r\n                <li [class]=\"router.url == '/home/statistic'? 'active': ''\">\r\n                    <a routerLink=\"/home/statistic\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>    \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            \r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/client'? 'active': ''\">\r\n                    <a routerLink=\"/client\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li [class]=\"router.url == '/client/waiting'? 'active': ''\">\r\n                    <a routerLink=\"/client/waiting\">\r\n                        <i class=\"material-icons\">history</i>\r\n                        <span>Chưa Duyệt</span>\r\n                    </a>\r\n                </li>  \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">AdminBSB - Material Design</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
+module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1|| router.url.indexOf('payment')!=-1|| router.url.indexOf('receiver-consumer')!=-1\">\r\n<!-- Overlay For Sidebars -->\r\n<div class=\"overlay\"></div>\r\n<!-- #END# Overlay For Sidebars -->\r\n<!-- Top Bar -->\r\n<nav class=\"navbar\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\r\n            <a class=\"bars\"></a>\r\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\">KoKoRo - Shop</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <!-- Notifications -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">notifications</i>\r\n                        <span class=\"label-count\">7</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">NOTIFICATIONS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">person_add</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>12 new members joined</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-cyan\">\r\n                                            <i class=\"material-icons\">add_shopping_cart</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>4 sales made</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-red\">\r\n                                            <i class=\"material-icons\">delete_forever</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-orange\">\r\n                                            <i class=\"material-icons\">mode_edit</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>Nancy</b> changed name</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-blue-grey\">\r\n                                            <i class=\"material-icons\">comment</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> commented your post</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-light-green\">\r\n                                            <i class=\"material-icons\">cached</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4><b>John</b> updated status</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <div class=\"icon-circle bg-purple\">\r\n                                            <i class=\"material-icons\">settings</i>\r\n                                        </div>\r\n                                        <div class=\"menu-info\">\r\n                                            <h4>Settings updated</h4>\r\n                                            <p>\r\n                                                <i class=\"material-icons\">access_time</i> Yesterday\r\n                                            </p>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Notifications -->\r\n                <!-- Tasks -->\r\n                <!-- <li class=\"dropdown\">\r\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\r\n                        <i class=\"material-icons\">flag</i>\r\n                        <span class=\"label-count\">9</span>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li class=\"header\">TASKS</li>\r\n                        <li class=\"body\">\r\n                            <ul class=\"menu tasks\">\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Footer display issue\r\n                                            <small>32%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Make new buttons\r\n                                            <small>45%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Create new dashboard\r\n                                            <small>54%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Solve transition issue\r\n                                            <small>65%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"javascript:void(0);\">\r\n                                        <h4>\r\n                                            Answer GitHub questions\r\n                                            <small>92%</small>\r\n                                        </h4>\r\n                                        <div class=\"progress\">\r\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\r\n                                            </div>\r\n                                        </div>\r\n                                    </a>\r\n                                </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class=\"footer\">\r\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\r\n                        </li>\r\n                    </ul>\r\n                </li> -->\r\n                <!-- #END# Tasks -->\r\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<!-- #Top Bar -->\r\n<section>\r\n    <!-- Left Sidebar -->\r\n    <aside id=\"leftsidebar\" class=\"sidebar\">\r\n        <!-- User Info -->\r\n        <div class=\"user-info\">\r\n            <div class=\"image\">\r\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\r\n            </div>\r\n        </div>\r\n        <!-- #User Info -->\r\n        <!-- Menu -->\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/home'? 'active': ''\">\r\n                    <a routerLink=\"/home\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Danh Sách Khách Hàng</span>\r\n                    </a>\r\n                </li>  \r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">add_shopping_cart</i>\r\n                        <span>Người Thanh Toán</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/orders'? 'active': ''\">\r\n                            <a routerLink=\"/home/orders\">\r\n                                <i class=\"material-icons\">list</i>\r\n                                <span>Danh Sách Đơn Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\r\n                            <a routerLink=\"/home/assignment\">\r\n                               <i class=\"material-icons\">widgets</i>\r\n                                <span>Tạo Đơn</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">view_list</i>\r\n                        <span>Khách Hàng</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/bills'? 'active': ''\">\r\n                            <a routerLink=\"/home/bills\">\r\n                                <i class=\"material-icons\">layers</i>\r\n                                <span>Danh Sách Đặt Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Duyệt Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a class=\"menu-toggle\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Người Nhận Hàng</span>\r\n                    </a>\r\n                    <ul class=\"ml-menu\">\r\n                        <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\r\n                            <a routerLink=\"/home/receive-list\">\r\n                                <i class=\"material-icons\">layers</i>\r\n                                <span>Danh Sách Nhận Hàng</span>\r\n                            </a>\r\n                        </li>\r\n                        <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\r\n                            <a routerLink=\"/home/receiver\">\r\n                                <i class=\"material-icons\">swap_calls</i>\r\n                                <span>Giao Đơn</span>\r\n                            </a>\r\n                        </li>  \r\n                        <li>\r\n                            <a>\r\n                                <i class=\"material-icons\">widgets</i>\r\n                                <span>Duyệt Thay Đổi và Đơn Mới</span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n                \r\n                \r\n                <li [class]=\"router.url == '/home/statistic'? 'active': ''\">\r\n                    <a routerLink=\"/home/statistic\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>Giao Đơn</span>\r\n                    </a>\r\n                </li>    \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            \r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/client'? 'active': ''\">\r\n                    <a routerLink=\"/client\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li [class]=\"router.url == '/client/waiting'? 'active': ''\">\r\n                    <a routerLink=\"/client/waiting\">\r\n                        <i class=\"material-icons\">history</i>\r\n                        <span>Chưa Duyệt</span>\r\n                    </a>\r\n                </li>  \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('payment')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/payment'? 'active': ''\">\r\n                    <a routerLink=\"/payment\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Hóa Đơn</span>\r\n                    </a>\r\n                </li>   \r\n                <li [class]=\"router.url == '/payment/waiting'? 'active': ''\">\r\n                    <a routerLink=\"/payment/waiting\">\r\n                        <i class=\"material-icons\">history</i>\r\n                        <span>Chưa Duyệt</span>\r\n                    </a>\r\n                </li>  \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('receiver-consumer')!=-1\">\r\n            <ul class=\"list\">\r\n                <li class=\"header\">MAIN NAVIGATION</li>\r\n                <li [class]=\"router.url == '/receiver-consumer'? 'active': ''\">\r\n                    <a routerLink=\"/receiver-consumer\">\r\n                        <i class=\"material-icons\">home</i>\r\n                        <span>Các Đơn Nhận</span>\r\n                    </a>\r\n                </li>   \r\n                <li [class]=\"router.url == '/receiver-consumer/waiting'? 'active': ''\">\r\n                    <a routerLink=\"/receiver-consumer/waiting\">\r\n                        <i class=\"material-icons\">history</i>\r\n                        <span>Chưa Duyệt</span>\r\n                    </a>\r\n                </li>  \r\n                <li class=\"header\">LABELS</li>\r\n                <li>\r\n                    <a routerLink=\"/login\">\r\n                        <i class=\"material-icons\">swap_calls</i>\r\n                        <span>LogOut</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- #Menu -->\r\n        <!-- Footer -->\r\n        <div class=\"legal\">\r\n            <div class=\"copyright\">\r\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\">KoKoRo - Shop</a>.\r\n            </div>\r\n            <div class=\"version\">\r\n                <b>Version: </b> 1.0.5\r\n            </div>\r\n        </div>\r\n        <!-- #Footer -->\r\n    </aside>\r\n    <!-- #END# Left Sidebar -->\r\n</section>\r\n</body>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -82,7 +90,7 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
         this.title = true;
         this.router.events.subscribe(function (val) {
-            if (_this.router.url.indexOf('home') != -1 || _this.router.url.indexOf('client') != -1) {
+            if (_this.router.url.indexOf('home') != -1 || _this.router.url.indexOf('client') != -1 || _this.router.url.indexOf('payment') != -1 || _this.router.url.indexOf('receiver-consumer') != -1) {
                 setTimeout(function () {
                     if (_this.title == false) {
                         _this.title = true;
@@ -193,6 +201,12 @@ var AppRoutes = [{
     }, {
         path: 'client',
         loadChildren: './client/client.module#ClientModule'
+    }, {
+        path: 'payment',
+        loadChildren: './payment/payment.module#PaymentModule'
+    }, {
+        path: 'receiver-consumer',
+        loadChildren: './receiver/receiver.module#ReceiverModule'
     }
 ];
 
@@ -219,12 +233,16 @@ var AppRoutes = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__waiting_bill_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__waiting_order_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__waiting_receive_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-receive.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -262,7 +280,9 @@ var ApiModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__receive_detail_service__["a" /* ReceiveDetailService */],
                 __WEBPACK_IMPORTED_MODULE_12__main_service__["a" /* MainService */],
                 __WEBPACK_IMPORTED_MODULE_13__waiting_bill_service__["a" /* WaitingBillService */],
-                __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__["a" /* WaitingBillDetailService */]
+                __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__["a" /* WaitingBillDetailService */],
+                __WEBPACK_IMPORTED_MODULE_15__waiting_order_service__["a" /* WaitingOrderService */],
+                __WEBPACK_IMPORTED_MODULE_16__waiting_receive_service__["a" /* WaitingReceiveService */]
             ]
         })
     ], ApiModule);
@@ -1144,6 +1164,128 @@ var WaitingBillService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/core/api/waiting-order.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingOrderService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WaitingOrderService = /** @class */ (function () {
+    function WaitingOrderService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+    }
+    WaitingOrderService.prototype.list = function () {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyetdh?token=' + token);
+    };
+    WaitingOrderService.prototype.getById = function (id) {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyetdh/' + id + '?token=' + token);
+    };
+    WaitingOrderService.prototype.create = function (params) {
+        params.token = this.storage.get('token');
+        return this.mainApi.post('choduyetdh', params);
+    };
+    WaitingOrderService.prototype.update = function (params) {
+        params.token = this.storage.get('token');
+        console.log("update madh = ", params.madh);
+        return this.mainApi.put('choduyetdh/' + params.madh, params);
+    };
+    WaitingOrderService.prototype.delete = function (id) {
+        var token = this.storage.get('token');
+        return this.mainApi.delete('choduyetdh/' + id + '?token=' + token);
+    };
+    WaitingOrderService.prototype.getByParams = function (params) {
+        var token = this.storage.get('token');
+        params.token = token;
+        return this.mainApi.post('choduyetdh/search', params);
+    };
+    WaitingOrderService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], WaitingOrderService);
+    return WaitingOrderService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/api/waiting-receive.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingReceiveService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WaitingReceiveService = /** @class */ (function () {
+    function WaitingReceiveService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+    }
+    WaitingReceiveService.prototype.list = function () {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyetnh?token=' + token);
+    };
+    WaitingReceiveService.prototype.update = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.put('choduyetnh/' + params.manh + '?token=' + token, params);
+    };
+    WaitingReceiveService.prototype.getById = function (id) {
+        var token = this.storage.get('token');
+        return this.mainApi.get('choduyetnh/' + id + '?token=' + token);
+    };
+    WaitingReceiveService.prototype.create = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.post('choduyetnh?token=' + token, params);
+    };
+    WaitingReceiveService.prototype.delete = function (params) {
+        var token = this.storage.get('token');
+        return this.mainApi.delete('choduyetnh/' + params.manh + '?token=' + token);
+    };
+    WaitingReceiveService.prototype.search = function (params) {
+        params.token = this.storage.get('token');
+        return this.mainApi.post('choduyetnh/search', params);
+    };
+    WaitingReceiveService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], WaitingReceiveService);
+    return WaitingReceiveService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/core/config.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1555,6 +1697,7 @@ var ProdDetailComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__book_book_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__payment_request_payment_request_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/payment-request/payment-request.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1564,6 +1707,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1578,11 +1722,146 @@ var ClientService = /** @class */ (function () {
             width: "80%"
         }).afterClosed();
     };
+    ClientService.prototype.openPaymentForm = function (params) {
+        return this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__payment_request_payment_request_component__["a" /* PaymentRequestComponent */], {
+            data: params,
+            height: '90%'
+        }).afterClosed();
+    };
     ClientService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */]])
     ], ClientService);
     return ClientService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/payment-request/payment-request.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\r\n    margin: 0;\r\n}\r\n\r\nlabel.form-control{\r\n    /* padding: 11px 0px;\r\n    font-weight: 97; */\r\n    border: none!important; \r\n    /* font-size: 16px; */\r\n    /* text-align: center; */\r\n}\r\n\r\n.input-group input[type=\"text\"], .input-group .form-control {\r\n    border: ridge; \r\n    -webkit-box-shadow: none; \r\n            box-shadow: none;\r\n    padding-left: 0;\r\n}\r\n\r\n.signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 100%;\r\n    margin: 0% auto;\r\n    overflow-x: unset;\r\n    min-width: 340px;\r\n}\r\n\r\n.card {\r\n     margin-bottom: 0px; \r\n}\r\n\r\n.btn-block {\r\n    width: 30%;\r\n    margin-left: 10%;\r\n    margin-right: 10%\r\n}\r\n\r\n.btn-block + .btn-block {\r\n     margin-top: 0px; \r\n}\r\n\r\n.input-group {\r\n    margin-bottom: 14px;\r\n}\r\n\r\nlabel {\r\n    /* font-weight: unset; */\r\n    width: 100%;\r\n}\r\n\r\n.unFill {\r\n    border-bottom: 1px solid red!important;\r\n}\r\n\r\na.disabled {\r\n    color: gray;\r\n    cursor: not-allowed;\r\n    text-decoration: underline;\r\n}\r\n\r\ntable, th, td {\r\n    border: 1px solid black;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth, td {\r\n    padding: 5px;\r\n    text-align: left;\r\n}\r\n\r\n#sign_up{\r\n\r\n    max-height: 400px;\r\n}\r\n\r\n.card {\r\n    -webkit-box-shadow: 0;\r\n            box-shadow: 0;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n#sortable1, #sortable2, #sortable3, #sortable4 {\r\n    \r\n    background-color: #c2e7ea;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0px\r\n  }\r\n\r\n#sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\r\n    margin: 0 5px 5px 5px;\r\n    padding: 5px;\r\n    font-size: 1.2em;\r\n  }\r\n\r\ndiv.select-person-header {\r\n  background-color: deepskyblue;\r\n  padding-top: 5px;\r\n  width: 100%;\r\n  border: 1px solid #c2e7ea;\r\n  color: white;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-size: 1.2em;\r\n  list-style-type: none;\r\n}\r\n\r\n.mat-form-field {\r\n    display: block !important;\r\n    color: white !important;\r\n}\r\n\r\n.mat-select-value {\r\n  color: white !important; \r\n}\r\n\r\n.mat-raised-button {\r\n  min-width: 0px !important; \r\n}\r\n\r\n.ui-selectable-helper {\r\n    border: 0px dotted black !important;\r\n}\r\n\r\n.form-group {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.palel-primary {\r\n    border-color: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-heading {\r\n    background: #bce8f1;\r\n}\r\n\r\n.panel-primary>.panel-body {\r\n    background-color: #EDEDED;\r\n}\r\n\r\n.mat-form-field-infix {\r\n    border-top: 0;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/payment-request/payment-request.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <small>Mã Đơn Hàng: {{orderData.madh}}</small> \n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"orderData.tienyen\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"number\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"orderData.datcoc\" name=\"thanhtien7\" class=\"form-control\" min=\"1\" type=\"number\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"orderData.taikhoan\" disabled name=\"thanhtien6\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"orderData.thuonghieu\" disabled name=\"thanhtien5\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"orderData.tigia\" name=\"thanhtien4\" class=\"form-control\" min=\"1\" type=\"number\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/client/payment-request/payment-request.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentRequestComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_waiting_order_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-order.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+//service
+
+
+
+
+
+var PaymentRequestComponent = /** @class */ (function () {
+    function PaymentRequestComponent(orderService, dialogRef, madh, loadingService, popupService, formatService, waitingOrderService) {
+        this.orderService = orderService;
+        this.dialogRef = dialogRef;
+        this.madh = madh;
+        this.loadingService = loadingService;
+        this.popupService = popupService;
+        this.formatService = formatService;
+        this.waitingOrderService = waitingOrderService;
+        this.orderData = {};
+    }
+    PaymentRequestComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        $('app-payment-request').parent().parent().attr('id', 'app-order');
+        setTimeout(function () { return _this.loadingService.show('app-order'); }, 0);
+        this.getOrder();
+    };
+    PaymentRequestComponent.prototype.getOrder = function () {
+        var _this = this;
+        this.orderService.getById(this.madh).subscribe(function (data) {
+            _this.orderData = data.data;
+            console.log("data: ", data.data);
+            _this.waitingOrderService.getById(_this.madh).subscribe(function (data2) {
+                console.log("data2: ", data2);
+                _this.formatService.copyObject(data2.data, _this.orderData);
+                _this.loadingService.hide('app-order');
+            }, function (error) {
+                _this.loadingService.hide('app-order');
+            });
+        }, function (error) {
+            _this.loadingService.hide('app-order');
+            _this.popupService.showError();
+        });
+    };
+    PaymentRequestComponent.prototype.submit = function () {
+        var _this = this;
+        this.loadingService.show('app-order');
+        this.waitingOrderService.delete(this.orderData.madh).subscribe(function (data) {
+            console.log("delete ok! ", data);
+            _this.waitingOrderService.create(_this.orderData).subscribe(function (data) {
+                console.log("create ok!", data);
+                _this.loadingService.hide('app-order');
+                _this.popupService.showSuccess().subscribe(function () { return _this.dialogRef.close(); });
+            }, function (error) {
+                _this.loadingService.hide('app-order');
+                _this.popupService.showError().subscribe(function () { return _this.dialogRef.close(); });
+            });
+        }, function (error) {
+            _this.loadingService.hide('app-order');
+            _this.popupService.showError();
+        });
+    };
+    PaymentRequestComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-payment-request',
+            template: __webpack_require__("../../../../../src/app/core/dialog/client/payment-request/payment-request.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/client/payment-request/payment-request.component.css")]
+        }),
+        __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_3__util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_4__dialog_popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_5__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_6__api_waiting_order_service__["a" /* WaitingOrderService */]])
+    ], PaymentRequestComponent);
+    return PaymentRequestComponent;
 }());
 
 
@@ -1613,12 +1892,14 @@ var ClientService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/book.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__client_client_service__ = __webpack_require__("../../../../../src/app/core/dialog/client/client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/payment-request/payment-request.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1674,7 +1955,8 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__user_user_user_component__["a" /* UserComponent */],
                 __WEBPACK_IMPORTED_MODULE_14__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__["a" /* BookComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__["a" /* ProdDetailComponent */]
+                __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__["a" /* ProdDetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__["a" /* PaymentRequestComponent */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
@@ -1685,6 +1967,7 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__user_user_user_component__["a" /* UserComponent */],
                 __WEBPACK_IMPORTED_MODULE_14__product_receive_detail_receive_detail_component__["a" /* ReceiveDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__["a" /* BookComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__["a" /* PaymentRequestComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__dialog_service__["a" /* DialogService */],

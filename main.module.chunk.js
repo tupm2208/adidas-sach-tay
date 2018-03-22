@@ -1709,7 +1709,7 @@ var ReceiverComponent = /** @class */ (function () {
         this.optionsUser = [];
         this.receiveData = {
             ngay: new Date().getTime(),
-            trangthai: 4,
+            trangthai: 5,
             chitietnhs: [],
             khoiluong: 0,
             dongia: 0,
