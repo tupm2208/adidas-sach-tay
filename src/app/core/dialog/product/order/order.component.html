@@ -120,9 +120,16 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="age">Trạng Thái *</label>
-                        <input [(ngModel)]="orderData.trangthai" name="thanhtien3" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
+                        <label for="lastname">Trạng Thái *</label>
+                        <div>
+                          <select data-validation="required" name="trangthai" [disabled]="orderData.trangthai>4" [(ngModel)]="orderData.trangthai" class="form-control">
+                            <option value="3">Chưa Thanh Toán</option>
+                            <option value="4">Đã Thanh Toán</option>
+                            <option disabled value="5">Về Kho Nhật</option>
+                            <option disabled value="6">Về Kho Việt Nam</option>
+                            <option disabled value="7">Hoàn Tất</option>
+                          </select>
+                        </div>
                       </div>
 
                       <div class="form-group">

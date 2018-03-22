@@ -80,7 +80,7 @@
                                 </tfoot>
                                 <tbody>
                                     <tr *ngFor="let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}">
-                                        <td><a (click)="openAddProductKind()" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item?.user?.tenkh}}</a></td>
+                                        <td>{{item?.user?.tenkh}}</td>
                                         <td *ngIf="sr">{{item?.user?.sdt}}</td>
                                         <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
                                         <td *ngIf="sr">
@@ -95,7 +95,7 @@
                                         <td *ngIf="sr">{{item.thuonghieu}}</td>
                                         <td *ngIf="sr">{{item.ghichu}}</td>
                                         <td *ngIf="sr">{{item.tigia}}</td>
-                                        <td>{{item.trangthai}}</td>
+                                        <td>{{formatService.statusType(item.trangthai)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

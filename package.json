@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host $IP --port $PORT --public-host https://adidas-manage-trachdaik.c9users.io",
-    "build": "ng build --env=prod --base-href='/adidas-sach-tay/' && ngh --no-silent",
+    "build": "ng build --env=prod --base-href=/adidas-sach-tay/ && ngh --no-silent",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

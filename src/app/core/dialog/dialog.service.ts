@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UploadComponent } from './product/upload/upload.component';
 import { OrderComponent } from './product/order/order.component';
+import { ReceiveDetailComponent } from './product/receive-detail/receive-detail.component';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class DialogService {
     private dialog: MatDialog
   ) { }
 
-  openOrder(params): Observable<any> {
+  openBill(params): Observable<any> {
 
     return this.dialog.open(UploadComponent, {
       width: "80%",
@@ -26,7 +27,14 @@ export class DialogService {
 
     return this.dialog.open(OrderComponent, {
       data: params,
-      maxHeight: '80%',
+      height: '80%'
+    }).afterClosed();
+  }
+
+  openReceive(manh): Observable<any> {
+
+    return this.dialog.open( ReceiveDetailComponent, {
+      data: manh,
       height: '80%'
     }).afterClosed();
   }

@@ -10,5 +10,14 @@ export const AppRoutes: Routes = [{
     }, {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
+    }, {
+        path: 'client',
+        loadChildren: './client/client.module#ClientModule'
+    }, {
+        path: 'payment',
+        loadChildren: './payment/payment.module#PaymentModule'
+    }, {
+        path: 'receiver-consumer',
+        loadChildren: './receiver/receiver.module#ReceiverModule'
     }
 ]

@@ -42,4 +42,13 @@ export class OrderService {
 
     return this.mainApi.delete('donhang/'+ id +'?token=' + token);
   }
+
+  getByParams(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    params.token = token;
+    
+    return this.mainApi.post('donhang/search', params);
+  }
 }

@@ -100,7 +100,7 @@ export class UserComponent implements OnInit {
         
         console.log("regist data: ", data);
         this.data.makh = data.data.makh;
-        this.openOrderForm(data.data);
+        this.openBillForm(data.data);
         this.loading.hide("user");
         this.data = data.data;
         this.reload = this.data
@@ -110,15 +110,15 @@ export class UserComponent implements OnInit {
       })
     } else {
 
-      this.openOrderForm(this.data);
+      this.openBillForm(this.data);
     }
   }
 
-  openOrderForm(data) {
+  openBillForm(data) {
 
     
 
-    this.dialogService.openOrder({user: data, bill: null}).subscribe( data => {
+    this.dialogService.openBill({user: data, bill: null}).subscribe( data => {
 
       console.log("close product kind!");
     })

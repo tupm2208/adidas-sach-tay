@@ -71,10 +71,13 @@ export class LoginComponent implements OnInit {
       mk: this.mk
     }).subscribe( res => {
 
+      console.log("login succeess: ", res);
+
       if(res.status) {
 
         this.storage.set('token', res.token);
-        this.gotoHome();
+        this.storage.set('userInfo', {makh: res.makh, maduyetkh: res.maduyetkh, maloainv: res.maloainv});
+        this.gotoHome(res);
       } else {
         this.loading.hide();
       }
@@ -105,8 +108,17 @@ export class LoginComponent implements OnInit {
     this.saveFlag = !this.saveFlag;
   }
 
-  gotoHome() {
+  gotoHome(res) {
 
-    this.router.navigate(['/home']); 
+    switch(res.maloainv) {
+
+      case 1: this.router.navigate(['/home']); break;
+      case 2: 
+      case 3: this.router.navigate(['/client/']); break;
+      case 4: this.router.navigate(['/payment']); break;
+      case 6: this.router.navigate(['/receiver-consumer']); break;
+      default: console.log("invalid request"); break;
+    }
+    
   }
 }

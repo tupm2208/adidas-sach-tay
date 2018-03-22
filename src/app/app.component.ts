@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(val => {
 
-      if (this.router.url.indexOf('home') != -1) {
+      if (this.router.url.indexOf('home') != -1|| this.router.url.indexOf('client') != -1|| this.router.url.indexOf('payment') != -1|| this.router.url.indexOf('receiver-consumer') != -1) {
         setTimeout(() => {
 
           if (this.title == false) {

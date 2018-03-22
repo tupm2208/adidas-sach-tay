@@ -26,9 +26,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { MainRoutes } from './main.routers';
 import { ListUserComponent } from './list-user/list-user.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { PipeModule } from '../pipe/pipe.module';
 
-import { UserPipe } from '../pipe/user.pipe';
-import { TimePipe } from '../pipe/time.pipe';
 import { OrdersComponent } from './orders/orders.component';
 import { BillsComponent } from './bills/bills.component';
 import { BillComponent } from './bills/bill/bill.component';
@@ -42,6 +41,7 @@ import { TestComponent } from './test/test.component';
 
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
+import { ReceiveListComponent } from './receive-list/receive-list.component';
 
 
 
@@ -67,13 +67,12 @@ import { ReceiverComponent } from './receiver/receiver.component';
     MatRadioModule,
     MatAutocompleteModule,
     MatDatepickerModule, 
-    MatNativeDateModule
+    MatNativeDateModule,
+    PipeModule
   ],
   declarations: [
     MainComponent, 
-    ListUserComponent, 
-    UserPipe,
-    TimePipe,
+    ListUserComponent,
     OrdersComponent,
     BillsComponent,
     BillComponent,
@@ -85,6 +84,7 @@ import { ReceiverComponent } from './receiver/receiver.component';
     TestComponent,
     ProductTableComponent,
     ReceiverComponent,
+    ReceiveListComponent,
   ],
   entryComponents: [
     SelectProductComponent,

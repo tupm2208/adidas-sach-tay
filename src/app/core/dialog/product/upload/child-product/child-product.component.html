@@ -24,20 +24,15 @@
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <label for="age">Số Lượng *</label>
-                <input id="age" name="soluong" class="form-control" [(ngModel)]="product.soluong" type="number" min="1">
+                <input id="age" name="soluong" class="form-control" [disabled]="madh" [(ngModel)]="product.soluong" type="number" min="1">
                 <span id="error_age" class="text-danger"></span>
             </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <label for="age">Hộp *</label>
-                <a class="input-group-addon" style="padding: 0; border: 0"><i style="font-size: 35px" [ngStyle]="{'color': product.giuhop? '':'slategrey'}" (click)="toggleHop()" class="material-icons">check_circle</i></a>
+                <a [ngClass]="madh?'disabled':''" class="input-group-addon" style="padding: 0; border: 0"><i style="font-size: 35px" [ngStyle]="{'color': product.giuhop? '':'slategrey'}" (click)="toggleHop()" class="material-icons">check_circle</i></a>
                 <span id="error_age" class="text-danger"></span>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="age">Trang Web *</label>
-          <input id="age" name="trangweb" class="form-control" [(ngModel)]="product.trangweb" type="text" min="1">
-          <span id="error_age" class="text-danger"></span>
         </div>
         <div class="form-group">
           <label for="age">Giá Web *</label>

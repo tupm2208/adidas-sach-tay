@@ -1,5 +1,5 @@
 <section class="content">
-  <div *ngIf="listBooked.length" class="container">
+  <div *ngIf="listOrder.length" class="container">
     <div class="row">
       <div class="col-md-4  col-sm-6 col-lg-4">
         <div class="select-person-header">Tạo Đơn Hàng </div>
@@ -8,44 +8,39 @@
             <form name="myform">
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="form-group">
-                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Mã Sản Phẩm *</label>
+                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Người Nhận Hàng *</label>
                   <mat-form-field class="example-full-width" [floatLabel]="'never'">
                     <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of options | user: {'tenkh': filterUser}" [value]="option.tenkh">
+                      <mat-option *ngFor="let option of optionsUser | user: {'tenkh': filterUser}" [value]="option.tenkh">
                         {{ option.tenkh }}
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
                 <div class="form-group">
-                  <label for="age">Mã Đơn Hàng *</label>
-                  <input id="age" name="madh" [(ngModel)]="data.madh" class="form-control" type="text" min="1">
+                  <label for="age">Khối Lượng *</label>
+                  <input id="age" name="khoiluong" [(ngModel)]="receiveData.khoiluong" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Thương Hiệu *</label>
-                  <input id="age" name="trangweb" [(ngModel)]="data.thuonghieu" class="form-control" type="text" min="1">
+                  <label for="age">Đơn Giá *</label>
+                  <input id="age" name="dongia" [(ngModel)]="receiveData.dongia" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Tài Khoản *</label>
-                  <input id="age" name="giaweb" [(ngModel)]="data.taikhoan" class="form-control" type="text" min="1">
+                  <label for="age">Phụ Phí *</label>
+                  <input id="age" name="khoiluong" [(ngModel)]="receiveData.phuphi" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Đặt Cọc *</label>
-                  <input id="age" name="trietkhau" [(ngModel)]="data.datcoc" class="form-control" type="number" min="1">
-                  <span id="error_age" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                  <label for="age">Tỉ Giá *</label>
-                  <input id="age" name="khoiluong" [(ngModel)]="data.tigia" class="form-control" type="number" min="1">
+                  <label for="age">Thành Tiền *</label>
+                  <span id="age" class="form-control" >{{receiveData.khoiluong * receiveData.dongia + receiveData.phuphi}}</span>
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Ghi Chú *</label>
-                  <textarea class="form-control" name="ghichu" [(ngModel)]="data.ghichu" rows="3"></textarea>
+                  <textarea class="form-control" name="ghichu" [(ngModel)]="receiveData.ghichu" rows="3"></textarea>
                 </div>
               </div>
             </form>
@@ -53,7 +48,7 @@
         </div>
       </div>
       <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
-        <div class="select-person-header">List Đặt Hàng </div>
+        <div class="select-person-header">List Đơn </div>
         <mat-card style="padding: 24px 0px;">
           <mat-card-content>
             <div class="container-fluid">
@@ -65,15 +60,15 @@
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
                           <thead>
                             <tr>
-                              <th (click)="selectAll()">Tên</th>
+                              <th (click)="selectAll()">Mã Đơn</th>
                               <th>Mã SP | SL</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
-                              <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.tenkh}}</td>
+                            <tr *ngFor="let item of listOrder; let i = index" [ngStyle]="{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}">
+                              <td (click)="selectItem(item)">{{item.madh}} | {{item.tongsl}}</td>
                               <td>
-                                <div *ngFor="let prod of item.bills">{{prod.masp}} | {{prod.soluong}}</div>
+                                <div *ngFor="let prod of item.chitietdhs">{{prod.masp}} | {{prod.soluong}}</div>
                               </td>
                             </tr>
                           </tbody>
@@ -83,7 +78,6 @@
                   </div>
                 </div>
               </div>
-              <!-- #END# Basic Examples -->
             </div>
           </mat-card-content>
         </mat-card>
@@ -101,21 +95,14 @@
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                           <thead>
                             <tr>
-                              <th>Mã SP</th>
+                              <th>Mã Đơn</th>
                               <th>Số Lượng</th>
                               <th>Giữ Hộp</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th>Mã SP</th>
-                              <th>Số Lượng</th>
-                              <th>Giữ Hộp</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
-                            <tr *ngFor="let item of result">
-                              <td>{{item.masp}}</td>
+                            <tr *ngFor="let item of receiveData.chitietnhs">
+                              <td>{{item.madh}}</td>
                               <td>{{item.soluong}}</td>
                               <td>{{item.giuhop}}</td>
                             </tr>
@@ -126,7 +113,6 @@
                   </div>
                 </div>
               </div>
-              <!-- #END# Basic Examples -->
             </div>
             <div style="display: inline-block; width: 100%">
               <button class="btn btn-block btn-lg bg-cyan waves-effect" style="" (click)="submit()" type="submit">Submit</button>
@@ -136,10 +122,10 @@
       </div>
     </div>
   </div>  
-  <body *ngIf="!listBooked.length" class="four-zero-four">
+  <body *ngIf="!listOrder.length" class="four-zero-four">
     <div class="four-zero-four-container">
         <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
-        <div class="error-message">Không Có Đơn Đặt Hàng</div>
+        <div class="error-message">Không Có Đơn Nào</div>
     </div>
 </body>
 </section>

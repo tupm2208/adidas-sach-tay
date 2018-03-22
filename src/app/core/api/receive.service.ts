@@ -20,7 +20,7 @@ export class ReceiveService {
 
     let token = this.storage.get('token');
 
-    return this.mainApi.put('nhanhang/' + params.mahd + '?token=' + token, params);
+    return this.mainApi.put('nhanhang/' + params.manh + '?token=' + token, params);
   }
 
   getById(id): Observable<any> {
@@ -41,7 +41,7 @@ export class ReceiveService {
 
     let token = this.storage.get('token');
 
-    return this.mainApi.delete('nhanhang/'+ params.mahd + '?token=' + token);
+    return this.mainApi.delete('nhanhang/'+ params.manh + '?token=' + token);
   }
 
   search(params): Observable<any> {

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormatService } from '../../../core/util/format.service';
 
 @Component({
   selector: 'app-bill',
@@ -12,7 +13,8 @@ export class BillComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<BillComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private formatService: FormatService
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class BillComponent implements OnInit {
 
     let sum = 0;
 
-    this.data.listMasp.forEach(element => {
+    this.data.chitiethds.forEach(element => {
       
       sum += element.giaweb * element.trietkhau * element.tigia;
     });

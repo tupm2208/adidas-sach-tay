@@ -4,13 +4,12 @@ import 'rxjs/add/operator/switchMap';
 
 //service
 import { UserService } from '../../core/api/user.service';
-import { BillService } from '../../core/api/bill.service';
-import { BillDetailService } from '../../core/api/bill-detail.service';
-import { OrderService } from '../../core/api/order.service';
 import { LoadingService } from '../../core/util/loading.service';
 import { DialogService } from '../../core/dialog/dialog.service';
 import { FormatService } from '../../core/util/format.service';
 import { UserDialogService } from '../../core/dialog/user/user-dialog.service';
+import { MainService } from '../../core/api/main.service';
+import { BillService } from '../../core/api/bill.service'
 
 declare var $:any;
 
@@ -22,20 +21,19 @@ declare var $:any;
 export class HistoryComponent implements OnInit {
 
   private madh = '';
-  user: any = {};
-  private fakedData: any = []
+  private billData: any = [];
+  private user: any = {};
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private billService: BillService,
-    private billDetailService: BillDetailService,
-    private orderService: OrderService,
     private loadingService: LoadingService,
     private dialogService: DialogService,
     private formatService: FormatService,
-    private userDialog: UserDialogService
+    private userDialog: UserDialogService,
+    private mainService: MainService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
@@ -44,66 +42,19 @@ export class HistoryComponent implements OnInit {
 
     let id = this.route.snapshot.paramMap.get('id');
 
-    this.userService.getById(id).subscribe( user => {
+    this.mainService.listBill({makh: id}).subscribe( user => {
 
-      this.billDetailService.getByParams({makh: id}).subscribe( bills => {
+      this.billData = user;
+      console.log("data: ", user);
 
-        this.fakedData = bills;
+      if(this.billData.length) {
 
-        this.formatService.formatData(this.fakedData,"mahd");
+        this.user = this.billData[0].user;
+        this.loadingService.hide();
+      } else {
 
-        if(!bills.length) this.loadingService.hide();
-
-        let dh: any = {};
-        
-        let count = 0;
-
-        this.fakedData.forEach(element => {
-
-          if(element.madh) {
-
-            if (dh[element.madh]) {
-
-              element.order = dh[element.madh];
-              count++;
-            } else {
-
-              dh[element.madh] = {};
-
-              this.orderService.getById(element.madh).subscribe(data => {
-
-                console.log("donhang: ", data);
-                element.order = data.data;
-
-                for (let i in data.data) {
-
-                  dh[element.madh][i] = data.data[i];
-                }
-
-                count++;
-
-                if (count == this.fakedData.length) {
-
-                  this.loadingService.hide();
-                }
-              }, error => {
-
-                count++;
-
-                if (count == this.fakedData.length) {
-
-                  this.loadingService.hide();
-                }
-              })
-            }
-          } else count++;
-        });
-
-        console.log("user: ", user);
-        console.log("bills: ", bills);
-        
-        this.user =user.data;
-      })
+        this.userService.getById(id).subscribe( userData => this.user = userData.data, error => this.loadingService.hide());
+      }
     }, error => {
 
       this.loadingService.hide();
@@ -112,17 +63,14 @@ export class HistoryComponent implements OnInit {
 
   updateUser() {
 
-    this.userDialog.openUserDetail(this.user).subscribe( data => {
-
-      console.log("user: ", data);
-    })
+    this.userDialog.openUserDetail(this.user);
   }
 
   openOrder(item) {
 
     if(!item.order) return;
 
-    this.dialogService.gotoOrder(item.order).subscribe( data => {
+    this.dialogService.gotoOrder(item.order.madh).subscribe( data => {
 
       this.billService.getById(item.mahd).subscribe ( bill => {
         
@@ -138,50 +86,35 @@ export class HistoryComponent implements OnInit {
 
   gotoDetail(item) {
 
-    this.dialogService.openOrder({user: this.user, bill: item}).subscribe( data => {
+    this.dialogService.openBill({user: this.user, bill: item}).subscribe( data => {
 
-      if(data == -2) {
+      for(let i = 0; i< item.chitiethds.length; i++) {
 
-        this.fakedData.splice(this.fakedData.indexOf(item),1);
+        if(!item.chitiethds[i].mahd) {
 
-        this.fakedData = this.fakedData.concat([]);
+          item.chitiethds.splice(i,1);
+          i--;
+        }
+      }
+
+      if(data == -2 || !item.chitiethds.length) { //delete
+
+        this.billData.splice(this.billData.indexOf(item),1);
+
+        this.billData = this.billData.concat([]);
 
         return;
       }
-
-      this.billService.getById(item.mahd).subscribe( data => {
-
-        for(let e in data.data){
-
-          item[e] = data.data[e];
-        }
-
-        this.billDetailService.getByParams({mahd: item.mahd}).subscribe( detailList => {
-
-          if(!detailList.length) {
-
-            this.fakedData.splice(this.fakedData.indexOf(item), 1);
-
-            this.fakedData = this.fakedData.concat([]);
-            return;
-          }
-
-            item.listMasp = detailList;
-
-          }, error => {
-
-          })
-      })
     })
   }
 
   addBill() {
 
-    this.dialogService.openOrder({user: this.user}).subscribe( data => {
+    this.dialogService.openBill({user: this.user}).subscribe( data => {
 
       if(typeof(data) == "object") {
         
-        this.fakedData = this.fakedData.concat([data]);
+        this.billData = this.billData.concat([data]);
       }
     })
   }

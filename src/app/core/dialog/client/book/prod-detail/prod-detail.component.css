@@ -1,0 +1,31 @@
+.form-group {
+    margin-bottom: 0px;
+}
+
+.palel-primary {
+    border-color: #bce8f1;
+}
+
+.panel-primary>.panel-heading {
+    background: #bce8f1;
+}
+
+.panel-primary>.panel-body {
+    background-color: #EDEDED;
+}
+
+#cancel {
+    float: right;
+    position: relative;
+    bottom: 18px;
+    left: 10px;
+    margin-right: 10px;
+    border: 0;
+    color: red;
+    background-color: unset;
+}
+
+#addMore {
+    background-color: cyan;
+    color: white;
+}

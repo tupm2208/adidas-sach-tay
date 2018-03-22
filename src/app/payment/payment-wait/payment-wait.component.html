@@ -1,0 +1,58 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Đơn Hàng
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div id="sign_up" method="POST">
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th>Delete Request</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th>Delete Request</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr *ngFor="let item of fakedData | user: {'madh': madh}">
+                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
+                                        <td *ngIf="sr">{{item.tienyen}}</td>
+                                        <td *ngIf="sr">{{item.tigia}}</td>
+                                        <td *ngIf="sr">{{item.datcoc}}</td>
+                                        <td><a (click)="delete(item)"><i class="material-icons">delete</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

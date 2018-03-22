@@ -44,6 +44,7 @@ export class ChildProductComponent implements OnInit {
 
   toggleHop() {
 
+    if(this.madh) return;
     this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
   }
 }

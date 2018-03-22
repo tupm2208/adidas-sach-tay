@@ -55,9 +55,9 @@ $.AdminBSB.leftSideBar = {
         //Close sidebar
         $(window).click(function(e) {
             var $target = $(e.target);
-            if (e.target.nodeName.toLowerCase() === 'i') { $target = $(e.target).parent(); }
+            if (e.target.nodeName.toLowerCase() === 'span') { $target = $(e.target).parent(); }
 
-            if (!$target.hasClass('bars') && _this.isOpen() && !$(e.target).hasClass('menu-toggle')) {
+            if (!$target.hasClass('bars') && _this.isOpen() && !$target.hasClass('menu-toggle')) {
                 if (!$target.hasClass('js-right-sidebar')) $overlay.fadeOut();
                 $body.removeClass('overlay-open');
             }

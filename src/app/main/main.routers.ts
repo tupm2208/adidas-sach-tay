@@ -8,6 +8,7 @@ import { HistoryComponent } from './history/history.component';
 import { TestComponent } from './test/test.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
+import { ReceiveListComponent } from './receive-list/receive-list.component';
 
 export const MainRoutes: Routes = [
     {
@@ -37,5 +38,8 @@ export const MainRoutes: Routes = [
     }, {
         path: 'receiver',
         component: ReceiverComponent
+    }, {
+        path: 'receive-list',
+        component: ReceiveListComponent
     }
 ]

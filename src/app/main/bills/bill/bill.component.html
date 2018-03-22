@@ -8,9 +8,9 @@
           <img src="assets\images\12733397_1699284923647052_4987102044634626443_n.jpg" >
         </div>
         <div class="col-md-9 col-xs-8 col-sm-8 col-lg-9">
-          <div><span>Người Nhận</span></div>
-          <div><span>Số Điện Thoại</span></div>
-          <div><span>Địa Chỉ</span></div>
+          <div><span>Người Nhận: <strong>{{data.user.tenkh}}</strong></span></div>
+          <div><span>Số Điện Thoại: <strong>{{data.user.sdt}}</strong></span></div>
+          <div><span>Địa Chỉ: <strong>{{data.user.diachi}}</strong></span></div>
         </div>
     </div>
     
@@ -35,14 +35,14 @@
     						</thead>
     						<tbody>
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr *ngFor="let item of data.listMasp; let i = index">
-									<td>{{i==0? data.ngay: ''}}</td>
+    							<tr *ngFor="let item of data.chitiethds; let i = index">
+									<td>{{i==0? formatService.formatDate(data.ngay): ''}}</td>
     								<td>{{item.masp}}</td>
 									<td class="text-center">{{item.soluong}}</td>
 									<td *ngIf="isMobie"  class="text-center">{{item.giaweb}}</td>
 									<td *ngIf="isMobie"  class="text-center">{{item.trietkhau}}</td>
 									<td *ngIf="isMobie"  class="text-center">{{item.tigia}}</td>
-    								<td class="text-right">{{item.giaweb * item.tigia * item.trietkhau}}</td>
+    								<td class="text-right">{{item.giaweb * item.tigia * item.trietkhau | number: '1.2-2'}}</td>
     							</tr>
     							<tr>
 									<td class="no-line"></td>
@@ -55,7 +55,7 @@
 										<!-- <div class="form-line" style="position: absolute">
 											<input type="text" class="form-control" name="sdt" placeholder="Số Điện Thoại" autofocus>
 										</div> -->
-										{{subTotal()}}
+										{{subTotal() | number: '1.2-2'}}
 									</td>
     							</tr>
     							<tr>
@@ -65,7 +65,7 @@
 									<td *ngIf="isMobie" class="no-line"></td>
 									<td *ngIf="isMobie" class="no-line"></td>
     								<td class="no-line text-center"><strong>Shipping</strong></td>
-    								<td class="no-line text-right">{{data.ship}}</td>
+    								<td class="no-line text-right">{{data.ship | number: '1.2-2'}}</td>
     							</tr>
     							<tr>
 									<td class="no-line"></td>
@@ -74,7 +74,7 @@
 									<td *ngIf="isMobie" class="no-line"></td>
 									<td *ngIf="isMobie" class="no-line"></td>
     								<td class="no-line text-center"><strong>Total</strong></td>
-    								<td class="no-line text-right">{{subTotal() - data.ship}}</td>
+    								<td class="no-line text-right">{{subTotal() - data.ship | number: '1.2-2'}}</td>
     							</tr>
     						</tbody>
     					</table>

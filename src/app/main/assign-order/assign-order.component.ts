@@ -50,6 +50,7 @@ export class AssignOrderComponent implements OnInit {
   ngOnInit() {
 
     this.orderData = {};
+    this.orderData.thuonghieu = '';
     this.orderData.result = [];
 
     this.options = [];
@@ -101,7 +102,21 @@ export class AssignOrderComponent implements OnInit {
 
   selectItem(item) {
 
+    if(this.orderData.thuonghieu &&  item.thuonghieu.toUpperCase().indexOf(this.orderData.thuonghieu.toUpperCase()) == -1) {
+
+      return;
+    } else {
+
+      this.orderData.thuonghieu = item.thuonghieu;
+    }
+
     item.madh = !item.madh;
+
+    if(!item.madh) {
+
+      this.orderData.thuonghieu = '';
+      this.checkAndSetTH();
+    }
 
     console.log("item: ", item);
     item.chitiethds.forEach(elem => {
@@ -153,11 +168,13 @@ export class AssignOrderComponent implements OnInit {
 
   selectAll() {
 
-    let flag = true;
+    let flag = true; // == false mean we have to select all, == true mean otherwise
+
+    let th = this.orderData.thuonghieu;
 
     this.listBooked.forEach( element => {
 
-      if(!element.madh) {
+      if(!element.madh && th && element.thuonghieu.toUpperCase().indexOf(th.toUpperCase()) != -1) {
 
         flag = false;
         return;
@@ -166,7 +183,8 @@ export class AssignOrderComponent implements OnInit {
 
     this.listBooked.forEach( element => {
 
-      if(flag) {
+      if(element.thuonghieu.toUpperCase().indexOf(th.toUpperCase()) == -1) return;
+      if(flag) { 
 
         this.selectItem(element);
       } else {
@@ -190,6 +208,18 @@ export class AssignOrderComponent implements OnInit {
     return true;
   }
 
+  checkAndSetTH() {
+
+    this.listBooked.forEach( element => {
+
+      if(element.madh) {
+
+        this.orderData.thuonghieu = element.thuonghieu;
+        return;
+      }
+    })
+  }
+
   submit() {
 
     this.loadingService.show();
@@ -202,7 +232,7 @@ export class AssignOrderComponent implements OnInit {
     }
 
     this.orderData.makh = this.selectedUser.makh;
-    this.orderData.trangthai = 2;
+    this.orderData.trangthai = 3;
     this.orderData.ngay = new Date().getTime();
     this.orderService.create(this.orderData).subscribe( data => {
 
@@ -215,7 +245,7 @@ export class AssignOrderComponent implements OnInit {
         if(element.madh) {
 
           element.madh = data.data.madh;
-          element.trangthai = 2;
+          element.trangthai = 3;
 
           this.billService.update(element).subscribe( data => {
 
@@ -230,7 +260,7 @@ export class AssignOrderComponent implements OnInit {
           }, error => {
 
             element.madh = null;
-            element.trangthai = 1;
+            element.trangthai = 2;
           })
         } else {
 

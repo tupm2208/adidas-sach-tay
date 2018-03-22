@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 declare let $: any;
 
@@ -71,5 +72,38 @@ export class FormatService {
 
       des[e] = src[e];
     }
+  }
+
+  statusType(type) {
+
+    switch(type) {
+
+      case 1: return "Chưa Duyệt";
+      case 2: return "Đã Đặt Hàng";
+      case 3: return "Chưa Thanh Toán";
+      case 4: return "Đã Thanh Toán";
+      case 5: return "Chưa Về Kho Nhật"
+      case 6: return "Về Kho Nhật";
+      case 7: return "Về Kho Việt Nam";
+      case 8: return "Hoàn Tất";
+      default: return "Chưa Đặt Trạng Thái";
+    }
+  }
+
+  convertToArrayObservable(methodCallback, array, compareCallback, params?, property?):  Array<Observable<any>> {
+
+    let res: Array<Observable<any>>  = [];
+
+    array.forEach(element => {
+      
+      if(compareCallback(element)) {
+
+        params[property] = element[property]
+
+        res.push(methodCallback(params));
+      }
+    });
+
+    return res;
   }
 }

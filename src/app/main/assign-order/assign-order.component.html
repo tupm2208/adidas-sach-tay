@@ -8,7 +8,7 @@
             <form name="myform">
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="form-group">
-                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Mã Sản Phẩm *</label>
+                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Người Thanh Toán *</label>
                   <mat-form-field class="example-full-width" [floatLabel]="'never'">
                     <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
@@ -19,7 +19,7 @@
                   </mat-form-field>
                 </div>
                 <div class="form-group">
-                  <label for="age">Mã Đơn Hàng *</label>
+                  <label for="age" [ngStyle]="{'color': orderData.madh? '': 'red'}">Mã Đơn Hàng *</label>
                   <input id="age" name="madh" [(ngModel)]="orderData.madh" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
@@ -29,7 +29,7 @@
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Tài Khoản *</label>
+                  <label for="age"  [ngStyle]="{'color': orderData.taikhoan? '': 'red'}">Tài Khoản *</label>
                   <input id="age" name="giaweb" [(ngModel)]="orderData.taikhoan" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
@@ -70,7 +70,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
+                            <tr *ngFor="let item of listBooked | user: {'thuonghieu': orderData.thuonghieu}; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
                               <td (click)="selectItem(item)">{{item.user.tenkh}}</td>
                               <td>
                                 <div *ngFor="let prod of item.chitiethds">{{prod.masp}} | {{prod.soluong}}</div>

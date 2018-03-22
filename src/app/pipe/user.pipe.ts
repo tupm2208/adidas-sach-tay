@@ -14,14 +14,32 @@ export class UserPipe implements PipeTransform {
       for(let key in filter) {
         
         if(!item.hasOwnProperty(key)) continue;
-        
-        if(typeof(filter[key]) == 'object') {
+
+        if(Array.isArray(item[key])){
+
+          for(let i = 0; i< item[key].length; i++) {
+
+            let lc = true;
+            for (let e in filter[key]) {
+
+              let str = item[key][i][e] + '';
+
+              if (str.toUpperCase().indexOf(filter[key][e].toUpperCase()) == -1) {
+
+                lc = false;
+              }
+            }
+
+            return lc;
+          }
+
+        }else if(typeof(filter[key]) == 'object') {
 
           for(let e in filter[key]) {
 
             let str = item[key][e] + '';
             
-            if (str.indexOf(filter[key][e]) == -1) {
+            if (str.toUpperCase().indexOf(filter[key][e].toUpperCase()) == -1) {
 
               return false;
             }
@@ -33,13 +51,11 @@ export class UserPipe implements PipeTransform {
 
           if(item['makh'] && item['makh'] == 1) { return false }
 
-          if (str.indexOf(filter[key]) == -1) {
+          if (str.toUpperCase().indexOf(filter[key].toUpperCase()) == -1) {
 
             return false;
           }
         }
-        
-        
       }
 
       return true; // true if matches all fields

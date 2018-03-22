@@ -5,10 +5,8 @@ import 'rxjs/add/observable/forkJoin';
 
 //service
 import { BillService } from '../../../api/bill.service';
-import { BillDetailService } from '../../../api/bill-detail.service';
 import { OrderService } from '../../../api/order.service';
 import { OrderDetailService } from '../../../api/order-detail.service'; 
-import { UserService } from '../../../api/user.service';
 import { LoadingService } from '../../../util/loading.service';
 import { PopupService } from '../../../dialog/popup/popup.service';
 import { FormatService } from '../../../util/format.service';
@@ -30,9 +28,7 @@ export class OrderComponent implements OnInit {
   counter = 0;
 
   constructor(
-    private userService: UserService,
     private billService: BillService,
-    private billDetailService: BillDetailService,
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private dialogRef: MatDialogRef<OrderComponent>,
@@ -78,6 +74,11 @@ export class OrderComponent implements OnInit {
 
   selectItem(item) {
 
+    if(this.orderData.trangthai != 3) {
+      this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Đơn Đặt Hàng");
+      return;
+    }
+
     item.madh = item.madh? null: this.madh;
     item.chitiethds.forEach(elem => {
 
@@ -89,10 +90,13 @@ export class OrderComponent implements OnInit {
           flag = false;
           if(item.madh) {
 
+            item.trangthai = 3;
+
             element.soluong += elem.soluong;
             element.giuhop += elem.giuhop;
           } else {
 
+            item.trangthai = 2;
             if(element.soluong == elem.soluong) {
 
               this.orderData.chitietdhs.splice(this.orderData.chitietdhs.indexOf(element), 1);
@@ -145,6 +149,11 @@ export class OrderComponent implements OnInit {
   }
 
   selectAll() {
+
+    if(this.orderData.trangthai != 3) {
+      this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Khỏi Đơn Hàng!");
+      return;
+    }
 
     let flag = true;
 

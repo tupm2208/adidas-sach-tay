@@ -44,64 +44,20 @@ export class BillsComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.billDetailService.getByParams({}).subscribe( data => {
+    this.getListBills();
+  }
 
-      let userList: any = {};
+  getListBills() {
 
-      console.log("bill List: ", data);
-      
-      if(!data.length) this.loadingService.hide();
+    this.mainService.listBill({}).subscribe( data => {
 
       this.fakedData = data;
+      this.loadingService.hide();
 
-      this.formatService.formatData(this.fakedData,"mahd");
-      
-      let i = 0;
-      this.fakedData.forEach(element => {
-        
-        if(userList[element.makh]) {
-
-          element.user = userList[element.makh];
-          i += 1;
-        } else {
-
-          userList[element.makh] = {};
-          element.user = userList[element.makh];
-          this.userService.getById(element.makh).subscribe(user => {
-            
-            userList[element.makh].tenkh = user.data.tenkh,
-            userList[element.makh].sdt = user.data.sdt
-            userList[element.makh].makh = user.data.makh;
-
-            i += 1;
-
-            if (i == this.fakedData.length) {
-
-              this.loadingService.hide();
-            }
-          }, error => {
-
-            i += 1;
-
-            if (i == this.fakedData.length) {
-
-              this.loadingService.hide();
-            }
-          })
-        }
-      });
-      console.log("faked bill data: ", this.fakedData);
+      console.log("data:", data);
     }, error => {
 
       this.loadingService.hide();
-    });
-  }
-
-  async getListBills() {
-
-    await this.mainService.listBill({}).subscribe( data => {
-
-      this.fakedData = data;
     })
   }
 
@@ -121,13 +77,13 @@ export class BillsComponent implements OnInit {
 
   order(item) {
 
-    this.dialogService.openOrder({user: item.user}).subscribe( data => {
+    this.dialogService.openBill({user: item.user}).subscribe( data => {
 
       console.log("data order: ", data);
     })
   }
 
-  openOrder(item) {
+  openBill(item) {
 
     if(item.madh) this.dialogService.gotoOrder(item.madh).subscribe( data => {
 
@@ -143,9 +99,9 @@ export class BillsComponent implements OnInit {
 
   update(item) {
 
-    this.dialogService.openOrder({user: item.user, bill: item}).subscribe( data => {
+    this.dialogService.openBill({user: item.user, bill: item}).subscribe( data => {
 
-      if(!item.listMasp) {
+      if(!item.chitiethds.length) {
 
         this.fakedData.splice(this.fakedData.indexOf(item), 1);
 

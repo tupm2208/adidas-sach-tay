@@ -80,7 +80,7 @@
                                         <td  *ngIf="sr"><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
                                             <div><i class="material-icons">history</i><i>{{item.user.sdt}}</i></div>
                                         </a></td>
-                                        <td *ngIf="sr" (click)="openOrder(item)"><a>{{item.madh}}</a></td>
+                                        <td *ngIf="sr" (click)="openBill(item)"><a>{{item.madh}}</a></td>
                                         <td>
                                             <a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
                                                 <ul style="padding-left: 15px;" *ngIf="item.chitiethds">
@@ -95,7 +95,7 @@
                                         <td *ngIf="sr">{{item.khoiluong}}</td>
                                         <td *ngIf="sr">{{item.tong}}</td>
                                         <td><a (click)="update(item)">
-                                            <div><i class="material-icons">settings</i>{{item.trangthai}}</div>
+                                            <div><i class="material-icons">settings</i>{{formatService.statusType(item.trangthai)}}</div>
                                         </a></td>
                                     </tr>
                                 </tbody>

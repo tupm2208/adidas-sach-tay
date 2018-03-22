@@ -10,11 +10,4 @@ export const LoginRouters: Routes = [
         path: 'regist',
         component: RegistComponent
     }
-    // , {
-    //     path: 'list',
-    //     component: ListComponent
-    // }, {
-    //     path: 'upload',
-    //     component: UploadComponent
-    // }
 ]

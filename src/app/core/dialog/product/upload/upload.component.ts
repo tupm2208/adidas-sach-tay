@@ -15,7 +15,7 @@ declare let $: any;
 })
 export class UploadComponent implements OnInit {
 
-  private billDetailList = [{
+  private billDetailList: any = [{
     masp: '',
     soluong: 1,
     trangweb: '',
@@ -55,9 +55,10 @@ export class UploadComponent implements OnInit {
       this.data.bill = {
         ngay: this.getTime(),
         makh: this.data.user.makh,
-        trangthai: 1,
+        trangthai: 2,
         datcoc: '',
-        ship: ''
+        ship: '',
+        thuonghieu: 'adidas'
       }
     }
   }
@@ -210,6 +211,10 @@ export class UploadComponent implements OnInit {
 
         console.log("put data bill: ", data);
         this.registOrUpdate();
+      }, error => {
+
+        this.loading.hide('upload');
+        this.popupDialog.showError();
       })
     } else {
 
@@ -220,6 +225,10 @@ export class UploadComponent implements OnInit {
         this.data.bill.mahd = data.data.mahd;
         this.data.bill.chitiethds = this.billDetailList;
         this.registOrUpdate();
+      }, error => {
+
+        this.popupDialog.showError();
+        this.loading.hide('upload');
       })
     }
   }
@@ -246,5 +255,16 @@ export class UploadComponent implements OnInit {
           this.dialogRef.close(-1);
       }
     })
+  }
+
+  calculate() {
+
+    let sum = 0;
+    this.billDetailList.forEach( element => {
+
+      sum += element.giaweb * element.tigia * (1 + element.trietkhau) * element.soluong;
+    });
+
+    return sum;
   }
 }

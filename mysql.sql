@@ -333,3 +333,14 @@ create trigger chitietdh_drop
   where old.madh = madh;
   end//
 delimiter ;
+
+delimiter //
+create trigger nhanhang_update
+  after update on chitietdh 
+  for each row
+  begin
+  update donhang
+  set trangthai = new.trangthai
+  where manh = new.manh;
+  end//
+delimiter ;

@@ -11,6 +11,10 @@ import { BillDetailService } from './bill-detail.service';
 import { ReceiveService } from './receive.service';
 import { ReceiveDetailService } from './receive-detail.service';
 import { MainService } from './main.service';
+import { WaitingBillService } from './waiting-bill.service';
+import { WaitingBillDetailService } from './waiting-bill-detail.service';
+import { WaitingOrderService } from './waiting-order.service';
+import { WaitingReceiveService } from './waiting-receive.service';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { MainService } from './main.service';
     BillDetailService,
     ReceiveService,
     ReceiveDetailService,
-    MainService
+    MainService,
+    WaitingBillService,
+    WaitingBillDetailService,
+    WaitingOrderService,
+    WaitingReceiveService
   ]
 })
 export class ApiModule {}

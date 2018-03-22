@@ -1,0 +1,69 @@
+<body class="signup-page">
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);"><b>Đặt Hàng</b></a>
+            <!-- <small>Thông Tin Chi Tiết</small> -->
+        </div>
+        <div class="card" style="box-shadow: unset">
+            <div class="body">
+                <form id="sign_up" method="POST">
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="billDetailList.length == 1">
+                            <app-prod-detail [product]="billDetailList[0]" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="billDetailList.length > 1">
+                        <div class="col-md-6 col-lg-6 col-sm-6" *ngFor="let item of billDetailList">
+                            <app-prod-detail [product]="item" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <form name="myform">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                                            <div class="form-group">
+                                                <label for="age">Thành Tiền *</label>
+                                                <label name="thanhtien" class="form-control" min="1">{{calculate() | number:'1.2-2'}}</label>
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="age">Thương Hiệu *</label>
+                                                <input id="age" name="thuonghieu" class="form-control" [ngStyle]="{'color': data.bill.thuonghieu? '':'red'}" [(ngModel)]="data.bill.thuonghieu" type="text" min="1">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ship">Phí Ship *</label>
+                                                <input [(ngModel)]="data.bill.ship" name="ship" class="form-control" min="1" type="text">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="age">Đặt Cọc *</label>
+                                                <input [(ngModel)]="data.bill.datcoc" name="thanhtien" class="form-control" min="1" type="text">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: inline-block; width: 100%">
+                        <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="regist()" style="float:left" type="submit">UPDATE</button>
+                        <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

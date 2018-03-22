@@ -25,11 +25,16 @@ import { UserDialogService } from './user/user-dialog.service';
 import { ErrorComponent } from './popup/error/error.component';
 import { SuccessComponent } from './popup/success/success.component';
 import { UploadComponent} from './product/upload/upload.component';
-import { ProductKindComponent} from './product/upload/product-kind/product-kind.component';
 import { ChildProductComponent } from './product/upload/child-product/child-product.component';
 import { WanningComponent } from './popup/wanning/wanning.component';
 import { OrderComponent} from './product/order/order.component';
 import { UserComponent } from './user/user/user.component';
+import { ReceiveDetailComponent } from './product/receive-detail/receive-detail.component';
+import { PipeModule } from '../../pipe/pipe.module';
+import { BookComponent } from './client/book/book.component';
+import { ProdDetailComponent } from './client/book/prod-detail/prod-detail.component';
+import { ClientService } from './client/client.service';
+import { PaymentRequestComponent } from './client/payment-request/payment-request.component';
 
 @NgModule({
   imports: [
@@ -49,32 +54,39 @@ import { UserComponent } from './user/user/user.component';
     MatAutocompleteModule,
     MatSelectModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipeModule
   ],
   declarations: [
     ErrorComponent,
     SuccessComponent,
     UploadComponent,
     UploadComponent,
-    ProductKindComponent,
     ChildProductComponent,
     WanningComponent,
     OrderComponent,
-    UserComponent
+    UserComponent,
+    ReceiveDetailComponent,
+    BookComponent,
+    ProdDetailComponent,
+    PaymentRequestComponent
   ],
   entryComponents: [
     ErrorComponent,
     SuccessComponent,
     UploadComponent,
-    ProductKindComponent,
     WanningComponent,
     OrderComponent,
-    UserComponent
+    UserComponent,
+    ReceiveDetailComponent,
+    BookComponent,
+    PaymentRequestComponent
   ],
   providers: [
     DialogService,
     PopupService,
-    UserDialogService
+    UserDialogService,
+    ClientService
   ]
 })
 export class DialogModule { }

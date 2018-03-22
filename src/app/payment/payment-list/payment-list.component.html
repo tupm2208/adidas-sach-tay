@@ -1,0 +1,122 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Đơn Hàng
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div id="sign_up" method="POST">
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                </div>
+                                <div class="form-group" style="margin: 0">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sr = !sr;" *ngIf="sr">Ngày</th>
+                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Mã Đh</th>
+                                        <th *ngIf="sr">Mã Sản Phẩm</th>
+                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th *ngIf="sr">Thương Hiệu</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
+                                        <th *ngIf="sr">Ghi Chú</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th *ngIf="sr">Ngày</th>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Mã Sản Phẩm</th>
+                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th *ngIf="sr">Thương Hiệu</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
+                                        <th *ngIf="sr">Ghi Chú</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr style="background-color: #a1edeb;">
+                                      <td *ngIf="sr"></td>
+                                      <td></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr">{{balanceAll()| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr"></td>
+                                      <td></td>
+                                    </tr>
+                                    <tr *ngFor="let item of fakedData | user: {'madh': madh} | time: {'from': from, 'to': to}">
+                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
+                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
+                                        <td *ngIf="sr">
+                                            <ul *ngIf="item.chitietdhs">
+                                                <li *ngFor="let product of item.chitietdhs" ><span>{{product.masp}} -></span><span style="color: blue;">{{product.soluong}}</span><span ></span></li>
+                                            </ul>
+                                        </td>
+                                        <td *ngIf="sr">{{item.taikhoan}}</td>
+                                        <td *ngIf="sr">{{item.thuonghieu}}</td>
+                                        <td *ngIf="sr">{{item.tienyen}}</td>
+                                        <td *ngIf="sr">{{item.tigia}}</td>
+                                        <td *ngIf="sr">{{item.tigia * item.tienyen | number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.datcoc}}</td>
+                                        <td *ngIf="sr">{{item.tigia * item.tienyen - item.datcoc | number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.ghichu}}</td>
+                                        <td>
+                                          <div class="form-group">
+                                            <div>
+                                              <select data-validation="required" name="trangthai" (ngModelChange)="changeStatus($event,item)" [disabled]="item.trangthai>4" [(ngModel)]="item.trangthai" class="form-control">
+                                                <option value="3">Chưa Thanh Toán</option>
+                                                <option value="4">Đã Thanh Toán</option>
+                                                <option disabled value="5">Chưa Về Kho Nhật</option>
+                                                <option disabled value="6">Về Kho Nhật</option>
+                                                <option disabled value="7">Về Kho Việt Nam</option>
+                                                <option disabled value="8">Hoàn Tất</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>
