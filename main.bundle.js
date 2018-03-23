@@ -687,6 +687,33 @@ var MainService = /** @class */ (function () {
                 _this.formatService.formatData(data, "mahd");
                 var users = {};
                 var count = 0;
+            }, function (error) {
+                observer.next([]);
+                observer.complete();
+            });
+        });
+    };
+    MainService.prototype.sendRequest = function (array) {
+        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
+            __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */], array).subscribe(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, function (err) {
+                observer.error(err);
+                observer.complete();
+            });
+        });
+    };
+    MainService.prototype.ListOrderAndWait = function (optionParams) {
+        var _this = this;
+        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
+            _this.waitingOrderService.getWaitAndOrder(optionParams).subscribe(function (data1) {
+                var users = {};
+                var count = 0;
+                console.log("data filter: ", data1);
+                var data = data1.data.filter(function (element) {
+                    return element.choduyetdhs.length != 0;
+                });
                 data.forEach(function (element) {
                     if (!element.makh) {
                         element.user = {};
@@ -730,46 +757,53 @@ var MainService = /** @class */ (function () {
             });
         });
     };
-    MainService.prototype.sendRequest = function (array) {
-        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
-            __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */], array).subscribe(function (res) {
-                observer.next(res);
-                observer.complete();
-            }, function (err) {
-                observer.error(err);
-                observer.complete();
-            });
-        });
-    };
-    MainService.prototype.ListOrderAndWait = function (optionParams) {
-        var _this = this;
-        return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
-            _this.waitingOrderService.getWaitAndOrder(optionParams).subscribe(function (data) {
-                var users = {};
-                var count = 0;
-                console.log("data filter: ", data);
-                var array = data.data.filter(function (element) {
-                    return element.choduyetdhs.length != 0;
-                });
-                observer.next(array);
-                observer.complete();
-            }, function (error) {
-                observer.next([]);
-                observer.complete();
-            });
-        });
-    };
     MainService.prototype.ListReceiverAndWait = function (optionParams) {
         var _this = this;
         return new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */](function (observer) {
-            _this.waitingReceiveService.getWaitAndReceiver(optionParams).subscribe(function (data) {
+            _this.waitingReceiveService.getWaitAndReceiver(optionParams).subscribe(function (data1) {
                 var users = {};
                 var count = 0;
-                var array = data.filter(function (element) {
+                console.log("data filter: ", data1);
+                var data = data1.data.filter(function (element) {
                     return element.choduyetnhs.length != 0;
                 });
-                observer.next(array);
-                observer.complete();
+                data.forEach(function (element) {
+                    if (!element.makh) {
+                        element.user = {};
+                        count++;
+                        if (count == data.length) {
+                            observer.next(data);
+                            observer.complete();
+                        }
+                        return;
+                    }
+                    if (users[element.makh]) {
+                        element.user = users[element.makh];
+                        count++;
+                    }
+                    else {
+                        users[element.makh] = {};
+                        _this.userService.getById(element.makh).subscribe(function (user) {
+                            _this.formatService.copyObject(user.data, users[element.makh]);
+                            element.user = users[element.makh];
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        }, function (error) {
+                            count++;
+                            if (count == data.length) {
+                                observer.next(data);
+                                observer.complete();
+                            }
+                        });
+                    }
+                });
+                if (!data.length) {
+                    observer.next([]);
+                    observer.complete();
+                }
             }, function (error) {
                 observer.next([]);
                 observer.complete();
@@ -2973,7 +3007,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <!-- <small>Mã Đơn Hàng: {{orderData.madh}}</small>  -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n\n            <div class=\" col-md-6  col-sm-6 col-lg-6\" style=\"margin-bottom: 20px; min-width: 50%;\">\n              <div class=\"select-person-header\">List Đơn </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Mã Đơn</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder; let i = index\" [ngStyle]=\"{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td (click)=\"selectItem(item)\">{{item.madh}} | {{item.tongsl}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.chitietdhs\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <!-- <div class=\" col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\">Result </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã Đơn</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder | user: {'manh': receiveData.manh}\">\n                                    <td>{{item.madh}}</td>\n                                    <td>{{item.tongsl}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div> -->\n\n            <div class=\"col-md-6  col-sm-6 col-lg-6\" style=\"min-width: 50%;\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                      <div class=\"form-group\">\n                        <label for=\"age\">Khối Lượng *</label>\n                        <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"receiveData.khoiluong\" class=\"form-control\" type=\"text\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đơn Giá *</label>\n                        <input id=\"age\" name=\"dongia\" [(ngModel)]=\"receiveData.dongia\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Phụ Phí *</label>\n                        <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"receiveData.phuphi\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thành Tiền *</label>\n                        <span id=\"age\" class=\"form-control\">{{receiveData.khoiluong * receiveData.dongia + receiveData.phuphi}}</span>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"lastname\">Trạng Thái *</label>\n                        <div>\n                          <select data-validation=\"required\" name=\"trangthai\" [disabled]=\"receiveData.trangthai>7\" [(ngModel)]=\"receiveData.trangthai\" class=\"form-control\">\n                            <option value=\"5\">Chưa Về Kho Nhật</option>\n                            <option value=\"6\">Về Kho Nhật</option>\n                            <option value=\"7\">Về Kho Việt Nam</option>\n                            <option disabled value=\"8\">Hoàn Tất</option>\n                          </select>\n                        </div>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"receiveData.ghichu\" rows=\"3\"></textarea>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+module.exports = "\n\n<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <!-- <small>Mã Đơn Hàng: {{orderData.madh}}</small>  -->\n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n\n            <div class=\" col-md-6  col-sm-6 col-lg-6\" style=\"margin-bottom: 20px; min-width: 50%;\">\n              <div class=\"select-person-header\">List Đơn </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Mã Đơn</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder; let i = index\" [ngStyle]=\"{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td (click)=\"selectItem(item)\">{{item.madh}} | {{item.tongsl}}</td>\n                                    <td>\n                                      <div *ngFor=\"let prod of item.chitietdhs\">{{prod.masp}} | {{prod.soluong}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <!-- <div class=\" col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\">Result </div>\n              <mat-card style=\"padding: 24px 0px;\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã Đơn</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listOrder | user: {'manh': receiveData.manh}\">\n                                    <td>{{item.madh}}</td>\n                                    <td>{{item.tongsl}}</td>\n                                    <td>{{item.giuhop}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div> -->\n\n            <div class=\"col-md-6  col-sm-6 col-lg-6\" style=\"min-width: 50%;\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                      <div class=\"form-group\">\n                        <label for=\"age\">Khối Lượng *</label>\n                        <input id=\"age\" name=\"khoiluong\" [(ngModel)]=\"receiveData.khoiluong\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đơn Giá *</label>\n                        <input id=\"age\" name=\"dongia\" [(ngModel)]=\"receiveData.dongia\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Phụ Phí *</label>\n                        <input id=\"age\" name=\"phuphi\" [(ngModel)]=\"receiveData.phuphi\" class=\"form-control\" type=\"number\" min=\"1\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thành Tiền *</label>\n                        <span id=\"age\" class=\"form-control\">{{receiveData.khoiluong * receiveData.dongia - -receiveData.phuphi| number: '1.2-2' }}</span>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"lastname\">Trạng Thái *</label>\n                        <div>\n                          <select data-validation=\"required\" name=\"trangthai\" [disabled]=\"receiveData.trangthai>7\" [(ngModel)]=\"receiveData.trangthai\" class=\"form-control\">\n                            <option value=\"5\">Chưa Về Kho Nhật</option>\n                            <option value=\"6\">Về Kho Nhật</option>\n                            <option value=\"7\">Về Kho Việt Nam</option>\n                            <option disabled value=\"8\">Hoàn Tất</option>\n                          </select>\n                        </div>\n                      </div>\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea class=\"form-control\" name=\"ghichu\" [(ngModel)]=\"receiveData.ghichu\" rows=\"3\"></textarea>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
 
 /***/ }),
 
@@ -3027,8 +3061,10 @@ var ReceiveDetailComponent = /** @class */ (function () {
         this.receiveData = {};
     }
     ReceiveDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
         $('app-receive-detail').parent().parent().attr('id', 'app-receive-detail');
-        this.loadingService.show('app-receive-detail');
+        setTimeout(function () { _this.loadingService.show('app-receive-detail'); }, 0);
+        console.log("manh: ", this.manh);
         this.getListOrder();
         this.getReceive();
     };
