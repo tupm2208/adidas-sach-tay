@@ -646,6 +646,67 @@ var BillsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  waiting-list-bill works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingListBillComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var WaitingListBillComponent = /** @class */ (function () {
+    function WaitingListBillComponent() {
+    }
+    WaitingListBillComponent.prototype.ngOnInit = function () {
+    };
+    WaitingListBillComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-waiting-list-bill',
+            template: __webpack_require__("../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], WaitingListBillComponent);
+    return WaitingListBillComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/main/history/history.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1184,12 +1245,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__receive_list_receive_list_component__ = __webpack_require__("../../../../../src/app/main/receive-list/receive-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__orders_waiting_list_order_waiting_list_order_component__ = __webpack_require__("../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__bills_waiting_list_bill_waiting_list_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__receive_list_waiting_list_receiver_waiting_list_receiver_component__ = __webpack_require__("../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -1257,6 +1324,9 @@ var MainModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__product_table_product_table_component__["a" /* ProductTableComponent */],
                 __WEBPACK_IMPORTED_MODULE_21__receiver_receiver_component__["a" /* ReceiverComponent */],
                 __WEBPACK_IMPORTED_MODULE_22__receive_list_receive_list_component__["a" /* ReceiveListComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__orders_waiting_list_order_waiting_list_order_component__["a" /* WaitingListOrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__bills_waiting_list_bill_waiting_list_bill_component__["a" /* WaitingListBillComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__receive_list_waiting_list_receiver_waiting_list_receiver_component__["a" /* WaitingListReceiverComponent */],
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_17__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
@@ -1289,6 +1359,12 @@ var MainModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__product_table_product_table_component__ = __webpack_require__("../../../../../src/app/main/product-table/product-table.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__receiver_receiver_component__ = __webpack_require__("../../../../../src/app/main/receiver/receiver.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__receive_list_receive_list_component__ = __webpack_require__("../../../../../src/app/main/receive-list/receive-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__orders_waiting_list_order_waiting_list_order_component__ = __webpack_require__("../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__receive_list_waiting_list_receiver_waiting_list_receiver_component__ = __webpack_require__("../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bills_waiting_list_bill_waiting_list_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.ts");
+
+
+
 
 
 
@@ -1330,6 +1406,15 @@ var MainRoutes = [
     }, {
         path: 'receive-list',
         component: __WEBPACK_IMPORTED_MODULE_9__receive_list_receive_list_component__["a" /* ReceiveListComponent */]
+    }, {
+        path: 'bills/waiting-list-bill',
+        component: __WEBPACK_IMPORTED_MODULE_12__bills_waiting_list_bill_waiting_list_bill_component__["a" /* WaitingListBillComponent */]
+    }, {
+        path: 'receiver/waiting-list-receiver',
+        component: __WEBPACK_IMPORTED_MODULE_11__receive_list_waiting_list_receiver_waiting_list_receiver_component__["a" /* WaitingListReceiverComponent */]
+    }, {
+        path: 'orders/waiting-list-order',
+        component: __WEBPACK_IMPORTED_MODULE_10__orders_waiting_list_order_waiting_list_order_component__["a" /* WaitingListOrderComponent */]
     }
 ];
 
@@ -1357,7 +1442,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\">\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{item?.user?.sdt}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.madh}}</a></td>\n                                        <td *ngIf=\"sr\">\n                                            <ul *ngIf=\"item.chitietdhs\">\n                                                <li *ngFor=\"let product of item.chitietdhs\" ><span style=\"\">{{product.masp}}</span><span  style=\"float: right;width: 21px;letter-spacing: 0px;text-align: right;\">{{product.soluong}}</span><span style=\"float: right\">|</span></li>\n                                            </ul>\n                                        </td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td *ngIf=\"sr\">{{item.taikhoan}}</td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td *ngIf=\"sr\">{{item.ghichu}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Số Điện Thoại</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\">\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{item?.user?.sdt}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.madh}}</a></td>\n                                        <td *ngIf=\"sr\">\n                                            <ul *ngIf=\"item.chitietdhs\">\n                                                <li *ngFor=\"let product of item.chitietdhs\" ><span style=\"\">{{product.masp}}</span><span  style=\"float: right;width: 21px;letter-spacing: 0px;text-align: right;\">{{product.soluong}}</span><span style=\"float: right\">|</span></li>\n                                            </ul>\n                                        </td>\n                                        <td *ngIf=\"sr\">{{item.taikhoan}}</td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td *ngIf=\"sr\">{{item.ghichu}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -1441,6 +1526,157 @@ var OrdersComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */]])
     ], OrdersComponent);
     return OrdersComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group .form-line {\r\n    width: 30%;\r\n}\r\n\r\nul, menu, dir {\r\n    -webkit-padding-start: 20px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\" style=\"border-bottom: 2px solid;\">\n                                    <tr>\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.madh}}</a></td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td><a (click)=\"accept(item)\"><i class=\"material-icons\">check_circle</i></a></td>\n                                    </tr>\n                                    <tr *ngIf=\"item.choduyetdhs\">\n                                        <td></td>\n                                        <td *ngIf=\"sr\"></td>\n                                        <td></td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].tigia}}</td>\n                                        <td><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingListOrderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_waiting_order_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var WaitingListOrderComponent = /** @class */ (function () {
+    function WaitingListOrderComponent(matDialg, loadingService, formatService, dialogService, mainService, orderService, waitingOrderService, popupService) {
+        this.matDialg = matDialg;
+        this.loadingService = loadingService;
+        this.formatService = formatService;
+        this.dialogService = dialogService;
+        this.mainService = mainService;
+        this.orderService = orderService;
+        this.waitingOrderService = waitingOrderService;
+        this.popupService = popupService;
+        this.madh = '';
+        this.tenkh = '';
+        this.fakedData = [];
+        this.sr = true;
+    }
+    WaitingListOrderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sr = screen.width <= 412 ? false : true;
+        this.fakedData = [];
+        this.loadingService.show();
+        this.mainService.ListOrderAndWait({}).subscribe(function (data) {
+            console.log("main service data: ", data);
+            _this.fakedData = data;
+            _this.loadingService.hide();
+        });
+    };
+    WaitingListOrderComponent.prototype.formatDate = function (data) {
+        return this.formatService.formatDate(data);
+    };
+    WaitingListOrderComponent.prototype.gotoDetail = function (element) {
+        var _this = this;
+        this.dialogService.gotoOrder(element.madh).subscribe(function (data) {
+            if (data == 2) {
+                _this.fakedData.splice(_this.fakedData.indexOf(element), 1);
+                _this.fakedData = _this.fakedData.concat([]);
+            }
+            else if (data == 1) {
+                _this.mainService.listOrder({ makh: element.makh, madh: element.madh }).subscribe(function (listItem) {
+                    _this.fakedData.splice(_this.fakedData.indexOf(element), 1, listItem[0]);
+                    _this.fakedData = _this.fakedData.concat([]);
+                });
+            }
+        });
+    };
+    WaitingListOrderComponent.prototype.delete = function (item) {
+        var _this = this;
+        this.loadingService.show();
+        this.waitingOrderService.delete(item.madh).subscribe(function (res) {
+            item.choduyetdhs = null;
+            _this.loadingService.hide();
+            _this.popupService.showSuccess();
+            console.log("item: ", item);
+        }, function (error) {
+            _this.loadingService.hide();
+            _this.popupService.showError();
+        });
+    };
+    WaitingListOrderComponent.prototype.accept = function (item) {
+        var _this = this;
+        this.loadingService.show();
+        var ob = {};
+        this.formatService.copyObject(item, ob);
+        this.formatService.copyObject(item.choduyetdhs[0], ob);
+        console.log("my ob: ", ob);
+        this.orderService.update(ob).subscribe(function (res) {
+            _this.formatService.copyObject(ob, item);
+            _this.delete(item);
+        }, function (error) {
+            _this.loadingService.hide();
+            _this.popupService.showError();
+        });
+    };
+    WaitingListOrderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-waiting-list-order',
+            template: __webpack_require__("../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/main/orders/waiting-list-order/waiting-list-order.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_6__core_api_waiting_order_service__["a" /* WaitingOrderService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_dialog_popup_popup_service__["a" /* PopupService */]])
+    ], WaitingListOrderComponent);
+    return WaitingListOrderComponent;
 }());
 
 
@@ -1625,6 +1861,157 @@ var ReceiveListComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */]])
     ], ReceiveListComponent);
     return ReceiveListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group .form-line {\r\n    width: 30%;\r\n}\r\n\r\nul, menu, dir {\r\n    -webkit-padding-start: 20px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\" style=\"border-bottom: 2px solid;\">\n                                    <tr>\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.madh}}</a></td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td><a (click)=\"accept(item)\"><i class=\"material-icons\">check_circle</i></a></td>\n                                    </tr>\n                                    <tr *ngIf=\"item.choduyetdhs\">\n                                        <td></td>\n                                        <td *ngIf=\"sr\"></td>\n                                        <td></td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].datcoc}}</td>\n                                        <td *ngIf=\"sr\">{{item.choduyetdhs[0].tigia}}</td>\n                                        <td><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingListReceiverComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_waiting_order_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var WaitingListReceiverComponent = /** @class */ (function () {
+    function WaitingListReceiverComponent(matDialg, loadingService, formatService, dialogService, mainService, orderService, waitingOrderService, popupService) {
+        this.matDialg = matDialg;
+        this.loadingService = loadingService;
+        this.formatService = formatService;
+        this.dialogService = dialogService;
+        this.mainService = mainService;
+        this.orderService = orderService;
+        this.waitingOrderService = waitingOrderService;
+        this.popupService = popupService;
+        this.madh = '';
+        this.tenkh = '';
+        this.fakedData = [];
+        this.sr = true;
+    }
+    WaitingListReceiverComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sr = screen.width <= 412 ? false : true;
+        this.fakedData = [];
+        this.loadingService.show();
+        this.mainService.ListOrderAndWait({}).subscribe(function (data) {
+            console.log("main service data: ", data);
+            _this.fakedData = data;
+            _this.loadingService.hide();
+        });
+    };
+    WaitingListReceiverComponent.prototype.formatDate = function (data) {
+        return this.formatService.formatDate(data);
+    };
+    WaitingListReceiverComponent.prototype.gotoDetail = function (element) {
+        var _this = this;
+        this.dialogService.gotoOrder(element.madh).subscribe(function (data) {
+            if (data == 2) {
+                _this.fakedData.splice(_this.fakedData.indexOf(element), 1);
+                _this.fakedData = _this.fakedData.concat([]);
+            }
+            else if (data == 1) {
+                _this.mainService.listOrder({ makh: element.makh, madh: element.madh }).subscribe(function (listItem) {
+                    _this.fakedData.splice(_this.fakedData.indexOf(element), 1, listItem[0]);
+                    _this.fakedData = _this.fakedData.concat([]);
+                });
+            }
+        });
+    };
+    WaitingListReceiverComponent.prototype.delete = function (item) {
+        var _this = this;
+        this.loadingService.show();
+        this.waitingOrderService.delete(item.madh).subscribe(function (res) {
+            item.choduyetdhs = null;
+            _this.loadingService.hide();
+            _this.popupService.showSuccess();
+            console.log("item: ", item);
+        }, function (error) {
+            _this.loadingService.hide();
+            _this.popupService.showError();
+        });
+    };
+    WaitingListReceiverComponent.prototype.accept = function (item) {
+        var _this = this;
+        this.loadingService.show();
+        var ob = {};
+        this.formatService.copyObject(item, ob);
+        this.formatService.copyObject(item.choduyetdhs[0], ob);
+        console.log("my ob: ", ob);
+        this.orderService.update(ob).subscribe(function (res) {
+            _this.formatService.copyObject(ob, item);
+            _this.delete(item);
+        }, function (error) {
+            _this.loadingService.hide();
+            _this.popupService.showError();
+        });
+    };
+    WaitingListReceiverComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-waiting-list-receiver',
+            template: __webpack_require__("../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_6__core_api_waiting_order_service__["a" /* WaitingOrderService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_dialog_popup_popup_service__["a" /* PopupService */]])
+    ], WaitingListReceiverComponent);
+    return WaitingListReceiverComponent;
 }());
 
 
