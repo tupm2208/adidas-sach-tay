@@ -209,13 +209,6 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
         this.getSavedAccount();
     };
-    LoginComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this.loading.show();
-        setTimeout(function () {
-            _this.loading.hide();
-        }, 1000);
-    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.loading.show();

@@ -672,7 +672,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Chờ Duyệt\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let item of fakedData | user: {'manh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\" style=\"border-bottom: 2px solid;\">\n                                    <tr>\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.chitiethds\">{{prod.masp}} - {{prod.soluong}} - {{prod.giuhop}}</li>\n                                            </ul>    \n                                        </a></td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td><a (click)=\"accept(item)\"><i class=\"material-icons\">check_circle</i></a></td>\n                                    </tr>\n                                    <tr *ngIf=\"item.choduyethd\">\n                                        <td></td>\n                                        <td *ngIf=\"sr\"></td>\n                                        <td>\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.choduyethd.choduyetcthds\">{{prod.masp}} - {{prod.soluong}} - {{prod.giuhop}}</li>\n                                            </ul>    \n                                        </td>\n                                        <td *ngIf=\"sr\">{{item.choduyethd?.thuonghieu}}</td>\n                                        <td><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Chờ Duyệt\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th>Duyệt</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody style=\"border-bottom: 2px solid\" *ngFor=\"let item of fakedData | user: {'manh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}\" style=\"border-bottom: 2px solid;\">\n                                    <tr>\n                                        <td>{{item?.user?.tenkh}}</td>\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a>\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.chitiethds\">{{prod.masp}} - {{prod.soluong}} - {{prod.giuhop}}</li>\n                                            </ul>    \n                                        </a></td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td><a (click)=\"accept(item)\"><i class=\"material-icons\">check_circle</i></a></td>\n                                    </tr>\n                                    <tr *ngIf=\"item.choduyethd\">\n                                        <td></td>\n                                        <td *ngIf=\"sr\"></td>\n                                        <td>\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.choduyethd.choduyetcthds\">{{prod.masp}} - {{prod.soluong}} - {{prod.giuhop}}</li>\n                                            </ul>    \n                                        </td>\n                                        <td *ngIf=\"sr\">{{item.choduyethd?.thuonghieu}}</td>\n                                        <td><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -690,6 +690,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_waiting_bill_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-bill.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_bill_detail_service__ = __webpack_require__("../../../../../src/app/core/api/bill-detail.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -743,8 +744,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var WaitingListBillComponent = /** @class */ (function () {
-    function WaitingListBillComponent(matDialg, loadingService, formatService, dialogService, mainService, popupService, waitingBillService, billService) {
+    function WaitingListBillComponent(matDialg, loadingService, formatService, dialogService, mainService, popupService, waitingBillService, billService, billDetailService) {
         this.matDialg = matDialg;
         this.loadingService = loadingService;
         this.formatService = formatService;
@@ -753,6 +755,7 @@ var WaitingListBillComponent = /** @class */ (function () {
         this.popupService = popupService;
         this.waitingBillService = waitingBillService;
         this.billService = billService;
+        this.billDetailService = billDetailService;
         this.mahd = '';
         this.tenkh = '';
         this.fakedData = [];
@@ -836,9 +839,10 @@ var WaitingListBillComponent = /** @class */ (function () {
     };
     WaitingListBillComponent.prototype.delete = function (item) {
         var _this = this;
+        console.log("item: ", item);
         this.loadingService.show();
-        this.waitingBillService.delete(item.mahd).subscribe(function (res) {
-            item.choduyetdh = null;
+        this.waitingBillService.delete(item).subscribe(function (res) {
+            item.choduyethd = null;
             _this.loadingService.hide();
             _this.popupService.showSuccess();
             console.log("delete: ", item);
@@ -846,6 +850,24 @@ var WaitingListBillComponent = /** @class */ (function () {
             _this.loadingService.hide();
             _this.popupService.showError();
         });
+    };
+    WaitingListBillComponent.prototype.copyArray = function (element) {
+        for (var i = 0; i < element.choduyethd.choduyetcthds.length; i++) {
+            var targ = element.choduyethd.choduyetcthds[i];
+            var flag = true;
+            for (var j = 0; j < element.chitiethds.length; j++) {
+                var des = element.chitiethds[j];
+                if (des.masp == targ.masp) {
+                    this.formatService.copyObject(targ, des);
+                    flag = false;
+                }
+            }
+            if (flag) {
+                element.chitiethds.push(targ);
+                element.choduyethd.choduyetcthds.splice(i, 1);
+                i--;
+            }
+        }
     };
     WaitingListBillComponent.prototype.copy = function (object) {
         return JSON.parse(JSON.stringify(object));
@@ -855,13 +877,36 @@ var WaitingListBillComponent = /** @class */ (function () {
         if (!item.choduyethd)
             return;
         this.loadingService.show();
-        var ob = {};
-        this.formatService.copyObject(this.copy(item), ob);
-        this.formatService.copyObject(this.copy(item.choduyethd), ob);
+        var ob = this.copy(item);
+        this.copyArray(ob);
         console.log("my ob: ", ob);
-        this.billService.update(ob).subscribe(function (res) {
-            _this.formatService.copyObject(ob, item);
-            _this.delete(item);
+        this.billService.delete(ob).subscribe(function (res) {
+            _this.billService.create(ob).subscribe(function (cre) {
+                var count = 0;
+                var countEr = 0;
+                ob.chitiethds.forEach(function (element) {
+                    _this.billDetailService.create(element).subscribe(function (data) {
+                        count++;
+                        if (count == ob.chitiethds.length) {
+                            _this.delete(ob);
+                            item.chitiethds = ob.chitiethds;
+                            item.choduyethd = null;
+                        }
+                        else if (count + countEr == ob.chitiethds.length) {
+                            _this.popupService.showError();
+                            _this.loadingService.hide();
+                        }
+                    }, function (err) {
+                        if (count + countEr == ob.chitiethds.length) {
+                            _this.popupService.showError();
+                            _this.loadingService.hide();
+                        }
+                    });
+                });
+            }, function (error) {
+                _this.popupService.showError();
+                _this.loadingService.hide();
+            });
         }, function (error) {
             _this.loadingService.hide();
             _this.popupService.showError();
@@ -880,7 +925,8 @@ var WaitingListBillComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */],
             __WEBPACK_IMPORTED_MODULE_6__core_dialog_popup_popup_service__["a" /* PopupService */],
             __WEBPACK_IMPORTED_MODULE_7__core_api_waiting_bill_service__["a" /* WaitingBillService */],
-            __WEBPACK_IMPORTED_MODULE_8__core_api_bill_service__["a" /* BillService */]])
+            __WEBPACK_IMPORTED_MODULE_8__core_api_bill_service__["a" /* BillService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_api_bill_detail_service__["a" /* BillDetailService */]])
     ], WaitingListBillComponent);
     return WaitingListBillComponent;
 }());
