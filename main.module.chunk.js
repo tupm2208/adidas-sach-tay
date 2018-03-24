@@ -864,7 +864,19 @@ var WaitingListBillComponent = /** @class */ (function () {
             }
             if (flag) {
                 element.chitiethds.push(targ);
-                element.choduyethd.choduyetcthds.splice(i, 1);
+            }
+        }
+        for (var i = 0; i < element.chitiethds.length; i++) {
+            var des = element.chitiethds[i];
+            var flag = true;
+            for (var j = 0; j < element.choduyethd.choduyetcthds.length; j++) {
+                var targ = element.choduyethd.choduyetcthds[j];
+                console.log("infi");
+                if (targ.masp == des.masp)
+                    flag = false;
+            }
+            if (flag) {
+                element.chitiethds.splice(i, 1);
                 i--;
             }
         }
