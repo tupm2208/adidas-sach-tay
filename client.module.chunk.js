@@ -79,7 +79,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#suItem td {\r\n    border: 0;width: 60px;\r\n    text-align: center\r\n}", ""]);
 
 // exports
 
@@ -92,7 +92,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/client/list-bill/list-bill.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Các Đơn Đặt Hàng: <a (click)=\"updateUser()\">{{user?.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Đơn</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Đơn</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr *ngFor=\"let item of billData | user: {'chitiethds': {'masp': madh}}\">\n                                        <td>{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a><ul style=\"padding-left: 15px;\">\n                                                <li *ngFor=\"let it of item.chitiethds\">{{it.masp}}</li>\n                                            </ul></a></td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.tonggt}}</td>\n                                        <td>{{item.sum}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Các Đơn Đặt Hàng: <a>{{user?.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>\n                                            <thead>\n                                                <th>Mã SP</th>\n                                                <th>S.Lượng</th>\n                                                <th>Hộp</th> \n                                            </thead>\n                                        </th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('phuphi')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('thanhtien') - calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td></td>\n                                      <td></td>\n                                    </tr>\n                                     <tr *ngFor=\"let item of billData | user: {'chitiethds': {'masp': madh}}\">\n                                        <td>{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\">\n                                             <a> \n                                                <thead>\n                                                    <tr *ngFor=\"let it of item.chitiethds\" id=\"suItem\">\n                                                        <td>{{it.masp}}</td>\n                                                        <td>{{it.soluong}}</td>\n                                                        <td>{{it.giuhop}}</td>\n                                                    </tr>\n                                                </thead>\n                                             </a> \n                                        </td>\n                                        <td>{{item.tigia}}</td>\n                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>\n                                        <td>{{item.phuphi| number: '1.2-2'}}</td>\n                                        <td>{{item.datcoc| number: '1.2-2'}}</td>\n                                        <td>{{item.thanhtien - item.datcoc - -item.phuphi | number: '1.2-2'}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -110,6 +110,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_dialog_client_client_service__ = __webpack_require__("../../../../../src/app/core/dialog/client/client.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -129,8 +130,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ListBillComponent = /** @class */ (function () {
-    function ListBillComponent(userService, loadingService, dialogService, formatService, userDialog, mainService, clientService, storageService) {
+    function ListBillComponent(userService, loadingService, dialogService, formatService, userDialog, mainService, clientService, storageService, popupService) {
         this.userService = userService;
         this.loadingService = loadingService;
         this.dialogService = dialogService;
@@ -139,6 +141,7 @@ var ListBillComponent = /** @class */ (function () {
         this.mainService = mainService;
         this.clientService = clientService;
         this.storageService = storageService;
+        this.popupService = popupService;
         this.madh = '';
         this.billData = [];
         this.user = {};
@@ -152,7 +155,6 @@ var ListBillComponent = /** @class */ (function () {
         this.mainService.listBill({ makh: id }).subscribe(function (user) {
             _this.billData = user;
             console.log("data: ", user);
-            _this.getChoDuyethd();
             if (_this.billData.length) {
                 _this.user = _this.billData[0].user;
                 _this.loadingService.hide();
@@ -164,59 +166,19 @@ var ListBillComponent = /** @class */ (function () {
             _this.loadingService.hide();
         });
     };
-    ListBillComponent.prototype.getChoDuyethd = function () {
-        var _this = this;
-        this.mainService.listWaitingBill({ makh: this.storageService.get('userInfo').makh }).subscribe(function (data) {
-            _this.addProp(data);
-        }, function (error) {
-            console.log("error: ", error);
-        });
-    };
-    ListBillComponent.prototype.addProp = function (arr) {
-        var _this = this;
-        arr.forEach(function (element) {
-            _this.billData.forEach(function (ele) {
-                if (ele.mahd == element.mahd) {
-                    ele.choduyethd = element;
-                }
-            });
-        });
-    };
     ListBillComponent.prototype.updateUser = function () {
         this.userDialog.openUserDetail(this.user);
     };
     ListBillComponent.prototype.gotoDetail = function (item) {
-        if (item.choduyethd) {
-            this.passWaitingBill(item.choduyethd);
+        if (item.manh || item.trangthai > 2) {
+            this.popupService.showWanning("Không Thể Chỉnh Sửa Đơn khi đã Đặt Đơn bên Nhật, liên hệ admin để biết thêm chi tiết nhé");
+            return;
         }
-        else {
-            this.passBill(item);
-        }
+        this.passBill(item);
     };
     ListBillComponent.prototype.passBill = function (item) {
-        var _this = this;
-        this.clientService.openBook({ user: this.user, bill: item }).subscribe(function (data) {
-            _this.mainService.listBill({ mahd: item.mahd, makh: _this.user.makh }).subscribe(function (data) {
-                _this.formatService.copyObject(data[0], item);
-                _this.mainService.listWaitingBill({ mahd: item.mahd, makh: _this.user.makh }).subscribe(function (data) {
-                    item.choduyethd = data[0];
-                });
-            });
-        });
-    };
-    ListBillComponent.prototype.passWaitingBill = function (item) {
-        var _this = this;
-        this.clientService.openBook({ user: this.user, bill: item }).subscribe(function (data) {
-            _this.mainService.listWaitingBill({ mahd: item.mahd, makh: _this.user.makh }).subscribe(function (data) {
-                console.log("vaiilua: ", data);
-                if (data.length) {
-                    _this.formatService.copyObject(data[0], item);
-                }
-                else {
-                    console.log("item: ", item);
-                    item = null;
-                }
-            });
+        this.clientService.openBook({ user: this.user, bill: JSON.parse(JSON.stringify(item)) }).subscribe(function (data) {
+            console.log("close: ", data);
         });
     };
     ListBillComponent.prototype.addBill = function () {
@@ -226,6 +188,14 @@ var ListBillComponent = /** @class */ (function () {
                 _this.billData = _this.billData.concat([data]);
             }
         });
+    };
+    ListBillComponent.prototype.calculateByProp = function (name, name2) {
+        var sum = 0;
+        this.billData.forEach(function (element) {
+            //  = element[name2] ? element[name2]: 1;
+            element[name2] ? sum += Number(element[name]) * Number(element[name2]) : sum += Number(element[name]);
+        });
+        return sum;
     };
     ListBillComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -240,7 +210,8 @@ var ListBillComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_dialog_user_user_dialog_service__["a" /* UserDialogService */],
             __WEBPACK_IMPORTED_MODULE_6__core_api_main_service__["a" /* MainService */],
             __WEBPACK_IMPORTED_MODULE_7__core_dialog_client_client_service__["a" /* ClientService */],
-            __WEBPACK_IMPORTED_MODULE_8__core_util_storage_service__["a" /* StorageService */]])
+            __WEBPACK_IMPORTED_MODULE_8__core_util_storage_service__["a" /* StorageService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_dialog_popup_popup_service__["a" /* PopupService */]])
     ], ListBillComponent);
     return ListBillComponent;
 }());
@@ -270,7 +241,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/client/waiting-list/waiting-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Thêm Và Sửa Đơn Hàng Bạn: <a (click)=\"updateUser()\">{{user?.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã SP | Số Lượng | Giữ Hôp</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Đơn</th>\n                                        <th>Còn Lại</th>\n                                        <th>Delete</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã SP | Số Lượng | Giữ Hôp</th>\n                                        <th>Phí Ship</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Tổng Đơn</th>\n                                        <th>Còn Lại</th>\n                                        <th>Delete</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr *ngFor=\"let item of billData | user: {'choduyetcthds': {'masp': madh}}\">\n                                        <td>{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a><ul style=\"padding-left: 15px;\">\n                                                <li *ngFor=\"let it of item.choduyetcthds\">{{it.masp}} | {{it.soluong}} | {{it.giuhop}}</li>\n                                            </ul></a></td>\n                                        <td>{{item.ship}}</td>\n                                        <td>{{item.datcoc}}</td>\n                                        <td>{{item.tonggt}}</td>\n                                        <td>{{item.sum}}</td>\n                                        <td><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Thêm Và Sửa Đơn Hàng Bạn: <a>{{user?.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã SP</th>\n                                        <th>Số Lượng</th>\n                                        <th>Giữ Hộp</th>\n                                        <th>Giá Web</th>\n                                        <th>Delete</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã SP</th>\n                                        <th>Số Lượng</th>\n                                        <th>Giữ Hộp</th>\n                                        <th>Giá Web</th>\n                                        <th>Delete</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let item of billData | user: {'choduyetcthds': {'masp': madh}}\">\n                                     <tr *ngFor=\"let it of item.choduyetcthds;let id = index\">\n                                        <td (click)=\"gotoDetail(item)\"><a>{{ id == 0? formatService.formatDate(item.ngay): ''}}</a></td>\n                                        <td>{{it.masp}}</td>\n                                        <td>{{it.soluong}}</td>\n                                        <td>{{it.giuhop}}</td>\n                                        <td>{{it.giaweb}}</td>\n                                        <td *ngIf=\"id==0\"><a (click)=\"delete(item)\"><i class=\"material-icons\">delete</i></a></td>\n                                        <td *ngIf=\"id!=0\"></td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -328,15 +299,11 @@ var WaitingListComponent = /** @class */ (function () {
         var _this = this;
         this.loadingService.show();
         var id = this.storageService.get('userInfo').makh;
+        this.userService.getById(id).subscribe(function (userData) { _this.user = userData.data; }, function (error) { });
         this.mainService.listWaitingBill({ makh: id }).subscribe(function (user) {
             _this.billData = user;
-            if (_this.billData.length) {
-                _this.user = _this.billData[0].user;
-                _this.loadingService.hide();
-            }
-            else {
-                _this.userService.getById(id).subscribe(function (userData) { _this.user = userData.data; _this.loadingService.hide(); }, function (error) { return _this.loadingService.hide(); });
-            }
+            console.log("data:", user);
+            _this.loadingService.hide();
         }, function (error) {
             _this.loadingService.hide();
         });

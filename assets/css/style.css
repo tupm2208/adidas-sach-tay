@@ -7917,7 +7917,7 @@ fieldset[disabled] .form-control {
       transition: 0.5s; }
       .search-bar .close-search .material-icons:hover {
         opacity: .5; }
-  .search-bar input[type="text"] {
+  .search-bar input[type="number"] {
     width: 100%;
     font-size: 16px;
     padding: 25px 60px 23px 56px;
@@ -8015,7 +8015,7 @@ html.ie10 .sidebar .menu .list .ml-menu li.active a:not(.menu-toggle).toggled:be
 html.ie10 .sidebar .user-info .info-container {
   top: 15px; }
 
-html.ie10 .search-bar input[type="text"] {
+html.ie10 .search-bar input[type="number"] {
   padding: 26px 60px 26px 56px; }
 
 html.ie10 .dropdown-menu ul.menu li a {
@@ -8032,7 +8032,7 @@ html.ie11 .sidebar .menu .list .ml-menu li.active a:not(.menu-toggle).toggled:be
 html.ie11 .sidebar .user-info .info-container {
   top: 15px; }
 
-html.ie11 .search-bar input[type="text"] {
+html.ie11 .search-bar input[type="number"] {
   padding: 26px 60px 26px 56px; }
 
 html.ie11 .dropdown-menu ul.menu li a {
