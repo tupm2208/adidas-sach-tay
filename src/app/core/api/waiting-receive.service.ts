@@ -49,4 +49,13 @@ export class WaitingReceiveService {
 
     return this.mainApi.post('choduyetnh/search', params);
   }
+
+  getWaitAndReceiver(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    params.token = token;
+    
+    return this.mainApi.post('choduyetnh/getlist', params);
+  }
 }

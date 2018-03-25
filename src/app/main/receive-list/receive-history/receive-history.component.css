@@ -1,0 +1,20 @@
+.input-group {
+    margin-bottom: 0px; 
+}
+
+.input-group#input-user .form-line {
+    width: 33.33333333%;
+}
+
+.form-control button.btn-default{
+    display: none!important;
+}
+
+ul, menu, dir {
+    -webkit-padding-start: 20px;
+}
+
+.input-group .form-line:after {
+    bottom: 0px;
+    border-bottom: 1px solid #1f91f3;
+}

@@ -5,14 +5,23 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Đơn Hàng
+                            Đang Chờ Duyệt
                         </h2>
                     </div>
                     <div class="body">
                         <div id="sign_up" method="POST">
                             <div class="input-group">
-                                <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                <div class="form-group" style="margin: 0">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
                                 </div>
                             </div>
                         </div>
@@ -22,28 +31,28 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Mã Đh</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
-                                        <th *ngIf="sr">Tỉ Giá</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
-                                        <th>Delete Request</th>
+                                        <th>Ngày</th>
+                                        <th *ngIf="sr">Khối Lương</th>
+                                        <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th>Xóa Yêu Cầu</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Mã Đh</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
-                                        <th *ngIf="sr">Tỉ Giá</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
-                                        <th>Delete Request</th>
+                                        <th>Ngày</th>
+                                        <th *ngIf="sr">Khối Lương</th>
+                                        <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th>Xóa Yêu Cầu</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'madh': madh}">
-                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
-                                        <td *ngIf="sr">{{item.tienyen}}</td>
-                                        <td *ngIf="sr">{{item.tigia}}</td>
-                                        <td *ngIf="sr">{{item.datcoc}}</td>
+                                    <tr *ngFor="let item of fakedData| time: {'from': from, 'to': to}">
+                                        <td (click)="gotoDetail(item)"><a>{{formatService.formatDate(item.ngay)}}</a></td>
+                                        <td *ngIf="sr">{{item.khoiluong}}</td>
+                                        <td *ngIf="sr">{{item.dongia}}</td>
+                                        <td *ngIf="sr">{{item.khoiluong * item.dongia | number: '1.2-2'}}</td>
                                         <td><a (click)="delete(item)"><i class="material-icons">delete</i></a></td>
                                     </tr>
                                 </tbody>

@@ -25,14 +25,14 @@
                                 <thead>
                                   <tr>
                                     <th (click)="selectAll()">Mã Đơn</th>
-                                    <th>Mã SP | SL</th>
+                                    <th>Mã SP | SL | Giữ Hộp</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr *ngFor="let item of listOrder; let i = index" [ngStyle]="{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}">
                                     <td (click)="selectItem(item)">{{item.madh}} | {{item.tongsl}}</td>
                                     <td>
-                                      <div *ngFor="let prod of item.chitietdhs">{{prod.masp}} | {{prod.soluong}}</div>
+                                      <div *ngFor="let prod of item.chitietdhs">{{prod.masp}} | {{prod.soluong}} | {{prod.giuhop}}</div>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -90,7 +90,7 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                       <div class="form-group">
                         <label for="age">Khối Lượng *</label>
-                        <input id="age" name="khoiluong" [(ngModel)]="receiveData.khoiluong" class="form-control" type="text" min="1">
+                        <input id="age" name="khoiluong" [(ngModel)]="receiveData.khoiluong" class="form-control" type="number" min="1">
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
@@ -100,22 +100,22 @@
                       </div>
                       <div class="form-group">
                         <label for="age">Phụ Phí *</label>
-                        <input id="age" name="khoiluong" [(ngModel)]="receiveData.phuphi" class="form-control" type="number" min="1">
+                        <input id="age" name="phuphi" [(ngModel)]="receiveData.phuphi" class="form-control" type="number" min="1">
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="age">Thành Tiền *</label>
-                        <span id="age" class="form-control">{{receiveData.khoiluong * receiveData.dongia + receiveData.phuphi}}</span>
+                        <span id="age" class="form-control">{{receiveData.khoiluong * receiveData.dongia - -receiveData.phuphi| number: '1.2-2' }}</span>
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="lastname">Trạng Thái *</label>
                         <div>
-                          <select data-validation="required" name="trangthai" [disabled]="receiveData.trangthai>7" [(ngModel)]="receiveData.trangthai" class="form-control">
+                          <select data-validation="required" name="trangthai" [(ngModel)]="receiveData.trangthai" class="form-control">
                             <option value="5">Chưa Về Kho Nhật</option>
                             <option value="6">Về Kho Nhật</option>
                             <option value="7">Về Kho Việt Nam</option>
-                            <option disabled value="8">Hoàn Tất</option>
+                            <option value="8">Hoàn Tất</option>
                           </select>
                         </div>
                       </div>

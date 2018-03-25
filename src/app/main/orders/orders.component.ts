@@ -69,4 +69,18 @@ export class OrdersComponent implements OnInit {
       }
     })
   }
+
+  calculateByProp(name, name2?) {
+
+    let sum = 0;
+
+    this.fakedData.forEach(element => {
+      
+      element[name2] = element[name2]?element[name2]:1;
+
+      sum += Number(element[name]) * Number(element[name2]);
+    });
+
+    return sum;
+  }
 }

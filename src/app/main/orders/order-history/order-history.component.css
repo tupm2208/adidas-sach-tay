@@ -1,0 +1,11 @@
+.input-group {
+    margin-bottom: 0px; 
+}
+
+.input-group .form-line {
+    width: 30%;
+}
+
+ul, menu, dir {
+    -webkit-padding-start: 20px;
+}

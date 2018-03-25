@@ -67,6 +67,8 @@ export class OrderComponent implements OnInit {
 
       this.orderData = data[0];
 
+      console.log("listorder data: ", this.orderData);
+
       delete this.orderData.tongsl;
       delete this.orderData.giuhop;
     })

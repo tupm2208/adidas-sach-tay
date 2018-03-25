@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
 import { WaitingBillService } from '../../../api/waiting-bill.service';
 import { WaitingBillDetailService } from '../../../api/waiting-bill-detail.service';
 import { PopupService } from '../../popup/popup.service';
@@ -18,14 +17,9 @@ export class BookComponent implements OnInit {
   private billDetailList: any = [{
     masp: '',
     soluong: 1,
-    trangweb: '',
+    thuonghieu: '',
     giaweb: '',
-    trietkhau: '',
-    khoiluong: '',
-    tigia: '',
     giuhop: 0,
-    mahd: null,
-    makh: null,
   }];
 
   private isNew: Boolean = true;
@@ -43,10 +37,6 @@ export class BookComponent implements OnInit {
 
   ngOnInit() {
     console.log("data: ", this.data);
-
-    this.billDetailList[0].makh = this.data.user.makh;
-    this.billDetailList[0].maduyetkh = this.data.user.maduyetkh;
-
 
     if(this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
 
@@ -170,9 +160,7 @@ export class BookComponent implements OnInit {
 
     this.waitingBillService.create(this.data.bill).subscribe(data => {
 
-      console.log("create data bill: ", data);
       this.data.bill.mahd = data.data.mahd;
-      this.data.bill.chitiethds = this.billDetailList;
       this.registOrUpdate();
     }, error => {
 
@@ -201,10 +189,7 @@ export class BookComponent implements OnInit {
   showError() {
 
     this.loading.hide('upload');
-    this.popupDialog.showError().subscribe( data => {
-
-      console.log("close error!");
-    })
+    this.popupDialog.showError();
   }
 
   showSuccess() {
@@ -213,18 +198,7 @@ export class BookComponent implements OnInit {
     this.popupDialog.showSuccess().subscribe( data => {
 
       this.data.bill.choduyetcthds = this.billDetailList;
-      this.dialogRef.close(this.isNew? this.data.bill: null);
+      this.dialogRef.close(1);
     })
-  }
-
-  calculate() {
-
-    let sum = 0;
-    this.billDetailList.forEach( element => {
-
-      sum += element.giaweb * element.tigia * (1 + element.trietkhau) * element.soluong;
-    });
-
-    return sum;
   }
 }

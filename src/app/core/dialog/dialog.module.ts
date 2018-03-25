@@ -35,6 +35,8 @@ import { BookComponent } from './client/book/book.component';
 import { ProdDetailComponent } from './client/book/prod-detail/prod-detail.component';
 import { ClientService } from './client/client.service';
 import { PaymentRequestComponent } from './client/payment-request/payment-request.component';
+import { ReceiverRequestComponent } from './client/receiver-request/receiver-request.component';
+import { ReceiverWeightComponent } from './client/receiver-weight/receiver-weight.component';
 
 @NgModule({
   imports: [
@@ -69,7 +71,9 @@ import { PaymentRequestComponent } from './client/payment-request/payment-reques
     ReceiveDetailComponent,
     BookComponent,
     ProdDetailComponent,
-    PaymentRequestComponent
+    PaymentRequestComponent,
+    ReceiverRequestComponent,
+    ReceiverWeightComponent
   ],
   entryComponents: [
     ErrorComponent,
@@ -80,7 +84,9 @@ import { PaymentRequestComponent } from './client/payment-request/payment-reques
     UserComponent,
     ReceiveDetailComponent,
     BookComponent,
-    PaymentRequestComponent
+    PaymentRequestComponent,
+    ReceiverRequestComponent,
+    ReceiverWeightComponent
   ],
   providers: [
     DialogService,

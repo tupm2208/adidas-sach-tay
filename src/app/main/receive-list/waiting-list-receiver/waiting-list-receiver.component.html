@@ -1,0 +1,99 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Chờ Duyệt
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Thêm Khách Hàng</a></li>
+                                    <li><a href="javascript:void(0);">Tìm Kiếm</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div id="sign_up" method="POST">
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
+                                </div>
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                </div>
+                                <div class="form-group" style="margin: 0">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sr = !sr">Tên Khách Hàng</th>
+                                        <th *ngIf="sr">Ngày</th>
+                                        <th>Mã Nhận Hàng</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Phụ Phí</th>
+                                        <th>Duyệt</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th (click)="sr = !sr">Tên Khách Hàng</th>
+                                        <th *ngIf="sr">Ngày</th>
+                                        <th>Mã Nhận Hàng</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Phụ Phí</th>
+                                        <th>Duyệt</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody *ngFor="let item of fakedData | user: {'manh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}" style="border-bottom: 2px solid;">
+                                    <tr>
+                                        <td>{{item?.user?.tenkh}}</td>
+                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
+                                        <td (click)="gotoDetail(item)"><a>{{item.manh}}</a></td>
+                                        <td *ngIf="sr">{{item.khoiluong}}</td>
+                                        <td *ngIf="sr">{{item.dongia}}</td>
+                                        <td *ngIf="sr">{{item.phuphi}}</td>
+                                        <td><a (click)="accept(item)"><i class="material-icons">check_circle</i></a></td>
+                                    </tr>
+                                    <tr *ngIf="item.choduyetnhs">
+                                        <td></td>
+                                        <td *ngIf="sr"></td>
+                                        <td></td>
+                                        <td *ngIf="sr">{{item.choduyetnhs[0].khoiluong}}</td>
+                                        <td *ngIf="sr">{{item.choduyetnhs[0].dongia}}</td>
+                                        <td *ngIf="sr">{{item.choduyetnhs[0].phuphi}}</td>
+                                        <td><a (click)="delete(item)"><i class="material-icons">delete</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

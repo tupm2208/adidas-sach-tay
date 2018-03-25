@@ -48,53 +48,67 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th (click)="sr = !sr">Tên Khách Hàng</th>
-                                        <th *ngIf="sr">Số Điện Thoại</th>
-                                        <th>Mã Đh</th>
-                                        <th *ngIf="sr">Mã Sản Phẩm</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Ngày</th>
+                                        <th (click)="sr = !sr">Tên Khách Hàng</th>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Số Lượng</th>
                                         <th *ngIf="sr">Tài Khoản</th>
                                         <th *ngIf="sr">Thương Hiệu</th>
-                                        <th *ngIf="sr">Ghi Chú</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
+                                        <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Tên Khách Hàng</th>
-                                        <th *ngIf="sr">Số Điện Thoại</th>
-                                        <th>Mã Đh</th>
-                                        <th *ngIf="sr">Mã Sản Phẩm</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Ngày</th>
+                                        <th (click)="sr = !sr">Tên Khách Hàng</th>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Số Lượng</th>
                                         <th *ngIf="sr">Tài Khoản</th>
                                         <th *ngIf="sr">Thương Hiệu</th>
-                                        <th *ngIf="sr">Ghi Chú</th>
+                                        <th *ngIf="sr">Tiền Yên</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
+                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
+                                        <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
+                                    <tr style="background-color: #a1edeb;">
+                                      <td *ngIf="sr"></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td *ngIf="sr">{{calculateByProp('tongsl')}}</td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen')}}</td>
+                                      <td *ngIf="sr"></td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr"></td>
+                                      <td></td>
+                                    </tr>
                                     <tr *ngFor="let item of fakedData | user: {'madh': madh, 'user': {'tenkh': tenkh}} | time: {'from': from, 'to': to}">
-                                        <td>{{item?.user?.tenkh}}</td>
-                                        <td *ngIf="sr">{{item?.user?.sdt}}</td>
-                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
-                                        <td *ngIf="sr">
-                                            <ul *ngIf="item.chitietdhs">
-                                                <li *ngFor="let product of item.chitietdhs" ><span style="">{{product.masp}}</span><span  style="float: right;width: 21px;letter-spacing: 0px;text-align: right;">{{product.soluong}}</span><span style="float: right">|</span></li>
-                                            </ul>
-                                        </td>
-                                        <td *ngIf="sr">{{item.tienyen}}</td>
-                                        <td *ngIf="sr">{{item.datcoc}}</td>
                                         <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
+                                        <td><a [routerLink]="['/home/orders/history/' + item.user.makh]">{{item?.user?.tenkh}}</a></td>
+                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
+                                        <th *ngIf="sr">{{item.tongsl}}</th>
                                         <td *ngIf="sr">{{item.taikhoan}}</td>
                                         <td *ngIf="sr">{{item.thuonghieu}}</td>
-                                        <td *ngIf="sr">{{item.ghichu}}</td>
+                                        <td *ngIf="sr">{{item.tienyen}}</td>
                                         <td *ngIf="sr">{{item.tigia}}</td>
+                                        <td *ngIf="sr">{{item.tienyen *item.tigia| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.tienyen *item.tigia - item.datcoc| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.ghichu}}</td>
                                         <td>{{formatService.statusType(item.trangthai)}}</td>
                                     </tr>
                                 </tbody>

@@ -24,7 +24,8 @@ export class UserComponent implements OnInit {
     diachi: false,
     makh: false,
     mk: false,
-    maloainv: false
+    maloainv: false,
+    tigia: false
   }
   private reload = null;
 
@@ -49,7 +50,8 @@ export class UserComponent implements OnInit {
         diachi: '',
         makh: null,
         mk: 'adidas',
-        maloainv: 2
+        maloainv: 2,
+        tigia: 0
       }
     }
     this.initToggle(false);

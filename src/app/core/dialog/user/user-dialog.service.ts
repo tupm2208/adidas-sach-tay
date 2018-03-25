@@ -13,7 +13,8 @@ export class UserDialogService {
   openUserDetail(data): Observable<any> {
 
     return this.dialog.open(UserComponent, {
-      data: data
+      data: data,
+      height: '90%'
     }).afterClosed();
   }
 }

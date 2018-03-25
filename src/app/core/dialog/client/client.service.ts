@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { BookComponent } from './book/book.component';
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
+import { ReceiverRequestComponent } from './receiver-request/receiver-request.component';
+import { ReceiverWeightComponent } from './receiver-weight/receiver-weight.component';
 
 @Injectable()
 export class ClientService {
@@ -29,4 +31,18 @@ export class ClientService {
     }).afterClosed();
   }
 
+  openReceiverForm(params): Observable<any> {
+
+    return this.dialog.open(ReceiverRequestComponent, {
+      data: params,
+      height:'90%'
+    }).afterClosed();
+  }
+
+  openReceiverWeightForm(params): Observable<any> {
+
+    return this.dialog.open(ReceiverWeightComponent, {
+      data: params
+    }).afterClosed();
+  }
 }

@@ -118,4 +118,16 @@ export class HistoryComponent implements OnInit {
       }
     })
   }
+
+  calculateByProp(name) {
+
+    let sum = 0;
+
+    this.billData.forEach(element => {
+      
+      sum += Number(element[name]);
+    });
+
+    return sum;
+  }
 }

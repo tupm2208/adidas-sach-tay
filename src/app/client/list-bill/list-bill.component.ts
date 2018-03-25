@@ -9,6 +9,7 @@ import { UserDialogService } from '../../core/dialog/user/user-dialog.service';
 import { MainService } from '../../core/api/main.service';
 import { ClientService } from '../../core/dialog/client/client.service';
 import { StorageService } from '../../core/util/storage.service';
+import { PopupService } from '../../core/dialog/popup/popup.service';
 
 declare var $:any;
 
@@ -33,6 +34,7 @@ export class ListBillComponent implements OnInit {
     private mainService: MainService,
     private clientService: ClientService,
     private storageService: StorageService,
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,6 @@ export class ListBillComponent implements OnInit {
 
       this.billData = user;
       console.log("data: ", user);
-      this.getChoDuyethd();
 
       if(this.billData.length) {
 
@@ -63,30 +64,6 @@ export class ListBillComponent implements OnInit {
     })
   }
 
-  getChoDuyethd() {
-
-    this.mainService.listWaitingBill({makh: this.storageService.get('userInfo').makh}).subscribe( data => {
-
-      this.addProp(data);
-    }, error => {
-
-      console.log("error: ", error);
-    })
-  }
-
-  addProp(arr) {
-
-    arr.forEach(element => {
-      
-      this.billData.forEach(ele => {
-
-        if(ele.mahd == element.mahd) {
-
-          ele.choduyethd = element;
-        }
-      })
-    });
-  }
 
   updateUser() {
 
@@ -95,47 +72,20 @@ export class ListBillComponent implements OnInit {
 
   gotoDetail(item) {
 
-    if(item.choduyethd) {
+    if(item.manh || item.trangthai > 2) {
 
-      this.passWaitingBill(item.choduyethd);
-    } else {
-
-      this.passBill(item);
+      this.popupService.showWanning("Không Thể Chỉnh Sửa Đơn khi đã Đặt Đơn bên Nhật, liên hệ admin để biết thêm chi tiết nhé");
+      return;
     }
+
+    this.passBill(item);
   }
 
   passBill(item) {
 
-    this.clientService.openBook({user: this.user, bill: item}).subscribe( data => {
+    this.clientService.openBook({user: this.user, bill: JSON.parse(JSON.stringify(item))}).subscribe( data => {
 
-      this.mainService.listBill({mahd: item.mahd, makh: this.user.makh}).subscribe( data => {
-
-        this.formatService.copyObject(data[0], item);
-
-        this.mainService.listWaitingBill({ mahd: item.mahd, makh: this.user.makh }).subscribe(data => {
-
-          item.choduyethd = data[0];
-        })
-      })
-    })
-  }
-
-  passWaitingBill(item) {
-
-    this.clientService.openBook({user: this.user, bill: item}).subscribe( data => {
-
-      this.mainService.listWaitingBill({mahd: item.mahd, makh: this.user.makh}).subscribe( data => {
-
-        console.log("vaiilua: ", data);
-        if(data.length) {
-
-          this.formatService.copyObject(data[0], item);
-        } else {
-
-          console.log("item: ", item);
-          item = null;
-        }
-      })
+      console.log("close: ", data);
     })
   }
 
@@ -148,6 +98,19 @@ export class ListBillComponent implements OnInit {
         this.billData = this.billData.concat([data]);
       }
     })
+  }
+  calculateByProp(name, name2?) : number{
+
+    let sum = 0;
+
+    this.billData.forEach(element => {
+      
+      //  = element[name2] ? element[name2]: 1;
+
+      element[name2] ? sum += Number(element[name]) * Number(element[name2]): sum+= Number(element[name]);
+    });
+
+    return sum;
   }
 }
 

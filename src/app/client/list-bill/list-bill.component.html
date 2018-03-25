@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Các Đơn Đặt Hàng: <a (click)="updateUser()">{{user?.tenkh}}</a>
+                            Các Đơn Đặt Hàng: <a>{{user?.tenkh}}</a>
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -30,10 +30,17 @@
                                 <thead>
                                     <tr>
                                         <th>Ngày</th>
-                                        <th>Mã Sản Phẩm</th>
-                                        <th>Phí Ship</th>
+                                        <th>
+                                            <thead>
+                                                <th>Mã SP</th>
+                                                <th>S.Lượng</th>
+                                                <th>Hộp</th> 
+                                            </thead>
+                                        </th>
+                                        <th>Tỉ Giá</th>
+                                        <th>Thành Tiền</th>
+                                        <th>Phụ Phí</th>
                                         <th>Đặt Cọc</th>
-                                        <th>Tổng Đơn</th>
                                         <th>Còn Lại</th>
                                         <th>Trạng Thái</th>
                                     </tr>
@@ -42,23 +49,44 @@
                                     <tr>
                                         <th>Ngày</th>
                                         <th>Mã Sản Phẩm</th>
-                                        <th>Phí Ship</th>
+                                        <th>Tỉ Giá</th>
+                                        <th>Thành Tiền</th>
+                                        <th>Phụ Phí</th>
                                         <th>Đặt Cọc</th>
-                                        <th>Tổng Đơn</th>
                                         <th>Còn Lại</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
+                                    <tr style="background-color: #a1edeb;">
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('phuphi')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('thanhtien') - calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td></td>
+                                      <td></td>
+                                    </tr>
                                      <tr *ngFor="let item of billData | user: {'chitiethds': {'masp': madh}}">
                                         <td>{{formatService.formatDate(item.ngay)}}</td>
-                                        <td (click)="gotoDetail(item)"><a><ul style="padding-left: 15px;">
-                                                <li *ngFor="let it of item.chitiethds">{{it.masp}}</li>
-                                            </ul></a></td>
-                                        <td>{{item.ship}}</td>
-                                        <td>{{item.datcoc}}</td>
-                                        <td>{{item.tonggt}}</td>
-                                        <td>{{item.sum}}</td>
+                                        <td (click)="gotoDetail(item)">
+                                             <a> 
+                                                <thead>
+                                                    <tr *ngFor="let it of item.chitiethds" id="suItem">
+                                                        <td>{{it.masp}}</td>
+                                                        <td>{{it.soluong}}</td>
+                                                        <td>{{it.giuhop}}</td>
+                                                    </tr>
+                                                </thead>
+                                             </a> 
+                                        </td>
+                                        <td>{{item.tigia}}</td>
+                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>
+                                        <td>{{item.phuphi| number: '1.2-2'}}</td>
+                                        <td>{{item.datcoc| number: '1.2-2'}}</td>
+                                        <td>{{item.thanhtien - item.datcoc - -item.phuphi | number: '1.2-2'}}</td>
                                         <td>{{formatService.statusType(item.trangthai)}}</td>
                                     </tr> 
                                 </tbody>
@@ -68,6 +96,5 @@
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Examples -->
     </div>
 </section>

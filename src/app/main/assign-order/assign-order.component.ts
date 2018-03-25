@@ -9,6 +9,7 @@ import { OrderDetailService } from '../../core/api/order-detail.service';
 import { BillDetailService } from '../../core/api/bill-detail.service';
 import { MainService } from '../../core/api/main.service';
 import { PopupService } from '../../core/dialog/popup/popup.service';
+import { StorageService } from '../../core/util/storage.service';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -44,7 +45,8 @@ export class AssignOrderComponent implements OnInit {
     private router: Router,
     private loadingService: LoadingService,
     private mainService: MainService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private storageService: StorageService
    ) { }
 
   ngOnInit() {
@@ -52,6 +54,7 @@ export class AssignOrderComponent implements OnInit {
     this.orderData = {};
     this.orderData.thuonghieu = '';
     this.orderData.result = [];
+    this.orderData.tigia = this.storageService.get("tigia");
 
     this.options = [];
 

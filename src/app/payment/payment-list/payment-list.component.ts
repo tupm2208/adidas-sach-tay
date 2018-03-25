@@ -45,7 +45,7 @@ export class PaymentListComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.mainService.listOrder({makh: id}).subscribe( data => {
+    this.orderService.getByParams({makh: id}).subscribe( data => {
 
       console.log("main service data: ", data);
       this.fakedData = data;
@@ -87,20 +87,17 @@ export class PaymentListComponent implements OnInit {
     });
   }
 
-  balanceItem(item) {
+  calculateByProp(name, name2?) {
 
-    return item.tigia * item.tienyen - item.datcoc;
-  }
+    let sum = 0;
 
-  balanceAll() {
+    this.fakedData.forEach(element => {
+      
+      //  = element[name2] ? element[name2]: 1;
 
-    let s = 0;
+      element[name2] ? sum += Number(element[name]) * Number(element[name2]): sum+= Number(element[name]);
+    });
 
-    this.fakedData.forEach(item => {
-
-      s += this.balanceItem(item);
-    })
-
-    return s;
+    return sum;
   }
 }

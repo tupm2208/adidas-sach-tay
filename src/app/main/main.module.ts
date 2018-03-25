@@ -42,6 +42,12 @@ import { TestComponent } from './test/test.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
 import { ReceiveListComponent } from './receive-list/receive-list.component';
+import { WaitingListOrderComponent } from './orders/waiting-list-order/waiting-list-order.component';
+import { WaitingListBillComponent } from './bills/waiting-list-bill/waiting-list-bill.component';
+import { WaitingListReceiverComponent } from './receive-list/waiting-list-receiver/waiting-list-receiver.component';
+import { OrderHistoryComponent } from './orders/order-history/order-history.component';
+import { ReceiveHistoryComponent } from './receive-list/receive-history/receive-history.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 
 
@@ -85,6 +91,12 @@ import { ReceiveListComponent } from './receive-list/receive-list.component';
     ProductTableComponent,
     ReceiverComponent,
     ReceiveListComponent,
+    WaitingListOrderComponent,
+    WaitingListBillComponent,
+    WaitingListReceiverComponent,
+    OrderHistoryComponent,
+    ReceiveHistoryComponent,
+    StatisticComponent,
   ],
   entryComponents: [
     SelectProductComponent,

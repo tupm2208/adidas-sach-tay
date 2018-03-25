@@ -26,7 +26,7 @@ export class LoadingService {
 
     if(!id) {
 
-      let temp = $("body").append(this.html);
+      let temp = $("app-root").parent().append(this.html);
       $('body .page-loader-wrapper').fadeIn();
     } else {
         let temp = $('#' + id).append(this.html);

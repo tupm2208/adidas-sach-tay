@@ -1,0 +1,57 @@
+<body class="signup-page">
+  <div class="signup-box">
+    <div class="logo">
+      <a href="javascript:void(0);"><b>Đơn Hàng</b></a>
+       <small>Mã Đơn Hàng: {{orderData?.manh}}</small> 
+    </div>
+    <div class="card" style="box-shadow: unset">
+      <div class="body">
+        <form id="sign_up" method="POST">
+          <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <form name="myform">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                      <div class="form-group">
+                        <label for="ship">Khối Lượng *</label>
+                        <input [(ngModel)]="orderData.khoiluong" name="ship" class="form-control" min="1" type="number">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Đơn Giá *</label>
+                        <input [(ngModel)]="orderData.dongia" name="thanhtien7" class="form-control" min="1" type="number">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Thành Tiền *</label>
+                        <label class="form-control" min="1" type="text">{{orderData.dongia * orderData.khoiluong| number: '1.2-2'}}</label>
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="age">Phụ Phí *</label>
+                        <input [(ngModel)]="orderData.phuphi" disabled name="thanhtien5" class="form-control" min="1" type="text">
+                        <span id="error_age" class="text-danger"></span>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: inline-block; width: 100%">
+            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" style="float:left" type="submit">UPDATE</button>
+            <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

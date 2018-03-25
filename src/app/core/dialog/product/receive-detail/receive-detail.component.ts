@@ -35,9 +35,11 @@ export class ReceiveDetailComponent implements OnInit {
 
   ngOnInit() {
 
-    $('app-order').parent().parent().attr('id','app-receove-detail');
+    $('app-receive-detail').parent().parent().attr('id','app-receive-detail');
 
-    this.loadingService.show('app-receove-detail');
+    setTimeout(() => {this.loadingService.show('app-receive-detail');},0);
+
+    console.log("manh: ", this.manh);
 
     this.getListOrder();
     this.getReceive();
@@ -58,7 +60,7 @@ export class ReceiveDetailComponent implements OnInit {
     this.mainService.listOrder({manh: this.manh}).subscribe( data => {
 
       this.listOrder = data;
-      this.loadingService.hide('app-receove-detail');
+      this.loadingService.hide('app-receive-detail');
       console.log("list order: ", this.listOrder);
     });
   }
@@ -147,7 +149,7 @@ export class ReceiveDetailComponent implements OnInit {
 
   finish() {
 
-    this.loadingService.hide('app-receove-detail');
+    this.loadingService.hide('app-receive-detail');
     this.popupService.showSuccess().subscribe( data => {
 
       this.dialogRef.close();
@@ -192,14 +194,21 @@ export class ReceiveDetailComponent implements OnInit {
       return;
     }
 
-    this.loadingService.show('app-receove-detail');
+    this.loadingService.show('app-receive-detail');
 
+    if(this.receiveData.trangthai == 8) {
+
+      if(!this.receiveData.ngaynhan) this.receiveData.ngaynhan = new Date().getTime();
+    } else {
+
+      this.receiveData.ngaynhan = 0;
+    }
     this.receiveService.update(this.receiveData).subscribe( res => {
 
       this.deleteArray();
     }, error => {
 
-      this.loadingService.hide('app-receove-detail');
+      this.loadingService.hide('app-receive-detail');
       this.popupService.showError();
     })
   }

@@ -44,36 +44,37 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
+                                        <th *ngIf="sr">Ngày Đặt</th>
                                         <th (click)="sr = !sr">Tên KH</th>
                                         <th *ngIf="sr">Số Điện Thoại</th>
                                         <th *ngIf="sr">Mã ĐH</th>
                                         <th>Mã SP</th>
-                                        <th *ngIf="sr">Ngày Đặt</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Phí Ship</th>
-                                        <th *ngIf="sr">Tiền Hàng</th>
-                                        <th *ngIf="sr">Khối Lượng</th>
-                                        <th *ngIf="sr">Tổng</th>
+                                        <th *ngIf="sr">Tổng Tiền</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
+                                        <th *ngIf="sr">Ngày Đặt</th>
                                         <th (click)="sr = !sr">Tên KH</th>
                                         <th *ngIf="sr">Số Điện Thoại</th>
                                         <th *ngIf="sr">Mã ĐH</th>
                                         <th>Mã SP</th>
-                                        <th *ngIf="sr">Ngày Đặt</th>
+                                        <th *ngIf="sr">Tỉ Giá</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Phí Ship</th>
-                                        <th *ngIf="sr">Tiền Hàng</th>
-                                        <th *ngIf="sr">Khối Lượng</th>
-                                        <th *ngIf="sr">Tổng</th>
+                                        <th *ngIf="sr">Tổng Tiền</th>
+                                        <th *ngIf="sr">Dư Nợ</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'madh': madh} | time: {'from': from, 'to': to}">
+                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
                                         <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">
                                             <div><i class="material-icons">add_shopping_cart</i>{{item.user.tenkh}}</div> 
                                         </a></td>
@@ -88,12 +89,11 @@
                                                 </ul>
                                             </a>
                                         </td>
-                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
-                                        <td *ngIf="sr">{{item.datcoc}}</td>
-                                        <td *ngIf="sr">{{item.ship}}</td>
-                                        <td *ngIf="sr">{{item.tong}}</td>
-                                        <td *ngIf="sr">{{item.khoiluong}}</td>
-                                        <td *ngIf="sr">{{item.tong}}</td>
+                                        <td *ngIf="sr">{{item.tigia}}</td>
+                                        <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.ship| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.thanhtien| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.thanhtien - item.datcoc| number: '1.2-2'}}</td>
                                         <td><a (click)="update(item)">
                                             <div><i class="material-icons">settings</i>{{formatService.statusType(item.trangthai)}}</div>
                                         </a></td>

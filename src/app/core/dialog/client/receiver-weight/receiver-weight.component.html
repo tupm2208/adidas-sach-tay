@@ -1,0 +1,47 @@
+<body class="signup-page">
+  <div class="signup-box">
+    <div class="logo">
+      <a href="javascript:void(0);"><b>Đơn Hàng</b></a>
+       <small>Mã Đơn Hàng: {{data[0]?.madh}}</small> 
+    </div>
+    <div class="card" style="box-shadow: unset">
+      <div class="body">
+        <form id="sign_up" method="POST">
+          <div class="row">
+
+                          <div class="body">
+                            <div class="table-responsive">
+                              <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                  <tr>
+                                    <th>Mã SP</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giữ Hộp</th>
+                                  </tr>
+                                </thead>
+                                <tfoot>
+                                  <tr>
+                                    <th>Mã SP</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giữ Hộp</th>
+                                  </tr>
+                                </tfoot>
+                                <tbody>
+                                  <tr *ngFor="let item of data; let i = index" [ngStyle]="{'background-color': item.giuhop? i%2? '#ced8c0': '#e1efce': ''}">
+                                    <td>{{item.masp}}</td>
+                                    <td>{{item.soluong}}</td>
+                                    <td>{{item.giuhop}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+          </div>
+          <div style="display: inline-block; width: 100%; text-align: center">
+            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" type="submit">OK</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

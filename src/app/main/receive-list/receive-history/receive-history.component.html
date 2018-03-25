@@ -1,0 +1,121 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Lịch Sử: <a>vailua</a>
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a>Thêm Khách Hàng</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div id="sign_up" method="POST">
+                            <div class="input-group" id="input-user">
+                                <div class="form-line" style="display: inline-block; position: absolute; right: 0">
+                                    <select [(ngModel)]="trangthai" class="form-control" style="position: absolute; top:0px;border-bottom: 1px solid #ccc;">
+                                        <option value="">Trạng Thái</option>
+                                        <option value="5">Chưa Về Kho Nhật</option>
+                                        <option value="6">Về Kho Nhật</option>
+                                        <option value="7">Về Kho Việt Nam</option>
+                                    </select>
+                                </div>
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
+                                </div>
+                                <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                </div>
+                                <div class="form-group" style="margin: 0">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sc=!sc">Ngày</th> 
+                                        <th>Mã Đơn</th> 
+                                        <th *ngIf="sc">Khối Lượng</th> 
+                                        <th *ngIf="sc">Đơn Giá</th> 
+                                        <th *ngIf="sc">Phụ Phí</th> 
+                                        <th *ngIf="sc">Thành Tiền</th> 
+                                        <th *ngIf="sc">Đặt Cọc</th> 
+                                        <th *ngIf="sc">Dư Nợ</th> 
+                                        <th *ngIf="sc">Ghi Chú</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Ngày</th> 
+                                        <th>Mã Đơn</th> 
+                                        <th *ngIf="sc">Khối Lượng</th> 
+                                        <th *ngIf="sc">Đơn Giá</th> 
+                                        <th *ngIf="sc">Phụ Phí</th> 
+                                        <th *ngIf="sc">Thành Tiền</th> 
+                                        <th *ngIf="sc">Đặt Cọc</th> 
+                                        <th *ngIf="sc">Dư Nợ</th> 
+                                        <th *ngIf="sc">Ghi Chú</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr style="background-color: #a1edeb;">
+                                      <td></td>
+                                      <td></td>
+                                      <td *ngIf="sc">{{calculateByProp('khoiluong')}}</td>
+                                      <td *ngIf="sc"></td>
+                                      <td *ngIf="sc">{{calculateByProp('phuphi')}}</td>
+                                      <td *ngIf="sc">{{calculateByProp('dongia','khoiluong')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sc">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sc">{{calculateByProp('dongia','khoiluong') + calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sc"></td>
+                                      <td></td>
+                                    </tr>
+                                    <tr *ngFor="let item of receiveList| user: {'trangthai': trangthai, 'user': {'tenkh': tenkh}, 'chitietnhs': {'madh': madh}} | time: {'from': from, 'to': to}">
+                                        <td>{{formatService.formatDate(item.ngay)}}</td> 
+                                        <td><a (click)="openReceiveDetail(item)">
+                                            <ul>
+                                                <li *ngFor="let prod of item.chitietnhs">{{prod.madh}}</li>
+                                            </ul> 
+                                        </a></td> 
+                                        <td *ngIf="sc">{{item.khoiluong}}</td>
+                                        <td *ngIf="sc">{{item.dongia}}</td> 
+                                        <td *ngIf="sc">{{item.phuphi}}</td> 
+                                        <td *ngIf="sc">{{item.dongia*item.khoiluong -- item.phuphi | number: '1.2-2'}}</td>
+                                        <td *ngIf="sc">{{item.datcoc}}</td> 
+                                        <td *ngIf="sc">{{item.dongia*item.khoiluong -- item.phuphi - item.datcoc}}</td> 
+                                        <td *ngIf="sc">{{item.ghichu}}</td> 
+                                        <td>{{formatService.statusType(item.trangthai)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -42,18 +42,16 @@ export class WaitingListComponent implements OnInit {
 
     let id = this.storageService.get('userInfo').makh;
 
+    this.userService.getById(id).subscribe( userData => {this.user = userData.data;}, error => {});
+
     this.mainService.listWaitingBill({makh: id}).subscribe( user => {
 
       this.billData = user;
 
-      if(this.billData.length) {
+      console.log("data:", user);
 
-        this.user = this.billData[0].user;
-        this.loadingService.hide();
-      } else {
+      this.loadingService.hide();
 
-        this.userService.getById(id).subscribe( userData => {this.user = userData.data; this.loadingService.hide();}, error => this.loadingService.hide());
-      }
     }, error => {
 
       this.loadingService.hide();

@@ -1,0 +1,104 @@
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Đơn Hàng
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Thêm Khách Hàng</a></li>
+                                    <li><a href="javascript:void(0);">Tìm Kiếm</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div id="sign_up" method="POST">
+                            <div class="input-group">
+                                <!-- <div class="form-line">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                </div> -->
+                                <div class="form-group" style="margin: 0">
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="from" placeholder="From">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker></mat-datepicker>
+                                     </mat-form-field>  
+                                     <mat-form-field> 
+                                        <input matInput [matDatepicker]="myDatepicker2" [(ngModel)]="to" placeholder="To">
+                                          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle> 
+                                        <mat-datepicker #myDatepicker2></mat-datepicker>
+                                     </mat-form-field>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                  <!-- <tr style="background-color: #a1edeb;">
+                                      <td *ngIf="!sr"></td>
+                                      <td></td>
+                                      <td *ngIf="!sr">{{calculateByProp('tongsl')}}</td>
+                                      <td *ngIf="!sr"></td>
+                                      <td *ngIf="!sr"></td>
+                                      <td *ngIf="!sr">{{calculateByProp('tienyen')}}</td>
+                                      <td *ngIf="!sr"></td>
+                                      <td *ngIf="!sr">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>
+                                      <td *ngIf="!sr">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="!sr">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="!sr"></td>
+                                      <td></td>
+                                    </tr> -->
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th *ngIf="!sr">Ngày Nhận</th>
+                                        <th>Mã Đơn</th>
+                                        <th>Nợ Thanh Toán</th>
+                                        <th *ngIf="!sr">Nợ Người Nhận</th>
+                                        <th *ngIf="!sr">Tổng Chi</th>
+                                        <th *ngIf="!sr">Tổng Thu</th>
+                                        <th *ngIf="!sr">Lỗ Lãi</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th *ngIf="!sr">Ngày Nhận</th>
+                                        <th>Mã Đơn</th>
+                                        <th>Nợ Thanh Toán</th>
+                                        <th *ngIf="!sr">Nợ Người Nhận</th>
+                                        <th *ngIf="!sr">Tổng Chi</th>
+                                        <th *ngIf="!sr">Tổng Thu</th>
+                                        <th *ngIf="!sr">Lỗ Lãi</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody *ngFor="let rItem of receiveData| time: {'from': from, 'to': to, 'type': 'ngaynhan'}">
+                                    <tr *ngFor="let oItem of rItem.donhangs; let i = index;">
+                                        <td *ngIf="!sr">{{i == 0? formatService.formatDate(rItem.ngaynhan): ''}}</td>
+                                        <td><a>{{oItem.madh}}</a></td>
+                                        <th *ngIf="!sr">{{oItem.noOrder| number: '1.2-2'}}</th>
+                                        <td *ngIf="!sr">{{i == 0?(rItem.noReceive| number: '1.2-2'):''}}</td>
+                                        <td *ngIf="!sr">{{i == 0?(rItem.tongchi| number: '1.2-2'):''}}</td>
+                                        <td *ngIf="!sr">{{i == 0?(rItem.tongthu| number: '1.2-2'):''}}</td>
+                                        <td *ngIf="!sr">{{i == 0?(rItem.tongthu - rItem.tongchi| number: '1.2-2'):''}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

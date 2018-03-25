@@ -4,7 +4,7 @@ import { LoadingService } from '../../core/util/loading.service';
 import { FormatService } from '../../core/util/format.service';
 import { ClientService } from '../../core/dialog/client/client.service';
 import { StorageService } from '../../core/util/storage.service';
-import { WaitingOrderService } from '../../core/api/waiting-order.service';
+import { WaitingReceiveService } from '../../core/api/waiting-receive.service';
 import { PopupService } from '../../core/dialog/popup/popup.service';
 declare var $: any;
 
@@ -27,7 +27,7 @@ export class ReceiverWaitingComponent implements OnInit {
     private formatService: FormatService,
     private clientService: ClientService,
     private storageService: StorageService,
-    private waitingOrderService: WaitingOrderService,
+    private waitingReceiveService: WaitingReceiveService,
     private popupService: PopupService
   ) { }
 
@@ -41,7 +41,7 @@ export class ReceiverWaitingComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.waitingOrderService.getByParams({makh: id}).subscribe( data => {
+    this.waitingReceiveService.search({makh: id}).subscribe( data => {
 
       this.fakedData = data;
       this.loadingService.hide();
@@ -55,9 +55,9 @@ export class ReceiverWaitingComponent implements OnInit {
 
   gotoDetail(element) {
 
-    this.clientService.openPaymentForm(element.madh).subscribe( data => {
+    this.clientService.openReceiverForm(element.manh).subscribe( data => {
 
-      this.waitingOrderService.getById(element.madh).subscribe( data => {
+      this.waitingReceiveService.getById(element.manh).subscribe( data => {
 
         element = data.data;
 
@@ -72,7 +72,7 @@ export class ReceiverWaitingComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.waitingOrderService.delete(item.madh).subscribe( success => {
+    this.waitingReceiveService.delete(item).subscribe( success => {
 
       this.fakedData.splice(this.fakedData.indexOf(item), 1);
 

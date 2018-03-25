@@ -9,6 +9,13 @@ import { TestComponent } from './test/test.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ReceiverComponent } from './receiver/receiver.component';
 import { ReceiveListComponent } from './receive-list/receive-list.component';
+import { WaitingListOrderComponent } from './orders/waiting-list-order/waiting-list-order.component';
+import { WaitingListReceiverComponent } from './receive-list/waiting-list-receiver/waiting-list-receiver.component';
+import { WaitingListBillComponent } from './bills/waiting-list-bill/waiting-list-bill.component';
+import { OrderHistoryComponent } from './orders/order-history/order-history.component';
+import { ReceiveHistoryComponent } from './receive-list/receive-history/receive-history.component';
+import { StatisticComponent } from './statistic/statistic.component';
+
 
 export const MainRoutes: Routes = [
     {
@@ -41,5 +48,23 @@ export const MainRoutes: Routes = [
     }, {
         path: 'receive-list',
         component: ReceiveListComponent
+    }, {
+        path: 'bills/waiting-list-bill',
+        component: WaitingListBillComponent
+    }, {
+        path: 'receiver/waiting-list-receiver',
+        component: WaitingListReceiverComponent
+    }, {
+        path: 'orders/waiting-list-order',
+        component: WaitingListOrderComponent
+    }, {
+        path: 'orders/history/:id',
+        component: OrderHistoryComponent
+    }, {
+        path: 'receiver/history/:id',
+        component: ReceiveHistoryComponent
+    }, {
+        path: 'statistic',
+        component: StatisticComponent
     }
 ]

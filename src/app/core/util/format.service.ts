@@ -26,7 +26,9 @@ export class FormatService {
     return day + "/" + month + "/" + year;
   };
 
-  formatData(src, mainProp) {
+  formatData(src, mainProp, level?) {
+
+    level = level? level: 1;
 
     let flag = {};
 
@@ -40,12 +42,16 @@ export class FormatService {
 
       for(let e in element) {
 
-        if(e.indexOf('.')>0) {
+        let arr = e.split('.');
 
-          let arr = e.split('.');
+        let len = arr.length;
 
-          ob[arr[1]] = element[e];
-          name = arr[0];
+        if(len - 1 >= level) {
+
+          ob[arr[len-1]] = element[e];
+
+          arr.pop(); 
+          name = arr.join('.');
 
           delete element[e];
         }

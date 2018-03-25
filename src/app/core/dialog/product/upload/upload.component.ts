@@ -5,6 +5,7 @@ import { BillService } from '../../../api/bill.service';
 import { BillDetailService } from '../../../api/bill-detail.service';
 import { PopupService } from '../../popup/popup.service';
 import { LoadingService } from '../../../util/loading.service';
+import { StorageService } from '../../../util/storage.service';
 
 declare let $: any;
 
@@ -19,14 +20,15 @@ export class UploadComponent implements OnInit {
     masp: '',
     soluong: 1,
     trangweb: '',
-    giaweb: '',
-    trietkhau: '',
-    khoiluong: '',
-    tigia: '',
+    giaweb: 0,
+    trietkhau: 0.85,
+    khoiluong: 0,
     giuhop: 0,
     mahd: null,
     makh: null,
   }];
+
+  private tigia: number;
 
   private isError = false;
   private isNew = false;
@@ -37,17 +39,21 @@ export class UploadComponent implements OnInit {
     private billService: BillService,
     private billDetailService: BillDetailService,
     private popupDialog: PopupService,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
     console.log("data: ", this.data);
+
+    this.tigia = this.storageService.get('tigia');
 
     this.billDetailList[0].makh = this.data.user.makh;
 
     if(this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
 
       this.billDetailList = this.data.bill.chitiethds;
+
     }
 
     if(!this.data.bill) {
@@ -56,9 +62,12 @@ export class UploadComponent implements OnInit {
         ngay: this.getTime(),
         makh: this.data.user.makh,
         trangthai: 2,
-        datcoc: '',
-        ship: '',
-        thuonghieu: 'adidas'
+        datcoc: 0,
+        ship: 0,
+        thuonghieu: 'adidas',
+        tigia: this.tigia + this.data.user.tigia,
+        thanhtien: 0,
+        phuphi: 0
       }
     }
   }
@@ -150,6 +159,7 @@ export class UploadComponent implements OnInit {
 
     this.billDetailList.forEach( element => {
 
+      element.giuhop = element.giuhop? element.soluong: 0;
       if(element.mahd) {
 
         this.billDetailService.update(element).subscribe( data => {
@@ -262,9 +272,9 @@ export class UploadComponent implements OnInit {
     let sum = 0;
     this.billDetailList.forEach( element => {
 
-      sum += element.giaweb * element.tigia * (1 + element.trietkhau) * element.soluong;
+      sum += element.giaweb * this.data.bill.tigia  *  element.trietkhau * element.soluong;
     });
 
-    return sum;
+    this.data.bill.thanhtien =  sum - -this.data.bill.ship - -this.data.bill.phuphi;
   }
 }

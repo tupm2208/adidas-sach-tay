@@ -33,33 +33,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     
     this.getSavedAccount();
-    // this.loading.show("login");
-  }
-
-  ngAfterViewInit() {
-    
-    // $(function () {
-    //   $('#sign_in').validate({
-    //       highlight: function (input) {
-    //           console.log(input);
-    //           $(input).parents('.form-line').addClass('error');
-    //       },
-    //       unhighlight: function (input) {
-    //           $(input).parents('.form-line').removeClass('error');
-    //       },
-    //       errorPlacement: function (error, element) {
-    //           $(element).parents('.input-group').append(error);
-    //       }
-    //   });
-    // });
-
-    // setTimeout( () => $('.page-loader-wrapper').fadeOut(), 50);
-    this.loading.show();
-
-    setTimeout( () => {
-
-      this.loading.hide();
-    }, 1000);
   }
 
   login() {

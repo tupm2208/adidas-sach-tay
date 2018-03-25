@@ -29,39 +29,57 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Mã Đơn Hàng</th>
                                         <th>Ngày</th>
+                                        <th>Mã Đơn Hàng</th>
                                         <th>Mã Sản Phẩm</th>
+                                        <th>Tỉ Giá</th>
                                         <th>Phí Ship</th>
+                                        <th>Phụ Phí</th>
+                                        <th>Thành Tiền</th>
                                         <th>Đặt Cọc</th>
-                                        <th>Tổng Giá trị Sản Phẩm</th>
                                         <th>Còn Lại</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>>Mã Đơn Hàng</th>
                                         <th>Ngày</th>
+                                        <th>Mã Đơn Hàng</th>
                                         <th>Mã Sản Phẩm</th>
+                                        <th>Tỉ Giá</th>
                                         <th>Phí Ship</th>
+                                        <th>Phụ Phí</th>
+                                        <th>Thành Tiền</th>
                                         <th>Đặt Cọc</th>
-                                        <th>Tổng Giá trị Sản Phẩm</th>
                                         <th>Còn Lại</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
+                                    <tr style="background-color: #a1edeb;">
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>{{calculateByProp('ship')| number: '1.2-2'}}</td>
+                                      <td></td>
+                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('thanhtien') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td></td>
+                                    </tr>
                                      <tr *ngFor="let item of billData | user: {'madh': madh}">
-                                        <td>>{{item?.madh}}</td>
                                         <td>{{formatService.formatDate(item.ngay)}}</td>
+                                        <td>{{item?.madh}}</td>
                                         <td (click)="gotoDetail(item)"><a><ul style="padding-left: 15px;">
                                                 <li *ngFor="let it of item.chitiethds">{{it.masp}}</li>
                                             </ul></a></td>
-                                        <td>{{item.ship}}</td>
-                                        <td>{{item.datcoc}}</td>
-                                        <td>{{item.tonggt}}</td>
-                                        <td>{{item.sum}}</td>
+                                        <td>{{item.tigia}}</td>
+                                        <td>{{item.ship| number: '1.2-2'}}</td>
+                                        <td>{{item.phuphi| number: '1.2-2'}}</td>
+                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>
+                                        <td>{{item.datcoc| number: '1.2-2'}}</td>
+                                        <td>{{item.thanhtien - item.phuphi| number: '1.2-2'}}</td>
                                         <td>{{formatService.statusType(item.trangthai)}}</td>
                                     </tr> 
                                 </tbody>

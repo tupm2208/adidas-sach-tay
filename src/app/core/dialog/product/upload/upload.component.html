@@ -28,26 +28,38 @@
                                         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 
                                             <div class="form-group">
-                                                <label for="age">Thành Tiền *</label>
-                                                <label name="thanhtien" class="form-control" min="1">{{calculate() | number:'1.2-2'}}</label>
-                                                <span id="error_age" class="text-danger"></span>
-                                            </div>
-
-                                            <div class="form-group">
                                                 <label for="age">Thương Hiệu *</label>
                                                 <input id="age" name="thuonghieu" class="form-control" [ngStyle]="{'color': data.bill.thuonghieu? '':'red'}" [(ngModel)]="data.bill.thuonghieu" type="text" min="1">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="ship">Tỉ Giá (Tỉ Giá Hệ Thống Lúc Tạo Đơn + Tỉ Giá KH)</label>
+                                                <span class="form-control">{{data.bill.tigia}}</span>
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="ship">Phí Ship *</label>
-                                                <input [(ngModel)]="data.bill.ship" name="ship" class="form-control" min="1" type="text">
+                                                <input [(ngModel)]="data.bill.ship" name="ship" class="form-control" min="1" type="number">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ship">Phụ Phí *</label>
+                                                <input [(ngModel)]="data.bill.phuphi" name="phuphi" class="form-control" min="1" type="numer">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="ship">Thành Tiền * <button (click)="calculate()" class="btn btn-primary waves-effect">Tính</button></label>
+                                                <input [(ngModel)]="data.bill.thanhtien" name="thanhtien" class="form-control" min="1" type="number">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="age">Đặt Cọc *</label>
-                                                <input [(ngModel)]="data.bill.datcoc" name="thanhtien" class="form-control" min="1" type="text">
+                                                <input [(ngModel)]="data.bill.datcoc" name="datcoc" class="form-control" min="1" type="number">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 

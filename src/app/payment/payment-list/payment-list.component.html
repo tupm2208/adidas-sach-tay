@@ -34,11 +34,11 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th (click)="sr = !sr;" *ngIf="sr">Ngày</th>
-                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Mã Đh</th>
-                                        <th *ngIf="sr">Mã Sản Phẩm</th>
-                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Ngày</th>
                                         <th *ngIf="sr">Thương Hiệu</th>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th *ngIf="sr">Số Lượng</th>
                                         <th *ngIf="sr">Tiền Yên</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
                                         <th *ngIf="sr">Thành Tiền</th>
@@ -50,11 +50,11 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th *ngIf="sr">Ngày</th>
-                                        <th>Mã Đh</th>
-                                        <th *ngIf="sr">Mã Sản Phẩm</th>
-                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Ngày</th>
                                         <th *ngIf="sr">Thương Hiệu</th>
+                                        <th>Mã Đh</th>
+                                        <th *ngIf="sr">Tài Khoản</th>
+                                        <th *ngIf="sr">Số Lượng</th>
                                         <th *ngIf="sr">Tiền Yên</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
                                         <th *ngIf="sr">Thành Tiền</th>
@@ -68,33 +68,33 @@
                                     <tr style="background-color: #a1edeb;">
                                       <td *ngIf="sr"></td>
                                       <td></td>
+                                      <td></td>
                                       <td *ngIf="sr"></td>
+                                      <td *ngIf="sr">{{calculateByProp('tongsl')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen')}}</td>
                                       <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{balanceAll()| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen', 'tigia')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('datcoc')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
                                       <td *ngIf="sr"></td>
                                       <td></td>
                                     </tr>
                                     <tr *ngFor="let item of fakedData | user: {'madh': madh} | time: {'from': from, 'to': to}">
-                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
-                                        <td (click)="gotoDetail(item)"><a>{{item.madh}}</a></td>
-                                        <td *ngIf="sr">
-                                            <ul *ngIf="item.chitietdhs">
-                                                <li *ngFor="let product of item.chitietdhs" ><span>{{product.masp}} -></span><span style="color: blue;">{{product.soluong}}</span><span ></span></li>
-                                            </ul>
-                                        </td>
-                                        <td *ngIf="sr">{{item.taikhoan}}</td>
+                                        <td>{{formatService.formatDate(item.ngay)}}</td>
                                         <td *ngIf="sr">{{item.thuonghieu}}</td>
+                                        <td>{{item.madh}}</td>
+                                        <td *ngIf="sr">{{item.taikhoan}}</td>
+                                        <td *ngIf="sr">{{item.tongsl}}</td>
                                         <td *ngIf="sr">{{item.tienyen}}</td>
                                         <td *ngIf="sr">{{item.tigia}}</td>
                                         <td *ngIf="sr">{{item.tigia * item.tienyen | number: '1.2-2'}}</td>
                                         <td *ngIf="sr">{{item.datcoc}}</td>
                                         <td *ngIf="sr">{{item.tigia * item.tienyen - item.datcoc | number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.ghichu}}</td>
+                                        <td *ngIf="sr">
+                                            <div class="form-group" style="min-width: 100px">
+                                                <textarea class="form-control" (keyup.enter)="changeStatus(item.trangthai,item)" name="ghichu" [(ngModel)]="item.ghichu" rows="3"></textarea>
+                                            </div>
+                                        </td>
                                         <td>
                                           <div class="form-group">
                                             <div>

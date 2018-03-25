@@ -51,4 +51,13 @@ export class WaitingOrderService {
     
     return this.mainApi.post('choduyetdh/search', params);
   }
+
+  getWaitAndOrder(params): Observable<any> {
+
+    let token = this.storage.get('token');
+
+    params.token = token;
+    
+    return this.mainApi.post('choduyetdh/getlist', params);
+  }
 }

@@ -59,4 +59,18 @@ export class ReceiveListComponent implements OnInit {
       })
     })
   }
+
+  calculateByProp(name, name2?) {
+
+    let sum = 0;
+
+    this.receiveList.forEach(element => {
+      
+      //  = element[name2] ? element[name2]: 1;
+
+      element[name2] ? sum += Number(element[name]) * Number(element[name2]): sum+= Number(element[name]);
+    });
+
+    return sum;
+  }
 }

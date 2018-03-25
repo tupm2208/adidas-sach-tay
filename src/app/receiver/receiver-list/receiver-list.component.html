@@ -1,6 +1,3 @@
-<p>
-  receiver-list works!
-</p>
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
@@ -37,14 +34,14 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th (click)="sr = !sr;" *ngIf="sr">Ngày</th>
-                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Madh | SL | Giữ Hộp | KL</th>
+                                        <th (click)="sr = !sr;" style="background-color: aquamarine;" >Ngày</th>
+                                        <th >Mã Đơn Hàng</th>
                                         <th *ngIf="sr">Tổng Số Lượng</th>
                                         <th *ngIf="sr">Tổng Khối Lượng</th>
                                         <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Phụ Phí</th>
-                                        <th *ngIf="sr">Thành Tiền</th>
                                         <th *ngIf="sr">Dư Nợ</th>
                                         <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
@@ -52,14 +49,14 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th (click)="sr = !sr;" *ngIf="sr">Ngày</th>
-                                        <th style="background-color: aquamarine;" (click)="sr = !sr;">Madh | SL | Giữ Hộp | KL</th>
+                                        <th (click)="sr = !sr;" style="background-color: aquamarine;" >Ngày</th>
+                                        <th >Mã Đơn Hàng</th>
                                         <th *ngIf="sr">Tổng Số Lượng</th>
                                         <th *ngIf="sr">Tổng Khối Lượng</th>
                                         <th *ngIf="sr">Đơn Giá</th>
+                                        <th *ngIf="sr">Thành Tiền</th>
                                         <th *ngIf="sr">Đặt Cọc</th>
                                         <th *ngIf="sr">Phụ Phí</th>
-                                        <th *ngIf="sr">Thành Tiền</th>
                                         <th *ngIf="sr">Dư Nợ</th>
                                         <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
@@ -69,42 +66,45 @@
                                     <tr style="background-color: #a1edeb;">
                                       <td *ngIf="sr"></td>
                                       <td></td>
+                                      <td></td>
+                                      <td *ngIf="sr">{{calculateByProp('khoiluong')}}</td>
                                       <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{balanceAll()| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('khoiluong','dongia')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('datcoc')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('phuphi')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('khoiluong','dongia') + calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
                                       <td *ngIf="sr"></td>
                                       <td></td>
                                     </tr>
-                                    <tr *ngFor="let item of fakedData | user: {'madh': madh} | time: {'from': from, 'to': to}">
-                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
-                                        <td (click)="gotoDetail(item)"><a>
+                                    <tr *ngFor="let item of fakedData | user: {'chitietnhs': {'madh': madh}} | time: {'from': from, 'to': to}">
+                                        <td>{{formatService.formatDate(item.ngay)}}</td>
+                                        <td>
                                           <ul>
-                                              <li *ngFor="let product of item.chitietnhs" ><span>{{product.madh}} | {{product.soluong}} | {{product.giuhop}} | {{product.khoiluong}}</span></li>
+                                              <li *ngFor="let product of item.chitietnhs" ><a (click)="changeWeight(product)"><span>{{product.madh}}</span></a></li>
                                           </ul>  
-                                        </a></td>
+                                        </td>
                                         <td *ngIf="sr">
-                                            {{'tong soluong'}}
+                                            {{item.soluong}}
                                         </td>
                                         <td *ngIf="sr">{{item.khoiluong}}</td>
                                         <td *ngIf="sr">{{item.dongia}}</td>
+                                        
+                                        <td *ngIf="sr">{{item.khoiluong * item.dongia | number: '1.2-2'}}</td>
                                         <td *ngIf="sr">{{item.datcoc}}</td>
                                         <td *ngIf="sr">{{item.phuphi}}</td>
-                                        <td *ngIf="sr">{{item.khoiluong * item.dongia | number: '1.2-2'}}</td>
                                         <td *ngIf="sr">{{item.khoiluong * item.dongia - item.datcoc - item.phuphi | number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.ghichu}}</td>
+                                        <td *ngIf="sr">
+                                            <div class="form-group" style="min-width: 100px">
+                                                <textarea class="form-control" (keyup.enter)="changeStatus(item.trangthai,item)" name="ghichu" [(ngModel)]="item.ghichu" rows="3"></textarea>
+                                            </div>
+                                        </td>
                                         <td>
                                           <div class="form-group">
                                             <div>
-                                              <select data-validation="required" name="trangthai" (ngModelChange)="changeStatus($event,item)" [disabled]="item.trangthai>4" [(ngModel)]="item.trangthai" class="form-control">
-                                                <option value="3">Chưa Thanh Toán</option>
-                                                <option value="4">Đã Thanh Toán</option>
-                                                <option disabled value="5">Chưa Về Kho Nhật</option>
-                                                <option disabled value="6">Về Kho Nhật</option>
-                                                <option disabled value="7">Về Kho Việt Nam</option>
+                                              <select data-validation="required" name="trangthai" (ngModelChange)="changeStatus($event,item)" [disabled]="item.trangthai>7" [(ngModel)]="item.trangthai" class="form-control">
+                                                <option value="5">Chưa Về Kho Nhật</option>
+                                                <option value="6">Về Kho Nhật</option>
+                                                <option value="7">Về Kho Việt Nam</option>
                                                 <option disabled value="8">Hoàn Tất</option>
                                               </select>
                                             </div>

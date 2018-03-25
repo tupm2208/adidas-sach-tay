@@ -63,6 +63,16 @@
 
                     <div class="input-group">
                         <span class="input-group-addon">
+                          <i class="material-icons">trending_up</i>
+                      </span>
+                        <div class="form-line">
+                            <label class="form-control" *ngIf="!toggle.tigia" (click)="onClickMethod('tigia')">{{data.tigia}}</label>  
+                            <input type="number" class="form-control" *ngIf="toggle.tigia" (blur)="onBlurMethod('tigia')" [(ngModel)]="data.tigia" name="tigia" placeholder="Tỉ Giá" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
                           <i class="material-icons">lock</i>
                       </span>
                         <div class="form-line">
