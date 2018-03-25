@@ -83,11 +83,9 @@
                                         </a></td>
                                         <td *ngIf="sr" (click)="openBill(item)"><a>{{item.madh}}</a></td>
                                         <td>
-                                            <a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Chi Tiết Hóa Đơn">
                                                 <ul style="padding-left: 15px;" *ngIf="item.chitiethds">
                                                     <li *ngFor="let product of item.chitiethds">{{product.masp}} - {{product.soluong}}</li>
                                                 </ul>
-                                            </a>
                                         </td>
                                         <td *ngIf="sr">{{item.tigia}}</td>
                                         <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
