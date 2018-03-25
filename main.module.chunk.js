@@ -1497,12 +1497,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__receive_list_waiting_list_receiver_waiting_list_receiver_component__ = __webpack_require__("../../../../../src/app/main/receive-list/waiting-list-receiver/waiting-list-receiver.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__orders_order_history_order_history_component__ = __webpack_require__("../../../../../src/app/main/orders/order-history/order-history.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__receive_list_receive_history_receive_history_component__ = __webpack_require__("../../../../../src/app/main/receive-list/receive-history/receive-history.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__statistic_statistic_component__ = __webpack_require__("../../../../../src/app/main/statistic/statistic.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1580,6 +1582,7 @@ var MainModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_25__receive_list_waiting_list_receiver_waiting_list_receiver_component__["a" /* WaitingListReceiverComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__orders_order_history_order_history_component__["a" /* OrderHistoryComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__receive_list_receive_history_receive_history_component__["a" /* ReceiveHistoryComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__statistic_statistic_component__["a" /* StatisticComponent */],
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_17__assign_order_select_product_select_product_component__["a" /* SelectProductComponent */],
@@ -1617,6 +1620,8 @@ var MainModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bills_waiting_list_bill_waiting_list_bill_component__ = __webpack_require__("../../../../../src/app/main/bills/waiting-list-bill/waiting-list-bill.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__orders_order_history_order_history_component__ = __webpack_require__("../../../../../src/app/main/orders/order-history/order-history.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__receive_list_receive_history_receive_history_component__ = __webpack_require__("../../../../../src/app/main/receive-list/receive-history/receive-history.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__statistic_statistic_component__ = __webpack_require__("../../../../../src/app/main/statistic/statistic.component.ts");
+
 
 
 
@@ -1678,6 +1683,9 @@ var MainRoutes = [
     }, {
         path: 'receiver/history/:id',
         component: __WEBPACK_IMPORTED_MODULE_14__receive_list_receive_history_receive_history_component__["a" /* ReceiveHistoryComponent */]
+    }, {
+        path: 'statistic',
+        component: __WEBPACK_IMPORTED_MODULE_15__statistic_statistic_component__["a" /* StatisticComponent */]
     }
 ];
 
@@ -2816,6 +2824,113 @@ var ReceiverComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_9__core_api_receive_detail_service__["a" /* ReceiveDetailService */]])
     ], ReceiverComponent);
     return ReceiverComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/statistic/statistic.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group .form-line {\r\n    width: 30%;\r\n}\r\n\r\nul, menu, dir {\r\n    -webkit-padding-start: 20px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/statistic/statistic.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <!-- <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div> -->\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                  <!-- <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tongsl')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                    </tr> -->\n                                </thead>\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let rItem of receiveData| time: {'from': from, 'to': to, 'type': 'ngaynhan'}\">\n                                    <tr *ngFor=\"let oItem of rItem.donhangs; let i = index;\">\n                                        <td *ngIf=\"!sr\">{{i == 0? formatService.formatDate(rItem.ngaynhan): ''}}</td>\n                                        <td><a>{{oItem.madh}}</a></td>\n                                        <th *ngIf=\"!sr\">{{oItem.noOrder| number: '1.2-2'}}</th>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.noReceive| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongchi| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu - rItem.tongchi| number: '1.2-2'):''}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/main/statistic/statistic.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatisticComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var StatisticComponent = /** @class */ (function () {
+    function StatisticComponent(mainService, formatService, loadingService) {
+        this.mainService = mainService;
+        this.formatService = formatService;
+        this.loadingService = loadingService;
+        this.receiveData = [];
+        this.from = '';
+        this.to = '';
+    }
+    StatisticComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loadingService.show();
+        this.mainService.getStatistic({ trangthai: 8 }).subscribe(function (data) {
+            _this.receiveData = data;
+            console.log("data: ", data);
+            _this.cal();
+        });
+    };
+    StatisticComponent.prototype.calculateByProp = function (item, name, name2) {
+        var sum = 0;
+        item.forEach(function (element) {
+            element[name2] ? sum += Number(element[name]) * Number(element[name2]) : sum += Number(element[name]);
+            if (!name2 && name == 'thanhtien')
+                console.log("e: ", element.thanhtien);
+        });
+        return sum;
+    };
+    StatisticComponent.prototype.cal = function () {
+        var _this = this;
+        this.receiveData.forEach(function (element) {
+            console.log("abc: ", element);
+            element.noReceive = element.dongia * element.khoiluong + Number(element.phuphi);
+            element.tongthu = 0;
+            element.donhangs.forEach(function (ele) {
+                console.log("abcd: ", element);
+                ele.noOrder = ele.tienyen * ele.tigia;
+                ele.noBill = _this.calculateByProp(ele.hoadons, 'thanhtien');
+            });
+            element.tongchi = Number(element.noReceive) + _this.calculateByProp(element.donhangs, 'noOrder');
+            element.tongthu = _this.calculateByProp(element.donhangs, 'noBill');
+        });
+        this.loadingService.hide();
+    };
+    StatisticComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-statistic',
+            template: __webpack_require__("../../../../../src/app/main/statistic/statistic.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/main/statistic/statistic.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_2__core_util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */]])
+    ], StatisticComponent);
+    return StatisticComponent;
 }());
 
 
