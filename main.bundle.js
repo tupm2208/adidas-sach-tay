@@ -1438,7 +1438,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ConfigService = /** @class */ (function () {
     function ConfigService() {
-        this.urlBase = 'https://adidas-backend-trachdaik.c9users.io/api/';
+        this.urlBase = 'https://app-649c4742-aae3-4427-9c7c-eb3cf4974289.cleverapps.io/api/';
     }
     ConfigService.prototype.getBaseURL = function () {
         return this.urlBase;
