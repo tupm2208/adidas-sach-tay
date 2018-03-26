@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host $IP --port $PORT --public-host https://adidas-manage-trachdaik.c9users.io",
+    "start": "ng serve --host $IP --port $PORT --public-host http://app-7e198981-954f-42b3-bfdd-bdcb65a6136d.cleverapps.io",
     "build": "ng build --env=prod --base-href=/adidas-sach-tay/ && ngh --no-silent",
     "test": "ng test",
     "lint": "ng lint",
@@ -50,3 +50,4 @@
     "typescript": "~2.5.3"
   }
 }
+//  https://adidas-manage-trachdaik.c9users.io
