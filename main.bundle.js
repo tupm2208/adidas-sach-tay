@@ -3425,7 +3425,7 @@ var UploadComponent = /** @class */ (function () {
                 datcoc: 0,
                 ship: 0,
                 thuonghieu: 'adidas',
-                tigia: this.tigia + this.data.user.tigia,
+                tigia: Number(this.tigia) + Number(this.data.user.tigia),
                 thanhtien: 0,
                 phuphi: 0
             };
