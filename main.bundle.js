@@ -1438,7 +1438,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ConfigService = /** @class */ (function () {
     function ConfigService() {
-        this.urlBase = 'https://app-40dcc8a9-fda5-499f-8e36-8c8e8efe51d2.cleverapps.io/api/';
+        this.urlBase = 'https://app-a15a6695-e7be-4122-99b7-3b18cd2dd87b.cleverapps.io/api/';
     }
     ConfigService.prototype.getBaseURL = function () {
         return this.urlBase;
