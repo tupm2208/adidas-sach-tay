@@ -6,39 +6,34 @@ import { StorageService } from '../util/storage.service'
 @Injectable()
 export class UserService {
 
+  base = "users"
+
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
 
   list(): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('khachhang?token=' + token);
+    return this.mainApi.get(this.base);
   }
 
   getById(id): Observable<any> {
 
-    let token = this.storage.get('token');
-    return this.mainApi.get('khachhang/' + id + '?token=' + token);
+    return this.mainApi.get(this.base + '/' + id);
   }
 
   regist(params): Observable<any> {
 
-    params.token = this.storage.get('token');
     
-    return this.mainApi.post('khachhang', params);
+    
+    return this.mainApi.post(this.base + '', params);
   }
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
-
-    return this.mainApi.put('khachhang/' + params.makh, params);
+    return this.mainApi.put(this.base + '/' + params.makh, params);
   }
 
   search(params): Observable<any> {
 
-    params.token = this.storage.get('token');
-
-    return this.mainApi.post('khachhang/search', params);
+    return this.mainApi.post(this.base + '/search', params);
   }
 }

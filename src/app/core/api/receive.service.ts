@@ -46,7 +46,7 @@ export class ReceiveService {
 
   search(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('nhanhang/search', params);
   }

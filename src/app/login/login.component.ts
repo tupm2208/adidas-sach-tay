@@ -3,6 +3,7 @@ import { LoginService } from '../core/api/login.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../core/util/storage.service';
 import { LoadingService } from '../core/util/loading.service';
+import { UserService } from '../core/api/user.service';
 declare var $: any;
 
 @Component({
@@ -12,22 +13,23 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  private sdt;
-  private mk;
+  private email;
+  private password;
   private saveFlag;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
     private storage: StorageService,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private userService: UserService
   ) { }
 
   getSavedAccount() {
 
     this.saveFlag = this.storage.get('saveFlag');
-    this.sdt = this.storage.get('sdt');
-    this.mk = this.storage.get('mk');
+    this.email = this.storage.get('email');
+    this.password = this.storage.get('password');
   }
 
   ngOnInit() {
@@ -38,22 +40,29 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading.show();
     this.checkBeforeSaving();
-
+    const strategy = "local"
     this.loginService.login({
-      sdt: this.sdt,
-      mk: this.mk
+      strategy,
+      email: this.email,
+      password: this.password
     }).subscribe( res => {
 
       console.log("login succeess: ", res);
 
-      if(res.status) {
+      this.storage.set("accessToken", res.accessToken)
+      this.userService.list().subscribe(success => {
+        console.log("success.data.length", success.data)
+        let user: any = {}
+        if (success.data.length === 1) {
+          user = {...success.data[0]}
+        } else {
+          user.role = "admin"
+        }
 
-        this.storage.set('token', res.token);
-        this.storage.set('userInfo', {makh: res.makh, maduyetkh: res.maduyetkh, maloainv: res.maloainv});
-        this.gotoHome(res);
-      } else {
-        this.loading.hide();
-      }
+        this.storage.set('userInfo', user)
+        this.gotoHome(user);
+      })
+
     }, error => {
 
       console.log("error: ", error);
@@ -66,13 +75,13 @@ export class LoginComponent implements OnInit {
     if(this.saveFlag) {
 
       this.storage.set('saveFlag', true);
-      this.storage.set('sdt', this.sdt);
-      this.storage.set('mk', this.mk);
+      this.storage.set('email', this.email);
+      this.storage.set('password', this.password);
     } else {
 
       this.storage.set('saveFlag', false);
-      this.storage.set('sdt', null);
-      this.storage.set('mk', null);
+      this.storage.set('email', null);
+      this.storage.set('password', null);
     }
   }
 
@@ -83,13 +92,13 @@ export class LoginComponent implements OnInit {
 
   gotoHome(res) {
 
-    switch(res.maloainv) {
+    switch(res.role) {
 
-      case 1: this.router.navigate(['/home']); break;
-      case 2: 
-      case 3: this.router.navigate(['/client/']); break;
-      case 4: this.router.navigate(['/payment']); break;
-      case 6: this.router.navigate(['/receiver-consumer']); break;
+      case 'admin': this.router.navigate(['/home']); break;
+      case 'client': 
+      case 'client': this.router.navigate(['/client/']); break;
+      case 'payment': this.router.navigate(['/payment']); break;
+      case 'receiver-consumer': this.router.navigate(['/receiver-consumer']); break;
       default: console.log("invalid request"); break;
     }
     

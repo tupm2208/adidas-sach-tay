@@ -45,7 +45,7 @@ export class WaitingReceiveService {
 
   search(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('choduyetnh/search', params);
   }

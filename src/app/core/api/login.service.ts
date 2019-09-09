@@ -9,6 +9,6 @@ export class LoginService {
 
   login(params): Observable<any> {
 
-    return this.mainApi.post('auth', params);
+    return this.mainApi.post('authentication', params, {});
   }
 }

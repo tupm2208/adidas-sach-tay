@@ -27,14 +27,14 @@ export class WaitingBillDetailService {
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.put('choduyetcthd/' + params.mahd + '/' + params.masp, params);
   }
 
   create(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('choduyetcthd', params);
   }

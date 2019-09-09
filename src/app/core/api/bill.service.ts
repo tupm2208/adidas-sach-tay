@@ -45,7 +45,7 @@ export class BillService {
 
   search(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('hoadon/search', params);
   }

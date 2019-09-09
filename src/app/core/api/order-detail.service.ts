@@ -26,14 +26,14 @@ export class OrderDetailService {
 
   create(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('chitietdh', params);
   }
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.put('chitietdh/' + params.madh + '/' +params.masp , params);
   }

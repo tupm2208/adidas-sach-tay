@@ -45,7 +45,7 @@ export class WaitingBillService {
 
   search(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('choduyethd/search', params);
   }

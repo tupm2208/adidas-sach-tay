@@ -24,14 +24,14 @@ export class WaitingOrderService {
 
   create(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('choduyetdh', params);
   }
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
     console.log("update madh = ", params.madh);
     return this.mainApi.put('choduyetdh/' + params.madh, params);
   }

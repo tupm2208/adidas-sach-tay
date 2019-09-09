@@ -24,14 +24,14 @@ export class OrderService {
 
   create(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('donhang', params);
   }
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
     console.log("update madh = ", params.madh);
     return this.mainApi.put('donhang/' + params.madh, params);
   }

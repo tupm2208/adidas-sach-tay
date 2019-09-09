@@ -26,14 +26,14 @@ export class ReceiveDetailService {
 
   update(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.put('chitietnh/' + params.manh + '/' + params.madh, params);
   }
 
   create(params): Observable<any> {
 
-    params.token = this.storage.get('token');
+    
 
     return this.mainApi.post('chitietnh', params);
   }

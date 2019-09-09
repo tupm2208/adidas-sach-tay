@@ -312,35 +312,35 @@ UNLOCK TABLES;
 -- Dump completed on 2018-03-16  1:44:23
 
 
-delimiter //
-create trigger chitietdh_update
-  after update on chitietdh 
-  for each row
-  begin
-  update donhang
-  set tongsl = tongsl + new.soluong - old.soluong, giuhop = giuhop + new.giuhop - old.giuhop
-  where new.madh = madh;
-  end//
-delimiter ;
+-- delimiter //
+-- create trigger chitietdh_update
+--   after update on chitietdh 
+--   for each row
+--   begin
+--   update donhang
+--   set tongsl = tongsl + new.soluong - old.soluong, giuhop = giuhop + new.giuhop - old.giuhop
+--   where new.madh = madh;
+--   end//
+-- delimiter ;
 
-delimiter //
-create trigger chitietdh_drop
-  before delete on chitietdh 
-  for each row
-  begin
-  update donhang
-  set tongsl = tongsl + old.soluong, giuhop = giuhop + old.giuhop
-  where old.madh = madh;
-  end//
-delimiter ;
+-- delimiter //
+-- create trigger chitietdh_drop
+--   before delete on chitietdh 
+--   for each row
+--   begin
+--   update donhang
+--   set tongsl = tongsl + old.soluong, giuhop = giuhop + old.giuhop
+--   where old.madh = madh;
+--   end//
+-- delimiter ;
 
-delimiter //
-create trigger nhanhang_update
-  after update on chitietdh 
-  for each row
-  begin
-  update donhang
-  set trangthai = new.trangthai
-  where manh = new.manh;
-  end//
-delimiter ;
+-- delimiter //
+-- create trigger nhanhang_update
+--   after update on chitietdh 
+--   for each row
+--   begin
+--   update donhang
+--   set trangthai = new.trangthai
+--   where manh = new.manh;
+--   end//
+-- delimiter ;

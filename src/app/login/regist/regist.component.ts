@@ -13,6 +13,12 @@ declare let $: any;
 })
 export class RegistComponent implements OnInit {
 
+  private email: String = ''
+  private password: String = ''
+  private confirmPassword: String = ''
+  private name: String = ''
+  private address: String = ''
+
   constructor(
     private userService: UserService,
     private storageService: StorageService,
@@ -22,6 +28,46 @@ export class RegistComponent implements OnInit {
   ){ }
 
   ngOnInit() {
+  }
+
+  isValid() {
+    let message = "invalid"
+    if (!this.email) {
+      message += " email"
+    }
+
+    if (!this.password) {
+      message += " password"
+    }
+
+    if (!this.name) {
+      message += " name"
+    }
+
+    if (!this.confirmPassword) {
+      message += " confirmPassword"
+    }
+
+    if (!this.address) {
+      message += " address"
+    }
+
+    return message
+  }
+
+  regist() {
+    const message = this.isValid();
+    if (message !== 'invalid') {
+      this.popup.showError(message)
+      return
+    }
+    const {email, password, address, name} = this
+    const role = 4
+    this.userService.regist({email, password, address, name, role}).subscribe(success => {
+      this.popup.showSuccess()
+    }, error => {
+      this.popup.showError(error)
+    })
   }
 
   initValidate() {

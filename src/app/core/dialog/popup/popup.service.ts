@@ -18,9 +18,9 @@ export class PopupService {
     return this.dialog.open(SuccessComponent).afterClosed();
   }
 
-  showError(): Observable<any> {
+  showError(data?): Observable<any> {
 
-    return this.dialog.open(ErrorComponent).afterClosed();
+    return this.dialog.open(ErrorComponent,{data: data}).afterClosed();
   }
 
   showWanning(data: String): Observable<any> {
