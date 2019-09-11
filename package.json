@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host $IP --port $PORT --public-host https://app-7e198981-954f-42b3-bfdd-bdcb65a6136d.cleverapps.io",
+    "start": "ng serve",
     "build": "ng build --env=prod --base-href=/adidas-sach-tay/ && ngh --no-silent",
     "test": "ng test",
     "lint": "ng lint",

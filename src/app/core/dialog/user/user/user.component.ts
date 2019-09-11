@@ -17,16 +17,6 @@ export class UserComponent implements OnInit {
 
   private isNew = false;
   private listOrderProduct = [];
-  private toggle = {
-    tenkh: false,
-    sdt: false,
-    email: false,
-    diachi: false,
-    makh: false,
-    mk: false,
-    maloainv: false,
-    tigia: false
-  }
   private reload = null;
 
   constructor(
@@ -44,64 +34,43 @@ export class UserComponent implements OnInit {
 
       this.data = {
 
-        tenkh: '',
-        sdt: '',
+        name: '',
+        phone: '',
         email: '',
-        diachi: '',
-        makh: null,
-        mk: 'adidas',
-        maloainv: 2,
-        tigia: 0
+        address: '',
+        id: null,
+        password: 'adidas',
+        role: 2,
+        exchangeOdds: 0
       }
     }
-    this.initToggle(false);
-  }
-  initToggle(data) {
-
-    for(let e in this.toggle) {
-
-      this.toggle[e] = data;
-    }
-  }
-
-  onBlurMethod(toggle){
-    
-    this.toggle[toggle] = false;
-  }
-
-  onClickMethod(toggle) {
-
-    this.toggle[toggle] = true;
-    setTimeout( () => {
-      $("input[name='" + toggle +"']").focus();
-    }, 100);
   }
 
   selectKind(type) {
 
-    if(type == 1) return "admin"
+    if(type == "admin") return "admin"
 
-    if(type == 2) return "Khách Lẻ";
+    if(type == "client") return "Khách Lẻ";
 
-    if(type == 3) return "Khách Buôn";
+    if(type == "client2") return "Khách Buôn";
 
-    if(type == 5) return "Shipper";
+    if(type == "shiper") return "Shipper";
 
-    if(type == 4) return "Người Mua";
+    if(type == "buyer") return "Người Mua";
 
-    if(type == 6) return "Người Nhận";
+    if(type == "receiver") return "Người Nhận";
 
     return "Chưa Chọn";
   }
 
   order() {
 
-    if(!this.data.makh) {
+    if(!this.data.id) {
       this.loading.show("user");
       this.userService.regist(this.data).subscribe( data => {
         
         console.log("regist data: ", data);
-        this.data.makh = data.data.makh;
+        this.data.id = data.data.id;
         this.openBillForm(data.data);
         this.loading.hide("user");
         this.data = data.data;
@@ -130,8 +99,8 @@ export class UserComponent implements OnInit {
 
     this.loading.show("user");
 
-    if (this.data.makh) {
-
+    if (this.data.id) {
+      delete this.data.password
       this.userService.update(this.data).subscribe(data => {
 
         console.log("data update: ", data);
@@ -145,11 +114,11 @@ export class UserComponent implements OnInit {
 
       this.userService.regist(this.data).subscribe( data => {
 
-        this.data.makh = data.data.makh;
+        this.data.id = data.id;
         console.log("regist data: ", data);
         this.loading.hide("user");
-        this.data = data.data;
-        this.reload = data.data;
+        this.data = data;
+        this.reload = data;
         this.dialogRef.close(this.reload);
       }, error => {
 
@@ -160,9 +129,9 @@ export class UserComponent implements OnInit {
 
   gotoHistory() {
 
-    if(this.data.makh)
+    if(this.data.id)
 
-      this.router.navigate(['/home/history/' + this.data.makh]); 
+      this.router.navigate(['/home/history/' + this.data.id]); 
       this.dialogRef.close();
   }
 }

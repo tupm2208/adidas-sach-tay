@@ -44,7 +44,22 @@ export class MainApiService {
 
   public put(url: string, params: any, options?: any): Observable<any> {
 
-    return this.http.put(url, params, options).map(res => {
+    return this.http.patch(url, params, options).map(res => {
+
+      res = JSON.parse(res._body);
+      if (res.status) {
+
+        return res;
+      } else {
+
+        throw res;
+      }
+    })
+  }
+
+  public patch(url: string, params: any, options?: any): Observable<any> {
+
+    return this.http.patch(url, params, options).map(res => {
 
       res = JSON.parse(res._body);
       if (res.status) {

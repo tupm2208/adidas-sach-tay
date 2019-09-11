@@ -49,7 +49,7 @@ export class UserPipe implements PipeTransform {
 
           let str = item[key] + '';
 
-          if(item['makh'] && item['makh'] == 1) { return false }
+          // if(item['id'] && item['id'] == 1) { return false }
 
           if (str.toUpperCase().indexOf(filter[key].toUpperCase()) == -1) {
 

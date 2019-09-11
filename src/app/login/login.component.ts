@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
 
         this.storage.set('userInfo', user)
         this.gotoHome(user);
+      }, error => {
+        console.log("cannot get user")
       })
 
     }, error => {

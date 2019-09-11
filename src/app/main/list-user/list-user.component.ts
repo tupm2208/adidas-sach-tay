@@ -13,11 +13,14 @@ declare var $: any;
 export class ListUserComponent implements OnInit {
 
   private fakedData = [];
+  private limit = 0
+  private skip = 0
+  private total = 0
 
   private peopleFilter = {
-    makh: '',
-    tenkh: '',
-    sdt: ''
+    name: '',
+    phone: '',
+    role: ''
   };
 
   sc = screen.width <= 414? false: true;
@@ -35,7 +38,10 @@ export class ListUserComponent implements OnInit {
     this.userService.list().subscribe( data => {
 
       console.log("user service", data);
-      this.fakedData = data;
+      this.fakedData = data.data;
+      this.limit = data.limit
+      this.skip = data.skip
+      this.total = data.total
       setTimeout( () => { this.loading.hide() }, 50);
     }, error => {
 
@@ -68,17 +74,17 @@ export class ListUserComponent implements OnInit {
 
   selectKind(type) {
 
-    if(type == 1) return "admin"
+    if(type == "admin") return "admin"
 
-    if(type == 2) return "Khách Lẻ";
+    if(type == "client") return "Khách Lẻ";
 
-    if(type == 3) return "Khách Buôn";
+    if(type == "client2") return "Khách Buôn";
 
-    if(type == 5) return "Shipper";
+    if(type == "shiper") return "Shipper";
 
-    if(type == 4) return "Người Mua";
+    if(type == "buyer") return "Người Mua";
 
-    if(type == 6) return "Người Nhận";
+    if(type == "receiver") return "Người Nhận";
 
     return "unknown";
   }

@@ -12,8 +12,7 @@
                           <i class="material-icons">person</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" [ngStyle]="{'color':data.tenkh? '': 'red'}" *ngIf="!toggle.tenkh" (click)="onClickMethod('tenkh')">{{data.tenkh? data.tenkh: 'Nhập Tên Khách Hàng'}}</label>  
-                            <input type="text" class="form-control" *ngIf="toggle.tenkh" (blur)="onBlurMethod('tenkh')" [(ngModel)]="data.tenkh" name="tenkh" placeholder="Tên Khách Hàng" autofocus> 
+                            <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="Tên Khách Hàng" autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -21,8 +20,7 @@
                           <i class="material-icons">phone</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" style="border-bottom: 1px solid #ced7e5!important;" [ngStyle]="{'color':data.sdt? '': 'red'}" *ngIf="!toggle.sdt" (click)="onClickMethod('sdt')">{{data.sdt? data.sdt: 'Nhập Số Điện Thoại'}}</label>  
-                            <input type="text" class="form-control" *ngIf="toggle.sdt" (blur)="onBlurMethod('sdt')" [(ngModel)]="data.sdt" name="sdt" placeholder="Số Điện Thoại" autofocus> 
+                            <input type="text" class="form-control" [(ngModel)]="data.phone" name="phone" placeholder="Số Điện Thoại" autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -30,8 +28,7 @@
                           <i class="material-icons">email</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" style="border-bottom: 1px solid #ced7e5!important;" *ngIf="!toggle.email" (click)="onClickMethod('email')">{{data.email || 'Nhập Email'}}</label>  
-                            <input type="text" class="form-control" *ngIf="toggle.email" (blur)="onBlurMethod('email')" [(ngModel)]="data.email" name="email" placeholder="Số Email" autofocus> 
+                            <input type="text" class="form-control" [(ngModel)]="data.email" name="email" placeholder="Số Email" autofocus> 
                         </div>
                     </div>
                     <div class="input-group">
@@ -39,8 +36,7 @@
                           <i class="material-icons">home</i>
                       </span>
                         <div class="form-line">
-                            <label class="" *ngIf="!toggle.diachi" (click)="onClickMethod('diachi')">{{data.diachi? data.diachi: 'Nhập Địa Chỉ'}}</label>  
-                            <input type="text" class="form-control" *ngIf="toggle.diachi" (blur)="onBlurMethod('diachi')" [(ngModel)]="data.diachi" name="diachi" placeholder="Số Địa Chỉ" autofocus>
+                            <input type="text" class="form-control" [(ngModel)]="data.address" name="address" placeholder="Số Địa Chỉ" autofocus>
                         </div>
                     </div>
 
@@ -49,14 +45,13 @@
                           <i class="material-icons">account_circle</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.maloainv" (click)="onClickMethod('maloainv')">{{data.maloainv? selectKind(data.maloainv): 'Loại'}}</label>
-                            <select [(ngModel)]="data.maloainv" *ngIf="toggle.maloainv" (mouseleave)="onBlurMethod('maloainv')" name="maloainv" class="form-control">
+                            <select [(ngModel)]="data.role" name="role" class="form-control">
                                 <option>Loại Khách Hàng</option>
-                                <option value="2">Khách lẻ</option>
-                                <option value="3">Khách Buôn</option>
-                                <option value="5">Shipper</option>
-                                <option value="4">Người Mua</option>
-                                <option value="6">Người Nhận</option>
+                                <option value="client">Khách lẻ</option>
+                                <option value="client2">Khách Buôn</option>
+                                <option value="shiper">Shipper</option>
+                                <option value="buyer">Người Mua</option>
+                                <option value="receiver">Người Nhận</option>
                             </select>
                         </div>
                     </div>
@@ -66,31 +61,20 @@
                           <i class="material-icons">trending_up</i>
                       </span>
                         <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.tigia" (click)="onClickMethod('tigia')">{{data.tigia}}</label>  
-                            <input type="number" class="form-control" *ngIf="toggle.tigia" (blur)="onBlurMethod('tigia')" [(ngModel)]="data.tigia" name="tigia" placeholder="Tỉ Giá" autofocus>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="material-icons">lock</i>
-                      </span>
-                        <div class="form-line">
-                            <label class="form-control" *ngIf="!toggle.mk" (click)="onClickMethod('mk')">{{data.mk? data.mk: 'Mật Khẩu'}}</label>  
-                            <input type="text" class="form-control" *ngIf="toggle.mk" (blur)="onBlurMethod('mk')" [(ngModel)]="data.mk" name="mk" placeholder="Số Địa Chỉ" autofocus>
+                            <input type="number" class="form-control" [(ngModel)]="data.exchangeOdds" name="exchangeOdds" placeholder="Tỉ Giá" autofocus>
                         </div>
                     </div>
 
                     <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
-                        <a (click)="order()"  [ngClass]="!data.tenkh || !data.sdt? 'disabled': ''">Đặt Hàng</a>
+                        <a (click)="order()"  [ngClass]="!data.name || !data.phone? 'disabled': ''">Đặt Hàng</a>
                     </div>
                     <div class="m-t-25 m-b--5 align-center" style="margin-bottom: 20px">
                         <a (click)="gotoHistory()">Xem Lịch Sử Giao Dịch</a>
                     </div>
 
                     <div style="display: inline-block; width: 100%">
-                        <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="update()" style="float:left" type="submit">UPDATE</button>
-                        <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" (click)="dialogRef.close(reload)">CANCEL</button>
+                        <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="update()" style="float:left; padding: 10px;" type="submit">{{data.id? "UPDATE": "CREATE"}}</button>
+                        <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left; padding: 10px;" (click)="dialogRef.close(reload)">CANCEL</button>
                     </div>
                     
                 </form>

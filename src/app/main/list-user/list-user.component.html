@@ -22,20 +22,20 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group" id="input-user">
                                 <div class="form-line" style="display: inline-block; position: absolute; right: 0">
-                                    <select [(ngModel)]="peopleFilter.makh" class="form-control" style="position: absolute; top:0;border-bottom: 1px solid #ccc;">
+                                    <select [(ngModel)]="peopleFilter.role" class="form-control" style="position: absolute; top:0;border-bottom: 1px solid #ccc;">
                                         <option value="">Loại Khách Hàng</option>
-                                        <option value="2">Khách lẻ</option>
-                                        <option value="3">Khách Buôn</option>
-                                        <option value="5">Shipper</option>
-                                        <option value="4">Người Mua</option>
-                                        <option value="6">Người Nhận</option>
+                                        <option value="client">Khách lẻ</option>
+                                        <option value="client2">Khách Buôn</option>
+                                        <option value="shiper">Shipper</option>
+                                        <option value="buyer">Người Mua</option>
+                                        <option value="receiver">Người Nhận</option>
                                     </select>
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.tenkh" placeholder="Tìm Kiếm Theo Tên">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.name" placeholder="Tìm Kiếm Theo Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.sdt" placeholder="Tìm Kiếm Theo SDT">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="peopleFilter.phone" placeholder="Tìm Kiếm Theo phone">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                     <tr>
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
-                                        <th>SDT</th>
+                                        <th>phone</th>
                                         <th *ngIf="sc">Email</th> 
                                         <th *ngIf="sc">Địa Chỉ</th> 
                                         <th>Loại KH</th>
@@ -57,20 +57,20 @@
                                     <tr>
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
-                                        <th>SDT</th>
+                                        <th>phone</th>
                                         <th *ngIf="sc">Email</th> 
                                         <th *ngIf="sc">Địa Chỉ</th> 
                                         <th>Loại KH</th>
                                     </tr>
                                 </tfoot>
                                 <tbody *ngIf="fakedData">
-                                    <tr *ngFor="let item of fakedData | user: {'maloainv': peopleFilter.makh, 'sdt': peopleFilter.sdt, 'tenkh': peopleFilter.tenkh}">
+                                    <tr *ngFor="let item of fakedData | user: {'role': peopleFilter.role, 'phone': peopleFilter.phone, 'name': peopleFilter.name}">
                                         <!-- <td>{{item.makh}}</td> -->
-                                        <td><a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.tenkh}}</a></td>
-                                        <td>{{item.sdt}}</td>
+                                        <td><a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.name}}</a></td>
+                                        <td>{{item.phone}}</td>
                                          <td *ngIf="sc">{{item.email}}</td> 
-                                         <td *ngIf="sc">{{item.diachi}}</td> 
-                                        <td>{{selectKind(item.maloainv)}}</td>
+                                         <td *ngIf="sc">{{item.address}}</td> 
+                                        <td>{{selectKind(item.role)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

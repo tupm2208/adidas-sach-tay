@@ -62,6 +62,14 @@ export class HttpService {
     );
   }
 
+  public patch(url: string, params: any, options?: any): Observable<any> {
+    return this.http.patch(
+      this.getFullUrl(url),
+      this.serializeData(params),
+      this.requestOptions(options)
+    );
+  }
+
   public delete(url: string, params?: any, options?: any): Observable<any> {
     return this.http.delete(
       this.getFullUrl(url),

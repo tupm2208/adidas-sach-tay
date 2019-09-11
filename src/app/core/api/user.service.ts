@@ -29,7 +29,7 @@ export class UserService {
 
   update(params): Observable<any> {
 
-    return this.mainApi.put(this.base + '/' + params.makh, params);
+    return this.mainApi.patch(this.base + '/' + params.id, params);
   }
 
   search(params): Observable<any> {
