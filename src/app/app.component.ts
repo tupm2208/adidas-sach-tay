@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from './core/util/storage.service';
+import { ExchangeService } from './core/api/exchange.service';
+import { LoadingService } from './core/util/loading.service';
 declare var $: any;
 
 @Component({
@@ -11,14 +13,16 @@ declare var $: any;
 export class AppComponent {
 
   title = true;
-  tigia: Number;
+  exchangeValue: Number;
   realRate: Number;
 
-  maloainv: Boolean;
+  role: Boolean;
 
   constructor(
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private exchangeService: ExchangeService,
+    private loading: LoadingService
   ) {
     this.router.events.subscribe(val => {
 
@@ -38,9 +42,9 @@ export class AppComponent {
 
             let info = this.storageService.get('userInfo');
 
-            this.maloainv = info && info.maloainv == 1;
+            this.role = info && info.role == 'admin';
 
-            this.realRate = this.storageService.get('tigia');
+            this.realRate = this.storageService.get('exchangeValue');
           }
         }, 50);
       } else {
@@ -51,7 +55,7 @@ export class AppComponent {
 
   openRateInput() {
 
-    this.tigia = this.realRate;
+    this.exchangeValue = this.realRate;
     $('.search-bar').addClass('open');
   }
 
@@ -61,11 +65,21 @@ export class AppComponent {
   }
 
   saveRate() {
+    this.loading.show()
+    
+    this.exchangeService.create({
+      value: this.exchangeValue,
+      createdDate: new Date()
+    }).subscribe(data => {
+      console.log("create new exchange rate: ", data)
+      this.realRate = this.exchangeValue;
 
-    this.realRate = this.tigia;
-
-    this.storageService.set('tigia',this.realRate);
-
-    this.closeRateInput();
+      this.storageService.set('exchangeValue',this.realRate);
+      this.storageService.set('exchangeId', data.id)
+      this.closeRateInput();
+      this.loading.hide()
+    }, error => {
+      this.loading.hide()
+    })
   }
 }

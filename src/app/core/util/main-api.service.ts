@@ -77,7 +77,7 @@ export class MainApiService {
     return this.http.delete(url, options).map(res => {
 
       res = JSON.parse(res._body);
-      if (res.status) {
+      if (res.status === undefined || res.status) {
 
         return res;
       } else {

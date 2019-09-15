@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <li *ngIf="product.mahd" class="dropdown" style="list-style-type: none;">
+  <li *ngIf="product.billId" class="dropdown" style="list-style-type: none;">
     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" class="input-group-addon" id="cancel" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">cancel</i>
                                 </a>
@@ -9,44 +9,39 @@
       </li>
     </ul>
   </li>
-  <a id="cancel"*ngIf="!product.mahd" (click)="deleteProduct()" class="dropdown-toggle" data-toggle="dropdown" role="button" class="input-group-addon" id="cancel" aria-haspopup="true" aria-expanded="false">
+  <a id="cancel"*ngIf="!product.billId" (click)="deleteProduct()" class="dropdown-toggle" data-toggle="dropdown" role="button" class="input-group-addon" id="cancel" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">cancel</i>
                                 </a>
   <div class="panel-body">
     <form name="myform">
       <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
         <div class="form-group">
-          <label for="age" [ngStyle]="{'color': product.masp? '':'red'}">Mã Sản Phẩm *</label>
-          <input id="masp" name="masp" class="form-control" [disabled]="product.mahd" [(ngModel)]="product.masp" type="text" min="1">
+          <label for="age" [ngStyle]="{'color': product.productId? '':'red'}">Mã Sản Phẩm *</label>
+          <input id="productId" name="productId" class="form-control" [disabled]="product.billId" [(ngModel)]="product.productId" type="text" min="1">
           <span id="error_age" class="text-danger"></span>
         </div>
         <div class="form-group">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <label for="age">Số Lượng *</label>
-                <input id="age" name="soluong" class="form-control" [disabled]="madh" [(ngModel)]="product.soluong" type="number" min="1">
+                <input id="age" name="quantity" class="form-control" [disabled]="reservationId" [(ngModel)]="product.quantity" type="number" min="1">
                 <span id="error_age" class="text-danger"></span>
             </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <label for="age">Hộp *</label>
-                <a [ngClass]="madh?'disabled':''" class="input-group-addon" style="padding: 0; border: 0"><i style="font-size: 35px" [ngStyle]="{'color': product.giuhop? '':'slategrey'}" (click)="toggleHop()" class="material-icons">check_circle</i></a>
+                <a [ngClass]="reservationId?'disabled':''" class="input-group-addon" style="padding: 0; border: 0"><i style="font-size: 35px" [ngStyle]="{'color': product.keepBox? '':'slategrey'}" (click)="toggleHop()" class="material-icons">check_circle</i></a>
                 <span id="error_age" class="text-danger"></span>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="age">Giá Web *</label>
-          <input id="age" name="giaweb" class="form-control" [(ngModel)]="product.giaweb" type="number" min="1">
-          <span id="error_age" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label for="age">Triết Khấu *</label>
-          <input id="age" name="trietkhau" class="form-control" [(ngModel)]="product.trietkhau" type="number" min="1">
+          <input id="age" name="price" class="form-control" [(ngModel)]="product.price" type="number" min="1">
           <span id="error_age" class="text-danger"></span>
         </div>
         <div class="form-group">
           <label for="age">Khối Lượng *</label>
-          <input id="age" name="khoiluong" class="form-control" [(ngModel)]="product.khoiluong" type="number" min="1">
+          <input id="age" name="weight" class="form-control" [(ngModel)]="product.weight" type="number" min="1">
           <span id="error_age" class="text-danger"></span>
         </div>
         <!-- <div class="form-group">
@@ -74,7 +69,5 @@
       </div>
     </form>
   </div>
-  <a (click)="duplicateProduct()" class="input-group-addon" id="addMore">
-                          <i class="material-icons">add</i>
-                      </a>
+  <a (click)="duplicateProduct()" class="input-group-addon" id="addMore"> <i class="material-icons">add</i> </a>
 </div>

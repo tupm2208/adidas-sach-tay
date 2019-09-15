@@ -17,18 +17,18 @@ declare let $: any;
 export class UploadComponent implements OnInit {
 
   private billDetailList: any = [{
-    masp: '',
-    soluong: 1,
-    trangweb: '',
-    giaweb: 0,
-    trietkhau: 0.85,
-    khoiluong: 0,
-    giuhop: 0,
-    mahd: null,
-    makh: null,
+    productId: '',
+    quantity: 1,
+    tradeDiscount: 0.85,
+    link: '',
+    price: 0,
+    weight: 0,
+    keepBox: 0,
+    billId: null,
   }];
 
-  private tigia: number;
+  private exchangeValue: number;
+  private exchangeId: number;
 
   private isError = false;
   private isNew = false;
@@ -46,28 +46,33 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
     console.log("data: ", this.data);
 
-    this.tigia = this.storageService.get('tigia');
+    this.exchangeValue = this.storageService.get('exchangeValue') - -this.data.user.exchangeOdds;
+    this.exchangeId = this.storageService.get('exchangeId');
+    
 
-    this.billDetailList[0].makh = this.data.user.makh;
+    this.billDetailList[0].userId = this.data.user.id;
 
-    if(this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
+    if(this.data.bill && this.data.bill.id && this.data.bill.billdetail) {
 
-      this.billDetailList = this.data.bill.chitiethds;
+      this.billDetailList = this.data.bill.billdetail;
 
     }
 
     if(!this.data.bill) {
 
       this.data.bill = {
-        ngay: this.getTime(),
-        makh: this.data.user.makh,
-        trangthai: 2,
-        datcoc: 0,
-        ship: 0,
-        thuonghieu: 'adidas',
-        tigia: Number(this.tigia) + Number(this.data.user.tigia),
-        thanhtien: 0,
-        phuphi: 0
+        createdDate: this.getTime(),
+        userId: this.data.user.id,
+        status: 2,
+        deposit: 0,
+        shipFee: 0,
+        brand: 'adidas',
+        exchangeRateId: this.exchangeId,
+        tradeDiscount: 0.85,
+        total: 0,
+        surcharge: 0,
+        isWaiting: false,
+        exchangeRate: this.exchangeValue
       }
     }
   }
@@ -86,44 +91,32 @@ export class UploadComponent implements OnInit {
 
     let a = new Date;
 
-    return a.getTime();
+    return a;
   }
 
   addProduct(data) {
-    data.mahd = null;
+    data.billId = null;
     this.billDetailList.push(data);
   }
 
   deleteProduct(data) {
-
-    if(data.mahd) {
+    console.log("deleting product: ", data)
+    if(data.billId) {
 
       this.loading.show('upload');
 
       this.billDetailService.delete(data).subscribe(del => {
 
-        this.billDetailList.splice(this.billDetailList.indexOf(data),1);
-
         this.loading.hide('upload');
 
+        this.billDetailList.splice(this.billDetailList.indexOf(data),1);
+        this.dialogRef.updateSize()
         if (this.billDetailList.length == 0) {
-          
-          if (this.data.bill.mahd) {
-            this.loading.show('upload');
-            this.dialogRef.close(-2);
-            this.billService.delete(this.data.bill).subscribe(data => {
-
-              console.log("delete bill: ", this.data.bill);
-              this.loading.hide('upload');
-            }, error => {
-
-              this.loading.hide('upload');
-            });
-          }
+          this.dialogRef.close(-2);
         }
       }, error => {
-
-        this.popupDialog.showError();
+        console.log(error)
+        this.popupDialog.showError("có lỗi xảy ra! Xin thử lại");
         this.loading.hide('upload');
       })
     } else {
@@ -143,7 +136,7 @@ export class UploadComponent implements OnInit {
 
     for(let i = 0; i< this.billDetailList.length; i++) {
 
-      if(!this.billDetailList[i].masp || !this.billDetailList[i].soluong) {
+      if(!this.billDetailList[i].productId || !this.billDetailList[i].quantity) {
 
         return false;
       }
@@ -159,8 +152,8 @@ export class UploadComponent implements OnInit {
 
     this.billDetailList.forEach( element => {
 
-      element.giuhop = element.giuhop? element.soluong: 0;
-      if(element.mahd) {
+      element.keepBox = element.keepBox? element.quantity: 0;
+      if(element.billId) {
 
         this.billDetailService.update(element).subscribe( data => {
 
@@ -184,7 +177,7 @@ export class UploadComponent implements OnInit {
         })
       } else {
 
-        element.mahd = this.data.bill.mahd;
+        element.billId = this.data.bill.id;
         this.billDetailService.create(element).subscribe( data => {
 
           countSuc += 1;
@@ -198,7 +191,7 @@ export class UploadComponent implements OnInit {
           }
         }, error => {
 
-          element.mahd = null;
+          element.billId = null;
           countErr += 1;
 
           if(countSuc + countErr == this.billDetailList.length) {
@@ -215,7 +208,7 @@ export class UploadComponent implements OnInit {
     if(!this.checkValid()) return;
 
     this.loading.show('upload');
-    if(this.data.bill && this.data.bill.mahd) {
+    if(this.data.bill && this.data.bill.id) {
 
       this.billService.update(this.data.bill).subscribe( data => {
 
@@ -232,8 +225,8 @@ export class UploadComponent implements OnInit {
 
         this.isNew = true;
         console.log("create data bill: ", data);
-        this.data.bill.mahd = data.data.mahd;
-        this.data.bill.chitiethds = this.billDetailList;
+        this.data.bill.id = data.id;
+        this.data.bill.billdetail = this.billDetailList;
         this.registOrUpdate();
       }, error => {
 
@@ -246,6 +239,7 @@ export class UploadComponent implements OnInit {
   showError() {
 
     this.loading.hide('upload');
+    this.dialogRef.updateSize()
     this.popupDialog.showError().subscribe( data => {
 
       console.log("close error!");
@@ -255,6 +249,7 @@ export class UploadComponent implements OnInit {
   showSuccess() {
 
     this.loading.hide('upload');
+    this.dialogRef.updateSize()
     this.popupDialog.showSuccess().subscribe( data => {
 
       if(this.isNew) {
@@ -272,9 +267,9 @@ export class UploadComponent implements OnInit {
     let sum = 0;
     this.billDetailList.forEach( element => {
 
-      sum += element.giaweb * this.data.bill.tigia  *  element.trietkhau * element.soluong;
+      sum += element.price *  this.data.bill.tradeDiscount * element.quantity;
     });
 
-    this.data.bill.thanhtien =  sum - -this.data.bill.ship - -this.data.bill.phuphi;
+    this.data.bill.total =  sum * this.data.bill.exchangeRate - -this.data.bill.shipFee - -this.data.bill.surcharge;
   }
 }

@@ -8,47 +8,36 @@ export class OrderService {
 
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
 
+  base_uri = 'reservations'
   list(): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('donhang?token=' + token);
+    return this.mainApi.get(this.base_uri);
   }
 
   getById(id): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('donhang/' + id + '?token=' + token);
+    return this.mainApi.get(this.base_uri + '/' + id);
   }
 
   create(params): Observable<any> {
 
-    
-
-    return this.mainApi.post('donhang', params);
+    return this.mainApi.post(this.base_uri, params);
   }
 
   update(params): Observable<any> {
 
-    
-    console.log("update madh = ", params.madh);
-    return this.mainApi.put('donhang/' + params.madh, params);
+    return this.mainApi.put(this.base_uri + '/' + params.id, params);
   }
 
   delete(id): Observable<any> {
 
     let token = this.storage.get('token');
 
-    return this.mainApi.delete('donhang/'+ id +'?token=' + token);
+    return this.mainApi.delete(this.base_uri + '/'+ id);
   }
 
   getByParams(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    params.token = token;
-    
-    return this.mainApi.post('donhang/search', params);
+    return this.mainApi.get(this.base_uri + '?', params);
   }
 }

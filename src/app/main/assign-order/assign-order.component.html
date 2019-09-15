@@ -8,44 +8,44 @@
             <form name="myform">
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="form-group">
-                  <label for="age" [ngStyle]="{'color': selectedUser? '': 'red'}" >Người Thanh Toán *</label>
+                  <label for="user" [ngStyle]="{'color': selectedUser? '': 'red'}" >Người Thanh Toán *</label>
                   <mat-form-field class="example-full-width" [floatLabel]="'never'">
                     <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of options | user: {'tenkh': filterUser}" [value]="option.tenkh">
-                        {{ option.tenkh }}
+                      <mat-option *ngFor="let option of options | user: {'name': filterUser}" [value]="option.name">
+                        {{ option.name }}
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
                 <div class="form-group">
-                  <label for="age" [ngStyle]="{'color': orderData.madh? '': 'red'}">Mã Đơn Hàng *</label>
-                  <input id="age" name="madh" [(ngModel)]="orderData.madh" class="form-control" type="text" min="1">
+                  <label for="name" [ngStyle]="{'color': orderData.name? '': 'red'}">Mã Vận Đơn *</label>
+                  <input id="name" name="name" [(ngModel)]="orderData.name" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Thương Hiệu *</label>
-                  <input id="age" name="trangweb" [(ngModel)]="orderData.thuonghieu" class="form-control" type="text" min="1">
+                  <label for="brand">Thương Hiệu *</label>
+                  <input id="brand" name="brand" [(ngModel)]="orderData.brand" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age"  [ngStyle]="{'color': orderData.taikhoan? '': 'red'}">Tài Khoản *</label>
-                  <input id="age" name="giaweb" [(ngModel)]="orderData.taikhoan" class="form-control" type="text" min="1">
+                  <label for="account"  [ngStyle]="{'color': orderData.account? '': 'red'}">Tài Khoản *</label>
+                  <input id="account" name="account" [(ngModel)]="orderData.account" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Đặt Cọc *</label>
-                  <input id="age" name="trietkhau" [(ngModel)]="orderData.datcoc" class="form-control" type="number" min="1">
+                  <label for="deposit">Đặt Cọc *</label>
+                  <input id="deposit" name="deposit" [(ngModel)]="orderData.deposit" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Tỉ Giá *</label>
-                  <input id="age" name="khoiluong" [(ngModel)]="orderData.tigia" class="form-control" type="number" min="1">
+                  <label for="exchangeRate">Tỉ Giá *</label>
+                  <input id="exchangeRate" name="exchangeRate" [(ngModel)]="orderData.exchangeRate" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="age">Ghi Chú *</label>
-                  <textarea class="form-control" name="ghichu" [(ngModel)]="orderData.ghichu" rows="3"></textarea>
+                  <label for="note">Ghi Chú *</label>
+                  <textarea class="form-control" name="ghichu" [(ngModel)]="orderData.note" rows="3"></textarea>
                 </div>
               </div>
             </form>
@@ -70,10 +70,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of listBooked | user: {'thuonghieu': orderData.thuonghieu}; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
-                              <td (click)="selectItem(item)">{{item.user.tenkh}}</td>
+                            <tr *ngFor="let item of listBooked | user: {'brand': orderData.brand}; let i = index" [ngStyle]="{'background-color': item.reservationId? i%2? '#ced8c0': '#e1efce': ''}">
+                              <td (click)="selectItem(item)">{{item.user.name}}</td>
                               <td>
-                                <div *ngFor="let prod of item.chitiethds">{{prod.masp}} | {{prod.soluong}}</div>
+                                <div *ngFor="let prod of item.billdetail">{{prod.productId}} | {{prod.quantity}}</div>
                               </td>
                             </tr>
                           </tbody>
@@ -115,9 +115,9 @@
                           </tfoot>
                           <tbody>
                             <tr *ngFor="let item of orderData.result">
-                              <td>{{item.masp}}</td>
-                              <td>{{item.soluong}}</td>
-                              <td>{{item.giuhop}}</td>
+                              <td>{{item.productId}}</td>
+                              <td>{{item.quantity}}</td>
+                              <td>{{item.keepBox}}</td>
                             </tr>
                           </tbody>
                         </table>

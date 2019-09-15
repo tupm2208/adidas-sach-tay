@@ -10,7 +10,7 @@ export class FormatService {
 
   formatDate(getTimeItem) {
     
-    getTimeItem = getTimeItem - 0;
+    // getTimeItem = getTimeItem - 0;
 
     let d = new Date(getTimeItem);
     let day: any = d.getDate();

@@ -7,41 +7,29 @@ import { StorageService } from '../util/storage.service'
 export class OrderDetailService {
 
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
-
+  base_uri = 'reservationdetail'
   list(): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('chitietdh?token=' + token);
+    return this.mainApi.get(this.base_uri);
   }
 
   getByParams(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    params.token = token;
-    
-    return this.mainApi.post('chitietdh/search', params);
+    return this.mainApi.get(this.base_uri + '?', params);
   }
 
   create(params): Observable<any> {
 
-    
-
-    return this.mainApi.post('chitietdh', params);
+    return this.mainApi.post(this.base_uri, params);
   }
 
   update(params): Observable<any> {
 
-    
-
-    return this.mainApi.put('chitietdh/' + params.madh + '/' +params.masp , params);
+    return this.mainApi.put(this.base_uri + '/' + params.madh + '/' +params.masp , params);
   }
 
   delete(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.delete('chitietdh/' + params.madh + '/' +params.masp  + '?token=' + token);
+    return this.mainApi.delete(this.base_uri, params);
   }
 }

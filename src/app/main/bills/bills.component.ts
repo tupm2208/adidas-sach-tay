@@ -9,6 +9,7 @@ import { UserService } from '../../core/api/user.service';
 import { LoadingService } from '../../core/util/loading.service';
 import { FormatService } from '../../core/util/format.service';
 import { MainService } from '../../core/api/main.service';
+import { StorageService } from '../../core/util/storage.service';
 
 declare var $: any;
 
@@ -19,8 +20,8 @@ declare var $: any;
 })
 export class BillsComponent implements OnInit {
 
-  private tenkh = '';
-  private madh = '';
+  private name = '';
+  private reservationId = '';
   private from: any = '';
   private to: any = '';
   private sr = true;
@@ -35,7 +36,8 @@ export class BillsComponent implements OnInit {
     private dialogService: DialogService,
     private loadingService: LoadingService,
     private formatService: FormatService,
-    private mainService: MainService
+    private mainService: MainService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -49,15 +51,17 @@ export class BillsComponent implements OnInit {
 
   getListBills() {
 
-    this.mainService.listBill({}).subscribe( data => {
-
-      this.fakedData = data;
-      this.loadingService.hide();
-
-      console.log("data:", data);
+    this.billService.list().subscribe( data => {
+      this.fakedData = data.data
+      
+      this.fakedData.forEach(item => {
+        this.calculate(item)
+      })
+      this.loadingService.hide()
+      console.log(data)
     }, error => {
-
-      this.loadingService.hide();
+      this.loadingService.hide()
+      console.log("error: ", error)
     })
   }
 
@@ -85,9 +89,9 @@ export class BillsComponent implements OnInit {
 
   openBill(item) {
 
-    if(item.madh) this.dialogService.gotoOrder(item.madh).subscribe( data => {
+    if(item.reservationId) this.dialogService.gotoOrder(item.reservationId).subscribe( data => {
 
-      this.mainService.listBill({mahd: item.mahd}).subscribe( listItem => {
+      this.mainService.listBill({id: item.id}).subscribe( listItem => {
 
         let index = this.fakedData.indexOf(item);
 
@@ -101,12 +105,30 @@ export class BillsComponent implements OnInit {
 
     this.dialogService.openBill({user: item.user, bill: item}).subscribe( data => {
 
-      if(!item.chitiethds.length) {
+      if(!item.billdetail.length) {
 
         this.fakedData.splice(this.fakedData.indexOf(item), 1);
 
         this.fakedData = this.fakedData.concat([]);
+        this.loadingService.show()
+        this.billService.delete(item.id).subscribe(success => {
+          console.log("deleted: ", data)
+          this.loadingService.hide()
+        }, error => {
+          console.log("failed: ", error)
+          this.loadingService.hide()
+        })
       }
     })
+  }
+
+  calculate(item) {
+    let sum = 0;
+    item.billdetail.forEach( element => {
+
+      sum += element.price *  item.tradeDiscount * element.quantity;
+    });
+
+    item.total =  sum * item.exchangeRate - -item.shipFee - -item.surcharge;
   }
 }

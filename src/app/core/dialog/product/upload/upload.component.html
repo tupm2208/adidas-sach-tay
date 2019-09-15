@@ -9,13 +9,13 @@
                 <form id="sign_up" method="POST">
                     <div class="row">
                         <div class="col-md-12" *ngIf="billDetailList.length == 1">
-                            <app-child-product [product]="billDetailList[0]" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
+                            <app-child-product [product]="billDetailList[0]" [reservationId]="data.bill && data.bill.reservationId" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="billDetailList.length > 1">
                         <div class="col-md-6 col-lg-6 col-sm-6" *ngFor="let item of billDetailList">
-                            <app-child-product [product]="item" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
+                            <app-child-product [product]="item" [reservationId]="data.bill && data.bill.reservationId" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-child-product>
                         </div>
 
                     </div>
@@ -29,37 +29,43 @@
 
                                             <div class="form-group">
                                                 <label for="age">Thương Hiệu *</label>
-                                                <input id="age" name="thuonghieu" class="form-control" [ngStyle]="{'color': data.bill.thuonghieu? '':'red'}" [(ngModel)]="data.bill.thuonghieu" type="text" min="1">
+                                                <input id="age" name="brand" class="form-control" [ngStyle]="{'color': data.bill.brand? '':'red'}" [(ngModel)]="data.bill.brand" type="text" min="1">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="ship">Tỉ Giá (Tỉ Giá Hệ Thống Lúc Tạo Đơn + Tỉ Giá KH)</label>
-                                                <span class="form-control">{{data.bill.tigia}}</span>
+                                                <span class="form-control">{{exchangeValue}}</span>
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="ship">Phí Ship *</label>
-                                                <input [(ngModel)]="data.bill.ship" name="ship" class="form-control" min="1" type="number">
+                                                <label for="age">Triết Khấu *</label>
+                                                <input id="age" name="tradeDiscount" class="form-control" [(ngModel)]="data.bill.tradeDiscount" type="number" min="0">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="ship">Phụ Phí *</label>
-                                                <input [(ngModel)]="data.bill.phuphi" name="phuphi" class="form-control" min="1" type="numer">
+                                                <label for="shipFee">Phí Ship *</label>
+                                                <input [(ngModel)]="data.bill.shipFee" name="shipFee" class="form-control" min="1" type="number">
+                                                <span id="error_age" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="surcharge">Phụ Phí *</label>
+                                                <input [(ngModel)]="data.bill.surcharge" name="surcharge" class="form-control" min="1" type="numer">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label for="ship">Thành Tiền * <button (click)="calculate()" class="btn btn-primary waves-effect">Tính</button></label>
-                                                <input [(ngModel)]="data.bill.thanhtien" name="thanhtien" class="form-control" min="1" type="number">
+                                                <label for="total">Thành Tiền * <button (click)="calculate()" class="btn btn-primary waves-effect">Tính</button></label>
+                                                <input [(ngModel)]="data.bill.total" name="total" class="form-control" min="1" type="number">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="age">Đặt Cọc *</label>
-                                                <input [(ngModel)]="data.bill.datcoc" name="datcoc" class="form-control" min="1" type="number">
+                                                <label for="deposit">Đặt Cọc *</label>
+                                                <input [(ngModel)]="data.bill.deposit" name="deposit" class="form-control" min="1" type="number">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
 

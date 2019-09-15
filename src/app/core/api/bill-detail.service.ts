@@ -8,40 +8,30 @@ export class BillDetailService {
 
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
 
+  base_uri = 'billdetail'
+
   list(): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('chitiethd?token=' + token);
+    return this.mainApi.get(this.base_uri);
   }
 
   getByParams(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    params.token = token;
-    
-    return this.mainApi.post('chitiethd/search', params);
+    return this.mainApi.post(this.base_uri + '/search', params);
   }
 
   update(params): Observable<any> {
 
-    
-
-    return this.mainApi.put('chitiethd/' + params.mahd + '/' + params.masp, params);
+    return this.mainApi.put(this.base_uri + '/' + params.mahd + '/' + params.masp, params);
   }
 
   create(params): Observable<any> {
 
-    
-
-    return this.mainApi.post('chitiethd', params);
+    return this.mainApi.post(this.base_uri + '', params);
   }
 
   delete(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.delete('chitiethd/' + params.mahd + '/' + params.masp + '?token=' + token);
+    return this.mainApi.delete(this.base_uri + '?' + "productId=" + params.productId + '&billId=' + params.billId);
   }
 }

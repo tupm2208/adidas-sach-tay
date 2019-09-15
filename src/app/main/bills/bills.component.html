@@ -19,10 +19,10 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="name" placeholder="Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Đơn Hàng">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Đơn Hàng">
                                 </div>
                                 <div class="form-group">
                                      <mat-form-field> 
@@ -73,27 +73,27 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of fakedData | user: {'user': {'tenkh': tenkh}, 'vailua': tenkh, 'madh': madh} | time: {'from': from, 'to': to}">
-                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
+                                    <tr *ngFor="let item of fakedData | user: {'user': {'name': name}, 'reservationId': reservationId} | time: {'from': from, 'to': to}">
+                                        <td *ngIf="sr">{{formatService.formatDate(item.createdDate)}}</td>
                                         <td><a (click)="order(item)" data-toggle="tooltip" data-placement="top" title="Click Để Đặt Hàng">
-                                            <div><i class="material-icons">add_shopping_cart</i>{{item.user.tenkh}}</div> 
+                                            <div><i class="material-icons" style="font-size: 14px">add_shopping_cart</i>{{item.user.name}}</div> 
                                         </a></td>
-                                        <td  *ngIf="sr"><a [routerLink]="['/home/history/' + item.makh]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
-                                            <div><i class="material-icons">history</i><i>{{item.user.sdt}}</i></div>
+                                        <td  *ngIf="sr"><a [routerLink]="['/home/history/' + item.userId]" data-toggle="tooltip" data-placement="top" title="Click Để Xem Lịch Sử Đặt Hàng">
+                                            <div><i class="material-icons" style="font-size: 14px">history</i>{{item.user.phone}}</div>
                                         </a></td>
-                                        <td *ngIf="sr" (click)="openBill(item)"><a>{{item.madh}}</a></td>
+                                        <td *ngIf="sr" (click)="openBill(item)"><a>{{item.reservationId}}</a></td>
                                         <td>
-                                                <ul style="padding-left: 15px;" *ngIf="item.chitiethds">
-                                                    <li *ngFor="let product of item.chitiethds">{{product.masp}} - {{product.soluong}}</li>
+                                                <ul style="padding-left: 15px;" *ngIf="item.billdetail">
+                                                    <li *ngFor="let product of item.billdetail">{{product.productId}} - {{product.quantity}}</li>
                                                 </ul>
                                         </td>
-                                        <td *ngIf="sr">{{item.tigia}}</td>
-                                        <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.ship| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.thanhtien| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.thanhtien - item.datcoc| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.exchangeRate}}</td>
+                                        <td *ngIf="sr">{{item.deposit| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.shipFee| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.total| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.total - item.deposit| number: '1.2-2'}}</td>
                                         <td><a (click)="update(item)">
-                                            <div><i class="material-icons">settings</i>{{formatService.statusType(item.trangthai)}}</div>
+                                            <div><i class="material-icons" style="font-size: 14px">settings</i>{{formatService.statusType(item.status)}}</div>
                                         </a></td>
                                     </tr>
                                 </tbody>

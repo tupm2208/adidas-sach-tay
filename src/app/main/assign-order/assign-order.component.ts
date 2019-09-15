@@ -51,10 +51,11 @@ export class AssignOrderComponent implements OnInit {
 
   ngOnInit() {
 
-    this.orderData = {};
-    this.orderData.thuonghieu = '';
-    this.orderData.result = [];
-    this.orderData.tigia = this.storageService.get("tigia");
+    this.orderData = {
+      brand: '',
+      result: [],
+      exchangeRate: this.storageService.get("exchangeValue")
+    };
 
     this.options = [];
 
@@ -64,9 +65,9 @@ export class AssignOrderComponent implements OnInit {
 
     this.getListBill();
 
-    this.userService.search({maloainv: 4}).subscribe( data => {
+    this.userService.search({role: "client"}).subscribe( data => {
       
-      this.options = data;
+      this.options = data.data;
     })
 
     this.subcribeUser();
@@ -80,7 +81,7 @@ export class AssignOrderComponent implements OnInit {
 
       for(let i = 0; i < this.options.length; i++) {
 
-        if(this.options[i].tenkh == data) {
+        if(this.options[i].name == data) {
 
           this.selectedUser = this.options[i];
 
@@ -94,9 +95,9 @@ export class AssignOrderComponent implements OnInit {
 
   getListBill() {
 
-    this.mainService.listBill({madh: null}).subscribe( data => {
+    this.billService.search({reservationId: null, include: true}).subscribe( data => {
 
-      this.listBooked = data;
+      this.listBooked = data.data;
 
       console.log("book: ", this.listBooked);
       this.loadingService.hide();
@@ -105,44 +106,44 @@ export class AssignOrderComponent implements OnInit {
 
   selectItem(item) {
 
-    if(this.orderData.thuonghieu &&  item.thuonghieu.toUpperCase().indexOf(this.orderData.thuonghieu.toUpperCase()) == -1) {
+    if(this.orderData.brand &&  item.brand.toUpperCase().indexOf(this.orderData.brand.toUpperCase()) == -1) {
 
       return;
     } else {
 
-      this.orderData.thuonghieu = item.thuonghieu;
+      this.orderData.brand = item.brand;
     }
 
-    item.madh = !item.madh;
+    item.reservationId = !item.reservationId;
 
-    if(!item.madh) {
+    if(!item.reservationId) {
 
-      this.orderData.thuonghieu = '';
+      this.orderData.brand = '';
       this.checkAndSetTH();
     }
 
     console.log("item: ", item);
-    item.chitiethds.forEach(elem => {
+    item.billdetail.forEach(elem => {
 
       let flag = true;
       this.orderData.result.forEach(element => {
 
-        if (element.masp == elem.masp) {
+        if (element.productId == elem.productId) {
 
           flag = false;
-          if(item.madh) {
+          if(item.reservationId) {
 
-            element.soluong += elem.soluong;
-            element.giuhop += elem.giuhop;
+            element.quantity += elem.quantity;
+            element.keepBox += elem.keepBox;
           } else {
 
-            if(element.soluong == elem.soluong) {
+            if(element.quantity == elem.quantity) {
 
               this.orderData.result.splice(this.orderData.result.indexOf(element), 1);
             } else {
 
-              element.soluong -= elem.soluong;
-              element.giuhop -= elem.giuhop;
+              element.quantity -= elem.quantity;
+              element.keepBox -= elem.keepBox;
             }
           }
           return;
@@ -152,9 +153,9 @@ export class AssignOrderComponent implements OnInit {
       if(flag) {
 
         this.orderData.result.push({
-          masp: elem.masp,
-          soluong: elem.soluong,
-          giuhop: elem.giuhop
+          productId: elem.productId,
+          quantity: elem.quantity,
+          keepBox: elem.keepBox
         })
       }
       
@@ -173,11 +174,11 @@ export class AssignOrderComponent implements OnInit {
 
     let flag = true; // == false mean we have to select all, == true mean otherwise
 
-    let th = this.orderData.thuonghieu;
+    let th = this.orderData.brand;
 
     this.listBooked.forEach( element => {
 
-      if(!element.madh && th && element.thuonghieu.toUpperCase().indexOf(th.toUpperCase()) != -1) {
+      if(!element.reservationId && th && element.brand.toUpperCase().indexOf(th.toUpperCase()) != -1) {
 
         flag = false;
         return;
@@ -186,13 +187,13 @@ export class AssignOrderComponent implements OnInit {
 
     this.listBooked.forEach( element => {
 
-      if(element.thuonghieu.toUpperCase().indexOf(th.toUpperCase()) == -1) return;
+      if(element.brand.toUpperCase().indexOf(th.toUpperCase()) == -1) return;
       if(flag) { 
 
         this.selectItem(element);
       } else {
 
-        if(!element.madh) {
+        if(!element.reservationId) {
           
           this.selectItem(element);
         }
@@ -206,7 +207,7 @@ export class AssignOrderComponent implements OnInit {
 
     if(!this.orderData.result.length) return false;
 
-    if(!this.orderData.madh) return false;
+    if(!this.orderData.id) return false;
 
     return true;
   }
@@ -215,9 +216,9 @@ export class AssignOrderComponent implements OnInit {
 
     this.listBooked.forEach( element => {
 
-      if(element.madh) {
+      if(element.reservationId) {
 
-        this.orderData.thuonghieu = element.thuonghieu;
+        this.orderData.brand = element.brand;
         return;
       }
     })
@@ -245,10 +246,10 @@ export class AssignOrderComponent implements OnInit {
 
       this.listBooked.forEach( element => {
 
-        if(element.madh) {
+        if(element.reservationId) {
 
-          element.madh = data.data.madh;
-          element.trangthai = 3;
+          element.reservationId = data.id;
+          element.status = 3;
 
           this.billService.update(element).subscribe( data => {
 
@@ -262,8 +263,8 @@ export class AssignOrderComponent implements OnInit {
             }
           }, error => {
 
-            element.madh = null;
-            element.trangthai = 2;
+            element.reservationId = null;
+            element.status = 2;
           })
         } else {
 
@@ -273,7 +274,7 @@ export class AssignOrderComponent implements OnInit {
 
       this.orderData.result.forEach( element => {
 
-        element.madh = data.data.madh;
+        element.reservationId = data.id;
         element.makh = this.selectedUser.makh;
 
         this.orderDetailService.create(element).subscribe( data => {

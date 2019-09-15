@@ -11,7 +11,7 @@ export class ChildProductComponent implements OnInit {
   @Input() product: any;
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() add: EventEmitter<any> = new EventEmitter();
-  @Input() madh: any;
+  @Input() reservationId: any;
 
   constructor(
     private popup: PopupService
@@ -22,7 +22,7 @@ export class ChildProductComponent implements OnInit {
 
   deleteProduct() {
 
-    if(this.madh) {
+    if(this.reservationId) {
 
       this.popup.showWanning("Không Thể Xóa Sản Phẩm Khí Chúng Còn Trong Đơn Đã Đặt Hàng");
       return;
@@ -33,7 +33,7 @@ export class ChildProductComponent implements OnInit {
 
   duplicateProduct() {
 
-    if(this.madh) {
+    if(this.reservationId) {
 
       this.popup.showWanning("Không Thể Thêm Sản Phẩm Khí Chúng Còn Trong Đơn Đã Đặt Hàng");
       return;
@@ -44,7 +44,7 @@ export class ChildProductComponent implements OnInit {
 
   toggleHop() {
 
-    if(this.madh) return;
-    this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
+    if(this.reservationId) return;
+    this.product.keepBox = !this.product.keepBox ? this.product.quantity : 0;
   }
 }

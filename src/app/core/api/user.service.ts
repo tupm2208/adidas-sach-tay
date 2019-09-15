@@ -34,6 +34,6 @@ export class UserService {
 
   search(params): Observable<any> {
 
-    return this.mainApi.post(this.base + '/search', params);
+    return this.mainApi.get(this.base + '?', params);
   }
 }

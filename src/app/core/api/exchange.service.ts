@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import { StorageService } from '../util/storage.service'
 
 @Injectable()
-export class BillService {
+export class ExchangeService {
 
-  private base_link = 'bills'
+  private base_link = 'exchanges'
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
 
   list(): Observable<any> {
 
-    return this.mainApi.get(this.base_link + '?include=true');
+    return this.mainApi.get(this.base_link);
   }
 
   update(params): Observable<any> {
@@ -29,13 +29,8 @@ export class BillService {
     return this.mainApi.post(this.base_link , params);
   }
 
-  delete(id): Observable<any> {
+  delete(params): Observable<any> {
 
-    return this.mainApi.delete(this.base_link + '/'+ id);
-  }
-
-  search(params): Observable<any> {
-
-    return this.mainApi.get(this.base_link + '?', params);
+    return this.mainApi.delete(this.base_link + '/'+ params.id);
   }
 }
