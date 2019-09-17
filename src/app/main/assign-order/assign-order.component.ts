@@ -54,6 +54,7 @@ export class AssignOrderComponent implements OnInit {
     this.orderData = {
       brand: '',
       result: [],
+      yenAmount: 0,
       exchangeRate: this.storageService.get("exchangeValue")
     };
 
@@ -65,7 +66,7 @@ export class AssignOrderComponent implements OnInit {
 
     this.getListBill();
 
-    this.userService.search({role: "client"}).subscribe( data => {
+    this.userService.search({role: "shiper"}).subscribe( data => {
       
       this.options = data.data;
     })
@@ -98,6 +99,9 @@ export class AssignOrderComponent implements OnInit {
     this.billService.search({reservationId: null, include: true}).subscribe( data => {
 
       this.listBooked = data.data;
+      this.listBooked.forEach(element => {
+        delete element.receiveDate
+      })
 
       console.log("book: ", this.listBooked);
       this.loadingService.hide();
@@ -134,7 +138,11 @@ export class AssignOrderComponent implements OnInit {
           if(item.reservationId) {
 
             element.quantity += elem.quantity;
-            element.keepBox += elem.keepBox;
+            this.orderData.yenAmount += elem.quantity * Number(elem.price)
+            console.log('yenAmount: ', this.orderData.yenAmount)
+            if (elem.keepBox) { //if customer want to keep box, add number of box to the reservationdetail
+              element.keepBox += elem.quantity
+            }
           } else {
 
             if(element.quantity == elem.quantity) {
@@ -143,7 +151,10 @@ export class AssignOrderComponent implements OnInit {
             } else {
 
               element.quantity -= elem.quantity;
-              element.keepBox -= elem.keepBox;
+              this.orderData.yenAmount -= elem.quantity * elem.price
+              if (elem.keepBox) { //remove the number of boxes that we have just added above
+                element.keepBox -= elem.quantity
+              }
             }
           }
           return;
@@ -151,11 +162,11 @@ export class AssignOrderComponent implements OnInit {
       })
 
       if(flag) {
-
+        this.orderData.yenAmount += elem.quantity * Number(elem.price)
         this.orderData.result.push({
           productId: elem.productId,
           quantity: elem.quantity,
-          keepBox: elem.keepBox
+          keepBox: elem.keepBox? elem.quantity: 0
         })
       }
       
@@ -204,10 +215,12 @@ export class AssignOrderComponent implements OnInit {
   checkBeforeOrder() {
 
     if(!this.selectedUser) return false;
+    console.log("user pass: ", this.selectedUser)
 
     if(!this.orderData.result.length) return false;
 
-    if(!this.orderData.id) return false;
+    console.log("order pass", this.orderData.result)
+    // if(!this.orderData.id) return false;
 
     return true;
   }
@@ -230,14 +243,14 @@ export class AssignOrderComponent implements OnInit {
 
     if(!this.checkBeforeOrder()) {
 
-      this.popupService.showError();
+      this.popupService.showError("Thông tin không đúng, xin điền lại");
       this.loadingService.hide();
       return;
     }
 
-    this.orderData.makh = this.selectedUser.makh;
-    this.orderData.trangthai = 3;
-    this.orderData.ngay = new Date().getTime();
+    this.orderData.userId = this.selectedUser.id;
+    this.orderData.status = 3;
+    this.orderData.createdDate = new Date();
     this.orderService.create(this.orderData).subscribe( data => {
 
       console.log("return data: ", data);
@@ -275,7 +288,7 @@ export class AssignOrderComponent implements OnInit {
       this.orderData.result.forEach( element => {
 
         element.reservationId = data.id;
-        element.makh = this.selectedUser.makh;
+        element.userId = this.selectedUser.id;
 
         this.orderDetailService.create(element).subscribe( data => {
 
@@ -291,7 +304,7 @@ export class AssignOrderComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError();
+      this.popupService.showError("Lỗi không thể tạo đơn!");
     })
   }
 }

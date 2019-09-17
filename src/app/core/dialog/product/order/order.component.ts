@@ -32,7 +32,7 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private dialogRef: MatDialogRef<OrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public madh: any,
+    @Inject(MAT_DIALOG_DATA) public id: any,
     private loadingService: LoadingService,
     private popupService: PopupService,
     private formatService: FormatService,
@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("init order data: ", this.madh);
+    console.log("init order data: ", this.id);
     $('app-order').parent().parent().attr('id','app-order');
 
     setTimeout( () => this.loadingService.show('app-order'), 0);
@@ -53,9 +53,9 @@ export class OrderComponent implements OnInit {
 
   getBills() {
 
-    this.mainService.listBill({madh: this.madh}).subscribe( data => {
+    this.billService.search({reservationId: this.id, include: true}).subscribe( data => {
 
-      this.listBills = data;
+      this.listBills = data.data;
       this.loadingService.hide('app-order');
       console.log("bill list data: ", data);
     })
@@ -63,49 +63,58 @@ export class OrderComponent implements OnInit {
 
   getOrder() {
 
-    this.mainService.listOrder({madh: this.madh}).subscribe( data => {
+    this.orderService.getByParams({id: this.id, include: true}).subscribe( data => {
 
-      this.orderData = data[0];
+      this.orderData = data.data[0];
+      delete this.orderData.receiverId;
+      delete this.orderData.finishedDate;
 
       console.log("listorder data: ", this.orderData);
-
-      delete this.orderData.tongsl;
-      delete this.orderData.giuhop;
+      setTimeout(() => {
+        this.loadingService.hide('app-order');
+      }, 50)
+      // delete this.orderData.quantity;
+      // delete this.orderData.keepBox;
     })
   }
 
   selectItem(item) {
 
-    if(this.orderData.trangthai != 3) {
+    if(this.orderData.status != 3) {
       this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Đơn Đặt Hàng");
       return;
     }
+    console.log("selectItem")
 
-    item.madh = item.madh? null: this.madh;
-    item.chitiethds.forEach(elem => {
+    item.reservationId = item.reservationId? null: this.id;
+    item.billdetail.forEach(elem => {
 
       let flag = true;
-      this.orderData.chitietdhs.forEach(element => {
+      this.orderData.reservationdetail.forEach(element => {
 
-        if (element.masp == elem.masp) {
+        if (element.productId == elem.productId) {
 
           flag = false;
-          if(item.madh) {
+          if(item.reservationId) {
 
-            item.trangthai = 3;
+            item.status = 3;
 
-            element.soluong += elem.soluong;
-            element.giuhop += elem.giuhop;
+            element.quantity += elem.quantity;
+            if (elem.keepBox) {
+              element.keepBox += elem.quantity;
+            }
           } else {
 
-            item.trangthai = 2;
-            if(element.soluong == elem.soluong) {
+            item.status = 2;
+            if(element.quantity == elem.quantity) {
 
-              this.orderData.chitietdhs.splice(this.orderData.chitietdhs.indexOf(element), 1);
+              this.orderData.reservationdetail.splice(this.orderData.reservationdetail.indexOf(element), 1);
             } else {
 
-              element.soluong -= elem.soluong;
-              element.giuhop -= elem.giuhop;
+              element.quantity -= elem.quantity;
+              if (elem.keepBox) {
+                element.keepBox -= elem.quantity;
+              }
             }
           }
           return;
@@ -114,12 +123,12 @@ export class OrderComponent implements OnInit {
 
       if(flag) {
 
-        this.orderData.chitietdhs.push({
-          masp: elem.masp,
-          soluong: elem.soluong,
-          giuhop: elem.giuhop,
-          madh: this.orderData.madh,
-          makh: this.orderData.makh
+        this.orderData.reservationdetail.push({
+          productId: elem.productId,
+          quantity: elem.quantity,
+          keepBox: elem.keepBox? elem.quantity: 0,
+          reservationId: this.orderData.reservationId,
+          userId: this.orderData.userId
         })
       }
     })
@@ -129,9 +138,9 @@ export class OrderComponent implements OnInit {
 
     let flag = true;
 
-    this.orderData.chitietdhs.forEach(element => {
+    this.orderData.reservationdetail.forEach(element => {
 
-      if(element.masp == billDetail.masp) {
+      if(element.productId == billDetail.productId) {
 
         flag = false;
         element.flag = true;
@@ -140,10 +149,10 @@ export class OrderComponent implements OnInit {
 
     if(flag) {
 
-      this.orderData.chitietdhs.push({
-        masp: billDetail.masp,
-        soluong: 0,
-        giuhop: 0
+      this.orderData.reservationdetail.push({
+        productId: billDetail.productId,
+        quantity: 0,
+        keepBox: 0
       })
 
       this.checkAndCountNum(billDetail);
@@ -152,7 +161,7 @@ export class OrderComponent implements OnInit {
 
   selectAll() {
 
-    if(this.orderData.trangthai != 3) {
+    if(this.orderData.status != 3) {
       this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Khỏi Đơn Hàng!");
       return;
     }
@@ -161,7 +170,7 @@ export class OrderComponent implements OnInit {
 
     this.listBills.forEach( element => {
 
-      if(!element.madh) {
+      if(!element.reservationId) {
 
         flag = false;
         return;
@@ -175,7 +184,7 @@ export class OrderComponent implements OnInit {
         this.selectItem(element);
       } else {
 
-        if(!element.madh) {
+        if(!element.reservationId) {
           
           this.selectItem(element);
         }
@@ -187,7 +196,7 @@ export class OrderComponent implements OnInit {
 
     return this.listBills.filter( element => {
 
-      return element.madh? false: true;
+      return element.reservationId? false: true;
     })
   }
 
@@ -215,7 +224,7 @@ export class OrderComponent implements OnInit {
       
       this.returnArray().forEach( element => {
 
-        element.chitiethds.forEach(elem => {
+        element.billdetail.forEach(elem => {
 
           this.checkAndCountNum(elem);
         });
@@ -227,7 +236,7 @@ export class OrderComponent implements OnInit {
 
   updateProductList(): Array<any> {
 
-    return this.orderData.chitietdhs.filter( element => {
+    return this.orderData.reservationdetail.filter( element => {
 
       return element.flag? true: false;
     }) 
@@ -239,12 +248,12 @@ export class OrderComponent implements OnInit {
 
     this.updateProductList().forEach(element => {
       
-      if(element.soluong == 0) {
+      if(element.quantity == 0) {
 
-        a.push(this.orderDetailService.delete({madh: this.madh, masp: element.masp}))
+        a.push(this.orderDetailService.delete({reservationId: this.id, productId: element.productId}))
       } else {
 
-        element.madh = this.madh;
+        element.reservationId = this.id;
         a.push(this.orderDetailService.update(element));
       }
     });
@@ -265,9 +274,9 @@ export class OrderComponent implements OnInit {
 
     let flag = true;
 
-    this.orderData.chitietdhs.forEach( element => {
+    this.orderData.reservationdetail.forEach( element => {
 
-      if(element.soluong) {
+      if(element.quantity) {
 
         flag = false;
         return;
@@ -276,7 +285,7 @@ export class OrderComponent implements OnInit {
 
     if(flag) {
 
-      this.orderService.delete(this.madh).subscribe( data => {
+      this.orderService.delete(this.id).subscribe( data => {
 
         console.log("delete order: ", data);
 
@@ -289,7 +298,7 @@ export class OrderComponent implements OnInit {
       }, error => {
 
         this.loadingService.hide('app-order');
-        this.popupService.showError();
+        this.popupService.showError("Không thể xóa");
       })
     } else {
 
@@ -305,7 +314,7 @@ export class OrderComponent implements OnInit {
       }, error => {
 
         this.loadingService.hide('app-order');
-        this.popupService.showError();
+        this.popupService.showError("Có lỗi xảy ra! Xin thử lại");
       })
     }
   }

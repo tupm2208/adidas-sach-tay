@@ -5,6 +5,7 @@ import { LoadingService } from '../../core/util/loading.service';
 import { FormatService } from '../../core/util/format.service';
 import { DialogService } from '../../core/dialog/dialog.service';
 import { MainService } from '../../core/api/main.service';
+import { OrderService } from '../../core/api/order.service';
 declare var $: any;
 
 @Component({
@@ -14,8 +15,8 @@ declare var $: any;
 })
 export class OrdersComponent implements OnInit {
 
-  private madh = '';
-  private tenkh = '';
+  private reservationId = '';
+  private name = '';
   private fakedData = [];
   private from: any;
   private to: any;
@@ -26,7 +27,8 @@ export class OrdersComponent implements OnInit {
     private loadingService: LoadingService,
     private formatService: FormatService,
     private dialogService: DialogService,
-    private mainService: MainService
+    private mainService: MainService,
+    private orderService: OrderService,
   ) { }
 
   ngOnInit() {
@@ -37,10 +39,13 @@ export class OrdersComponent implements OnInit {
 
     this.loadingService.show();
 
-    this.mainService.listOrder({}).subscribe( data => {
+    this.orderService.getByParams({include: true}).subscribe( data => {
 
       console.log("main service data: ", data);
-      this.fakedData = data;
+      this.fakedData = data.data;
+      this.fakedData.forEach(item => {
+        this.getSumOfQuantity(item)
+      })
       this.loadingService.hide();
     })
   }
@@ -52,7 +57,7 @@ export class OrdersComponent implements OnInit {
 
   gotoDetail(element) {
 
-    this.dialogService.gotoOrder(element.madh).subscribe( data => {
+    this.dialogService.gotoOrder(element.id).subscribe( data => {
 
       if(data == 2) {
 
@@ -61,9 +66,10 @@ export class OrdersComponent implements OnInit {
         this.fakedData = this.fakedData.concat([]);
       } else if(data == 1) {
 
-        this.mainService.listOrder({makh: element.makh, madh: element.madh}).subscribe( listItem => {
+        this.orderService.getByParams({userId: element.userId, id: element.id, include: true}).subscribe( listItem => {
 
-          this.fakedData.splice(this.fakedData.indexOf(element), 1, listItem[0]);
+          this.getSumOfQuantity(listItem.data[0]) // update quantity
+          this.fakedData.splice(this.fakedData.indexOf(element), 1, listItem.data[0]);
           this.fakedData = this.fakedData.concat([]);
         })
       }
@@ -82,5 +88,13 @@ export class OrdersComponent implements OnInit {
     });
 
     return sum;
+  }
+
+  getSumOfQuantity(item) {
+    let sum = 0
+    item.reservationdetail.forEach(element => {
+      sum += element.quantity
+    })
+    item.quantity = sum
   }
 }
