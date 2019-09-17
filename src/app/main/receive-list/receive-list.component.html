@@ -22,7 +22,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group" id="input-user">
                                 <div class="form-line" style="display: inline-block; position: absolute; right: 0">
-                                    <select [(ngModel)]="trangthai" class="form-control" style="position: absolute; top:0px;border-bottom: 1px solid #ccc;">
+                                    <select [(ngModel)]="status" class="form-control" style="position: absolute; top:0px;border-bottom: 1px solid #ccc;">
                                         <option value="">Trạng Thái</option>
                                         <option value="5">Chưa Về Kho Nhật</option>
                                         <option value="6">Về Kho Nhật</option>
@@ -30,10 +30,10 @@
                                     </select>
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="tenkh" placeholder="Tên">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="name" placeholder="Tên">
                                 </div>
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Mã ĐH">
                                 </div>
                                 <div class="form-group" style="margin: 0">
                                      <mat-form-field> 
@@ -57,7 +57,7 @@
                                     <tr>
                                         <th *ngIf="sc">Ngày</th> 
                                         <th>Tên KH</th>
-                                        <th *ngIf="sc">SDT</th>
+                                        <th *ngIf="sc">phone</th>
                                         <th *ngIf="sc">Mã Đơn</th> 
                                         <th *ngIf="sc">Khối Lượng</th> 
                                         <th *ngIf="sc">Đơn Giá</th> 
@@ -72,7 +72,7 @@
                                     <tr>
                                         <th *ngIf="sc">Ngày</th> 
                                         <th>Tên KH</th>
-                                        <th *ngIf="sc">SDT</th>
+                                        <th *ngIf="sc">phone</th>
                                         <th *ngIf="sc">Mã Đơn</th> 
                                         <th *ngIf="sc">Khối Lượng</th> 
                                         <th *ngIf="sc">Đơn Giá</th> 
@@ -89,30 +89,31 @@
                                       <td></td>
                                       <td></td>
                                       <td></td>
-                                      <td>{{calculateByProp('khoiluong')}}</td>
+                                      <td>{{calculateByProp('weight')}}</td>
                                       <td></td>
-                                      <td>{{calculateByProp('phuphi')}}</td>
-                                       <td>{{calculateByProp('dongia','khoiluong')| number: '1.2-2'}}</td> 
-                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
-                                       <td>{{calculateByProp('dongia','khoiluong') + calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td> 
+                                      <td>{{calculateByProp('surcharge')}}</td>
+                                       <td>{{calculateByProp('unitPrice','weight')| number: '1.2-2'}}</td> 
+                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>
+                                       <td>{{calculateByProp('unitPrice','weight') + calculateByProp('surcharge') - calculateByProp('deposit')| number: '1.2-2'}}</td> 
                                       <td></td>
                                     </tr> 
-                                    <tr *ngFor="let item of receiveList| user: {'trangthai': trangthai, 'user': {'tenkh': tenkh}, 'chitietnhs': {'madh': madh}} | time: {'from': from, 'to': to}">
-                                        <td>{{formatService.formatDate(item.ngay)}}</td> 
-                                        <td><a [routerLink]="['/home/receiver/history/' + item.user.makh]">{{item?.user?.tenkh}}</a></td>
-                                        <td *ngIf="sc">{{item.user.sdt}}</td>
+                                    <tr *ngFor="let item of receiveList| user: {'status': status, 'user': {'name': name}, 'receiverdetail': {'reservationId': reservationId}} | time: {'from': from, 'to': to}">
+                                        <td>{{formatService.formatDate(item.createdDate)}}</td> 
+                                        <td><a [routerLink]="['/home/receiver/history/' + item.user.id]">{{item?.user?.name}}</a></td>
+                                        <td *ngIf="sc">{{item.user.phone}}</td>
                                         <td *ngIf="sc"><a (click)="openReceiveDetail(item)">
+                                                unknown
                                             <ul>
-                                                <li *ngFor="let prod of item.chitietnhs">{{prod.madh}}</li>
+                                                <li *ngFor="let prod of item.receiverdetail">{{prod.reservationId ? prod.reservationId: 'unknown'}}</li>
                                             </ul> 
                                         </a></td> 
-                                        <td>{{item.khoiluong}}</td>
-                                        <td *ngIf="sc">{{item.dongia}}</td> 
-                                        <td *ngIf="sc">{{item.phuphi}}</td> 
-                                        <td>{{item.dongia*item.khoiluong -- item.phuphi | number: '1.2-2'}}</td>
-                                        <td *ngIf="sc">{{item.datcoc}}</td> 
-                                        <td *ngIf="sc">{{item.dongia*item.khoiluong -- item.phuphi - item.datcoc}}</td> 
-                                        <td>{{formatService.statusType(item.trangthai)}}</td>
+                                        <td>{{item.weight}}</td>
+                                        <td *ngIf="sc">{{item.unitPrice}}</td> 
+                                        <td *ngIf="sc">{{item.surcharge}}</td> 
+                                        <td>{{item.unitPrice*item.weight -- item.surcharge | number: '1.2-2'}}</td>
+                                        <td *ngIf="sc">{{item.deposit}}</td> 
+                                        <td *ngIf="sc">{{item.unitPrice*item.weight -- item.surcharge - item.deposit}}</td> 
+                                        <td>{{formatService.statusType(item.status)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

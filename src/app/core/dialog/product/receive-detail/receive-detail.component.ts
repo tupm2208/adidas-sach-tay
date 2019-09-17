@@ -30,7 +30,7 @@ export class ReceiveDetailComponent implements OnInit {
     private receiveService: ReceiveService,
     private receiveDetailService: ReceiveDetailService,
     private dialogRef : MatDialogRef<ReceiveDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public manh: any,
+    @Inject(MAT_DIALOG_DATA) public receiverId: any,
   ) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class ReceiveDetailComponent implements OnInit {
 
     setTimeout(() => {this.loadingService.show('app-receive-detail');},0);
 
-    console.log("manh: ", this.manh);
+    console.log("receiverId: ", this.receiverId);
 
     this.getListOrder();
     this.getReceive();
@@ -47,9 +47,9 @@ export class ReceiveDetailComponent implements OnInit {
 
   getReceive() {
 
-    this.mainService.listReceive({manh: this.manh}).subscribe( data => {
+    this.receiveService.search({id: this.receiverId, include: true}).subscribe( data => {
 
-      this.receiveData = data[0];
+      this.receiveData = data.data[0];
     }, error => {
 
     })
@@ -57,9 +57,9 @@ export class ReceiveDetailComponent implements OnInit {
 
   getListOrder() {
 
-    this.mainService.listOrder({manh: this.manh}).subscribe( data => {
+    this.orderService.getByParams({receiverId: this.receiverId, include: true}).subscribe( data => {
 
-      this.listOrder = data;
+      this.listOrder = data.data;
       this.loadingService.hide('app-receive-detail');
       console.log("list order: ", this.listOrder);
     });
@@ -67,13 +67,13 @@ export class ReceiveDetailComponent implements OnInit {
 
   selectItem(item) {
 
-    if(this.receiveData.trangthai > 5) {
+    if(this.receiveData.status > 5) {
 
       this.popupService.showWanning("Không Thể Thêm Bớt Khi Đơn Hàng Không Ở Trạng Thái 'Chưa Về Kho Nhật'");
       return;
     }
 
-    item.manh = item.manh? null: this.receiveData.manh;
+    item.receiverId = item.receiverId? null: this.receiveData.id;
 
   }
 
@@ -91,7 +91,7 @@ export class ReceiveDetailComponent implements OnInit {
 
     this.listOrder.forEach( element => {
 
-      if(!element.manh) {
+      if(!element.receiverId) {
 
         flag = false;
         return;
@@ -105,7 +105,7 @@ export class ReceiveDetailComponent implements OnInit {
         this.selectItem(element);
       } else {
 
-        if(!element.manh) {
+        if(!element.receiverId) {
           
           this.selectItem(element);
         }
@@ -119,12 +119,12 @@ export class ReceiveDetailComponent implements OnInit {
 
     this.listOrder.forEach(element => {
       
-      if(!element.manh) {
+      if(!element.receiverId) {
 
-        element.trangthai = 4;
+        element.status = 4;
         this.orderService.update(element).subscribe( order => {
 
-          this.receiveDetailService.delete({manh: this.receiveData.manh, madh: element.madh}).subscribe( resD => {
+          this.receiveDetailService.delete({receiverId: this.receiveData.id, reservationId: element.id}).subscribe( resD => {
 
             console.log("resD: ", resD);
 
@@ -137,8 +137,8 @@ export class ReceiveDetailComponent implements OnInit {
           })
         }, error => {
 
-          element.trangthai = 5;
-          element.manh = this.receiveData.manh;
+          element.status = 5;
+          element.receiverId = this.receiveData.id;
         })
       } else {
 
@@ -162,7 +162,7 @@ export class ReceiveDetailComponent implements OnInit {
 
     this.listOrder.forEach(element => {
       
-      if(element.manh) {
+      if(element.receiverId) {
 
         flag = false;
         return;
@@ -173,7 +173,7 @@ export class ReceiveDetailComponent implements OnInit {
 
       this.receiveService.delete(this.receiveData).subscribe( data => {
 
-        console.log("delete ok!", this.receiveData.madh);
+        console.log("delete ok!", this.receiveData.id);
         this.finish();
       }, error => {
 
@@ -196,12 +196,12 @@ export class ReceiveDetailComponent implements OnInit {
 
     this.loadingService.show('app-receive-detail');
 
-    if(this.receiveData.trangthai == 8) {
+    if(this.receiveData.status == 8) {
 
-      if(!this.receiveData.ngaynhan) this.receiveData.ngaynhan = new Date().getTime();
+      if(!this.receiveData.arrivedDate) this.receiveData.arrivedDate = new Date();
     } else {
 
-      this.receiveData.ngaynhan = 0;
+      this.receiveData.arrivedDate = 0;
     }
     this.receiveService.update(this.receiveData).subscribe( res => {
 
@@ -215,7 +215,7 @@ export class ReceiveDetailComponent implements OnInit {
 
   checkBeforeSubmit() {
 
-    if(!this.receiveData.chitietnhs.length) return false;
+    if(!this.receiveData.receiverdetail.length) return false;
 
     return true;
   }

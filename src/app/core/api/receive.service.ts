@@ -8,46 +8,34 @@ import { StorageService } from '../util/storage.service'
 export class ReceiveService {
 
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
-
+  base_uri = 'receivers'
   list(): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('nhanhang?token=' + token);
+    return this.mainApi.get(this.base_uri);
   }
 
   update(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.put('nhanhang/' + params.manh + '?token=' + token, params);
+    return this.mainApi.put(this.base_uri + '/' + params.id, params);
   }
 
   getById(id): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.get('nhanhang/' + id + '?token=' + token);
+    return this.mainApi.get(this.base_uri + '/' + id);
   }
 
   create(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.post('nhanhang?token=' + token, params);
+    return this.mainApi.post(this.base_uri, params);
   }
 
   delete(params): Observable<any> {
 
-    let token = this.storage.get('token');
-
-    return this.mainApi.delete('nhanhang/'+ params.manh + '?token=' + token);
+    return this.mainApi.delete(this.base_uri + '/'+ params.id);
   }
 
   search(params): Observable<any> {
 
-    
-
-    return this.mainApi.post('nhanhang/search', params);
+    return this.mainApi.get(this.base_uri + '?', params);
   }
 }

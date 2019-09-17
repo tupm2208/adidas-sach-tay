@@ -29,6 +29,11 @@ export class OrderService {
     return this.mainApi.put(this.base_uri + '/' + params.id, params);
   }
 
+  update_status(params, receiverId): Observable<any> {
+
+    return this.mainApi.put(this.base_uri + '?receiverId=' + receiverId, params);
+  }
+
   delete(id): Observable<any> {
 
     let token = this.storage.get('token');

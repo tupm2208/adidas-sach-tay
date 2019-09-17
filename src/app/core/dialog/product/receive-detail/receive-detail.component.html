@@ -30,9 +30,9 @@
                                 </thead>
                                 <tbody>
                                   <tr *ngFor="let item of listOrder; let i = index" [ngStyle]="{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}">
-                                    <td (click)="selectItem(item)">{{item.madh}} | {{item.tongsl}}</td>
+                                    <td (click)="selectItem(item)">{{item.id}} | {{item.quantity}}</td>
                                     <td>
-                                      <div *ngFor="let prod of item.chitietdhs">{{prod.masp}} | {{prod.soluong}} | {{prod.giuhop}}</div>
+                                      <div *ngFor="let prod of item.reservationdetail">{{prod.productId}} | {{prod.quantity}} | {{prod.keepBox}}</div>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -90,28 +90,28 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                       <div class="form-group">
                         <label for="age">Khối Lượng *</label>
-                        <input id="age" name="khoiluong" [(ngModel)]="receiveData.khoiluong" class="form-control" type="number" min="1">
+                        <input id="age" name="weight" [(ngModel)]="receiveData.weight" class="form-control" type="number" min="1">
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="age">Đơn Giá *</label>
-                        <input id="age" name="dongia" [(ngModel)]="receiveData.dongia" class="form-control" type="number" min="1">
+                        <input id="age" name="unitPrice" [(ngModel)]="receiveData.unitPrice" class="form-control" type="number" min="1">
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="age">Phụ Phí *</label>
-                        <input id="age" name="phuphi" [(ngModel)]="receiveData.phuphi" class="form-control" type="number" min="1">
+                        <input id="age" name="surcharge" [(ngModel)]="receiveData.surcharge" class="form-control" type="number" min="1">
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="age">Thành Tiền *</label>
-                        <span id="age" class="form-control">{{receiveData.khoiluong * receiveData.dongia - -receiveData.phuphi| number: '1.2-2' }}</span>
+                        <span id="age" class="form-control">{{receiveData.weight * receiveData.unitPrice - -receiveData.surcharge| number: '1.2-2' }}</span>
                         <span id="error_age" class="text-danger"></span>
                       </div>
                       <div class="form-group">
                         <label for="lastname">Trạng Thái *</label>
                         <div>
-                          <select data-validation="required" name="trangthai" [(ngModel)]="receiveData.trangthai" class="form-control">
+                          <select data-validation="required" name="status" [(ngModel)]="receiveData.status" class="form-control">
                             <option value="5">Chưa Về Kho Nhật</option>
                             <option value="6">Về Kho Nhật</option>
                             <option value="7">Về Kho Việt Nam</option>
@@ -121,7 +121,7 @@
                       </div>
                       <div class="form-group">
                         <label for="age">Ghi Chú *</label>
-                        <textarea class="form-control" name="ghichu" [(ngModel)]="receiveData.ghichu" rows="3"></textarea>
+                        <textarea class="form-control" name="note" [(ngModel)]="receiveData.note" rows="3"></textarea>
                       </div>
                     </div>
                   </form>

@@ -18,19 +18,19 @@ import { ReceiveDetailService } from '../../core/api/receive-detail.service';
 export class ReceiverComponent implements OnInit {
 
   private filterUser = '';
-  private sdt = '';
-  private tenkh = '';
+  private phone = '';
+  private name = '';
   private selectedUser: any = null;
   private myControl: any = new FormControl();
   private listOrder: any = [];
   private optionsUser: any = [];
   private receiveData: any = {
-    ngay: new Date().getTime(),
-    trangthai: 5,
-    chitietnhs: [],
-    khoiluong: 0,
-    dongia: 0,
-    phuphi: 0
+    createdDate: new Date(),
+    status: 5,
+    receiverdetail: [],
+    weight: 0,
+    unitPrice: 0,
+    surcharge: 0
   };
 
   constructor(
@@ -47,19 +47,19 @@ export class ReceiverComponent implements OnInit {
   onInitData() {
 
     this.filterUser = '';
-    this.sdt = '';
-    this.tenkh = '';
+    this.phone = '';
+    this.name = '';
     this.selectedUser = null;
     this.myControl = new FormControl();
     this.listOrder = [];
     this.optionsUser = [];
     this.receiveData = {
-      ngay: new Date().getTime(),
-      trangthai: 5,
-      chitietnhs: [],
-      khoiluong: 0,
-      dongia: 0,
-      phuphi: 0
+      createdDate: new Date(),
+      status: 5,
+      receiverdetail: [],
+      weight: 0,
+      unitPrice: 0,
+      surcharge: 0
     };
   }
 
@@ -75,19 +75,23 @@ export class ReceiverComponent implements OnInit {
 
   getListOrder() {
 
-    this.mainService.listOrder({trangthai: 4}).subscribe( data => {
+    this.orderService.getByParams({status: 4, include: true}).subscribe( data => {
 
-      this.listOrder = data;
+      this.listOrder = data.data;
       this.loadingService.hide();
+      this.listOrder.forEach(item => {
+        this.getSumOfQuantity(item)
+        this.getSumOfQuantity(item, 'keepBox')
+      })
       console.log("list order: ", this.listOrder);
     });
   }
 
   getListUser() {
 
-    this.userService.search({maloainv: 6}).subscribe( users => {
+    this.userService.search({role: 'receiver'}).subscribe( users => {
 
-      this.optionsUser = users;
+      this.optionsUser = users.data;
       console.log("user ml6: ", users);
     })
   }
@@ -100,7 +104,7 @@ export class ReceiverComponent implements OnInit {
 
       for(let i = 0; i < this.optionsUser.length; i++) {
 
-        if(this.optionsUser[i].tenkh == data) {
+        if(this.optionsUser[i].name == data) {
 
           this.selectedUser = this.optionsUser[i];
 
@@ -114,18 +118,18 @@ export class ReceiverComponent implements OnInit {
 
   selectItem(item) {
 
-    item.manh = !item.manh;
+    item.receiverId = !item.receiverId;
 
-    if(item.manh) {
+    if(item.receiverId) {
 
-      this.receiveData.chitietnhs.push({
-        madh: item.madh,
-        soluong: item.tongsl,
-        giuhop: item.giuhop
+      this.receiveData.receiverdetail.push({
+        reservationId: item.id,
+        quantity: item.quantity,
+        keepBox: item.keepBox
       });
     } else {
 
-      this.receiveData.chitietnhs.splice(this.receiveData.chitietnhs.indexOf(item), 1);
+      this.receiveData.receiverdetail.splice(this.receiveData.receiverdetail.indexOf(item), 1);
     }
   }
 
@@ -144,7 +148,7 @@ export class ReceiverComponent implements OnInit {
 
     this.listOrder.forEach( element => {
 
-      if(!element.manh) {
+      if(!element.receiverId) {
 
         flag = false;
         return;
@@ -158,7 +162,7 @@ export class ReceiverComponent implements OnInit {
         this.selectItem(element);
       } else {
 
-        if(!element.manh) {
+        if(!element.receiverId) {
           
           this.selectItem(element);
         }
@@ -170,18 +174,18 @@ export class ReceiverComponent implements OnInit {
 
     if(!this.checkBeforeSubmit()) {
 
-      this.popupService.showError();
+      this.popupService.showError("Xin nhập lại!");
       return;
     }
 
     this.loadingService.show();
 
-    this.receiveData.makh = this.selectedUser.makh;
+    this.receiveData.userId = this.selectedUser.id;
 
     this.receiveService.create(this.receiveData).subscribe( res => {
 
       console.log("data receiver create success: ", res);
-      this.receiveData.manh = res.data.manh;
+      this.receiveData.id = res.id;
 
       this.updateOrder();
     })
@@ -189,7 +193,7 @@ export class ReceiverComponent implements OnInit {
 
   checkBeforeSubmit() {
 
-    if(!this.receiveData.chitietnhs.length) return false;
+    if(!this.receiveData.receiverdetail.length) return false;
 
     if(!this.selectedUser) return false;
 
@@ -201,20 +205,20 @@ export class ReceiverComponent implements OnInit {
     let count = 0;
     this.listOrder.forEach(element => {
       
-      if(element.manh) {
+      if(element.receiverId) {
 
-        element.manh = this.receiveData.manh;
-        element.trangthai = 5;
+        element.receiverId = this.receiveData.id;
+        element.status = 5;
         this.orderService.update(element).subscribe( data => {
 
           this.receiveDetailService.create({
-            madh: element.madh,
-            soluong: element.tongsl,
-            giuhop: element.giuhop,
-            manh: element.manh
+            reservationId: element.id,
+            quantity: element.quantity,
+            keepBox: element.keepBox,
+            receiverId: element.receiverId
           }).subscribe( rec => {
 
-            console.log("regist receive success: ", element.madh);
+            console.log("regist receive success: ", element.reservationId);
             count++;
 
             if(count == this.listOrder.length) {
@@ -226,7 +230,7 @@ export class ReceiverComponent implements OnInit {
         }, error => {
 
           count++;
-          element.manh = null;
+          element.receiverId = null;
           console.log("failed update order!");
 
           if (count == this.listOrder.length) {
@@ -240,5 +244,13 @@ export class ReceiverComponent implements OnInit {
         count++;
       }
     });
+  }
+
+  getSumOfQuantity(item, value='quantity') {
+    let sum = 0
+    item.reservationdetail.forEach(element => {
+      sum += element[value]
+    })
+    item[value] = sum
   }
 }

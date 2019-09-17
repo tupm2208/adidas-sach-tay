@@ -12,35 +12,35 @@
                   <mat-form-field class="example-full-width" [floatLabel]="'never'">
                     <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of optionsUser | user: {'tenkh': filterUser}" [value]="option.tenkh">
-                        {{ option.tenkh }}
+                      <mat-option *ngFor="let option of optionsUser | user: {'name': filterUser}" [value]="option.name">
+                        {{ option.name }}
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
                 <div class="form-group">
                   <label for="age">Khối Lượng *</label>
-                  <input id="age" name="khoiluong" [(ngModel)]="receiveData.khoiluong" class="form-control" type="text" min="1">
+                  <input id="age" name="weight" [(ngModel)]="receiveData.weight" class="form-control" type="text" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Đơn Giá *</label>
-                  <input id="age" name="dongia" [(ngModel)]="receiveData.dongia" class="form-control" type="number" min="1">
+                  <input id="age" name="unitPrice" [(ngModel)]="receiveData.unitPrice" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Phụ Phí *</label>
-                  <input id="age" name="khoiluong" [(ngModel)]="receiveData.phuphi" class="form-control" type="number" min="1">
+                  <input id="age" name="weight" [(ngModel)]="receiveData.surcharge" class="form-control" type="number" min="1">
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Thành Tiền *</label>
-                  <span id="age" class="form-control" >{{receiveData.khoiluong * receiveData.dongia + receiveData.phuphi}}</span>
+                  <span id="age" class="form-control" >{{receiveData.weight * receiveData.unitPrice + receiveData.surcharge}}</span>
                   <span id="error_age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Ghi Chú *</label>
-                  <textarea class="form-control" name="ghichu" [(ngModel)]="receiveData.ghichu" rows="3"></textarea>
+                  <textarea class="form-control" name="note" [(ngModel)]="receiveData.note" rows="3"></textarea>
                 </div>
               </div>
             </form>
@@ -65,10 +65,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of listOrder; let i = index" [ngStyle]="{'background-color': item.manh? i%2? '#ced8c0': '#e1efce': ''}">
-                              <td (click)="selectItem(item)">{{item.madh}} | {{item.tongsl}}</td>
+                            <tr *ngFor="let item of listOrder; let i = index" [ngStyle]="{'background-color': item.receiverId? i%2? '#ced8c0': '#e1efce': ''}">
+                              <td (click)="selectItem(item)">{{item.id}} | {{item.quantity}}</td>
                               <td>
-                                <div *ngFor="let prod of item.chitietdhs">{{prod.masp}} | {{prod.soluong}}</div>
+                                <div *ngFor="let prod of item.reservationdetail">{{prod.productId}} | {{prod.quantity}}</div>
                               </td>
                             </tr>
                           </tbody>
@@ -101,10 +101,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of receiveData.chitietnhs">
-                              <td>{{item.madh}}</td>
-                              <td>{{item.soluong}}</td>
-                              <td>{{item.giuhop}}</td>
+                            <tr *ngFor="let item of receiveData.receiverdetail">
+                              <td>{{item.reservationId}}</td>
+                              <td>{{item.quantity}}</td>
+                              <td>{{item.keepBox}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -115,7 +115,7 @@
               </div>
             </div>
             <div style="display: inline-block; width: 100%">
-              <button class="btn btn-block btn-lg bg-cyan waves-effect" style="" (click)="submit()" type="submit">Submit</button>
+              <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" type="submit">Submit</button>
             </div>
           </mat-card-content>
         </mat-card>
