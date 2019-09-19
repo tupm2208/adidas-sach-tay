@@ -121,7 +121,7 @@ export class WaitingListBillComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 
@@ -219,20 +219,20 @@ export class WaitingListBillComponent implements OnInit {
 
             if(count + countEr == ob.chitiethds.length) {
 
-              this.popupService.showError();
+              this.popupService.showError(err.message);
               this.loadingService.hide();
             }
           })
         });
       }, error => {
 
-        this.popupService.showError();
+        this.popupService.showError(error.message);
         this.loadingService.hide();
       })
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 }

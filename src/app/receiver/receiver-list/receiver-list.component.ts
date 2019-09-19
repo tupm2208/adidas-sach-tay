@@ -80,7 +80,7 @@ export class ReceiverListComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError().subscribe( () => {
+      this.popupService.showError(error.message).subscribe( () => {
 
         this.ngOnInit();
       })

@@ -90,7 +90,7 @@ export class ChangePasswordComponent implements OnInit {
 
     }, error => {
 
-      this.popup.showError();
+      this.popup.showError(error.message);
       this.loading.hide();
     })
   }

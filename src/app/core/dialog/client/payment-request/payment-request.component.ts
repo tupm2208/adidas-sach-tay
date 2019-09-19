@@ -53,11 +53,12 @@ export class PaymentRequestComponent implements OnInit {
       }, error => {
 
         this.loadingService.hide('app-order');
+        this.popupService.showError(error.message);
       })
     }, error => {
 
       this.loadingService.hide('app-order');
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 
@@ -77,12 +78,12 @@ export class PaymentRequestComponent implements OnInit {
       }, error => {
 
         this.loadingService.hide('app-order');
-        this.popupService.showError().subscribe( () => this.dialogRef.close());
+        this.popupService.showError(error.message).subscribe( () => this.dialogRef.close());
       })
     }, error => {
 
       this.loadingService.hide('app-order');
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 

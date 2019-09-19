@@ -164,7 +164,7 @@ export class BookComponent implements OnInit {
       this.registOrUpdate();
     }, error => {
 
-      this.popupDialog.showError();
+      this.popupDialog.showError(error.message);
       this.loading.hide('upload');
     })
   }
@@ -182,14 +182,14 @@ export class BookComponent implements OnInit {
     }, error => {
 
       this.loading.hide('upload');
-      this.popupDialog.showError();
+      this.popupDialog.showError(error.message);
     })
   }
 
   showError() {
 
     this.loading.hide('upload');
-    this.popupDialog.showError();
+    this.popupDialog.showError('co loi xay ra');
   }
 
   showSuccess() {

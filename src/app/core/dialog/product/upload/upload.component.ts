@@ -217,7 +217,7 @@ export class UploadComponent implements OnInit {
       }, error => {
 
         this.loading.hide('upload');
-        this.popupDialog.showError();
+        this.popupDialog.showError(error.message);
       })
     } else {
 
@@ -230,7 +230,7 @@ export class UploadComponent implements OnInit {
         this.registOrUpdate();
       }, error => {
 
-        this.popupDialog.showError();
+        this.popupDialog.showError(error.message);
         this.loading.hide('upload');
       })
     }
@@ -240,7 +240,7 @@ export class UploadComponent implements OnInit {
 
     this.loading.hide('upload');
     this.dialogRef.updateSize()
-    this.popupDialog.showError().subscribe( data => {
+    this.popupDialog.showError("có lỗi xảy ra").subscribe( data => {
 
       console.log("close error!");
     })

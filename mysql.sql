@@ -334,13 +334,24 @@ UNLOCK TABLES;
 --   end//
 -- delimiter ;
 
--- delimiter //
--- create trigger nhanhang_update
---   after update on chitietdh 
---   for each row
---   begin
---   update donhang
---   set trangthai = new.trangthai
---   where manh = new.manh;
---   end//
--- delimiter ;
+delimiter //
+create trigger receivers_update
+  after update on receivers 
+  for each row
+  begin
+  update reservations
+  set status = new.status
+  where receiverId = new.id;
+  end//
+delimiter ;
+
+delimiter //
+create trigger reservations_update
+  after update on reservations 
+  for each row
+  begin
+  update bills
+  set status = new.status
+  where reservationId = new.id;
+  end//
+delimiter ;

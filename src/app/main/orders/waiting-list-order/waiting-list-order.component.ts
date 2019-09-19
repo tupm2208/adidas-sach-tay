@@ -92,7 +92,7 @@ export class WaitingListOrderComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 
@@ -114,7 +114,7 @@ export class WaitingListOrderComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide();
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 }

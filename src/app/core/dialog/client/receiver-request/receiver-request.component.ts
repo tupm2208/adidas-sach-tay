@@ -57,7 +57,7 @@ export class ReceiverRequestComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide('app-order');
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 
@@ -79,12 +79,12 @@ export class ReceiverRequestComponent implements OnInit {
       }, error => {
 
         this.loadingService.hide('app-order');
-        this.popupService.showError().subscribe( () => this.dialogRef.close());
+        this.popupService.showError(error.message).subscribe( () => this.dialogRef.close());
       })
     }, error => {
 
       this.loadingService.hide('app-order');
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 

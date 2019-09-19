@@ -190,7 +190,7 @@ export class ReceiveDetailComponent implements OnInit {
 
     if(!this.checkBeforeSubmit()) {
 
-      this.popupService.showError();
+      this.popupService.showError('co loi xay ra');
       return;
     }
 
@@ -209,7 +209,7 @@ export class ReceiveDetailComponent implements OnInit {
     }, error => {
 
       this.loadingService.hide('app-receive-detail');
-      this.popupService.showError();
+      this.popupService.showError(error.message);
     })
   }
 
