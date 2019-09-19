@@ -79,7 +79,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#suItem td {\r\n    border: 0;width: 60px;\r\n    text-align: center\r\n}", ""]);
+exports.push([module.i, "#suItem td {\n    border: 0;width: 60px;\n    text-align: center\n}", ""]);
 
 // exports
 

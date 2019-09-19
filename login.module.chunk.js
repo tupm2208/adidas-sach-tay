@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 360px;\r\n    margin: 5% auto;\r\n    overflow-x: unset;\r\n}\r\n\r\n.input-group {\r\n    width: 100%;\r\n    margin-bottom: 20px;\r\n}", ""]);
+exports.push([module.i, ".signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 360px;\n    margin: 5% auto;\n    overflow-x: unset;\n}\n\n.input-group {\n    width: 100%;\n    margin-bottom: 20px;\n}", ""]);
 
 // exports
 
@@ -153,7 +153,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".login-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 360px;\r\n    margin: 5% auto;\r\n    overflow-x: unset;\r\n}", ""]);
+exports.push([module.i, ".login-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 360px;\n    margin: 5% auto;\n    overflow-x: unset;\n}", ""]);
 
 // exports
 
@@ -166,7 +166,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"login-page\" id=\"login\">\r\n    <!-- Page Loader -->\r\n    <!-- #END# Page Loader -->\r\n    <!-- Overlay For Sidebars -->\r\n    <div class=\"overlay\"></div>\r\n    <div class=\"login-box\">\r\n        <div class=\"logo\">\r\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\r\n            <small>Admin BootStrap Based - Material Design</small>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"body\">\r\n                <form id=\"sign_in\" method=\"POST\">\r\n                    <div class=\"msg\">Sign in to start your session</div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">person</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"text\" class=\"form-control error\" name=\"username\" [(ngModel)]=\"sdt\" placeholder=\"sdt\" required autofocus>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">lock</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"mk\" placeholder=\"Password\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-xs-8 p-t-5\" (click)=\"changeCheck()\">\r\n                            <input type=\"checkbox\" name=\"rememberme\" [checked]=\"saveFlag\" class=\"filled-in chk-col-pink\">\r\n                            <label for=\"rememberme\">Remember Me</label>\r\n                        </div>\r\n                        <div class=\"col-xs-4\">\r\n                            <button class=\"btn btn-block bg-pink waves-effect\" type=\"submit\" (click)=\"login()\">SIGN IN</button>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row m-t-15 m-b--20\">\r\n                        <div class=\"col-xs-6\">\r\n                            <a [routerLink]=\"['/login/regist']\">Register Now!</a>\r\n                        </div>\r\n                        <div class=\"col-xs-6 align-right\">\r\n                            <a href=\"forgot-password.html\">Forgot Password?</a>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>"
+module.exports = "<body class=\"login-page\" id=\"login\">\n    <!-- Page Loader -->\n    <!-- #END# Page Loader -->\n    <!-- Overlay For Sidebars -->\n    <div class=\"overlay\"></div>\n    <div class=\"login-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_in\" method=\"POST\">\n                    <div class=\"msg\">Sign in to start your session</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control error\" name=\"username\" [(ngModel)]=\"email\" placeholder=\"email\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"password\" placeholder=\"Password\" required>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"col-xs-8 p-t-5\" (click)=\"changeCheck()\">\n                            <input type=\"checkbox\" name=\"rememberme\" [checked]=\"saveFlag\" class=\"filled-in chk-col-pink\">\n                            <label for=\"rememberme\">Remember Me</label>\n                        </div>\n                        <div class=\"col-xs-4\">\n                            <button class=\"btn btn-block bg-pink waves-effect\" type=\"submit\" (click)=\"login()\">SIGN IN</button>\n                        </div>\n                    </div>\n                    <div class=\"row m-t-15 m-b--20\">\n                        <div class=\"col-xs-6\">\n                            <a [routerLink]=\"['/login/regist']\">Register Now!</a>\n                        </div>\n                        <!-- <div class=\"col-xs-6 align-right\">\n                            <a href=\"forgot-password.html\">Forgot Password?</a>\n                        </div> -->\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -180,6 +180,15 @@ module.exports = "<body class=\"login-page\" id=\"login\">\r\n    <!-- Page Load
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -194,17 +203,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(loginService, router, storage, loading) {
+    function LoginComponent(loginService, router, storage, loading, userService) {
         this.loginService = loginService;
         this.router = router;
         this.storage = storage;
         this.loading = loading;
+        this.userService = userService;
     }
     LoginComponent.prototype.getSavedAccount = function () {
         this.saveFlag = this.storage.get('saveFlag');
-        this.sdt = this.storage.get('sdt');
-        this.mk = this.storage.get('mk');
+        this.email = this.storage.get('email');
+        this.password = this.storage.get('password');
     };
     LoginComponent.prototype.ngOnInit = function () {
         this.getSavedAccount();
@@ -213,19 +224,28 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         this.loading.show();
         this.checkBeforeSaving();
+        var strategy = "local";
         this.loginService.login({
-            sdt: this.sdt,
-            mk: this.mk
+            strategy: strategy,
+            email: this.email,
+            password: this.password
         }).subscribe(function (res) {
             console.log("login succeess: ", res);
-            if (res.status) {
-                _this.storage.set('token', res.token);
-                _this.storage.set('userInfo', { makh: res.makh, maduyetkh: res.maduyetkh, maloainv: res.maloainv });
-                _this.gotoHome(res);
-            }
-            else {
-                _this.loading.hide();
-            }
+            _this.storage.set("accessToken", res.accessToken);
+            _this.userService.list().subscribe(function (success) {
+                console.log("success.data.length", success.data);
+                var user = {};
+                if (success.data.length === 1) {
+                    user = __assign({}, success.data[0]);
+                }
+                else {
+                    user.role = "admin";
+                }
+                _this.storage.set('userInfo', user);
+                _this.gotoHome(user);
+            }, function (error) {
+                console.log("cannot get user");
+            });
         }, function (error) {
             console.log("error: ", error);
             _this.loading.hide();
@@ -234,31 +254,31 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.checkBeforeSaving = function () {
         if (this.saveFlag) {
             this.storage.set('saveFlag', true);
-            this.storage.set('sdt', this.sdt);
-            this.storage.set('mk', this.mk);
+            this.storage.set('email', this.email);
+            this.storage.set('password', this.password);
         }
         else {
             this.storage.set('saveFlag', false);
-            this.storage.set('sdt', null);
-            this.storage.set('mk', null);
+            this.storage.set('email', null);
+            this.storage.set('password', null);
         }
     };
     LoginComponent.prototype.changeCheck = function () {
         this.saveFlag = !this.saveFlag;
     };
     LoginComponent.prototype.gotoHome = function (res) {
-        switch (res.maloainv) {
-            case 1:
+        switch (res.role) {
+            case 'admin':
                 this.router.navigate(['/home']);
                 break;
-            case 2:
-            case 3:
+            case 'client':
+            case 'client':
                 this.router.navigate(['/client/']);
                 break;
-            case 4:
+            case 'payment':
                 this.router.navigate(['/payment']);
                 break;
-            case 6:
+            case 'receiver-consumer':
                 this.router.navigate(['/receiver-consumer']);
                 break;
             default:
@@ -275,7 +295,8 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_api_login_service__["a" /* LoginService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_3__core_util_storage_service__["a" /* StorageService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_util_loading_service__["a" /* LoadingService */]])
+            __WEBPACK_IMPORTED_MODULE_4__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__["a" /* UserService */]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -367,7 +388,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".signup-page {\r\n    background-color: #00BCD4;\r\n    padding-left: 0;\r\n    max-width: 360px;\r\n    margin: 5% auto;\r\n    overflow-x: unset;\r\n}", ""]);
+exports.push([module.i, ".signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 360px;\n    margin: 5% auto;\n    overflow-x: unset;\n}", ""]);
 
 // exports
 
@@ -380,7 +401,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/regist/regist.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\r\n    <div class=\"signup-box\">\r\n        <div class=\"logo\">\r\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\r\n            <small>Admin BootStrap Based - Material Design</small>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"body\">\r\n                <form id=\"sign_up\" method=\"POST\">\r\n                    <div class=\"msg\">Register a new membership</div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">person</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"text\" class=\"form-control\" name=\"namesurname\" placeholder=\"Name Surname\" required autofocus>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">email</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"email\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">home</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"address\" class=\"form-control\" name=\"address\" placeholder=\"Address\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">lock</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"password\" class=\"form-control\" name=\"password\" minlength=\"6\" placeholder=\"Password\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\">\r\n                          <i class=\"material-icons\">lock</i>\r\n                      </span>\r\n                        <div class=\"form-line\">\r\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" minlength=\"6\" placeholder=\"Confirm Password\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <input type=\"checkbox\" name=\"terms\" id=\"terms\" class=\"filled-in chk-col-pink\">\r\n                        <label for=\"terms\">I read and agree to the <a href=\"javascript:void(0);\">terms of usage</a>.</label>\r\n                    </div>\r\n\r\n                    <button class=\"btn btn-block btn-lg bg-pink waves-effect\" type=\"submit\">SIGN UP</button>\r\n\r\n                    <div class=\"m-t-25 m-b--5 align-center\">\r\n                        <a href=\"sign-in.html\">You already have a membership?</a>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>"
+module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"msg\">Register a new membership</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" name=\"name\" placeholder=\"Your full name\" [(ngModel)]=\"name\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">email</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"email\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" [(ngModel)]=\"email\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"address\" class=\"form-control\" name=\"address\" placeholder=\"Address\" [(ngModel)]=\"address\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" minlength=\"6\" placeholder=\"Password\" [(ngModel)]=\"password\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" minlength=\"6\" placeholder=\"Confirm Password\" [(ngModel)]=\"confirmPassword\" required>\n                        </div>\n                    </div>\n                    <!-- <div class=\"form-group\">\n                        <input type=\"checkbox\" name=\"terms\" id=\"terms\" class=\"filled-in chk-col-pink\">\n                        <label for=\"terms\">I read and agree to the <a href=\"javascript:void(0);\">terms of usage</a>.</label>\n                    </div> -->\n\n                    <button class=\"btn btn-block btn-lg bg-pink waves-effect\" type=\"submit\" (click)=\"regist()\">SIGN UP</button>\n\n                    <div class=\"m-t-25 m-b--5 align-center\">\n                        <a href=\"sign-in.html\">You already have a membership?</a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -417,8 +438,47 @@ var RegistComponent = /** @class */ (function () {
         this.loading = loading;
         this.popup = popup;
         this.router = router;
+        this.email = '';
+        this.password = '';
+        this.confirmPassword = '';
+        this.name = '';
+        this.address = '';
     }
     RegistComponent.prototype.ngOnInit = function () {
+    };
+    RegistComponent.prototype.isValid = function () {
+        var message = "invalid";
+        if (!this.email) {
+            message += " email";
+        }
+        if (!this.password) {
+            message += " password";
+        }
+        if (!this.name) {
+            message += " name";
+        }
+        if (!this.confirmPassword) {
+            message += " confirmPassword";
+        }
+        if (!this.address) {
+            message += " address";
+        }
+        return message;
+    };
+    RegistComponent.prototype.regist = function () {
+        var _this = this;
+        var message = this.isValid();
+        if (message !== 'invalid') {
+            this.popup.showError(message);
+            return;
+        }
+        var _a = this, email = _a.email, password = _a.password, address = _a.address, name = _a.name;
+        var role = 4;
+        this.userService.regist({ email: email, password: password, address: address, name: name, role: role }).subscribe(function (success) {
+            _this.popup.showSuccess();
+        }, function (error) {
+            _this.popup.showError(error);
+        });
     };
     RegistComponent.prototype.initValidate = function () {
         $('#sign_up').validate({

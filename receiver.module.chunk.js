@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".input-group {\r\n    margin-bottom: 0px; \r\n}\r\n\r\n.input-group .form-line {\r\n    width: 30%;\r\n}\r\n\r\nul, menu, dir {\r\n    -webkit-padding-start: 20px;\r\n}", ""]);
+exports.push([module.i, ".input-group {\n    margin-bottom: 0px; \n}\n\n.input-group .form-line {\n    width: 30%;\n}\n\nul, menu, dir {\n    -webkit-padding-start: 20px;\n}", ""]);
 
 // exports
 

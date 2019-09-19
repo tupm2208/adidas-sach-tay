@@ -7649,7 +7649,7 @@ fieldset[disabled] .form-control {
           padding-left: 55px;
           padding-top: 7px;
           padding-bottom: 7px; }
-        .sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) {
+        /* .sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) {
           font-weight: 600;
           margin-left: 5px; }
           .sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle):before {
@@ -7659,7 +7659,8 @@ fieldset[disabled] .form-control {
             font-size: 21px;
             height: 20px;
             top: -5px;
-            right: 0px; }
+            right: 0px; 
+          } */
         .sidebar .menu .list .ml-menu li .ml-menu li a {
           padding-left: 80px; }
         .sidebar .menu .list .ml-menu li .ml-menu .ml-menu li a {
