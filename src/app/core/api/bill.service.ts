@@ -19,6 +19,11 @@ export class BillService {
     return this.mainApi.patch(this.base_link + '/' + params.id, params);
   }
 
+  update_status(params, reservationId): Observable<any> {
+
+    return this.mainApi.patch(this.base_link + '?' + 'reservationId=' + reservationId, params);
+  }
+
   getById(id): Observable<any> {
 
     return this.mainApi.get(this.base_link + '/' + id);

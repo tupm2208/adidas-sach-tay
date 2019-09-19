@@ -152,6 +152,14 @@ export class UploadComponent implements OnInit {
 
     this.billDetailList.forEach( element => {
 
+      if(!element.weight) {
+        element.weight = 0
+      }
+
+      if(!element.price) {
+        element.price = 0
+      }
+
       element.keepBox = element.keepBox? element.quantity: 0;
       if(element.billId) {
 
@@ -164,7 +172,7 @@ export class UploadComponent implements OnInit {
             this.showSuccess();
           } else if(countSuc + countErr == this.billDetailList.length) {
 
-            this.showError();
+            this.showSuccess();
           }
         }, error => {
 
@@ -172,7 +180,7 @@ export class UploadComponent implements OnInit {
 
           if(countSuc + countErr == this.billDetailList.length) {
 
-            this.showError();
+            this.showSuccess()
           }       
         })
       } else {

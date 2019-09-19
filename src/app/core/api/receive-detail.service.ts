@@ -20,7 +20,7 @@ export class ReceiveDetailService {
 
   update(params): Observable<any> {
 
-    return this.mainApi.put(this.base_uri + '/' + params.id + '/' + params.madh, params);
+    return this.mainApi.put(this.base_uri + '?reservationId=' + params.reservationId + '&receiverId' + params.receiverId, params);
   }
 
   create(params): Observable<any> {

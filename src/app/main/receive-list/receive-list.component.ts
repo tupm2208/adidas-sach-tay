@@ -6,6 +6,7 @@ import { DialogService } from '../../core/dialog/dialog.service';
 import { ReceiveService } from '../../core/api/receive.service';
 import { ReceiveDetailService } from '../../core/api/receive-detail.service';
 import { OrderService } from '../../core/api/order.service';
+import { BillService } from '../../core/api/bill.service';
 
 @Component({
   selector: 'app-receive-list',
@@ -29,7 +30,8 @@ export class ReceiveListComponent implements OnInit {
     private dialogService: DialogService,
     private receiveService: ReceiveService,
     private receiveDetailService: ReceiveDetailService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class ReceiveListComponent implements OnInit {
   }
 
   openReceiveDetail(element) {
-
+    const before = element.status
     this.dialogService.openReceive(element.id).subscribe( data => {
 
       this.receiveService.search({id: element.id, include: true}).subscribe( data => {
@@ -66,6 +68,18 @@ export class ReceiveListComponent implements OnInit {
         } else {
           this.receiveList.splice(this.receiveList.indexOf(element), 1, data.data[0]);
           this.receiveList = this.receiveList.concat([]);
+          if (before !== data.data[0].status) {
+            this.orderService.update_status({status: data.data[0].status}, data.data[0].id).subscribe(reserData => {
+              console.log("ok: ", reserData)
+              reserData.forEach(element => {
+                this.billService.update_status({status: element.status}, element.id).subscribe((data) => {
+                  console.log("update bill ok: ", element.id)
+                })
+              })
+            }, error => {
+              console.log("error", error)
+            })
+          }
         }
       })
     })

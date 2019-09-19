@@ -25,7 +25,7 @@ export class OrderDetailService {
 
   update(params): Observable<any> {
 
-    return this.mainApi.put(this.base_uri + '/' + params.madh + '/' +params.masp , params);
+    return this.mainApi.put(this.base_uri + '?billId=' + params.billId + '&reservationId=' +params.reservationId , params);
   }
 
   delete(params): Observable<any> {

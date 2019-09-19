@@ -17,12 +17,12 @@ export class BillDetailService {
 
   getByParams(params): Observable<any> {
 
-    return this.mainApi.post(this.base_uri + '/search', params);
+    return this.mainApi.post(this.base_uri + '?', params);
   }
 
   update(params): Observable<any> {
 
-    return this.mainApi.put(this.base_uri + '/' + params.mahd + '/' + params.masp, params);
+    return this.mainApi.put(this.base_uri + '?billId=' + params.billId + '&productId=' + params.productId, params);
   }
 
   create(params): Observable<any> {

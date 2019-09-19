@@ -47,7 +47,7 @@ export class MainApiService {
     return this.http.patch(url, params, options).map(res => {
 
       res = JSON.parse(res._body);
-      if (res.status) {
+      if (res.status || res.status === undefined) {
 
         return res;
       } else {
@@ -62,7 +62,8 @@ export class MainApiService {
     return this.http.patch(url, params, options).map(res => {
 
       res = JSON.parse(res._body);
-      if (res.status) {
+      
+      if (res.status || res.status === undefined) {
 
         return res;
       } else {

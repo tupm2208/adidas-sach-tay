@@ -88,15 +88,26 @@ export class BillsComponent implements OnInit {
   }
 
   openBill(item) {
-
     if(item.reservationId) this.dialogService.gotoOrder(item.reservationId).subscribe( data => {
 
-      this.mainService.listBill({id: item.id}).subscribe( listItem => {
+      this.billService.search({id: item.id, include: true}).subscribe( listItem => {
 
         let index = this.fakedData.indexOf(item);
 
-        this.fakedData.splice(index, 1, listItem[0]);
+        this.fakedData.splice(index, 1, listItem.data[0]);
         this.fakedData = this.fakedData.concat([]);
+        this.calculate(listItem.data[0])
+        if(data == 1) {
+          this.billService.update_status({status: listItem.data[0].status}, listItem.data[0].id).subscribe(list => {
+            this.fakedData.forEach(element => {
+              list.forEach(ele => {
+                if(ele.id == element.id) {
+                  element.status = ele.status
+                }
+              })
+            })
+          })
+        }
       })
     });
   }
