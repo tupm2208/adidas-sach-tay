@@ -885,7 +885,7 @@ var WaitingListBillComponent = /** @class */ (function () {
             console.log("delete: ", item);
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListBillComponent.prototype.copyArray = function (element) {
@@ -947,18 +947,18 @@ var WaitingListBillComponent = /** @class */ (function () {
                         }
                     }, function (err) {
                         if (count + countEr == ob.chitiethds.length) {
-                            _this.popupService.showError();
+                            _this.popupService.showError(err.message);
                             _this.loadingService.hide();
                         }
                     });
                 });
             }, function (error) {
-                _this.popupService.showError();
+                _this.popupService.showError(error.message);
                 _this.loadingService.hide();
             });
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListBillComponent = __decorate([
@@ -2121,7 +2121,7 @@ var WaitingListOrderComponent = /** @class */ (function () {
             console.log("item: ", item);
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListOrderComponent.prototype.accept = function (item) {
@@ -2138,7 +2138,7 @@ var WaitingListOrderComponent = /** @class */ (function () {
             _this.delete(item);
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListOrderComponent = __decorate([
@@ -2608,7 +2608,7 @@ var WaitingListReceiverComponent = /** @class */ (function () {
             console.log("item: ", item);
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListReceiverComponent.prototype.accept = function (item) {
@@ -2625,7 +2625,7 @@ var WaitingListReceiverComponent = /** @class */ (function () {
             _this.delete(item);
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     WaitingListReceiverComponent = __decorate([

@@ -111,7 +111,7 @@ var ChangePasswordComponent = /** @class */ (function () {
                 _this.router.navigate(['login']);
             });
         }, function (error) {
-            _this.popup.showError();
+            _this.popup.showError(error.message);
             _this.loading.hide();
         });
     };

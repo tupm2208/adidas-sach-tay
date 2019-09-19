@@ -1475,7 +1475,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ConfigService = /** @class */ (function () {
     function ConfigService() {
-        this.urlBase = 'https://adidas-backend.herokuapp.com/';
+        this.urlBase = 'http://0.0.0.0:3030/';
     }
     ConfigService.prototype.getBaseURL = function () {
         return this.urlBase;
@@ -1703,7 +1703,7 @@ var BookComponent = /** @class */ (function () {
             _this.data.bill.mahd = data.data.mahd;
             _this.registOrUpdate();
         }, function (error) {
-            _this.popupDialog.showError();
+            _this.popupDialog.showError(error.message);
             _this.loading.hide('upload');
         });
     };
@@ -1717,12 +1717,12 @@ var BookComponent = /** @class */ (function () {
             _this.createBill();
         }, function (error) {
             _this.loading.hide('upload');
-            _this.popupDialog.showError();
+            _this.popupDialog.showError(error.message);
         });
     };
     BookComponent.prototype.showError = function () {
         this.loading.hide('upload');
-        this.popupDialog.showError();
+        this.popupDialog.showError('co loi xay ra');
     };
     BookComponent.prototype.showSuccess = function () {
         var _this = this;
@@ -1992,10 +1992,11 @@ var PaymentRequestComponent = /** @class */ (function () {
                 _this.loadingService.hide('app-order');
             }, function (error) {
                 _this.loadingService.hide('app-order');
+                _this.popupService.showError(error.message);
             });
         }, function (error) {
             _this.loadingService.hide('app-order');
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     PaymentRequestComponent.prototype.submit = function () {
@@ -2009,11 +2010,11 @@ var PaymentRequestComponent = /** @class */ (function () {
                 _this.popupService.showSuccess().subscribe(function () { return _this.dialogRef.close(); });
             }, function (error) {
                 _this.loadingService.hide('app-order');
-                _this.popupService.showError().subscribe(function () { return _this.dialogRef.close(); });
+                _this.popupService.showError(error.message).subscribe(function () { return _this.dialogRef.close(); });
             });
         }, function (error) {
             _this.loadingService.hide('app-order');
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     PaymentRequestComponent = __decorate([
@@ -2124,7 +2125,7 @@ var ReceiverRequestComponent = /** @class */ (function () {
             });
         }, function (error) {
             _this.loadingService.hide('app-order');
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     ReceiverRequestComponent.prototype.submit = function () {
@@ -2139,11 +2140,11 @@ var ReceiverRequestComponent = /** @class */ (function () {
                 _this.popupService.showSuccess().subscribe(function () { return _this.dialogRef.close(); });
             }, function (error) {
                 _this.loadingService.hide('app-order');
-                _this.popupService.showError().subscribe(function () { return _this.dialogRef.close(); });
+                _this.popupService.showError(error.message).subscribe(function () { return _this.dialogRef.close(); });
             });
         }, function (error) {
             _this.loadingService.hide('app-order');
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     ReceiverRequestComponent = __decorate([
@@ -3231,7 +3232,7 @@ var ReceiveDetailComponent = /** @class */ (function () {
     ReceiveDetailComponent.prototype.submit = function () {
         var _this = this;
         if (!this.checkBeforeSubmit()) {
-            this.popupService.showError();
+            this.popupService.showError('co loi xay ra');
             return;
         }
         this.loadingService.show('app-receive-detail');
@@ -3246,7 +3247,7 @@ var ReceiveDetailComponent = /** @class */ (function () {
             _this.deleteArray();
         }, function (error) {
             _this.loadingService.hide('app-receive-detail');
-            _this.popupService.showError();
+            _this.popupService.showError(error.message);
         });
     };
     ReceiveDetailComponent.prototype.checkBeforeSubmit = function () {
@@ -3581,7 +3582,7 @@ var UploadComponent = /** @class */ (function () {
                 _this.registOrUpdate();
             }, function (error) {
                 _this.loading.hide('upload');
-                _this.popupDialog.showError();
+                _this.popupDialog.showError(error.message);
             });
         }
         else {
@@ -3592,7 +3593,7 @@ var UploadComponent = /** @class */ (function () {
                 _this.data.bill.billdetail = _this.billDetailList;
                 _this.registOrUpdate();
             }, function (error) {
-                _this.popupDialog.showError();
+                _this.popupDialog.showError(error.message);
                 _this.loading.hide('upload');
             });
         }
@@ -3600,7 +3601,7 @@ var UploadComponent = /** @class */ (function () {
     UploadComponent.prototype.showError = function () {
         this.loading.hide('upload');
         this.dialogRef.updateSize();
-        this.popupDialog.showError().subscribe(function (data) {
+        this.popupDialog.showError("có lỗi xảy ra").subscribe(function (data) {
             console.log("close error!");
         });
     };

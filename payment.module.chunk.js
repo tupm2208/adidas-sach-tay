@@ -102,7 +102,7 @@ var PaymentListComponent = /** @class */ (function () {
             _this.popupService.showSuccess();
         }, function (error) {
             _this.loadingService.hide();
-            _this.popupService.showError().subscribe(function () {
+            _this.popupService.showError(error.message).subscribe(function () {
                 _this.ngOnInit();
             });
         });
