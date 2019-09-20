@@ -112,4 +112,14 @@ export class FormatService {
 
     return res;
   }
+
+  calculate(item) {
+    let sum = 0;
+    item.billdetail.forEach( element => {
+
+      sum += element.price *  item.tradeDiscount * element.quantity;
+    });
+
+    item.total =  sum * item.exchangeRate - -item.shipFee - -item.surcharge;
+  }
 }

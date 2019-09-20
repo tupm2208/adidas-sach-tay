@@ -6,6 +6,7 @@ import { DialogService } from '../../../core/dialog/dialog.service';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { ReceiveService } from '../../../core/api/receive.service';
 
 @Component({
   selector: 'app-receive-history',
@@ -16,11 +17,11 @@ export class ReceiveHistoryComponent implements OnInit {
 
   private receiveList: any = [];
   private sc: any = screen.width <= 414? false: true;
-  private tenkh = '';
-  private madh = '';
+  private name = '';
+  private reservationId = '';
   private from = '';
   private to = '';
-  private trangthai:any = '';
+  private status:any = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +29,8 @@ export class ReceiveHistoryComponent implements OnInit {
     private mainService: MainService,
     private loadingService: LoadingService,
     private formatService: FormatService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private receiverService: ReceiveService
   ) { }
 
   ngOnInit() {
@@ -37,9 +39,9 @@ export class ReceiveHistoryComponent implements OnInit {
 
     let id = this.route.snapshot.paramMap.get('id');
 
-    this.mainService.listReceive({makh: id}).subscribe( data => {
+    this.receiverService.search({userId: id, include: true}).subscribe( data => {
 
-      this.receiveList = data;
+      this.receiveList = data.data;
       this.loadingService.hide();
       console.log("data: ", data);
     }, error => {
@@ -50,17 +52,17 @@ export class ReceiveHistoryComponent implements OnInit {
 
   openReceiveDetail(element) {
 
-    this.dialogService.openReceive(element.manh).subscribe( data => {
+    this.dialogService.openReceive(element.id).subscribe( data => {
 
-      this.mainService.listReceive({manh: element.manh}).subscribe( data => {
+      this.receiverService.search({id: element.id, include: true}).subscribe( data => {
 
-        if(!data.length) {
+        if(!data.data.length) {
 
           this.receiveList.splice(this.receiveList.indexOf(element), 1);
           this.receiveList = this.receiveList.concat([]);
         } else {
 
-          this.receiveList.splice(this.receiveList.indexOf(element), 1, data[0]);
+          this.receiveList.splice(this.receiveList.indexOf(element), 1, data.data[0]);
           this.receiveList = this.receiveList.concat([]);
         }
       })

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../core/api/main.service';
 import { FormatService } from '../../core/util/format.service';
 import { LoadingService } from '../../core/util/loading.service';
+import { ReceiveService } from '../../core/api/receive.service';
+import { OrderService } from '../../core/api/order.service';
+import { BillService } from '../../core/api/bill.service';
 
 @Component({
   selector: 'app-statistic',
@@ -17,18 +20,34 @@ export class StatisticComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private formatService: FormatService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private receiverService: ReceiveService,
+    private orderService: OrderService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
 
     this.loadingService.show();
-    this.mainService.getStatistic({trangthai: 8}).subscribe( data => {
+    this.receiverService.search({status: 8, include: true}).subscribe( data => {
 
-      this.receiveData = data;
+      this.receiveData = data.data;
+
+      this.receiveData.forEach(receiver => {
+        this.orderService.getByParams({receiverId: receiver.id, include: true}).subscribe(reservations => {
+          receiver.orders = reservations.data
+          receiver.orders.forEach(order => {
+            this.billService.search({reservationId: order.id, include: true}).subscribe(bills => {
+              order.bills = bills.data
+              this.cal();
+            })
+          })
+          
+        })
+      })
 
       console.log("data: ", data);
-      this.cal();
+      
     })
   }
 
@@ -51,21 +70,21 @@ export class StatisticComponent implements OnInit {
     this.receiveData.forEach(element => {
       
       console.log("abc: ", element);
-      element.noReceive = element.dongia * element.khoiluong + Number(element.phuphi);
+      element.noReceive = element.unitPrice * element.weight + Number(element.surcharge);
 
       element.tongthu = 0;
 
-      element.donhangs.forEach(ele => {
+      element.orders.forEach(ele => {
 
         console.log("abcd: ", element);
         
-        ele.noOrder = ele.tienyen * ele.tigia;
+        ele.noOrder = ele.yenAmount * ele.exchangeRate;
 
-        ele.noBill = this.calculateByProp(ele.hoadons, 'thanhtien');
+        ele.noBill = this.calculateByProp(ele.bills, 'thanhtien');
       });
 
-      element.tongchi = Number(element.noReceive) + this.calculateByProp(element.donhangs, 'noOrder');
-      element.tongthu = this.calculateByProp(element.donhangs,'noBill');
+      element.tongchi = Number(element.noReceive) + this.calculateByProp(element.orders, 'noOrder');
+      element.tongthu = this.calculateByProp(element.orders,'noBill');
     });
 
     this.loadingService.hide();

@@ -23,7 +23,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã ĐH">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Mã ĐH">
                                 </div>
                                 <div class="form-group" style="margin: 0">
                                      <mat-form-field> 
@@ -47,14 +47,14 @@
                                   <tr style="background-color: #a1edeb;">
                                       <td *ngIf="sr"></td>
                                       <td></td>
-                                      <td *ngIf="sr">{{calculateByProp('tongsl')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('quantity')}}</td>
                                       <td *ngIf="sr"></td>
                                       <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{calculateByProp('tienyen')}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('yenAmount')}}</td>
                                       <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>
-                                      <td *ngIf="sr">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
-                                      <td *ngIf="sr">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('yenAmount','exchangeRate')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('deposit')| number: '1.2-2'}}</td>
+                                      <td *ngIf="sr">{{calculateByProp('yenAmount','exchangeRate') - calculateByProp('deposit')| number: '1.2-2'}}</td>
                                       <td *ngIf="sr"></td>
                                       <td></td>
                                     </tr>
@@ -92,19 +92,19 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of orderData | user: {'madh': madh} | time: {'from': from, 'to': to}">
-                                        <td *ngIf="sr">{{formatService.formatDate(item.ngay)}}</td>
-                                        <td (click)="openOrder(item)"><a>{{item.madh}}</a></td>
-                                        <th *ngIf="sr">{{item.tongsl}}</th>
-                                        <td *ngIf="sr">{{item.taikhoan}}</td>
-                                        <td *ngIf="sr">{{item.thuonghieu}}</td>
-                                        <td *ngIf="sr">{{item.tienyen}}</td>
-                                        <td *ngIf="sr">{{item.tigia}}</td>
-                                        <td *ngIf="sr">{{item.tienyen *item.tigia| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.tienyen *item.tigia - item.datcoc| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.ghichu}}</td>
-                                        <td>{{formatService.statusType(item.trangthai)}}</td>
+                                    <tr *ngFor="let item of orderData | user: {'id': reservationId} | time: {'from': from, 'to': to}">
+                                        <td *ngIf="sr">{{formatService.formatDate(item.createdDate)}}</td>
+                                        <td (click)="openOrder(item)"><a>{{item.id}}</a></td>
+                                        <th *ngIf="sr">{{item.quantity}}</th>
+                                        <td *ngIf="sr">{{item.account}}</td>
+                                        <td *ngIf="sr">{{item.brand}}</td>
+                                        <td *ngIf="sr">{{item.yenAmount}}</td>
+                                        <td *ngIf="sr">{{item.exchangeRate}}</td>
+                                        <td *ngIf="sr">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.deposit| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.note}}</td>
+                                        <td>{{formatService.statusType(item.status)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Lịch Sử Giao Dịch Của: <a (click)="updateUser()">{{user?.tenkh}}</a>
+                            Lịch Sử Giao Dịch Của: <a (click)="updateUser()">{{user?.name}}</a>
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -19,7 +19,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã Đơn Hàng">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Mã Đơn Hàng">
                                 </div>
                             </div>
                         </div>
@@ -61,26 +61,26 @@
                                       <td></td>
                                       <td></td>
                                       <td></td>
-                                      <td>{{calculateByProp('ship')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('shipFee')| number: '1.2-2'}}</td>
                                       <td></td>
-                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('thanhtien') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('total')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('total') - calculateByProp('deposit')| number: '1.2-2'}}</td>
                                       <td></td>
                                     </tr>
-                                     <tr *ngFor="let item of billData | user: {'madh': madh}">
-                                        <td>{{formatService.formatDate(item.ngay)}}</td>
-                                        <td>{{item?.madh}}</td>
+                                     <tr *ngFor="let item of billData | user: {'reservationId': reservationId}">
+                                        <td>{{formatService.formatDate(item.createdDate)}}</td>
+                                        <td>{{item?.reservationId}}</td>
                                         <td (click)="gotoDetail(item)"><a><ul style="padding-left: 15px;">
-                                                <li *ngFor="let it of item.chitiethds">{{it.masp}}</li>
+                                                <li *ngFor="let it of item.billdetail">{{it.productId}}</li>
                                             </ul></a></td>
-                                        <td>{{item.tigia}}</td>
-                                        <td>{{item.ship| number: '1.2-2'}}</td>
-                                        <td>{{item.phuphi| number: '1.2-2'}}</td>
-                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>
-                                        <td>{{item.datcoc| number: '1.2-2'}}</td>
-                                        <td>{{item.thanhtien - item.phuphi| number: '1.2-2'}}</td>
-                                        <td>{{formatService.statusType(item.trangthai)}}</td>
+                                        <td>{{item.exchangeRate}}</td>
+                                        <td>{{item.shipFee| number: '1.2-2'}}</td>
+                                        <td>{{item.surcharge| number: '1.2-2'}}</td>
+                                        <td>{{item.total| number: '1.2-2'}}</td>
+                                        <td>{{item.deposit| number: '1.2-2'}}</td>
+                                        <td>{{item.total - item.surcharge| number: '1.2-2'}}</td>
+                                        <td>{{formatService.statusType(item.status)}}</td>
                                     </tr> 
                                 </tbody>
                             </table>

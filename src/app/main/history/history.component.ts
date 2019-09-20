@@ -10,6 +10,7 @@ import { FormatService } from '../../core/util/format.service';
 import { UserDialogService } from '../../core/dialog/user/user-dialog.service';
 import { MainService } from '../../core/api/main.service';
 import { BillService } from '../../core/api/bill.service'
+import { OrderService } from '../../core/api/order.service';
 
 declare var $:any;
 
@@ -20,7 +21,7 @@ declare var $:any;
 })
 export class HistoryComponent implements OnInit {
 
-  private madh = '';
+  private reservationId = '';
   private billData: any = [];
   private user: any = {};
 
@@ -33,7 +34,8 @@ export class HistoryComponent implements OnInit {
     private formatService: FormatService,
     private userDialog: UserDialogService,
     private mainService: MainService,
-    private billService: BillService
+    private billService: BillService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {
@@ -42,19 +44,26 @@ export class HistoryComponent implements OnInit {
 
     let id = this.route.snapshot.paramMap.get('id');
 
-    this.mainService.listBill({makh: id}).subscribe( user => {
+    this.billService.search({userId: id, include: true}).subscribe( bills => {
 
-      this.billData = user;
-      console.log("data: ", user);
+      this.billData = bills.data;
+      console.log("data: ", bills.data);
 
       if(this.billData.length) {
 
         this.user = this.billData[0].user;
         this.loadingService.hide();
+        this.billData.forEach(bill => {
+          this.formatService.calculate(bill)
+          this.orderService.getById(bill.reservationId).subscribe(reservation => {
+            bill.order = reservation
+          })
+        })
       } else {
 
-        this.userService.getById(id).subscribe( userData => this.user = userData.data, error => this.loadingService.hide());
+        this.userService.getById(id).subscribe( userData => this.user = userData, error => this.loadingService.hide());
       }
+      this.loadingService.hide();
     }, error => {
 
       this.loadingService.hide();
@@ -70,16 +79,16 @@ export class HistoryComponent implements OnInit {
 
     if(!item.order) return;
 
-    this.dialogService.gotoOrder(item.order.madh).subscribe( data => {
+    this.dialogService.gotoOrder(item.order.id).subscribe( data => {
 
-      this.billService.getById(item.mahd).subscribe ( bill => {
+      this.billService.getById(item.id).subscribe ( bill => {
         
-        for( let e in bill.data) {
+        for( let e in bill) {
 
-          item[e] = bill.data[e];
+          item[e] = bill[e];
         }
 
-        if(!item['madh']) item.order = null;
+        if(!item['reservationId']) item.order = null;
       })
     })
   }
@@ -88,16 +97,16 @@ export class HistoryComponent implements OnInit {
 
     this.dialogService.openBill({user: this.user, bill: item}).subscribe( data => {
 
-      for(let i = 0; i< item.chitiethds.length; i++) {
+      for(let i = 0; i< item.billdetail.length; i++) {
 
-        if(!item.chitiethds[i].mahd) {
+        if(!item.billdetail[i].billId) {
 
-          item.chitiethds.splice(i,1);
+          item.billdetail.splice(i,1);
           i--;
         }
       }
 
-      if(data == -2 || !item.chitiethds.length) { //delete
+      if(data == -2 || !item.billdetail.length) { //delete
 
         this.billData.splice(this.billData.indexOf(item),1);
 

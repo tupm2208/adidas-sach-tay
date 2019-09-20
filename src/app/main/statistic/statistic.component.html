@@ -82,10 +82,10 @@
                                         <th *ngIf="!sr">Lỗ Lãi</th>
                                     </tr>
                                 </tfoot>
-                                <tbody *ngFor="let rItem of receiveData| time: {'from': from, 'to': to, 'type': 'ngaynhan'}">
-                                    <tr *ngFor="let oItem of rItem.donhangs; let i = index;">
-                                        <td *ngIf="!sr">{{i == 0? formatService.formatDate(rItem.ngaynhan): ''}}</td>
-                                        <td><a>{{oItem.madh}}</a></td>
+                                <tbody *ngFor="let rItem of receiveData| time: {'from': from, 'to': to}">
+                                    <tr *ngFor="let oItem of rItem.orders; let i = index;">
+                                        <td *ngIf="!sr">{{i == 0? formatService.formatDate(rItem.arrivedDate): ''}}</td>
+                                        <td><a>{{oItem.id}}</a></td>
                                         <th *ngIf="!sr">{{oItem.noOrder| number: '1.2-2'}}</th>
                                         <td *ngIf="!sr">{{i == 0?(rItem.noReceive| number: '1.2-2'):''}}</td>
                                         <td *ngIf="!sr">{{i == 0?(rItem.tongchi| number: '1.2-2'):''}}</td>

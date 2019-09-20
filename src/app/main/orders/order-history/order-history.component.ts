@@ -19,7 +19,7 @@ declare var $:any;
 })
 export class OrderHistoryComponent implements OnInit {
 
-  private madh = '';
+  private reservationId = '';
   private orderData: any = [];
   private user: any = {};
   private from: any;
@@ -45,9 +45,12 @@ export class OrderHistoryComponent implements OnInit {
 
     this.userService.getById(id).subscribe( userData => this.user = userData.data, error => {});
 
-    this.orderService.getByParams({makh: id}).subscribe( order => {
+    this.orderService.getByParams({userId: id, include: true}).subscribe( order => {
 
-      this.orderData = order;
+      order.data.forEach(item => {
+        this.calculateQuantity(item)
+      })
+      this.orderData = order.data;
 
       console.log("order data: ", order);
       this.loadingService.hide();
@@ -65,20 +68,20 @@ export class OrderHistoryComponent implements OnInit {
 
   openOrder(item) {
 
-    this.dialogService.gotoOrder(item.madh).subscribe( data => {
+    this.dialogService.gotoOrder(item.id).subscribe( data => {
 
       console.log("data close: ", data);
 
       if(data) {
 
-        this.orderService.getById(item.madh).subscribe( order => {
+        this.orderService.getByParams({id: item.id, include: true}).subscribe( order => {
 
           // item = order.data;
           console.log("data success: ", order);
 
-          if(order.data) {
+          if(order.data.length) {
 
-            this.orderData.splice(this.orderData.indexOf(item), 1,order.data);
+            this.orderData.splice(this.orderData.indexOf(item), 1,order.data[0]);
 
             this.orderData = this.orderData.concat([]);
           } else {
@@ -107,5 +110,14 @@ export class OrderHistoryComponent implements OnInit {
     });
 
     return sum;
+  }
+
+  calculateQuantity(item) {
+    item.quantity = 0
+    item.keepBox = 0
+    item.reservationdetail.forEach(element => {
+      item.quantity += element.quantity
+      item.keepBox += element.keepBox
+    })
   }
 }
