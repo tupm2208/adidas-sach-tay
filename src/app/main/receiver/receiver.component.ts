@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { OrderService } from '../../core/api/order.service';
 import { ReceiveService } from '../../core/api/receive.service';
 import { ReceiveDetailService } from '../../core/api/receive-detail.service';
+import { BillService } from '../../core/api/bill.service';
 
 @Component({
   selector: 'app-receiver',
@@ -41,7 +42,8 @@ export class ReceiverComponent implements OnInit {
     private userService: UserService,
     private orderService: OrderService,
     private receiveService: ReceiveService,
-    private receiveDetailService: ReceiveDetailService
+    private receiveDetailService: ReceiveDetailService,
+    private billService: BillService
   ) { }
 
   onInitData() {
@@ -210,6 +212,10 @@ export class ReceiverComponent implements OnInit {
         element.receiverId = this.receiveData.id;
         element.status = 5;
         this.orderService.update(element).subscribe( data => {
+
+          this.billService.update_status({status: element.status}, element.id).subscribe(bills => {
+            console.log('updated', element.id)
+          })
 
           this.receiveDetailService.create({
             reservationId: element.id,

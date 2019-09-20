@@ -6,6 +6,7 @@ import { FormatService } from '../../core/util/format.service';
 import { DialogService } from '../../core/dialog/dialog.service';
 import { MainService } from '../../core/api/main.service';
 import { OrderService } from '../../core/api/order.service';
+import { BillService } from '../../core/api/bill.service';
 declare var $: any;
 
 @Component({
@@ -29,6 +30,7 @@ export class OrdersComponent implements OnInit {
     private dialogService: DialogService,
     private mainService: MainService,
     private orderService: OrderService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class OrdersComponent implements OnInit {
   }
 
   gotoDetail(element) {
-
+    const before = element.status
     this.dialogService.gotoOrder(element.id).subscribe( data => {
 
       if(data == 2) {
@@ -64,14 +66,21 @@ export class OrdersComponent implements OnInit {
         this.fakedData.splice(this.fakedData.indexOf(element), 1);
 
         this.fakedData = this.fakedData.concat([]);
-      } else if(data == 1) {
+      } else if(data != 2 && data) {
 
         this.orderService.getByParams({userId: element.userId, id: element.id, include: true}).subscribe( listItem => {
-
-          this.getSumOfQuantity(listItem.data[0]) // update quantity
-          this.fakedData.splice(this.fakedData.indexOf(element), 1, listItem.data[0]);
+          let item = listItem.data[0]
+          this.getSumOfQuantity(item) // update quantity
+          this.fakedData.splice(this.fakedData.indexOf(element), 1, item);
           this.fakedData = this.fakedData.concat([]);
+          if(before != item.status) {
+            this.billService.update_status({status: item.status}, item.id).subscribe(bills => {
+              console.log('updated', item.id)
+            })
+          }
         })
+
+        
       }
     })
   }

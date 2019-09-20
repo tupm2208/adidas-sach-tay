@@ -302,14 +302,14 @@ export class OrderComponent implements OnInit {
       })
     } else {
 
-      this.orderService.update(this.orderData).subscribe( data => {
+      this.orderService.update(this.orderData).subscribe( orderData => {
 
-        console.log("update order: ", data);
+        console.log("update order: ", orderData);
 
         this.loadingService.hide('app-order');
         this.popupService.showSuccess().subscribe( data => {
 
-          this.dialogRef.close(1);
+          this.dialogRef.close(orderData.status);
         })
       }, error => {
 

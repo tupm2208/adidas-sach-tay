@@ -106,7 +106,7 @@
                                         <td *ngIf="sr">{{item.yenAmount}}</td>
                                         <td *ngIf="sr">{{item.exchangeRate}}</td>
                                         <td *ngIf="sr">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.datcoc| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.deposit| number: '1.2-2'}}</td>
                                         <td *ngIf="sr">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>
                                         <td *ngIf="sr">{{item.note}}</td>
                                         <td>{{formatService.statusType(item.status)}}</td>

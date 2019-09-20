@@ -88,17 +88,16 @@ export class BillsComponent implements OnInit {
   }
 
   openBill(item) {
-    if(item.reservationId) this.dialogService.gotoOrder(item.reservationId).subscribe( data => {
+    if(item.reservationId) this.dialogService.gotoOrder(item.reservationId).subscribe( status => {
 
       this.billService.search({id: item.id, include: true}).subscribe( listItem => {
 
         let index = this.fakedData.indexOf(item);
 
         this.fakedData.splice(index, 1, listItem.data[0]);
-        this.fakedData = this.fakedData.concat([]);
         this.calculate(listItem.data[0])
-        if(data == 1) {
-          this.billService.update_status({status: listItem.data[0].status}, listItem.data[0].id).subscribe(list => {
+        if(status == 3 || status == 4) { // the reservation isn't deleted
+          this.billService.update_status({status: status}, item.id).subscribe(list => {
             this.fakedData.forEach(element => {
               list.forEach(ele => {
                 if(ele.id == element.id) {
@@ -108,6 +107,7 @@ export class BillsComponent implements OnInit {
             })
           })
         }
+        this.fakedData = this.fakedData.concat([]);
       })
     });
   }
