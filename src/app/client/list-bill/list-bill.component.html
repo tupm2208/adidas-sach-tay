@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Các Đơn Đặt Hàng: <a>{{user?.tenkh}}</a>
+                            Các Đơn Đặt Hàng: <a>{{user?.name}}</a>
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -19,7 +19,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="madh" placeholder="Mã Đơn Hàng">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Mã Đơn Hàng">
                                 </div>
                             </div>
                         </div>
@@ -62,32 +62,32 @@
                                       <td></td>
                                       <td></td>
                                       <td></td>
-                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('phuphi')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('thanhtien') - calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('total')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('surcharge')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('total') - calculateByProp('surcharge') - calculateByProp('deposit')| number: '1.2-2'}}</td>
                                       <td></td>
                                       <td></td>
                                     </tr>
-                                     <tr *ngFor="let item of billData | user: {'chitiethds': {'masp': madh}}">
-                                        <td>{{formatService.formatDate(item.ngay)}}</td>
+                                     <tr *ngFor="let item of billData | user: {'billdetail': {'productId': productId}}">
+                                        <td>{{formatService.formatDate(item.createdDate)}}</td>
                                         <td (click)="gotoDetail(item)">
                                              <a> 
                                                 <thead>
-                                                    <tr *ngFor="let it of item.chitiethds" id="suItem">
-                                                        <td>{{it.masp}}</td>
-                                                        <td>{{it.soluong}}</td>
-                                                        <td>{{it.giuhop}}</td>
+                                                    <tr *ngFor="let it of item.billdetail" id="suItem">
+                                                        <td>{{it.productId}}</td>
+                                                        <td>{{it.quantity}}</td>
+                                                        <td>{{it.keepBox? it.quantity: 0}}</td>
                                                     </tr>
                                                 </thead>
                                              </a> 
                                         </td>
-                                        <td>{{item.tigia}}</td>
-                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>
-                                        <td>{{item.phuphi| number: '1.2-2'}}</td>
-                                        <td>{{item.datcoc| number: '1.2-2'}}</td>
-                                        <td>{{item.thanhtien - item.datcoc - -item.phuphi | number: '1.2-2'}}</td>
-                                        <td>{{formatService.statusType(item.trangthai)}}</td>
+                                        <td>{{item.exchangeRate}}</td>
+                                        <td>{{item.total| number: '1.2-2'}}</td>
+                                        <td>{{item.surcharge| number: '1.2-2'}}</td>
+                                        <td>{{item.deposit| number: '1.2-2'}}</td>
+                                        <td>{{item.total - item.deposit - -item.surcharge | number: '1.2-2'}}</td>
+                                        <td>{{formatService.statusType(item.status)}}</td>
                                     </tr> 
                                 </tbody>
                             </table>

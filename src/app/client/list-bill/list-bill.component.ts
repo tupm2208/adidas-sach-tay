@@ -10,6 +10,7 @@ import { MainService } from '../../core/api/main.service';
 import { ClientService } from '../../core/dialog/client/client.service';
 import { StorageService } from '../../core/util/storage.service';
 import { PopupService } from '../../core/dialog/popup/popup.service';
+import { BillService } from '../../core/api/bill.service';
 
 declare var $:any;
 
@@ -20,7 +21,7 @@ declare var $:any;
 })
 export class ListBillComponent implements OnInit {
 
-  private madh = '';
+  private productId = '';
   private billData: any = [];
   private user: any = {};
   private waitingBills: any = [];
@@ -34,30 +35,29 @@ export class ListBillComponent implements OnInit {
     private mainService: MainService,
     private clientService: ClientService,
     private storageService: StorageService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
 
     this.loadingService.show();
 
-    let id = this.storageService.get('userInfo').makh;
+    let id = this.storageService.get('userInfo').id;
 
     console.log("id dep trai: ", id);
 
-    this.mainService.listBill({makh: id}).subscribe( user => {
+    this.billService.search({userId: id, include: true}).subscribe( bills => {
 
-      this.billData = user;
-      console.log("data: ", user);
+      this.billData = bills.data;
+      console.log("data: ", bills);
 
       if(this.billData.length) {
-
         this.user = this.billData[0].user;
-        this.loadingService.hide();
       } else {
-
-        this.userService.getById(id).subscribe( userData => this.user = userData.data, error => this.loadingService.hide());
+        this.userService.getById(id).subscribe( userData => this.user = userData, error => this.loadingService.hide());
       }
+      this.loadingService.hide();
     }, error => {
 
       this.loadingService.hide();
@@ -72,7 +72,7 @@ export class ListBillComponent implements OnInit {
 
   gotoDetail(item) {
 
-    if(item.manh || item.trangthai > 2) {
+    if(item.receiverId || item.trangthai > 2) {
 
       this.popupService.showWanning("Không Thể Chỉnh Sửa Đơn khi đã Đặt Đơn bên Nhật, liên hệ admin để biết thêm chi tiết nhé");
       return;

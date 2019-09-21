@@ -9,19 +9,19 @@
                 <form id="sign_up" method="POST">
                     <div class="row">
                         <div class="col-md-12" *ngIf="billDetailList.length == 1">
-                            <app-prod-detail [product]="billDetailList[0]" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
+                            <app-prod-detail [product]="billDetailList[0]" [reservationId]="data.bill && data.bill.reservationId" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="billDetailList.length == 2">
                         <div class="col-md-6 col-lg-6 col-sm-6" *ngFor="let item of billDetailList">
-                            <app-prod-detail [product]="item" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
+                            <app-prod-detail [product]="item" [reservationId]="data.bill && data.bill.reservationId" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="billDetailList.length > 2">
                         <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let item of billDetailList">
-                            <app-prod-detail [product]="item" [madh]="data.bill && data.bill.madh" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
+                            <app-prod-detail [product]="item" [reservationId]="data.bill && data.bill.reservationId" (add)="addProduct($event)" (delete)="deleteProduct($event)"></app-prod-detail>
                         </div>
                     </div>
 
@@ -33,7 +33,7 @@
                                         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                             <div class="form-group">
                                                 <label for="age">Thương Hiệu *</label>
-                                                <input id="age" name="thuonghieu" class="form-control" [ngStyle]="{'color': data.bill.thuonghieu? '':'red'}" [(ngModel)]="data.bill.thuonghieu" type="text" min="1">
+                                                <input id="age" name="brand" class="form-control" [ngStyle]="{'color': data.bill.brand? '':'red'}" [(ngModel)]="data.bill.brand" type="text" min="1">
                                                 <span id="error_age" class="text-danger"></span>
                                             </div>
                                         </div>

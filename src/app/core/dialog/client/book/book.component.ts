@@ -15,11 +15,11 @@ declare let $: any;
 export class BookComponent implements OnInit {
 
   private billDetailList: any = [{
-    masp: '',
-    soluong: 1,
-    thuonghieu: '',
-    giaweb: '',
-    giuhop: 0,
+    productId: '',
+    quantity: 1,
+    brand: '',
+    price: '',
+    keepBox: 0,
   }];
 
   private isNew: Boolean = true;
@@ -38,12 +38,12 @@ export class BookComponent implements OnInit {
   ngOnInit() {
     console.log("data: ", this.data);
 
-    if(this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
+    if(this.data.bill && this.data.bill.id && this.data.bill.billdetail) {
 
-      this.billDetailList = this.data.bill.chitiethds;
+      this.billDetailList = this.data.bill.billdetail;
     }
 
-    if(this.data.bill && this.data.bill.mahd && this.data.bill.choduyetcthds) {
+    if(this.data.bill && this.data.bill.id && this.data.bill.choduyetcthds) {
 
       this.billDetailList = this.data.bill.choduyetcthds;
     }
@@ -53,13 +53,12 @@ export class BookComponent implements OnInit {
       this.isNew = true;
 
       this.data.bill = {
-        ngay: this.getTime(),
-        makh: this.data.user.makh,
-        maduyetkh : this.data.user.maduyetkh,
-        trangthai: 2,
-        datcoc: '',
-        ship: '',
-        thuonghieu: 'adidas'
+        createdDate: this.getTime(),
+        userId: this.data.user.userId,
+        status: 2,
+        deposit: '',
+        shipFee: '',
+        brand: 'adidas'
       }
     }
   }
@@ -82,7 +81,7 @@ export class BookComponent implements OnInit {
   }
 
   addProduct(data) {
-    data.mahd = null;
+    data.billId = null;
     this.billDetailList.push(data);
   }
 
@@ -92,7 +91,7 @@ export class BookComponent implements OnInit {
 
     if (this.billDetailList.length == 0) {
 
-      if (this.data.bill.mahd) {
+      if (this.data.bill.id) {
 
         this.loading.show('upload');
         this.waitingBillService.delete(this.data.bill).subscribe(data => {
@@ -115,7 +114,7 @@ export class BookComponent implements OnInit {
 
     for(let i = 0; i< this.billDetailList.length; i++) {
 
-      if(!this.billDetailList[i].masp || !this.billDetailList[i].soluong) {
+      if(!this.billDetailList[i].productId || !this.billDetailList[i].quantity) {
 
         return false;
       }
@@ -131,7 +130,7 @@ export class BookComponent implements OnInit {
 
     this.billDetailList.forEach(element => {
 
-      element.mahd = this.data.bill.mahd;
+      element.billId = this.data.bill.id;
       this.waitingBillDetailService.create(element).subscribe(data => {
 
         countSuc += 1;
@@ -145,7 +144,7 @@ export class BookComponent implements OnInit {
         }
       }, error => {
 
-        element.mahd = null;
+        element.billId = null;
         countErr += 1;
 
         if (countSuc + countErr == this.billDetailList.length) {
@@ -160,7 +159,7 @@ export class BookComponent implements OnInit {
 
     this.waitingBillService.create(this.data.bill).subscribe(data => {
 
-      this.data.bill.mahd = data.data.mahd;
+      this.data.bill.id = data.data.id;
       this.registOrUpdate();
     }, error => {
 

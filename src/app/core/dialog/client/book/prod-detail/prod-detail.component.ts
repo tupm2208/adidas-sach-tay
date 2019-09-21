@@ -11,7 +11,7 @@ export class ProdDetailComponent implements OnInit {
   @Input() product: any;
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() add: EventEmitter<any> = new EventEmitter();
-  @Input() madh: any;
+  @Input() reservationId: any;
 
   constructor(
     private popup: PopupService
@@ -32,6 +32,6 @@ export class ProdDetailComponent implements OnInit {
 
   toggleHop() {
 
-    this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
+    this.product.keepBox = !this.product.keepBox;
   }
 }
