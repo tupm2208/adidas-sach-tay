@@ -9,6 +9,7 @@ import { DialogService } from '../../../core/dialog/dialog.service';
 import { FormatService } from '../../../core/util/format.service';
 import { UserDialogService } from '../../../core/dialog/user/user-dialog.service';
 import { OrderService } from '../../../core/api/order.service'
+import { BillService } from '../../../core/api/bill.service';
 
 declare var $:any;
 
@@ -34,7 +35,8 @@ export class OrderHistoryComponent implements OnInit {
     private dialogService: DialogService,
     private formatService: FormatService,
     private userDialog: UserDialogService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   openOrder(item) {
-
+    const before = item.status
     this.dialogService.gotoOrder(item.id).subscribe( data => {
 
       console.log("data close: ", data);
@@ -84,6 +86,13 @@ export class OrderHistoryComponent implements OnInit {
             this.orderData.splice(this.orderData.indexOf(item), 1,order.data[0]);
 
             this.orderData = this.orderData.concat([]);
+            const data = order.data[0]
+            if(before != data.status) {
+              this.billService.update_status({status: data.status}, data.id).subscribe(bills => {
+                console.log('updated', item.id)
+              })
+            }
+            this.calculateQuantity(data)
           } else {
             
             this.orderData.splice(this.orderData.indexOf(item), 1);

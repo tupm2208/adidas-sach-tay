@@ -7,6 +7,8 @@ import { DialogService } from '../../../core/dialog/dialog.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { ReceiveService } from '../../../core/api/receive.service';
+import { OrderService } from '../../../core/api/order.service';
+import { BillService } from '../../../core/api/bill.service';
 
 @Component({
   selector: 'app-receive-history',
@@ -30,7 +32,9 @@ export class ReceiveHistoryComponent implements OnInit {
     private loadingService: LoadingService,
     private formatService: FormatService,
     private dialogService: DialogService,
-    private receiverService: ReceiveService
+    private receiverService: ReceiveService,
+    private orderService: OrderService,
+    private billService: BillService
   ) { }
 
   ngOnInit() {
@@ -51,7 +55,7 @@ export class ReceiveHistoryComponent implements OnInit {
   }
 
   openReceiveDetail(element) {
-
+    const before = element.status
     this.dialogService.openReceive(element.id).subscribe( data => {
 
       this.receiverService.search({id: element.id, include: true}).subscribe( data => {
@@ -61,9 +65,31 @@ export class ReceiveHistoryComponent implements OnInit {
           this.receiveList.splice(this.receiveList.indexOf(element), 1);
           this.receiveList = this.receiveList.concat([]);
         } else {
-
-          this.receiveList.splice(this.receiveList.indexOf(element), 1, data.data[0]);
+          const receiverData = data.data[0]
+          this.receiveList.splice(this.receiveList.indexOf(element), 1, receiverData);
           this.receiveList = this.receiveList.concat([]);
+          if (before !== receiverData.status) {
+            const orderParam : any = {
+              status: receiverData.status,
+              finishedDate: receiverData.arrivedDate
+            }
+            
+            this.orderService.update_status(orderParam, receiverData.id).subscribe(reserData => {
+              console.log("ok: ", reserData)
+              const billParam: any = {
+                status: receiverData.status,
+                receiveDate: receiverData.arrivedDate
+              }
+
+              reserData.forEach(element => {
+                this.billService.update_status(billParam, element.id).subscribe((data) => {
+                  console.log("update bill ok: ", element.id)
+                })
+              })
+            }, error => {
+              console.log("error", error)
+            })
+          }
         }
       })
     })

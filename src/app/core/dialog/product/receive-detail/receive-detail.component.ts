@@ -201,7 +201,7 @@ export class ReceiveDetailComponent implements OnInit {
       if(!this.receiveData.arrivedDate) this.receiveData.arrivedDate = new Date();
     } else {
 
-      this.receiveData.arrivedDate = 0;
+      this.receiveData.arrivedDate = null;
     }
     this.receiveService.update(this.receiveData).subscribe( res => {
 

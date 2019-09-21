@@ -39,6 +39,9 @@ export class StatisticComponent implements OnInit {
           receiver.orders.forEach(order => {
             this.billService.search({reservationId: order.id, include: true}).subscribe(bills => {
               order.bills = bills.data
+              order.bills.forEach(item => {
+                this.calculate(item)
+              })
               this.cal();
             })
           })
@@ -46,6 +49,9 @@ export class StatisticComponent implements OnInit {
         })
       })
 
+      if (!this.receiveData.length) {
+        this.loadingService.hide()
+      }
       console.log("data: ", data);
       
     })
@@ -59,7 +65,7 @@ export class StatisticComponent implements OnInit {
       
       element[name2] ? sum += Number(element[name]) * Number(element[name2]): sum+= Number(element[name]);
 
-      if(!name2 && name =='thanhtien') console.log("e: ", element.thanhtien);
+      if(!name2 && name =='total') console.log("e: ", element.total);
     });
 
     return sum;
@@ -80,7 +86,7 @@ export class StatisticComponent implements OnInit {
         
         ele.noOrder = ele.yenAmount * ele.exchangeRate;
 
-        ele.noBill = this.calculateByProp(ele.bills, 'thanhtien');
+        ele.noBill = this.calculateByProp(ele.bills, 'total');
       });
 
       element.tongchi = Number(element.noReceive) + this.calculateByProp(element.orders, 'noOrder');
@@ -88,5 +94,15 @@ export class StatisticComponent implements OnInit {
     });
 
     this.loadingService.hide();
+  }
+
+  calculate(item) {
+    let sum = 0;
+    item.billdetail.forEach( element => {
+
+      sum += element.price *  item.tradeDiscount * element.quantity;
+    });
+
+    item.total =  sum * item.exchangeRate - -item.shipFee - -item.surcharge;
   }
 }
