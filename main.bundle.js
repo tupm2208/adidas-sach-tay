@@ -365,10 +365,10 @@ var BillDetailService = /** @class */ (function () {
         return this.mainApi.get(this.base_uri);
     };
     BillDetailService.prototype.getByParams = function (params) {
-        return this.mainApi.post(this.base_uri + '/search', params);
+        return this.mainApi.post(this.base_uri + '?', params);
     };
     BillDetailService.prototype.update = function (params) {
-        return this.mainApi.put(this.base_uri + '/' + params.mahd + '/' + params.masp, params);
+        return this.mainApi.put(this.base_uri + '?billId=' + params.billId + '&productId=' + params.productId, params);
     };
     BillDetailService.prototype.create = function (params) {
         return this.mainApi.post(this.base_uri + '', params);
@@ -418,6 +418,9 @@ var BillService = /** @class */ (function () {
     };
     BillService.prototype.update = function (params) {
         return this.mainApi.patch(this.base_link + '/' + params.id, params);
+    };
+    BillService.prototype.update_status = function (params, reservationId) {
+        return this.mainApi.patch(this.base_link + '?' + 'reservationId=' + reservationId, params);
     };
     BillService.prototype.getById = function (id) {
         return this.mainApi.get(this.base_link + '/' + id);
@@ -980,7 +983,7 @@ var OrderDetailService = /** @class */ (function () {
         return this.mainApi.post(this.base_uri, params);
     };
     OrderDetailService.prototype.update = function (params) {
-        return this.mainApi.put(this.base_uri + '/' + params.madh + '/' + params.masp, params);
+        return this.mainApi.put(this.base_uri + '?billId=' + params.billId + '&reservationId=' + params.reservationId, params);
     };
     OrderDetailService.prototype.delete = function (params) {
         return this.mainApi.delete(this.base_uri, params);
@@ -1088,7 +1091,7 @@ var ReceiveDetailService = /** @class */ (function () {
         return this.mainApi.get(this.base_uri, params);
     };
     ReceiveDetailService.prototype.update = function (params) {
-        return this.mainApi.put(this.base_uri + '/' + params.id + '/' + params.madh, params);
+        return this.mainApi.put(this.base_uri + '?reservationId=' + params.reservationId + '&receiverId' + params.receiverId, params);
     };
     ReceiveDetailService.prototype.create = function (params) {
         return this.mainApi.post(this.base_uri, params);
@@ -1474,6 +1477,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 var ConfigService = /** @class */ (function () {
+    // private urlBase = 'https://adidas-backend.herokuapp.com/'
     function ConfigService() {
         this.urlBase = 'http://0.0.0.0:3030/';
     }
@@ -1561,7 +1565,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/client/book/book.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-prod-detail [product]=\"billDetailList[0]\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length == 2\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-prod-detail [product]=\"item\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 2\">\n                        <div class=\"col-md-4 col-lg-4 col-sm-4\" *ngFor=\"let item of billDetailList\">\n                            <app-prod-detail [product]=\"item\" [madh]=\"data.bill && data.bill.madh\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thương Hiệu *</label>\n                                                <input id=\"age\" name=\"thuonghieu\" class=\"form-control\" [ngStyle]=\"{'color': data.bill.thuonghieu? '':'red'}\" [(ngModel)]=\"data.bill.thuonghieu\" type=\"text\" min=\"1\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-prod-detail [product]=\"billDetailList[0]\" [reservationId]=\"data.bill && data.bill.reservationId\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length == 2\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-prod-detail [product]=\"item\" [reservationId]=\"data.bill && data.bill.reservationId\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 2\">\n                        <div class=\"col-md-4 col-lg-4 col-sm-4\" *ngFor=\"let item of billDetailList\">\n                            <app-prod-detail [product]=\"item\" [reservationId]=\"data.bill && data.bill.reservationId\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-prod-detail>\n                        </div>\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thương Hiệu *</label>\n                                                <input id=\"age\" name=\"brand\" class=\"form-control\" [ngStyle]=\"{'color': data.bill.brand? '':'red'}\" [(ngModel)]=\"data.bill.brand\" type=\"text\" min=\"1\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -1603,33 +1607,32 @@ var BookComponent = /** @class */ (function () {
         this.popupDialog = popupDialog;
         this.loading = loading;
         this.billDetailList = [{
-                masp: '',
-                soluong: 1,
-                thuonghieu: '',
-                giaweb: '',
-                giuhop: 0,
+                productId: '',
+                quantity: 1,
+                brand: '',
+                price: '',
+                keepBox: 0,
             }];
         this.isNew = true;
         this.isError = false;
     }
     BookComponent.prototype.ngOnInit = function () {
         console.log("data: ", this.data);
-        if (this.data.bill && this.data.bill.mahd && this.data.bill.chitiethds) {
-            this.billDetailList = this.data.bill.chitiethds;
+        if (this.data.bill && this.data.bill.id && this.data.bill.billdetail) {
+            this.billDetailList = this.data.bill.billdetail;
         }
-        if (this.data.bill && this.data.bill.mahd && this.data.bill.choduyetcthds) {
+        if (this.data.bill && this.data.bill.id && this.data.bill.choduyetcthds) {
             this.billDetailList = this.data.bill.choduyetcthds;
         }
         if (!this.data.bill) {
             this.isNew = true;
             this.data.bill = {
-                ngay: this.getTime(),
-                makh: this.data.user.makh,
-                maduyetkh: this.data.user.maduyetkh,
-                trangthai: 2,
-                datcoc: '',
-                ship: '',
-                thuonghieu: 'adidas'
+                createdDate: this.getTime(),
+                userId: this.data.user.userId,
+                status: 2,
+                deposit: '',
+                shipFee: '',
+                brand: 'adidas'
             };
         }
     };
@@ -1644,14 +1647,14 @@ var BookComponent = /** @class */ (function () {
         return a.getTime();
     };
     BookComponent.prototype.addProduct = function (data) {
-        data.mahd = null;
+        data.billId = null;
         this.billDetailList.push(data);
     };
     BookComponent.prototype.deleteProduct = function (data) {
         var _this = this;
         this.billDetailList.splice(this.billDetailList.indexOf(data), 1);
         if (this.billDetailList.length == 0) {
-            if (this.data.bill.mahd) {
+            if (this.data.bill.id) {
                 this.loading.show('upload');
                 this.waitingBillService.delete(this.data.bill).subscribe(function (data) {
                     console.log("delete bill: ", _this.data.bill);
@@ -1668,7 +1671,7 @@ var BookComponent = /** @class */ (function () {
     };
     BookComponent.prototype.checkValid = function () {
         for (var i = 0; i < this.billDetailList.length; i++) {
-            if (!this.billDetailList[i].masp || !this.billDetailList[i].soluong) {
+            if (!this.billDetailList[i].productId || !this.billDetailList[i].quantity) {
                 return false;
             }
         }
@@ -1679,7 +1682,7 @@ var BookComponent = /** @class */ (function () {
         var countErr = 0;
         var countSuc = 0;
         this.billDetailList.forEach(function (element) {
-            element.mahd = _this.data.bill.mahd;
+            element.billId = _this.data.bill.id;
             _this.waitingBillDetailService.create(element).subscribe(function (data) {
                 countSuc += 1;
                 if (countSuc == _this.billDetailList.length) {
@@ -1689,7 +1692,7 @@ var BookComponent = /** @class */ (function () {
                     _this.showError();
                 }
             }, function (error) {
-                element.mahd = null;
+                element.billId = null;
                 countErr += 1;
                 if (countSuc + countErr == _this.billDetailList.length) {
                     _this.showError();
@@ -1700,7 +1703,7 @@ var BookComponent = /** @class */ (function () {
     BookComponent.prototype.createBill = function () {
         var _this = this;
         this.waitingBillService.create(this.data.bill).subscribe(function (data) {
-            _this.data.bill.mahd = data.data.mahd;
+            _this.data.bill.id = data.data.id;
             _this.registOrUpdate();
         }, function (error) {
             _this.popupDialog.showError(error.message);
@@ -1772,7 +1775,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/client/book/prod-detail/prod-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.mahd\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.mahd\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.masp? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"masp\" name=\"masp\" class=\"form-control\" [disabled]=\"product.mahd\" [(ngModel)]=\"product.masp\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"soluong\" class=\"form-control\"  [(ngModel)]=\"product.soluong\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"giaweb\" class=\"form-control\" [(ngModel)]=\"product.giaweb\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\"><i class=\"material-icons\">add</i></a>\n</div>"
+module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.billId\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.billId\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.productId? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"productId\" name=\"productId\" class=\"form-control\" [disabled]=\"product.billId\" [(ngModel)]=\"product.productId\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"quantity\" class=\"form-control\"  [(ngModel)]=\"product.quantity\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.giuhop? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"price\" class=\"form-control\" [(ngModel)]=\"product.price\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\"><i class=\"material-icons\">add</i></a>\n</div>"
 
 /***/ }),
 
@@ -1809,7 +1812,7 @@ var ProdDetailComponent = /** @class */ (function () {
         this.add.emit(JSON.parse(JSON.stringify(this.product)));
     };
     ProdDetailComponent.prototype.toggleHop = function () {
-        this.product.giuhop = !this.product.giuhop ? this.product.soluong : 0;
+        this.product.keepBox = !this.product.keepBox;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Input */])(),
@@ -1826,7 +1829,7 @@ var ProdDetailComponent = /** @class */ (function () {
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Input */])(),
         __metadata("design:type", Object)
-    ], ProdDetailComponent.prototype, "madh", void 0);
+    ], ProdDetailComponent.prototype, "reservationId", void 0);
     ProdDetailComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-prod-detail',
@@ -3010,11 +3013,11 @@ var OrderComponent = /** @class */ (function () {
                             });
                         }
                         else {
-                            this.orderService.update(this.orderData).subscribe(function (data) {
-                                console.log("update order: ", data);
+                            this.orderService.update(this.orderData).subscribe(function (orderData) {
+                                console.log("update order: ", orderData);
                                 _this.loadingService.hide('app-order');
                                 _this.popupService.showSuccess().subscribe(function (data) {
-                                    _this.dialogRef.close(1);
+                                    _this.dialogRef.close(orderData.status);
                                 });
                             }, function (error) {
                                 _this.loadingService.hide('app-order');
@@ -3241,7 +3244,7 @@ var ReceiveDetailComponent = /** @class */ (function () {
                 this.receiveData.arrivedDate = new Date();
         }
         else {
-            this.receiveData.arrivedDate = 0;
+            this.receiveData.arrivedDate = null;
         }
         this.receiveService.update(this.receiveData).subscribe(function (res) {
             _this.deleteArray();
@@ -3534,6 +3537,12 @@ var UploadComponent = /** @class */ (function () {
         var countErr = 0;
         var countSuc = 0;
         this.billDetailList.forEach(function (element) {
+            if (!element.weight) {
+                element.weight = 0;
+            }
+            if (!element.price) {
+                element.price = 0;
+            }
             element.keepBox = element.keepBox ? element.quantity : 0;
             if (element.billId) {
                 _this.billDetailService.update(element).subscribe(function (data) {
@@ -3542,12 +3551,12 @@ var UploadComponent = /** @class */ (function () {
                         _this.showSuccess();
                     }
                     else if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
+                        _this.showSuccess();
                     }
                 }, function (error) {
                     countErr += 1;
                     if (countSuc + countErr == _this.billDetailList.length) {
-                        _this.showError();
+                        _this.showSuccess();
                     }
                 });
             }
@@ -3948,6 +3957,13 @@ var FormatService = /** @class */ (function () {
         });
         return res;
     };
+    FormatService.prototype.calculate = function (item) {
+        var sum = 0;
+        item.billdetail.forEach(function (element) {
+            sum += element.price * item.tradeDiscount * element.quantity;
+        });
+        item.total = sum * item.exchangeRate - -item.shipFee - -item.surcharge;
+    };
     FormatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Injectable */])(),
         __metadata("design:paramtypes", [])
@@ -4230,7 +4246,7 @@ var MainApiService = /** @class */ (function () {
     MainApiService.prototype.put = function (url, params, options) {
         return this.http.patch(url, params, options).map(function (res) {
             res = JSON.parse(res._body);
-            if (res.status) {
+            if (res.status || res.status === undefined) {
                 return res;
             }
             else {
@@ -4241,7 +4257,7 @@ var MainApiService = /** @class */ (function () {
     MainApiService.prototype.patch = function (url, params, options) {
         return this.http.patch(url, params, options).map(function (res) {
             res = JSON.parse(res._body);
-            if (res.status) {
+            if (res.status || res.status === undefined) {
                 return res;
             }
             else {

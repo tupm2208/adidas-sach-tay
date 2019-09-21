@@ -633,10 +633,22 @@ var BillsComponent = /** @class */ (function () {
     BillsComponent.prototype.openBill = function (item) {
         var _this = this;
         if (item.reservationId)
-            this.dialogService.gotoOrder(item.reservationId).subscribe(function (data) {
-                _this.mainService.listBill({ id: item.id }).subscribe(function (listItem) {
+            this.dialogService.gotoOrder(item.reservationId).subscribe(function (status) {
+                _this.billService.search({ id: item.id, include: true }).subscribe(function (listItem) {
                     var index = _this.fakedData.indexOf(item);
-                    _this.fakedData.splice(index, 1, listItem[0]);
+                    _this.fakedData.splice(index, 1, listItem.data[0]);
+                    _this.calculate(listItem.data[0]);
+                    if (status == 3 || status == 4) {
+                        _this.billService.update_status({ status: status }, item.id).subscribe(function (list) {
+                            _this.fakedData.forEach(function (element) {
+                                list.forEach(function (ele) {
+                                    if (ele.id == element.id) {
+                                        element.status = ele.status;
+                                    }
+                                });
+                            });
+                        });
+                    }
                     _this.fakedData = _this.fakedData.concat([]);
                 });
             });
@@ -1005,7 +1017,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử Giao Dịch Của: <a (click)=\"updateUser()\">{{user?.tenkh}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Đơn Hàng</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Phí Ship</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Đơn Hàng</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Phí Ship</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td>{{calculateByProp('ship')| number: '1.2-2'}}</td>\n                                      <td></td>\n                                      <td>{{calculateByProp('thanhtien')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('thanhtien') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td></td>\n                                    </tr>\n                                     <tr *ngFor=\"let item of billData | user: {'madh': madh}\">\n                                        <td>{{formatService.formatDate(item.ngay)}}</td>\n                                        <td>{{item?.madh}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a><ul style=\"padding-left: 15px;\">\n                                                <li *ngFor=\"let it of item.chitiethds\">{{it.masp}}</li>\n                                            </ul></a></td>\n                                        <td>{{item.tigia}}</td>\n                                        <td>{{item.ship| number: '1.2-2'}}</td>\n                                        <td>{{item.phuphi| number: '1.2-2'}}</td>\n                                        <td>{{item.thanhtien| number: '1.2-2'}}</td>\n                                        <td>{{item.datcoc| number: '1.2-2'}}</td>\n                                        <td>{{item.thanhtien - item.phuphi| number: '1.2-2'}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử Giao Dịch Của: <a (click)=\"updateUser()\">{{user?.name}}</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a (click)=\"addBill()\" class=\"dropdown-toggle\"  aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">add</i>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                     <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã Đơn Hàng\">\n                                </div>\n                            </div>\n                        </div>\n                    </div> \n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Đơn Hàng</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Phí Ship</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th>\n                                        <th>Mã Đơn Hàng</th>\n                                        <th>Mã Sản Phẩm</th>\n                                        <th>Tỉ Giá</th>\n                                        <th>Phí Ship</th>\n                                        <th>Phụ Phí</th>\n                                        <th>Thành Tiền</th>\n                                        <th>Đặt Cọc</th>\n                                        <th>Còn Lại</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td>{{calculateByProp('shipFee')| number: '1.2-2'}}</td>\n                                      <td></td>\n                                      <td>{{calculateByProp('total')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td>{{calculateByProp('total') - calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td></td>\n                                    </tr>\n                                     <tr *ngFor=\"let item of billData | user: {'reservationId': reservationId}\">\n                                        <td>{{formatService.formatDate(item.createdDate)}}</td>\n                                        <td>{{item?.reservationId}}</td>\n                                        <td (click)=\"gotoDetail(item)\"><a><ul style=\"padding-left: 15px;\">\n                                                <li *ngFor=\"let it of item.billdetail\">{{it.productId}}</li>\n                                            </ul></a></td>\n                                        <td>{{item.exchangeRate}}</td>\n                                        <td>{{item.shipFee| number: '1.2-2'}}</td>\n                                        <td>{{item.surcharge| number: '1.2-2'}}</td>\n                                        <td>{{item.total| number: '1.2-2'}}</td>\n                                        <td>{{item.deposit| number: '1.2-2'}}</td>\n                                        <td>{{item.total - item.surcharge| number: '1.2-2'}}</td>\n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr> \n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -1024,6 +1036,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_dialog_user_user_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/user/user-dialog.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1044,8 +1057,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HistoryComponent = /** @class */ (function () {
-    function HistoryComponent(route, router, userService, loadingService, dialogService, formatService, userDialog, mainService, billService) {
+    function HistoryComponent(route, router, userService, loadingService, dialogService, formatService, userDialog, mainService, billService, orderService) {
         this.route = route;
         this.router = router;
         this.userService = userService;
@@ -1055,7 +1069,8 @@ var HistoryComponent = /** @class */ (function () {
         this.userDialog = userDialog;
         this.mainService = mainService;
         this.billService = billService;
-        this.madh = '';
+        this.orderService = orderService;
+        this.reservationId = '';
         this.billData = [];
         this.user = {};
     }
@@ -1063,16 +1078,23 @@ var HistoryComponent = /** @class */ (function () {
         var _this = this;
         this.loadingService.show();
         var id = this.route.snapshot.paramMap.get('id');
-        this.mainService.listBill({ makh: id }).subscribe(function (user) {
-            _this.billData = user;
-            console.log("data: ", user);
+        this.billService.search({ userId: id, include: true }).subscribe(function (bills) {
+            _this.billData = bills.data;
+            console.log("data: ", bills.data);
             if (_this.billData.length) {
                 _this.user = _this.billData[0].user;
                 _this.loadingService.hide();
+                _this.billData.forEach(function (bill) {
+                    _this.formatService.calculate(bill);
+                    _this.orderService.getById(bill.reservationId).subscribe(function (reservation) {
+                        bill.order = reservation;
+                    });
+                });
             }
             else {
-                _this.userService.getById(id).subscribe(function (userData) { return _this.user = userData.data; }, function (error) { return _this.loadingService.hide(); });
+                _this.userService.getById(id).subscribe(function (userData) { return _this.user = userData; }, function (error) { return _this.loadingService.hide(); });
             }
+            _this.loadingService.hide();
         }, function (error) {
             _this.loadingService.hide();
         });
@@ -1084,12 +1106,12 @@ var HistoryComponent = /** @class */ (function () {
         var _this = this;
         if (!item.order)
             return;
-        this.dialogService.gotoOrder(item.order.madh).subscribe(function (data) {
-            _this.billService.getById(item.mahd).subscribe(function (bill) {
-                for (var e in bill.data) {
-                    item[e] = bill.data[e];
+        this.dialogService.gotoOrder(item.order.id).subscribe(function (data) {
+            _this.billService.getById(item.id).subscribe(function (bill) {
+                for (var e in bill) {
+                    item[e] = bill[e];
                 }
-                if (!item['madh'])
+                if (!item['reservationId'])
                     item.order = null;
             });
         });
@@ -1097,13 +1119,13 @@ var HistoryComponent = /** @class */ (function () {
     HistoryComponent.prototype.gotoDetail = function (item) {
         var _this = this;
         this.dialogService.openBill({ user: this.user, bill: item }).subscribe(function (data) {
-            for (var i = 0; i < item.chitiethds.length; i++) {
-                if (!item.chitiethds[i].mahd) {
-                    item.chitiethds.splice(i, 1);
+            for (var i = 0; i < item.billdetail.length; i++) {
+                if (!item.billdetail[i].billId) {
+                    item.billdetail.splice(i, 1);
                     i--;
                 }
             }
-            if (data == -2 || !item.chitiethds.length) {
+            if (data == -2 || !item.billdetail.length) {
                 _this.billData.splice(_this.billData.indexOf(item), 1);
                 _this.billData = _this.billData.concat([]);
                 return;
@@ -1139,7 +1161,8 @@ var HistoryComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_6__core_util_format_service__["a" /* FormatService */],
             __WEBPACK_IMPORTED_MODULE_7__core_dialog_user_user_dialog_service__["a" /* UserDialogService */],
             __WEBPACK_IMPORTED_MODULE_8__core_api_main_service__["a" /* MainService */],
-            __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__["a" /* BillService */]])
+            __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__["a" /* BillService */],
+            __WEBPACK_IMPORTED_MODULE_10__core_api_order_service__["a" /* OrderService */]])
     ], HistoryComponent);
     return HistoryComponent;
 }());
@@ -1756,7 +1779,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/orders/order-history/order-history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                  <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('tongsl')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('tienyen')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                    </tr>\n                                </thead>\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of orderData | user: {'madh': madh} | time: {'from': from, 'to': to}\">\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.ngay)}}</td>\n                                        <td (click)=\"openOrder(item)\"><a>{{item.madh}}</a></td>\n                                        <th *ngIf=\"sr\">{{item.tongsl}}</th>\n                                        <td *ngIf=\"sr\">{{item.taikhoan}}</td>\n                                        <td *ngIf=\"sr\">{{item.thuonghieu}}</td>\n                                        <td *ngIf=\"sr\">{{item.tienyen}}</td>\n                                        <td *ngIf=\"sr\">{{item.tigia}}</td>\n                                        <td *ngIf=\"sr\">{{item.tienyen *item.tigia| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.tienyen *item.tigia - item.datcoc| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.ghichu}}</td>\n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                  <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('quantity')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate') - calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                    </tr>\n                                </thead>\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let item of orderData | user: {'id': reservationId} | time: {'from': from, 'to': to}\">\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.createdDate)}}</td>\n                                        <td (click)=\"openOrder(item)\"><a>{{item.id}}</a></td>\n                                        <th *ngIf=\"sr\">{{item.quantity}}</th>\n                                        <td *ngIf=\"sr\">{{item.account}}</td>\n                                        <td *ngIf=\"sr\">{{item.brand}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount}}</td>\n                                        <td *ngIf=\"sr\">{{item.exchangeRate}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.deposit| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.note}}</td>\n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -1774,6 +1797,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_dialog_user_user_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/user/user-dialog.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1793,8 +1817,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OrderHistoryComponent = /** @class */ (function () {
-    function OrderHistoryComponent(route, router, userService, loadingService, dialogService, formatService, userDialog, orderService) {
+    function OrderHistoryComponent(route, router, userService, loadingService, dialogService, formatService, userDialog, orderService, billService) {
         this.route = route;
         this.router = router;
         this.userService = userService;
@@ -1803,7 +1828,8 @@ var OrderHistoryComponent = /** @class */ (function () {
         this.formatService = formatService;
         this.userDialog = userDialog;
         this.orderService = orderService;
-        this.madh = '';
+        this.billService = billService;
+        this.reservationId = '';
         this.orderData = [];
         this.user = {};
         this.sr = true;
@@ -1813,8 +1839,11 @@ var OrderHistoryComponent = /** @class */ (function () {
         this.loadingService.show();
         var id = this.route.snapshot.paramMap.get('id');
         this.userService.getById(id).subscribe(function (userData) { return _this.user = userData.data; }, function (error) { });
-        this.orderService.getByParams({ makh: id }).subscribe(function (order) {
-            _this.orderData = order;
+        this.orderService.getByParams({ userId: id, include: true }).subscribe(function (order) {
+            order.data.forEach(function (item) {
+                _this.calculateQuantity(item);
+            });
+            _this.orderData = order.data;
             console.log("order data: ", order);
             _this.loadingService.hide();
         }, function (error) {
@@ -1826,15 +1855,23 @@ var OrderHistoryComponent = /** @class */ (function () {
     };
     OrderHistoryComponent.prototype.openOrder = function (item) {
         var _this = this;
-        this.dialogService.gotoOrder(item.madh).subscribe(function (data) {
+        var before = item.status;
+        this.dialogService.gotoOrder(item.id).subscribe(function (data) {
             console.log("data close: ", data);
             if (data) {
-                _this.orderService.getById(item.madh).subscribe(function (order) {
+                _this.orderService.getByParams({ id: item.id, include: true }).subscribe(function (order) {
                     // item = order.data;
                     console.log("data success: ", order);
-                    if (order.data) {
-                        _this.orderData.splice(_this.orderData.indexOf(item), 1, order.data);
+                    if (order.data.length) {
+                        _this.orderData.splice(_this.orderData.indexOf(item), 1, order.data[0]);
                         _this.orderData = _this.orderData.concat([]);
+                        var data_1 = order.data[0];
+                        if (before != data_1.status) {
+                            _this.billService.update_status({ status: data_1.status }, data_1.id).subscribe(function (bills) {
+                                console.log('updated', item.id);
+                            });
+                        }
+                        _this.calculateQuantity(data_1);
                     }
                     else {
                         _this.orderData.splice(_this.orderData.indexOf(item), 1);
@@ -1854,6 +1891,14 @@ var OrderHistoryComponent = /** @class */ (function () {
         });
         return sum;
     };
+    OrderHistoryComponent.prototype.calculateQuantity = function (item) {
+        item.quantity = 0;
+        item.keepBox = 0;
+        item.reservationdetail.forEach(function (element) {
+            item.quantity += element.quantity;
+            item.keepBox += element.keepBox;
+        });
+    };
     OrderHistoryComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-order-history',
@@ -1867,7 +1912,8 @@ var OrderHistoryComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_dialog_dialog_service__["a" /* DialogService */],
             __WEBPACK_IMPORTED_MODULE_6__core_util_format_service__["a" /* FormatService */],
             __WEBPACK_IMPORTED_MODULE_7__core_dialog_user_user_dialog_service__["a" /* UserDialogService */],
-            __WEBPACK_IMPORTED_MODULE_8__core_api_order_service__["a" /* OrderService */]])
+            __WEBPACK_IMPORTED_MODULE_8__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__["a" /* BillService */]])
     ], OrderHistoryComponent);
     return OrderHistoryComponent;
 }());
@@ -1897,7 +1943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"name\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('quantity')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate') - calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                    </tr>\n                                    <tr *ngFor=\"let item of fakedData | user: {'reservationId': reservationId, 'user': {'name': name}} | time: {'from': from, 'to': to}\">\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.createdDate)}}</td>\n                                        <td><a [routerLink]=\"['/home/orders/history/' + item.user.id]\">{{item?.user?.name}}</a></td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.name}}</a></td>\n                                        <th *ngIf=\"sr\">{{item.quantity}}</th>\n                                        <td *ngIf=\"sr\">{{item.account}}</td>\n                                        <td *ngIf=\"sr\">{{item.brand}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount}}</td>\n                                        <td *ngIf=\"sr\">{{item.exchangeRate}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.datcoc| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.note}}</td>\n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"name\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sr\">Ngày</th>\n                                        <th (click)=\"sr = !sr\">Tên Khách Hàng</th>\n                                        <th>Mã Đh</th>\n                                        <th *ngIf=\"sr\">Số Lượng</th>\n                                        <th *ngIf=\"sr\">Tài Khoản</th>\n                                        <th *ngIf=\"sr\">Thương Hiệu</th>\n                                        <th *ngIf=\"sr\">Tiền Yên</th>\n                                        <th *ngIf=\"sr\">Tỉ Giá</th>\n                                        <th *ngIf=\"sr\">Thành Tiền</th>\n                                        <th *ngIf=\"sr\">Đặt Cọc</th>\n                                        <th *ngIf=\"sr\">Dư Nợ</th>\n                                        <th *ngIf=\"sr\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('quantity')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount')}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\">{{calculateByProp('yenAmount','exchangeRate') - calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sr\"></td>\n                                      <td></td>\n                                    </tr>\n                                    <tr *ngFor=\"let item of fakedData | user: {'reservationId': reservationId, 'user': {'name': name}} | time: {'from': from, 'to': to}\">\n                                        <td *ngIf=\"sr\">{{formatService.formatDate(item.createdDate)}}</td>\n                                        <td><a [routerLink]=\"['/home/orders/history/' + item.user.id]\">{{item?.user?.name}}</a></td>\n                                        <td (click)=\"gotoDetail(item)\"><a>{{item.name}}</a></td>\n                                        <th *ngIf=\"sr\">{{item.quantity}}</th>\n                                        <td *ngIf=\"sr\">{{item.account}}</td>\n                                        <td *ngIf=\"sr\">{{item.brand}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount}}</td>\n                                        <td *ngIf=\"sr\">{{item.exchangeRate}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.deposit| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sr\">{{item.note}}</td>\n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -1913,6 +1959,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1929,14 +1976,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OrdersComponent = /** @class */ (function () {
-    function OrdersComponent(matDialg, loadingService, formatService, dialogService, mainService, orderService) {
+    function OrdersComponent(matDialg, loadingService, formatService, dialogService, mainService, orderService, billService) {
         this.matDialg = matDialg;
         this.loadingService = loadingService;
         this.formatService = formatService;
         this.dialogService = dialogService;
         this.mainService = mainService;
         this.orderService = orderService;
+        this.billService = billService;
         this.reservationId = '';
         this.name = '';
         this.fakedData = [];
@@ -1961,16 +2010,23 @@ var OrdersComponent = /** @class */ (function () {
     };
     OrdersComponent.prototype.gotoDetail = function (element) {
         var _this = this;
+        var before = element.status;
         this.dialogService.gotoOrder(element.id).subscribe(function (data) {
             if (data == 2) {
                 _this.fakedData.splice(_this.fakedData.indexOf(element), 1);
                 _this.fakedData = _this.fakedData.concat([]);
             }
-            else if (data == 1) {
+            else if (data != 2 && data) {
                 _this.orderService.getByParams({ userId: element.userId, id: element.id, include: true }).subscribe(function (listItem) {
-                    _this.getSumOfQuantity(listItem.data[0]); // update quantity
-                    _this.fakedData.splice(_this.fakedData.indexOf(element), 1, listItem.data[0]);
+                    var item = listItem.data[0];
+                    _this.getSumOfQuantity(item); // update quantity
+                    _this.fakedData.splice(_this.fakedData.indexOf(element), 1, item);
                     _this.fakedData = _this.fakedData.concat([]);
+                    if (before != item.status) {
+                        _this.billService.update_status({ status: item.status }, item.id).subscribe(function (bills) {
+                            console.log('updated', item.id);
+                        });
+                    }
                 });
             }
         });
@@ -2001,7 +2057,8 @@ var OrdersComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__["a" /* FormatService */],
             __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
             __WEBPACK_IMPORTED_MODULE_5__core_api_main_service__["a" /* MainService */],
-            __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__["a" /* OrderService */]])
+            __WEBPACK_IMPORTED_MODULE_6__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_api_bill_service__["a" /* BillService */]])
     ], OrdersComponent);
     return OrdersComponent;
 }());
@@ -2261,7 +2318,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/receive-list/receive-history/receive-history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử: <a>vailua</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a>Thêm Khách Hàng</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\" id=\"input-user\">\n                                <div class=\"form-line\" style=\"display: inline-block; position: absolute; right: 0\">\n                                    <select [(ngModel)]=\"trangthai\" class=\"form-control\" style=\"position: absolute; top:0px;border-bottom: 1px solid #ccc;\">\n                                        <option value=\"\">Trạng Thái</option>\n                                        <option value=\"5\">Chưa Về Kho Nhật</option>\n                                        <option value=\"6\">Về Kho Nhật</option>\n                                        <option value=\"7\">Về Kho Việt Nam</option>\n                                    </select>\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"tenkh\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sc=!sc\">Ngày</th> \n                                        <th>Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th *ngIf=\"sc\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th> \n                                        <th>Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th *ngIf=\"sc\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('khoiluong')}}</td>\n                                      <td *ngIf=\"sc\"></td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('phuphi')}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('dongia','khoiluong')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('dongia','khoiluong') + calculateByProp('phuphi') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\"></td>\n                                      <td></td>\n                                    </tr>\n                                    <tr *ngFor=\"let item of receiveList| user: {'trangthai': trangthai, 'user': {'tenkh': tenkh}, 'chitietnhs': {'madh': madh}} | time: {'from': from, 'to': to}\">\n                                        <td>{{formatService.formatDate(item.ngay)}}</td> \n                                        <td><a (click)=\"openReceiveDetail(item)\">\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.chitietnhs\">{{prod.madh}}</li>\n                                            </ul> \n                                        </a></td> \n                                        <td *ngIf=\"sc\">{{item.khoiluong}}</td>\n                                        <td *ngIf=\"sc\">{{item.dongia}}</td> \n                                        <td *ngIf=\"sc\">{{item.phuphi}}</td> \n                                        <td *ngIf=\"sc\">{{item.dongia*item.khoiluong -- item.phuphi | number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sc\">{{item.datcoc}}</td> \n                                        <td *ngIf=\"sc\">{{item.dongia*item.khoiluong -- item.phuphi - item.datcoc}}</td> \n                                        <td *ngIf=\"sc\">{{item.ghichu}}</td> \n                                        <td>{{formatService.statusType(item.trangthai)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Lịch Sử: <a>vailua</a>\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a>Thêm Khách Hàng</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\" id=\"input-user\">\n                                <div class=\"form-line\" style=\"display: inline-block; position: absolute; right: 0\">\n                                    <select [(ngModel)]=\"status\" class=\"form-control\" style=\"position: absolute; top:0px;border-bottom: 1px solid #ccc;\">\n                                        <option value=\"\">Trạng Thái</option>\n                                        <option value=\"5\">Chưa Về Kho Nhật</option>\n                                        <option value=\"6\">Về Kho Nhật</option>\n                                        <option value=\"7\">Về Kho Việt Nam</option>\n                                    </select>\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"name\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th (click)=\"sc=!sc\">Ngày</th> \n                                        <th>Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th *ngIf=\"sc\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th>Ngày</th> \n                                        <th>Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th *ngIf=\"sc\">Ghi Chú</th>\n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('weight')}}</td>\n                                      <td *ngIf=\"sc\"></td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('surcharge')}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('unitPrice','weight')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\">{{calculateByProp('unitPrice','weight') + calculateByProp('surcharge') - calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"sc\"></td>\n                                      <td></td>\n                                    </tr>\n                                    <tr *ngFor=\"let item of receiveList| user: {'status': status, 'user': {'name': name}, 'receiverdetail': {'reservationId': reservationId}} | time: {'from': from, 'to': to}\">\n                                        <td>{{formatService.formatDate(item.createdDate)}}</td> \n                                        <td><a (click)=\"openReceiveDetail(item)\">\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.receiverdetail\">{{prod.reservationId}}</li>\n                                            </ul> \n                                        </a></td> \n                                        <td *ngIf=\"sc\">{{item.weight}}</td>\n                                        <td *ngIf=\"sc\">{{item.unitPrice | number: '1.2-2'}}</td> \n                                        <td *ngIf=\"sc\">{{item.surcharge | number: '1.2-2'}}</td> \n                                        <td *ngIf=\"sc\">{{item.unitPrice*item.weight -- item.surcharge | number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sc\">{{item.deposit | number: '1.2-2'}}</td> \n                                        <td *ngIf=\"sc\">{{item.unitPrice*item.weight -- item.surcharge - item.deposit | number: '1.2-2'}}</td> \n                                        <td *ngIf=\"sc\">{{item.note}}</td> \n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -2277,6 +2334,9 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2293,28 +2353,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ReceiveHistoryComponent = /** @class */ (function () {
-    function ReceiveHistoryComponent(route, router, mainService, loadingService, formatService, dialogService) {
+    function ReceiveHistoryComponent(route, router, mainService, loadingService, formatService, dialogService, receiverService, orderService, billService) {
         this.route = route;
         this.router = router;
         this.mainService = mainService;
         this.loadingService = loadingService;
         this.formatService = formatService;
         this.dialogService = dialogService;
+        this.receiverService = receiverService;
+        this.orderService = orderService;
+        this.billService = billService;
         this.receiveList = [];
         this.sc = screen.width <= 414 ? false : true;
-        this.tenkh = '';
-        this.madh = '';
+        this.name = '';
+        this.reservationId = '';
         this.from = '';
         this.to = '';
-        this.trangthai = '';
+        this.status = '';
     }
     ReceiveHistoryComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loadingService.show();
         var id = this.route.snapshot.paramMap.get('id');
-        this.mainService.listReceive({ makh: id }).subscribe(function (data) {
-            _this.receiveList = data;
+        this.receiverService.search({ userId: id, include: true }).subscribe(function (data) {
+            _this.receiveList = data.data;
             _this.loadingService.hide();
             console.log("data: ", data);
         }, function (error) {
@@ -2323,15 +2389,37 @@ var ReceiveHistoryComponent = /** @class */ (function () {
     };
     ReceiveHistoryComponent.prototype.openReceiveDetail = function (element) {
         var _this = this;
-        this.dialogService.openReceive(element.manh).subscribe(function (data) {
-            _this.mainService.listReceive({ manh: element.manh }).subscribe(function (data) {
-                if (!data.length) {
+        var before = element.status;
+        this.dialogService.openReceive(element.id).subscribe(function (data) {
+            _this.receiverService.search({ id: element.id, include: true }).subscribe(function (data) {
+                if (!data.data.length) {
                     _this.receiveList.splice(_this.receiveList.indexOf(element), 1);
                     _this.receiveList = _this.receiveList.concat([]);
                 }
                 else {
-                    _this.receiveList.splice(_this.receiveList.indexOf(element), 1, data[0]);
+                    var receiverData_1 = data.data[0];
+                    _this.receiveList.splice(_this.receiveList.indexOf(element), 1, receiverData_1);
                     _this.receiveList = _this.receiveList.concat([]);
+                    if (before !== receiverData_1.status) {
+                        var orderParam = {
+                            status: receiverData_1.status,
+                            finishedDate: receiverData_1.arrivedDate
+                        };
+                        _this.orderService.update_status(orderParam, receiverData_1.id).subscribe(function (reserData) {
+                            console.log("ok: ", reserData);
+                            var billParam = {
+                                status: receiverData_1.status,
+                                receiveDate: receiverData_1.arrivedDate
+                            };
+                            reserData.forEach(function (element) {
+                                _this.billService.update_status(billParam, element.id).subscribe(function (data) {
+                                    console.log("update bill ok: ", element.id);
+                                });
+                            });
+                        }, function (error) {
+                            console.log("error", error);
+                        });
+                    }
                 }
             });
         });
@@ -2355,7 +2443,10 @@ var ReceiveHistoryComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1__core_api_main_service__["a" /* MainService */],
             __WEBPACK_IMPORTED_MODULE_2__core_util_loading_service__["a" /* LoadingService */],
             __WEBPACK_IMPORTED_MODULE_3__core_util_format_service__["a" /* FormatService */],
-            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */]])
+            __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_api_receive_service__["a" /* ReceiveService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_9__core_api_bill_service__["a" /* BillService */]])
     ], ReceiveHistoryComponent);
     return ReceiveHistoryComponent;
 }());
@@ -2385,7 +2476,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/receive-list/receive-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a>Thêm Khách Hàng</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\" id=\"input-user\">\n                                <div class=\"form-line\" style=\"display: inline-block; position: absolute; right: 0\">\n                                    <select [(ngModel)]=\"status\" class=\"form-control\" style=\"position: absolute; top:0px;border-bottom: 1px solid #ccc;\">\n                                        <option value=\"\">Trạng Thái</option>\n                                        <option value=\"5\">Chưa Về Kho Nhật</option>\n                                        <option value=\"6\">Về Kho Nhật</option>\n                                        <option value=\"7\">Về Kho Việt Nam</option>\n                                    </select>\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"name\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sc\">Ngày</th> \n                                        <th>Tên KH</th>\n                                        <th *ngIf=\"sc\">phone</th>\n                                        <th *ngIf=\"sc\">Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sc\">Ngày</th> \n                                        <th>Tên KH</th>\n                                        <th *ngIf=\"sc\">phone</th>\n                                        <th *ngIf=\"sc\">Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td>{{calculateByProp('weight')}}</td>\n                                      <td></td>\n                                      <td>{{calculateByProp('surcharge')}}</td>\n                                       <td>{{calculateByProp('unitPrice','weight')| number: '1.2-2'}}</td> \n                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                       <td>{{calculateByProp('unitPrice','weight') + calculateByProp('surcharge') - calculateByProp('deposit')| number: '1.2-2'}}</td> \n                                      <td></td>\n                                    </tr> \n                                    <tr *ngFor=\"let item of receiveList| user: {'status': status, 'user': {'name': name}, 'receiverdetail': {'reservationId': reservationId}} | time: {'from': from, 'to': to}\">\n                                        <td>{{formatService.formatDate(item.createdDate)}}</td> \n                                        <td><a [routerLink]=\"['/home/receiver/history/' + item.user.id]\">{{item?.user?.name}}</a></td>\n                                        <td *ngIf=\"sc\">{{item.user.phone}}</td>\n                                        <td *ngIf=\"sc\"><a (click)=\"openReceiveDetail(item)\">\n                                                unknown\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.receiverdetail\">{{prod.reservationId ? prod.reservationId: 'unknown'}}</li>\n                                            </ul> \n                                        </a></td> \n                                        <td>{{item.weight}}</td>\n                                        <td *ngIf=\"sc\">{{item.unitPrice}}</td> \n                                        <td *ngIf=\"sc\">{{item.surcharge}}</td> \n                                        <td>{{item.unitPrice*item.weight -- item.surcharge | number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sc\">{{item.deposit}}</td> \n                                        <td *ngIf=\"sc\">{{item.unitPrice*item.weight -- item.surcharge - item.deposit}}</td> \n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>"
+module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a>Thêm Khách Hàng</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\" id=\"input-user\">\n                                <div class=\"form-line\" style=\"display: inline-block; position: absolute; right: 0\">\n                                    <select [(ngModel)]=\"status\" class=\"form-control\" style=\"position: absolute; top:0px;border-bottom: 1px solid #ccc;\">\n                                        <option value=\"\">Trạng Thái</option>\n                                        <option value=\"5\">Chưa Về Kho Nhật</option>\n                                        <option value=\"6\">Về Kho Nhật</option>\n                                        <option value=\"7\">Về Kho Việt Nam</option>\n                                    </select>\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"name\" placeholder=\"Tên\">\n                                </div>\n                                <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"reservationId\" placeholder=\"Mã ĐH\">\n                                </div>\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"sc\">Ngày</th> \n                                        <th>Tên KH</th>\n                                        <th *ngIf=\"sc\">phone</th>\n                                        <th *ngIf=\"sc\">Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"sc\">Ngày</th> \n                                        <th>Tên KH</th>\n                                        <th *ngIf=\"sc\">phone</th>\n                                        <th *ngIf=\"sc\">Mã Đơn</th> \n                                        <th *ngIf=\"sc\">Khối Lượng</th> \n                                        <th *ngIf=\"sc\">Đơn Giá</th> \n                                        <th *ngIf=\"sc\">Phụ Phí</th> \n                                        <th *ngIf=\"sc\">Thành Tiền</th> \n                                        <th *ngIf=\"sc\">Đặt Cọc</th> \n                                        <th *ngIf=\"sc\">Dư Nợ</th> \n                                        <th>Trạng Thái</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                     <tr style=\"background-color: #a1edeb;\">\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td></td>\n                                      <td>{{calculateByProp('weight')}}</td>\n                                      <td></td>\n                                      <td>{{calculateByProp('surcharge')}}</td>\n                                       <td>{{calculateByProp('unitPrice','weight')| number: '1.2-2'}}</td> \n                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>\n                                       <td>{{calculateByProp('unitPrice','weight') + calculateByProp('surcharge') - calculateByProp('deposit')| number: '1.2-2'}}</td> \n                                      <td></td>\n                                    </tr> \n                                    <tr *ngFor=\"let item of receiveList| user: {'status': status, 'user': {'name': name}, 'receiverdetail': {'reservationId': reservationId}} | time: {'from': from, 'to': to}\">\n                                        <td>{{formatService.formatDate(item.createdDate)}}</td> \n                                        <td><a [routerLink]=\"['/home/receiver/history/' + item.user.id]\">{{item?.user?.name}}</a></td>\n                                        <td *ngIf=\"sc\">{{item.user.phone}}</td>\n                                        <td *ngIf=\"sc\"><a (click)=\"openReceiveDetail(item)\">\n                                            <ul>\n                                                <li *ngFor=\"let prod of item.receiverdetail\">{{prod.reservationId}}</li>\n                                                <li *ngIf=\"item.receiverdetail && item.receiverdetail.length==0\">unknown</li>\n                                            </ul> \n                                        </a></td> \n                                        <td>{{item.weight}}</td>\n                                        <td *ngIf=\"sc\">{{item.unitPrice}}</td> \n                                        <td *ngIf=\"sc\">{{item.surcharge}}</td> \n                                        <td>{{item.unitPrice*item.weight -- item.surcharge | number: '1.2-2'}}</td>\n                                        <td *ngIf=\"sc\">{{item.deposit}}</td> \n                                        <td *ngIf=\"sc\">{{item.unitPrice*item.weight -- item.surcharge - item.deposit}}</td> \n                                        <td>{{formatService.statusType(item.status)}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -2402,6 +2493,7 @@ module.exports = "<section class=\"content\">\n    <div class=\"container-fluid\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_receive_detail_service__ = __webpack_require__("../../../../../src/app/core/api/receive-detail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2419,8 +2511,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ReceiveListComponent = /** @class */ (function () {
-    function ReceiveListComponent(mainService, loadingService, formatService, dialogService, receiveService, receiveDetailService, orderService) {
+    function ReceiveListComponent(mainService, loadingService, formatService, dialogService, receiveService, receiveDetailService, orderService, billService) {
         this.mainService = mainService;
         this.loadingService = loadingService;
         this.formatService = formatService;
@@ -2428,6 +2521,7 @@ var ReceiveListComponent = /** @class */ (function () {
         this.receiveService = receiveService;
         this.receiveDetailService = receiveDetailService;
         this.orderService = orderService;
+        this.billService = billService;
         this.receiveList = [];
         this.sc = screen.width <= 414 ? false : true;
         this.name = '';
@@ -2449,6 +2543,7 @@ var ReceiveListComponent = /** @class */ (function () {
     };
     ReceiveListComponent.prototype.openReceiveDetail = function (element) {
         var _this = this;
+        var before = element.status;
         this.dialogService.openReceive(element.id).subscribe(function (data) {
             _this.receiveService.search({ id: element.id, include: true }).subscribe(function (data) {
                 if (data.data[0].receiverdetail.length == 0) {
@@ -2464,6 +2559,18 @@ var ReceiveListComponent = /** @class */ (function () {
                 else {
                     _this.receiveList.splice(_this.receiveList.indexOf(element), 1, data.data[0]);
                     _this.receiveList = _this.receiveList.concat([]);
+                    if (before !== data.data[0].status) {
+                        _this.orderService.update_status({ status: data.data[0].status }, data.data[0].id).subscribe(function (reserData) {
+                            console.log("ok: ", reserData);
+                            reserData.forEach(function (element) {
+                                _this.billService.update_status({ status: element.status }, element.id).subscribe(function (data) {
+                                    console.log("update bill ok: ", element.id);
+                                });
+                            });
+                        }, function (error) {
+                            console.log("error", error);
+                        });
+                    }
                 }
             });
         });
@@ -2488,7 +2595,8 @@ var ReceiveListComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_4__core_dialog_dialog_service__["a" /* DialogService */],
             __WEBPACK_IMPORTED_MODULE_5__core_api_receive_service__["a" /* ReceiveService */],
             __WEBPACK_IMPORTED_MODULE_6__core_api_receive_detail_service__["a" /* ReceiveDetailService */],
-            __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__["a" /* OrderService */]])
+            __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_8__core_api_bill_service__["a" /* BillService */]])
     ], ReceiveListComponent);
     return ReceiveListComponent;
 }());
@@ -2690,6 +2798,7 @@ module.exports = "<section class=\"content\">\n  <div *ngIf=\"listOrder.length\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_api_receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_api_receive_detail_service__ = __webpack_require__("../../../../../src/app/core/api/receive-detail.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2709,8 +2818,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ReceiverComponent = /** @class */ (function () {
-    function ReceiverComponent(loadingService, formatService, mainService, popupService, userService, orderService, receiveService, receiveDetailService) {
+    function ReceiverComponent(loadingService, formatService, mainService, popupService, userService, orderService, receiveService, receiveDetailService, billService) {
         this.loadingService = loadingService;
         this.formatService = formatService;
         this.mainService = mainService;
@@ -2719,6 +2829,7 @@ var ReceiverComponent = /** @class */ (function () {
         this.orderService = orderService;
         this.receiveService = receiveService;
         this.receiveDetailService = receiveDetailService;
+        this.billService = billService;
         this.filterUser = '';
         this.phone = '';
         this.name = '';
@@ -2860,6 +2971,9 @@ var ReceiverComponent = /** @class */ (function () {
                 element.receiverId = _this.receiveData.id;
                 element.status = 5;
                 _this.orderService.update(element).subscribe(function (data) {
+                    _this.billService.update_status({ status: element.status }, element.id).subscribe(function (bills) {
+                        console.log('updated', element.id);
+                    });
                     _this.receiveDetailService.create({
                         reservationId: element.id,
                         quantity: element.quantity,
@@ -2909,7 +3023,8 @@ var ReceiverComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__core_api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_7__core_api_order_service__["a" /* OrderService */],
             __WEBPACK_IMPORTED_MODULE_8__core_api_receive_service__["a" /* ReceiveService */],
-            __WEBPACK_IMPORTED_MODULE_9__core_api_receive_detail_service__["a" /* ReceiveDetailService */]])
+            __WEBPACK_IMPORTED_MODULE_9__core_api_receive_detail_service__["a" /* ReceiveDetailService */],
+            __WEBPACK_IMPORTED_MODULE_10__core_api_bill_service__["a" /* BillService */]])
     ], ReceiverComponent);
     return ReceiverComponent;
 }());
@@ -2939,7 +3054,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/statistic/statistic.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <!-- <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div> -->\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                  <!-- <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tongsl')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                    </tr> -->\n                                </thead>\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let rItem of receiveData| time: {'from': from, 'to': to, 'type': 'ngaynhan'}\">\n                                    <tr *ngFor=\"let oItem of rItem.donhangs; let i = index;\">\n                                        <td *ngIf=\"!sr\">{{i == 0? formatService.formatDate(rItem.ngaynhan): ''}}</td>\n                                        <td><a>{{oItem.madh}}</a></td>\n                                        <th *ngIf=\"!sr\">{{oItem.noOrder| number: '1.2-2'}}</th>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.noReceive| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongchi| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu - rItem.tongchi| number: '1.2-2'):''}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+module.exports = "\n<section class=\"content\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                <div class=\"card\">\n                    <div class=\"header\">\n                        <h2>\n                            Đơn Hàng\n                        </h2>\n                        <ul class=\"header-dropdown m-r--5\">\n                            <li class=\"dropdown\">\n                                <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">more_vert</i>\n                                </a>\n                                <ul class=\"dropdown-menu pull-right\">\n                                    <li><a href=\"javascript:void(0);\">Thêm Khách Hàng</a></li>\n                                    <li><a href=\"javascript:void(0);\">Tìm Kiếm</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"body\">\n                        <div id=\"sign_up\" method=\"POST\">\n                            <div class=\"input-group\">\n                                <!-- <div class=\"form-line\">\n                                    <input [type]=\"'text'\" class=\"form-control\" [(ngModel)]=\"madh\" placeholder=\"Mã ĐH\">\n                                </div> -->\n                                <div class=\"form-group\" style=\"margin: 0\">\n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker\" [(ngModel)]=\"from\" placeholder=\"From\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker></mat-datepicker>\n                                     </mat-form-field>  \n                                     <mat-form-field> \n                                        <input matInput [matDatepicker]=\"myDatepicker2\" [(ngModel)]=\"to\" placeholder=\"To\">\n                                          <mat-datepicker-toggle matSuffix [for]=\"myDatepicker2\"></mat-datepicker-toggle> \n                                        <mat-datepicker #myDatepicker2></mat-datepicker>\n                                     </mat-form-field>  \n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"body\">\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                  <!-- <tr style=\"background-color: #a1edeb;\">\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tongsl')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen')}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\">{{calculateByProp('tienyen','tigia') - calculateByProp('datcoc')| number: '1.2-2'}}</td>\n                                      <td *ngIf=\"!sr\"></td>\n                                      <td></td>\n                                    </tr> -->\n                                </thead>\n                                <thead>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                        <th *ngIf=\"!sr\">Ngày Nhận</th>\n                                        <th>Mã Đơn</th>\n                                        <th>Nợ Thanh Toán</th>\n                                        <th *ngIf=\"!sr\">Nợ Người Nhận</th>\n                                        <th *ngIf=\"!sr\">Tổng Chi</th>\n                                        <th *ngIf=\"!sr\">Tổng Thu</th>\n                                        <th *ngIf=\"!sr\">Lỗ Lãi</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody *ngFor=\"let rItem of receiveData| time: {'from': from, 'to': to}\">\n                                    <tr *ngFor=\"let oItem of rItem.orders; let i = index;\">\n                                        <td *ngIf=\"!sr\">{{i == 0? formatService.formatDate(rItem.arrivedDate): ''}}</td>\n                                        <td><a>{{oItem.id}}</a></td>\n                                        <th *ngIf=\"!sr\">{{oItem.noOrder| number: '1.2-2'}}</th>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.noReceive| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongchi| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu| number: '1.2-2'):''}}</td>\n                                        <td *ngIf=\"!sr\">{{i == 0?(rItem.tongthu - rItem.tongchi| number: '1.2-2'):''}}</td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -2952,6 +3067,9 @@ module.exports = "\n<section class=\"content\">\n    <div class=\"container-flui
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_api_receive_service__ = __webpack_require__("../../../../../src/app/core/api/receive.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_api_order_service__ = __webpack_require__("../../../../../src/app/core/api/order.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2965,11 +3083,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var StatisticComponent = /** @class */ (function () {
-    function StatisticComponent(mainService, formatService, loadingService) {
+    function StatisticComponent(mainService, formatService, loadingService, receiverService, orderService, billService) {
         this.mainService = mainService;
         this.formatService = formatService;
         this.loadingService = loadingService;
+        this.receiverService = receiverService;
+        this.orderService = orderService;
+        this.billService = billService;
         this.receiveData = [];
         this.from = '';
         this.to = '';
@@ -2977,18 +3101,34 @@ var StatisticComponent = /** @class */ (function () {
     StatisticComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loadingService.show();
-        this.mainService.getStatistic({ trangthai: 8 }).subscribe(function (data) {
-            _this.receiveData = data;
+        this.receiverService.search({ status: 8, include: true }).subscribe(function (data) {
+            _this.receiveData = data.data;
+            _this.receiveData.forEach(function (receiver) {
+                _this.orderService.getByParams({ receiverId: receiver.id, include: true }).subscribe(function (reservations) {
+                    receiver.orders = reservations.data;
+                    receiver.orders.forEach(function (order) {
+                        _this.billService.search({ reservationId: order.id, include: true }).subscribe(function (bills) {
+                            order.bills = bills.data;
+                            order.bills.forEach(function (item) {
+                                _this.calculate(item);
+                            });
+                            _this.cal();
+                        });
+                    });
+                });
+            });
+            if (!_this.receiveData.length) {
+                _this.loadingService.hide();
+            }
             console.log("data: ", data);
-            _this.cal();
         });
     };
     StatisticComponent.prototype.calculateByProp = function (item, name, name2) {
         var sum = 0;
         item.forEach(function (element) {
             element[name2] ? sum += Number(element[name]) * Number(element[name2]) : sum += Number(element[name]);
-            if (!name2 && name == 'thanhtien')
-                console.log("e: ", element.thanhtien);
+            if (!name2 && name == 'total')
+                console.log("e: ", element.total);
         });
         return sum;
     };
@@ -2996,17 +3136,24 @@ var StatisticComponent = /** @class */ (function () {
         var _this = this;
         this.receiveData.forEach(function (element) {
             console.log("abc: ", element);
-            element.noReceive = element.dongia * element.khoiluong + Number(element.phuphi);
+            element.noReceive = element.unitPrice * element.weight + Number(element.surcharge);
             element.tongthu = 0;
-            element.donhangs.forEach(function (ele) {
+            element.orders.forEach(function (ele) {
                 console.log("abcd: ", element);
-                ele.noOrder = ele.tienyen * ele.tigia;
-                ele.noBill = _this.calculateByProp(ele.hoadons, 'thanhtien');
+                ele.noOrder = ele.yenAmount * ele.exchangeRate;
+                ele.noBill = _this.calculateByProp(ele.bills, 'total');
             });
-            element.tongchi = Number(element.noReceive) + _this.calculateByProp(element.donhangs, 'noOrder');
-            element.tongthu = _this.calculateByProp(element.donhangs, 'noBill');
+            element.tongchi = Number(element.noReceive) + _this.calculateByProp(element.orders, 'noOrder');
+            element.tongthu = _this.calculateByProp(element.orders, 'noBill');
         });
         this.loadingService.hide();
+    };
+    StatisticComponent.prototype.calculate = function (item) {
+        var sum = 0;
+        item.billdetail.forEach(function (element) {
+            sum += element.price * item.tradeDiscount * element.quantity;
+        });
+        item.total = sum * item.exchangeRate - -item.shipFee - -item.surcharge;
     };
     StatisticComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -3016,7 +3163,10 @@ var StatisticComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_api_main_service__["a" /* MainService */],
             __WEBPACK_IMPORTED_MODULE_2__core_util_format_service__["a" /* FormatService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */]])
+            __WEBPACK_IMPORTED_MODULE_3__core_util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_4__core_api_receive_service__["a" /* ReceiveService */],
+            __WEBPACK_IMPORTED_MODULE_5__core_api_order_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_6__core_api_bill_service__["a" /* BillService */]])
     ], StatisticComponent);
     return StatisticComponent;
 }());
