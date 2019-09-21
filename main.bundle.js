@@ -1477,9 +1477,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 var ConfigService = /** @class */ (function () {
-    // private urlBase = 'https://adidas-backend.herokuapp.com/'
     function ConfigService() {
-        this.urlBase = 'http://0.0.0.0:3030/';
+        // private urlBase = 'http://0.0.0.0:3030/'
+        this.urlBase = 'https://adidas-backend.herokuapp.com/';
     }
     ConfigService.prototype.getBaseURL = function () {
         return this.urlBase;
