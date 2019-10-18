@@ -1,8 +1,7 @@
-<body class="signup-page">
+<!-- <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
             <a href="javascript:void(0);"><b>Đặt Hàng</b></a>
-            <!-- <small>Thông Tin Chi Tiết</small> -->
         </div>
         <div class="card" style="box-shadow: unset">
             <div class="body">
@@ -84,4 +83,101 @@
             </div>
         </div>
     </div>
-</body>
+</body> -->
+<section style="padding: 0">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Sản Phẩm
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Mã sp</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá Web</th>
+                                        <th>Khuyến mãi</th>
+                                        <th>Giữ hộp</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input id="age" name="brand" class="form-control" type="text" min="1"></td>
+                                        <td><input id="age" name="brand" class="form-control" type="text" min="1"></td>
+                                        <td><input id="age" name="brand" class="form-control" type="text" min="1"></td>
+                                        <td><input id="age" name="brand" class="form-control" type="text" min="1"></td>
+                                        <td>
+                                            <input class="filled-in chk-col-pink" name="keepBox" [checked]='true' type="checkbox">
+                                            <label style="padding-left: 0; height: 13px; left: 9px;" for="keepBox"></label>
+                                        </td>
+                                        <td class="action"><button style="margin-right: 10px">chép</button> <button>xóa</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form name="myform">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="age">Thương Hiệu *</label>
+                                    <input id="age" name="brand" class="form-control" type="text" min="1">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ship">Tỉ Giá (Tỉ Giá Hệ Thống Lúc Tạo Đơn + Tỉ Giá KH)</label>
+                                    <span class="form-control">{{exchangeValue}}</span>
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="age">Triết Khấu *</label>
+                                    <input id="age" name="tradeDiscount" class="form-control" [(ngModel)]="data.bill.tradeDiscount" type="number"
+                                        min="0">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="shipFee">Phí Ship *</label>
+                                    <input [(ngModel)]="data.bill.shipFee" name="shipFee" class="form-control" min="1" type="number">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="surcharge">Phụ Phí *</label>
+                                    <input [(ngModel)]="data.bill.surcharge" name="surcharge" class="form-control" min="1" type="numer">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="total">Thành Tiền * <button (click)="calculate()" class="btn btn-primary waves-effect">Tính</button></label>
+                                    <input [(ngModel)]="data.bill.total" name="total" class="form-control" min="1" type="number">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="deposit">Đặt Cọc *</label>
+                                    <input [(ngModel)]="data.bill.deposit" name="deposit" class="form-control" min="1" type="number">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

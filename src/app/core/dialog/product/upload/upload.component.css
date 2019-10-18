@@ -86,3 +86,7 @@ th, td {
 .panel-primary>.panel-body {
     background-color: #EDEDED;
 }
+
+.action {
+    display: inline-flex
+}
