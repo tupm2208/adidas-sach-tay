@@ -18,10 +18,10 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                          <i class="material-icons">email</i>
+                          <i class="material-icons">phone</i>
                       </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address" [(ngModel)]="email" required>
+                            <input type="phone" class="form-control" name="phone" placeholder="phone Number" [(ngModel)]="phone" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -29,7 +29,15 @@
                           <i class="material-icons">home</i>
                       </span>
                         <div class="form-line">
-                            <input type="address" class="form-control" name="address" placeholder="Address" [(ngModel)]="address" required>
+                            <input type="generalAddress" class="form-control" name="generalAddress" placeholder="xã - phường-thị trấn" [(ngModel)]="generalAddress" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="material-icons">home</i>
+                      </span>
+                        <div class="form-line">
+                            <input type="detailAddress" class="form-control" name="detailAddress" placeholder="số nhà - ngõ - ngách" [(ngModel)]="detailAddress" required>
                         </div>
                     </div>
                     <div class="input-group">

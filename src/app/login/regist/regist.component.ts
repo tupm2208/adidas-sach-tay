@@ -13,11 +13,12 @@ declare let $: any;
 })
 export class RegistComponent implements OnInit {
 
-  private email: String = ''
+  private phone: String = ''
   private password: String = ''
   private confirmPassword: String = ''
   private name: String = ''
-  private address: String = ''
+  private generalAddress: String = ''
+  private detailAddress: String = ''
 
   constructor(
     private userService: UserService,
@@ -32,8 +33,8 @@ export class RegistComponent implements OnInit {
 
   isValid() {
     let message = "invalid"
-    if (!this.email) {
-      message += " email"
+    if (!this.phone) {
+      message += " phone"
     }
 
     if (!this.password) {
@@ -48,8 +49,12 @@ export class RegistComponent implements OnInit {
       message += " confirmPassword"
     }
 
-    if (!this.address) {
-      message += " address"
+    if (!this.generalAddress) {
+      message += " generalAddress"
+    }
+
+    if (!this.detailAddress) {
+      message += " detailAddress"
     }
 
     return message
@@ -61,9 +66,9 @@ export class RegistComponent implements OnInit {
       this.popup.showError(message)
       return
     }
-    const {email, password, address, name} = this
+    const {phone, password, generalAddress, name, detailAddress} = this
     const role = 4
-    this.userService.regist({email, password, address, name, role}).subscribe(success => {
+    this.userService.regist({phone, password, generalAddress, name, role, detailAddress}).subscribe(success => {
       this.popup.showSuccess()
     }, error => {
       this.popup.showError(error)

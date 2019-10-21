@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  private email;
+  private phone;
   private password;
   private saveFlag;
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   getSavedAccount() {
 
     this.saveFlag = this.storage.get('saveFlag');
-    this.email = this.storage.get('email');
+    this.phone = this.storage.get('phone');
     this.password = this.storage.get('password');
   }
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     const strategy = "local"
     this.loginService.login({
       strategy,
-      email: this.email,
+      phone: this.phone,
       password: this.password
     }).subscribe( res => {
 
@@ -77,12 +77,12 @@ export class LoginComponent implements OnInit {
     if(this.saveFlag) {
 
       this.storage.set('saveFlag', true);
-      this.storage.set('email', this.email);
+      this.storage.set('phone', this.phone);
       this.storage.set('password', this.password);
     } else {
 
       this.storage.set('saveFlag', false);
-      this.storage.set('email', null);
+      this.storage.set('phone', null);
       this.storage.set('password', null);
     }
   }
