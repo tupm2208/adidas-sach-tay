@@ -33,8 +33,8 @@
                                         <td><input type="text" [ngModel]='item.price | number:"1.0-2"' (ngModelChange)='item.price=Number(replaceCommas($event))' id="price" name="price" class="form-control" min="1"></td>
                                         <td><input [(ngModel)]='item.code' id="code" name="code" class="form-control" type="number" min="1"></td>
                                         <td><input [(ngModel)]='item.webFee' id="webFee" name="webFee" class="form-control" type="number" min="1"></td>
-                                        <td><input [(ngModel)]='item.afterCodeFee' id="afterCodePrice" name="afterCodePrice" class="form-control" type="number" min="1"></td>
-                                        <td><input [(ngModel)]='item.total' id="total" name="total" class="form-control" type="number" min="1"></td>
+                                        <td><input [ngModel]='item.code * item.price | number:"1.0-2"' disabled='true' id="afterCodePrice" name="afterCodePrice" class="form-control"></td>
+                                        <td><input [ngModel]='totalPricePerItem(item) | number: "1.0-2"' [disabled]='data.user.role != "client"' (ngModelChange)='item.total=Number(replaceCommas($event))' id="total" name="total" class="form-control"></td>
                                         <td (click)='toggleKeepBox(item)'>
                                             <input class="filled-in chk-col-pink" name="keepBox" [checked]='item.keepBox' type="checkbox">
                                             <label style="padding-left: 0; height: 3px; left: 12px;" for="keepBox"></label>
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary waves-effect">submit</button>
-                <button class="btn btn-danger waves-effect">cancel</button>
+                <button class="btn btn-primary waves-effect" (click)="regist()">submit</button>
+                <button class="btn btn-danger waves-effect" (click)='dialogRef.close()'>cancel</button>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="panel-primary">
@@ -80,8 +80,7 @@
 
                                 <div class="form-group">
                                     <label for="shipFee">Phí ship *</label>
-                                    <input id="shipFee" name="shipFee" class="form-control" [(ngModel)]="data.bill.shipFee" type="number"
-                                        min="0">
+                                    <input id="shipFee" name="shipFee" class="form-control" [ngModel]="data.bill.shipFee | number: '1.0-2'" (ngModelChange)="data.bill.shipFee=Number(replaceCommas($event))">
                                     <span id="error_age" class="text-danger"></span>
                                 </div>
 
@@ -98,14 +97,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="surcharge">Phụ Phí *</label>
-                                    <input [(ngModel)]="data.bill.surcharge" name="surcharge" class="form-control" min="1" type="number">
+                                    <label for="surcharge">Phụ Phí trên 1 sản phẩm *</label>
+                                    <input [ngModel]="data.bill.surcharge | number: '1.0-2'" (ngModelChange)="data.bill.surcharge=Number(replaceCommas($event))" name="surcharge" class="form-control">
                                     <span id="error_age" class="text-danger"></span>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="total">Thành Tiền * <button (click)="calculate()" class="btn btn-primary waves-effect">Tính</button></label>
-                                    <input [(ngModel)]="data.bill.total" name="total" class="form-control" min="1" type="number">
+                                    <label for="total">Thành Tiền *</label>
+                                    <input [ngModel]='calculate() | number: "1.0-2"' disabled='true' name="total" class="form-control">
                                     <span id="error_age" class="text-danger"></span>
                                 </div>
 

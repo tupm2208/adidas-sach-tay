@@ -61,11 +61,11 @@
                                       <td></td>
                                       <td></td>
                                       <td></td>
-                                      <td>{{calculateByProp('shipFee')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('shipFee')| number: '1.0-2'}}</td>
                                       <td></td>
-                                      <td>{{calculateByProp('total')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('deposit')| number: '1.2-2'}}</td>
-                                      <td>{{calculateByProp('total') - calculateByProp('deposit')| number: '1.2-2'}}</td>
+                                      <td>{{calculateByProp('total')| number: '1.0-2'}}</td>
+                                      <td>{{calculateByProp('deposit')| number: '1.0-2'}}</td>
+                                      <td>{{calculateByProp('total') - calculateByProp('deposit')| number: '1.0-2'}}</td>
                                       <td></td>
                                     </tr>
                                      <tr *ngFor="let item of billData | user: {'reservationId': reservationId}">
@@ -75,11 +75,11 @@
                                                 <li *ngFor="let it of item.billdetail">{{it.productId}}</li>
                                             </ul></a></td>
                                         <td>{{item.exchangeRate}}</td>
-                                        <td>{{item.shipFee| number: '1.2-2'}}</td>
-                                        <td>{{item.surcharge| number: '1.2-2'}}</td>
-                                        <td>{{item.total| number: '1.2-2'}}</td>
-                                        <td>{{item.deposit| number: '1.2-2'}}</td>
-                                        <td>{{item.total - item.surcharge| number: '1.2-2'}}</td>
+                                        <td>{{item.shipFee| number: '1.0-2'}}</td>
+                                        <td>{{item.surcharge| number: '1.0-2'}}</td>
+                                        <td>{{formatService.calculateTotalBill(item)| number: '1.0-2'}}</td>
+                                        <td>{{item.deposit| number: '1.0-2'}}</td>
+                                        <td>{{formatService.calculateTotalBill(item) - item.deposit| number: '1.0-2'}}</td>
                                         <td>{{formatService.statusType(item.status)}}</td>
                                     </tr> 
                                 </tbody>

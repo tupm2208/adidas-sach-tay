@@ -122,4 +122,14 @@ export class FormatService {
 
     item.total =  sum * item.exchangeRate - -item.shipFee - -item.surcharge;
   }
+
+  calculateTotalBill(bill) {
+    let sum = 0
+    bill.billdetail.forEach(element => {
+      sum += element.total
+    });
+    sum += bill.unitPrice * bill.weight + bill.shipFee
+
+    return sum
+  }
 }

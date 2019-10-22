@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { BillService } from '../../../api/bill.service';
@@ -44,7 +44,8 @@ export class UploadComponent implements OnInit {
     private billDetailService: BillDetailService,
     private popupDialog: PopupService,
     private loading: LoadingService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private cdRef:ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -86,6 +87,10 @@ export class UploadComponent implements OnInit {
     $('app-upload').parent().parent().attr('id','upload');
   }
 
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
+
   toggleKeepBox(item) {
     item.keepBox = !item.keepBox
   }
@@ -113,7 +118,6 @@ export class UploadComponent implements OnInit {
   }
 
   deleteProduct(data) {
-    console.log("deleting product: ", data)
     if(data.billId) {
 
       this.loading.show('upload');
@@ -156,6 +160,14 @@ export class UploadComponent implements OnInit {
     }
 
     return true;
+  }
+
+  totalPricePerItem(item) {
+
+    if (this.data.user.role != 'client') {
+      item.total = ((item.code * item.price + item.webFee) * this.data.bill.exchangeRate + this.data.bill.surcharge) * item.quantity
+    }
+    return item.total
   }
 
   registOrUpdate() {
@@ -288,9 +300,10 @@ export class UploadComponent implements OnInit {
     let sum = 0;
     this.billDetailList.forEach( element => {
 
-      sum += element.price *  this.data.bill.tradeDiscount * element.quantity;
+      sum += element.total
     });
 
-    this.data.bill.total =  sum * this.data.bill.exchangeRate - -this.data.bill.shipFee - -this.data.bill.surcharge;
+    return sum + this.data.bill.unitPrice * this.data.bill.weight + this.data.bill.shipFee
   }
+
 }

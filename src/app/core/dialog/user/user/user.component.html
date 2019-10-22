@@ -25,18 +25,19 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                          <i class="material-icons">email</i>
+                          <i class="material-icons">home</i>
                       </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" [(ngModel)]="data.email" name="email" placeholder="Số Email" autofocus> 
+                            <input type="text" class="form-control" [(ngModel)]="data.generalAddress" name="generalAddress" placeholder="Xã - Phường ..." autofocus>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                           <i class="material-icons">home</i>
                       </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" [(ngModel)]="data.address" name="address" placeholder="Số Địa Chỉ" autofocus>
+                            <input type="text" class="form-control" [(ngModel)]="data.detailAddress" name="detailAddress" placeholder="Số nhà - ngách ..." autofocus>
                         </div>
                     </div>
 
@@ -53,6 +54,15 @@
                                 <option value="buyer">Người Mua</option>
                                 <option value="receiver">Người Nhận</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="material-icons">trending_up</i>
+                      </span>
+                        <div class="form-line">
+                            <input type="number" class="form-control" [(ngModel)]="data.helpFee" name="helpFee" placeholder="Phí mua hộ" autofocus>
                         </div>
                     </div>
 
