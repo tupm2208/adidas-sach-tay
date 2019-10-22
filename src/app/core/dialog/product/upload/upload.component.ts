@@ -19,12 +19,14 @@ export class UploadComponent implements OnInit {
   private billDetailList: any = [{
     productId: '',
     quantity: 1,
-    tradeDiscount: 0.85,
     link: '',
     price: 0,
-    weight: 0,
-    keepBox: 0,
+    keepBox: true,
     billId: null,
+    code: 0,
+    webFee: 0,
+    afterCodePrice: 0,
+    total: 0
   }];
 
   private exchangeValue: number;
@@ -32,6 +34,8 @@ export class UploadComponent implements OnInit {
 
   private isError = false;
   private isNew = false;
+  private Number = Number
+  private console = console
 
   constructor(
     private dialogRef: MatDialogRef<UploadComponent>,
@@ -66,13 +70,13 @@ export class UploadComponent implements OnInit {
         status: 2,
         deposit: 0,
         shipFee: 0,
-        brand: 'adidas',
-        exchangeRateId: this.exchangeId,
-        tradeDiscount: 0.85,
-        total: 0,
+        brand: 'adidas-jp',
         surcharge: 0,
-        isWaiting: false,
-        exchangeRate: this.exchangeValue
+        exchangeRate: this.exchangeValue,
+        weight: 0,
+        unitPrice: 0,
+        billName: '',
+        total: 0
       }
     }
   }
@@ -80,6 +84,14 @@ export class UploadComponent implements OnInit {
   ngAfterViewInit() {
 
     $('app-upload').parent().parent().attr('id','upload');
+  }
+
+  toggleKeepBox(item) {
+    item.keepBox = !item.keepBox
+  }
+
+  replaceCommas(event) {
+    return event.replace(/,/g, "")
   }
 
   onClick() {
@@ -95,6 +107,7 @@ export class UploadComponent implements OnInit {
   }
 
   addProduct(data) {
+    data = JSON.parse(JSON.stringify(data))
     data.billId = null;
     this.billDetailList.push(data);
   }

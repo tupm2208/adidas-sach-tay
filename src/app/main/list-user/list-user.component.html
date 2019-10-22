@@ -48,8 +48,7 @@
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
                                         <th>phone</th>
-                                        <th *ngIf="sc">Email</th> 
-                                        <th *ngIf="sc">Địa Chỉ</th> 
+                                        <th>Địa Chỉ</th> 
                                         <th>Loại KH</th>
                                     </tr>
                                 </thead>
@@ -58,8 +57,7 @@
                                         <!-- <th>Mã KH</th> -->
                                         <th>Tên KH</th>
                                         <th>phone</th>
-                                        <th *ngIf="sc">Email</th> 
-                                        <th *ngIf="sc">Địa Chỉ</th> 
+                                        <th>Địa Chỉ</th> 
                                         <th>Loại KH</th>
                                     </tr>
                                 </tfoot>
@@ -68,8 +66,7 @@
                                         <!-- <td>{{item.makh}}</td> -->
                                         <td><a (click)="openAddProductKind(item)" data-toggle="tooltip" data-placement="top" title="Click Để Xem Thông Tin Chi Tiết Khách Hàng">{{item.name}}</a></td>
                                         <td>{{item.phone}}</td>
-                                         <td *ngIf="sc">{{item.email}}</td> 
-                                         <td *ngIf="sc">{{item.address}}</td> 
+                                         <td>{{item.detailAddress + '/' + item.generalAddress}}</td> 
                                         <td>{{selectKind(item.role)}}</td>
                                     </tr>
                                 </tbody>

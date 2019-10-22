@@ -23,7 +23,7 @@ export class ListUserComponent implements OnInit {
     role: ''
   };
 
-  sc = screen.width <= 414? false: true;
+  // sc = screen.width <= 414? false: true;
 
   constructor(
     private userService: UserService,

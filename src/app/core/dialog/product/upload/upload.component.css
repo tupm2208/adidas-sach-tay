@@ -90,3 +90,19 @@ th, td {
 .action {
     display: inline-flex
 }
+
+#upload tr td{
+    padding: 0;
+}
+
+#upload tr td input{
+    padding: 0;
+}
+
+#upload div table{
+    border: 0;
+}
+
+#upload-form form div .form-group {
+    margin-bottom: 8px;
+}
