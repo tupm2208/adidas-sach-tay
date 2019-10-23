@@ -36,6 +36,7 @@ export class UploadComponent implements OnInit {
   private isNew = false;
   private Number = Number
   private console = console
+  private message = ''
 
   constructor(
     private dialogRef: MatDialogRef<UploadComponent>,
@@ -77,7 +78,8 @@ export class UploadComponent implements OnInit {
         weight: 0,
         unitPrice: 0,
         billName: '',
-        total: 0
+        total: 0,
+        helpFee: this.data.user.helpFee
       }
     }
   }
@@ -151,12 +153,23 @@ export class UploadComponent implements OnInit {
 
   checkValid() {
 
+    const checkingArray = []
+
     for(let i = 0; i< this.billDetailList.length; i++) {
 
       if(!this.billDetailList[i].productId || !this.billDetailList[i].quantity) {
-
+        this.message = 'mã sản phẩm và số lượng không được để trống!'
         return false;
       }
+
+      if (!checkingArray.includes(this.billDetailList[i].productId)) {
+        checkingArray.push(this.billDetailList[i].productId)
+      }
+    }
+
+    if(checkingArray.length != this.billDetailList.length) {
+      this.message = 'mã sản phẩm đang bị trùng nhau, xin thử lại'
+      return false
     }
 
     return true;
@@ -165,7 +178,7 @@ export class UploadComponent implements OnInit {
   totalPricePerItem(item) {
 
     if (this.data.user.role != 'client') {
-      item.total = ((item.code * item.price + item.webFee) * this.data.bill.exchangeRate + this.data.bill.surcharge) * item.quantity
+      item.total = ((item.code * item.price + item.webFee) * this.data.bill.exchangeRate * this.data.bill.helpFee + this.data.bill.surcharge) * item.quantity
     }
     return item.total
   }
@@ -238,7 +251,10 @@ export class UploadComponent implements OnInit {
 
   regist() {
 
-    if(!this.checkValid()) return;
+    if(!this.checkValid()) {
+      this.popupDialog.showError(this.message)
+      return
+    };
 
     this.loading.show('upload');
     if(this.data.bill && this.data.bill.id) {

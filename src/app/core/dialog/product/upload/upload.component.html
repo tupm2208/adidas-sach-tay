@@ -92,7 +92,7 @@
 
                                 <div class="form-group">
                                     <label for="unitPrice">Đơn giá *</label>
-                                    <input [(ngModel)]="data.bill.unitPrice" name="unitPrice" class="form-control" min="1" type="number">
+                                    <input [ngModel]="data.bill.unitPrice | number: '1.0-2'" (ngModelChange)="data.bill.unitPrice=Number(replaceCommas($event))" name="unitPrice" class="form-control">
                                     <span id="error_age" class="text-danger"></span>
                                 </div>
 
@@ -110,7 +110,7 @@
 
                                 <div class="form-group">
                                     <label for="deposit">Đặt Cọc *</label>
-                                    <input [(ngModel)]="data.bill.deposit" name="deposit" class="form-control" min="1" type="number">
+                                    <input [ngModel]="data.bill.deposit | number: '1.0-2'" (ngModelChange)="data.bill.deposit=Number(replaceCommas($event))" name="deposit" class="form-control">
                                     <span id="error_age" class="text-danger"></span>
                                 </div>
 

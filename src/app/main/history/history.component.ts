@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -35,7 +35,8 @@ export class HistoryComponent implements OnInit {
     private userDialog: UserDialogService,
     private mainService: MainService,
     private billService: BillService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private cdRef:ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -55,9 +56,11 @@ export class HistoryComponent implements OnInit {
         this.loadingService.hide();
         this.billData.forEach(bill => {
           this.formatService.calculate(bill)
-          this.orderService.getById(bill.reservationId).subscribe(reservation => {
-            bill.order = reservation
-          })
+          if(bill.reservationId) {
+            this.orderService.getById(bill.reservationId).subscribe(reservation => {
+              bill.order = reservation
+            })
+          }
         })
       } else {
 
@@ -68,6 +71,10 @@ export class HistoryComponent implements OnInit {
 
       this.loadingService.hide();
     })
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 
   updateUser() {
@@ -95,7 +102,7 @@ export class HistoryComponent implements OnInit {
 
   gotoDetail(item) {
 
-    this.dialogService.openBill({user: this.user, bill: item}).subscribe( data => {
+    this.dialogService.openBill({user: this.user, bill: JSON.parse(JSON.stringify(item))}).subscribe( data => {
 
       for(let i = 0; i< item.billdetail.length; i++) {
 

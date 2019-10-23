@@ -113,12 +113,12 @@ export class BillsComponent implements OnInit {
   }
 
   update(item) {
+    const passData = {user: item.user, bill: JSON.parse(JSON.stringify(item))}
+    this.dialogService.openBill(passData).subscribe( data => {
+      let orderNum = this.fakedData.indexOf(item)
+      if(!passData.bill.billdetail.length) {
 
-    this.dialogService.openBill({user: item.user, bill: item}).subscribe( data => {
-
-      if(!item.billdetail.length) {
-
-        this.fakedData.splice(this.fakedData.indexOf(item), 1);
+        this.fakedData.splice(orderNum, 1);
 
         this.fakedData = this.fakedData.concat([]);
         this.loadingService.show()
@@ -128,6 +128,16 @@ export class BillsComponent implements OnInit {
         }, error => {
           console.log("failed: ", error)
           this.loadingService.hide()
+        })
+      }
+      if (data) {
+        this.billService.search({id: item.id}).subscribe(billList => {
+          if(billList.total > 0) {
+            this.fakedData.splice(orderNum, 1, billList.data[0]);
+            this.fakedData = this.fakedData.concat([]);
+          }
+        }, error => {
+          console.log('error get new data: ', error)
         })
       }
     })
