@@ -114,12 +114,21 @@ export class UploadComponent implements OnInit {
   }
 
   addProduct(data) {
+    if (this.data.bill.reservationId) {
+      this.popupDialog.showError("Không thể thêm sản phẩm khi nó đã được giao đặt hàng")
+    }
     data = JSON.parse(JSON.stringify(data))
     data.billId = null;
     this.billDetailList.push(data);
   }
 
   deleteProduct(data) {
+
+    if (this.data.bill.reservationId) {
+      this.popupDialog.showError("không thể xóa sản phẩm khi nó đã được giao đặt hàng")
+      return
+    }
+
     if(data.billId) {
 
       this.loading.show('upload');
@@ -131,7 +140,9 @@ export class UploadComponent implements OnInit {
         this.billDetailList.splice(this.billDetailList.indexOf(data),1);
         this.dialogRef.updateSize()
         if (this.billDetailList.length == 0) {
-          this.dialogRef.close(-2);
+          this.dialogRef.close(-2); // remove signal
+        } else {
+          this.dialogRef.close(1) // update signal
         }
       }, error => {
         console.log(error)
@@ -306,7 +317,7 @@ export class UploadComponent implements OnInit {
           this.dialogRef.close(this.data.bill);
       }else {
 
-          this.dialogRef.close(-1);
+          this.dialogRef.close(1);
       }
     })
   }

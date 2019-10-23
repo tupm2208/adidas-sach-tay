@@ -132,4 +132,18 @@ export class FormatService {
 
     return sum
   }
+
+  getSumOfProp(item, prop) {
+    let sum = 0
+    item.reservationdetail.forEach(element => {
+
+      if(prop === 'price') {
+        sum += (element[prop] + element.webFee) * element.quantity
+      } else {
+        sum += element[prop]
+      }
+    })
+    item[prop] = sum
+  }
+
 }

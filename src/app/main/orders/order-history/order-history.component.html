@@ -23,7 +23,7 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationId" placeholder="Mã ĐH">
+                                    <input [type]="'text'" class="form-control" [(ngModel)]="reservationName" placeholder="Mã ĐH">
                                 </div>
                                 <div class="form-group" style="margin: 0">
                                      <mat-form-field> 
@@ -44,32 +44,20 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
-                                  <tr style="background-color: #a1edeb;">
-                                      <td *ngIf="sr"></td>
-                                      <td></td>
-                                      <td *ngIf="sr">{{calculateByProp('quantity')}}</td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{calculateByProp('yenAmount')}}</td>
-                                      <td *ngIf="sr"></td>
-                                      <td *ngIf="sr">{{calculateByProp('yenAmount','exchangeRate')| number: '1.2-2'}}</td>
-                                      <td *ngIf="sr">{{calculateByProp('deposit')| number: '1.2-2'}}</td>
-                                      <td *ngIf="sr">{{calculateByProp('yenAmount','exchangeRate') - calculateByProp('deposit')| number: '1.2-2'}}</td>
-                                      <td *ngIf="sr"></td>
-                                      <td></td>
-                                    </tr>
-                                </thead>
-                                <thead>
                                     <tr>
                                         <th *ngIf="sr">Ngày</th>
+                                        <th>Web Đặt</th>
                                         <th>Mã Đh</th>
-                                        <th *ngIf="sr">Số Lượng</th>
-                                        <th *ngIf="sr">Tài Khoản</th>
-                                        <th *ngIf="sr">Thương Hiệu</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Email Đặt Hàng</th>
+                                        <th *ngIf="sr">Mã Vận Đơn</th>
+                                        <th *ngIf="sr">Tổng số lượng</th>
+                                        <th *ngIf="sr">Tổng ngoại tệ</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Đơn giá</th>
+                                        <th *ngIf="sr">Tổng Ship</th>
                                         <th *ngIf="sr">Thành Tiền</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Đã thanh toán</th>
                                         <th *ngIf="sr">Dư Nợ</th>
                                         <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
@@ -78,31 +66,57 @@
                                 <tfoot>
                                     <tr>
                                         <th *ngIf="sr">Ngày</th>
+                                        <th>Web Đặt</th>
                                         <th>Mã Đh</th>
-                                        <th *ngIf="sr">Số Lượng</th>
-                                        <th *ngIf="sr">Tài Khoản</th>
-                                        <th *ngIf="sr">Thương Hiệu</th>
-                                        <th *ngIf="sr">Tiền Yên</th>
+                                        <th *ngIf="sr">Email Đặt Hàng</th>
+                                        <th *ngIf="sr">Mã Vận Đơn</th>
+                                        <th *ngIf="sr">Tổng số lượng</th>
+                                        <th *ngIf="sr">Tổng ngoại tệ</th>
                                         <th *ngIf="sr">Tỉ Giá</th>
+                                        <th *ngIf="sr">Khối Lượng</th>
+                                        <th *ngIf="sr">Đơn giá</th>
+                                        <th *ngIf="sr">Tổng Ship</th>
                                         <th *ngIf="sr">Thành Tiền</th>
-                                        <th *ngIf="sr">Đặt Cọc</th>
+                                        <th *ngIf="sr">Đã thanh toán</th>
                                         <th *ngIf="sr">Dư Nợ</th>
                                         <th *ngIf="sr">Ghi Chú</th>
                                         <th>Trạng Thái</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let item of orderData | user: {'id': reservationId} | time: {'from': from, 'to': to}">
+                                    <tr style="background-color: #a1edeb;">
+                                        <td *ngIf="sr"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td *ngIf="sr">{{calculateByProp('quantity')}}</td>
+                                        <td *ngIf="sr">{{calculateByProp('price')| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr"></td>
+                                        <td *ngIf="sr"></td>
+                                        <td *ngIf="sr"></td>
+                                        <td *ngIf="sr"></td>
+                                        <td *ngIf="sr">{{calculateByProp('money')| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{calculateByProp('deposit')| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{calculateByProp('remaining') | number: '1.0-2'}}</td>
+                                        <td *ngIf="sr"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngFor="let item of orderData | user: {'reservationName': reservationName} | time: {'from': from, 'to': to}">
                                         <td *ngIf="sr">{{formatService.formatDate(item.createdDate)}}</td>
-                                        <td (click)="openOrder(item)"><a>{{item.id}}</a></td>
-                                        <th *ngIf="sr">{{item.quantity}}</th>
-                                        <td *ngIf="sr">{{item.account}}</td>
-                                        <td *ngIf="sr">{{item.brand}}</td>
-                                        <td *ngIf="sr">{{item.yenAmount}}</td>
+                                        <td (click)="openOrder(item)"><a>{{item.brand}}</a></td>
+                                        <td>{{item.reservationName}}</td>
+                                        <th *ngIf="sr">{{item.orderEmail}}</th>
+                                        <th *ngIf="sr">{{item.wayBillCode}}</th>
+                                        <td *ngIf="sr">{{item.quantity}}</td>
+                                        <td *ngIf="sr">{{item.price| number: '1.0-2'}}</td>
                                         <td *ngIf="sr">{{item.exchangeRate}}</td>
-                                        <td *ngIf="sr">{{item.yenAmount *item.exchangeRate| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.deposit| number: '1.2-2'}}</td>
-                                        <td *ngIf="sr">{{item.yenAmount *item.exchangeRate - item.deposit| number: '1.2-2'}}</td>
+                                        <td *ngIf="sr">{{item.weight}}</td>
+                                        <td *ngIf="sr">{{item.unitPrice| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{item.unitPrice * item.weight| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{item.money| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{item.deposit| number: '1.0-2'}}</td>
+                                        <td *ngIf="sr">{{item.remaining| number: '1.0-2'}}</td>
                                         <td *ngIf="sr">{{item.note}}</td>
                                         <td>{{formatService.statusType(item.status)}}</td>
                                     </tr>

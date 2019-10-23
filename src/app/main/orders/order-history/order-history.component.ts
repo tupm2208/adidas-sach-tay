@@ -20,7 +20,7 @@ declare var $:any;
 })
 export class OrderHistoryComponent implements OnInit {
 
-  private reservationId = '';
+  private reservationName = '';
   private orderData: any = [];
   private user: any = {};
   private from: any;
@@ -50,7 +50,9 @@ export class OrderHistoryComponent implements OnInit {
     this.orderService.getByParams({userId: id, include: true}).subscribe( order => {
 
       order.data.forEach(item => {
-        this.calculateQuantity(item)
+        this.formatService.getSumOfProp(item, 'quantity')
+        this.formatService.getSumOfProp(item, 'price')
+        this.money(item)
       })
       this.orderData = order.data;
 
@@ -72,33 +74,22 @@ export class OrderHistoryComponent implements OnInit {
     const before = item.status
     this.dialogService.gotoOrder(item.id).subscribe( data => {
 
-      console.log("data close: ", data);
-
       if(data) {
 
         this.orderService.getByParams({id: item.id, include: true}).subscribe( order => {
 
-          // item = order.data;
           console.log("data success: ", order);
 
           if(order.data.length) {
-
-            this.orderData.splice(this.orderData.indexOf(item), 1,order.data[0]);
-
-            this.orderData = this.orderData.concat([]);
             const data = order.data[0]
-            if(before != data.status) {
-              this.billService.update_status({status: data.status}, data.id).subscribe(bills => {
-                console.log('updated', item.id)
-              })
-            }
-            this.calculateQuantity(data)
+            this.formatService.getSumOfProp(data, 'quantity')
+            this.formatService.getSumOfProp(data, 'price')
+            this.money(data)
+            this.orderData.splice(this.orderData.indexOf(item), 1,data);
           } else {
-            
             this.orderData.splice(this.orderData.indexOf(item), 1);
-
-            this.orderData = this.orderData.concat([]);
           }
+          this.orderData = this.orderData.concat([]);
         }, error => {
 
           console.log("data error: ", error);
@@ -120,13 +111,10 @@ export class OrderHistoryComponent implements OnInit {
 
     return sum;
   }
+  
 
-  calculateQuantity(item) {
-    item.quantity = 0
-    item.keepBox = 0
-    item.reservationdetail.forEach(element => {
-      item.quantity += element.quantity
-      item.keepBox += element.keepBox
-    })
+  money(item) {
+    item.money = item.price *item.exchangeRate + item.weight*item.unitPrice
+    item.remaining = item.money - item.deposit
   }
 }

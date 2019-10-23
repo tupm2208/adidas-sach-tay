@@ -27,16 +27,16 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor='let item of billDetailList'>
-                                        <td><input [(ngModel)]='item.link' id="link" name="link" class="form-control" type="text" min="1"></td>
-                                        <td><input [(ngModel)]='item.productId' id="productId" name="productId" class="form-control" type="text" min="1"></td>
-                                        <td><input [(ngModel)]='item.quantity' id="quantity" name="quantity" class="form-control" type="number" min="1"></td>
-                                        <td><input type="text" [ngModel]='item.price | number:"1.0-2"' (ngModelChange)='item.price=Number(replaceCommas($event))' id="price" name="price" class="form-control" min="1"></td>
-                                        <td><input [(ngModel)]='item.code' id="code" name="code" class="form-control" type="number" min="1"></td>
-                                        <td><input [(ngModel)]='item.webFee' id="webFee" name="webFee" class="form-control" type="number" min="1"></td>
+                                        <td><input [(ngModel)]='item.link' [disabled]='data.bill.reservationId' id="link" name="link" class="form-control" type="text" min="1"></td>
+                                        <td><input [(ngModel)]='item.productId' [disabled]='data.bill.reservationId' id="productId" name="productId" class="form-control" type="text" min="1"></td>
+                                        <td><input [(ngModel)]='item.quantity' [disabled]='data.bill.reservationId' id="quantity" name="quantity" class="form-control" type="number" min="1"></td>
+                                        <td><input type="text" [ngModel]='item.price | number:"1.0-2"' [disabled]='data.bill.reservationId' (ngModelChange)='item.price=Number(replaceCommas($event))' id="price" name="price" class="form-control" min="1"></td>
+                                        <td><input [(ngModel)]='item.code' [disabled]='data.bill.reservationId' id="code" name="code" class="form-control" type="number" min="1"></td>
+                                        <td><input [(ngModel)]='item.webFee' [disabled]='data.bill.reservationId' id="webFee" name="webFee" class="form-control" type="number" min="1"></td>
                                         <td><input [ngModel]='item.code * item.price | number:"1.0-2"' disabled='true' id="afterCodePrice" name="afterCodePrice" class="form-control"></td>
                                         <td><input [ngModel]='totalPricePerItem(item) | number: "1.0-2"' [disabled]='data.user.role != "client"' (ngModelChange)='item.total=Number(replaceCommas($event))' id="total" name="total" class="form-control"></td>
                                         <td (click)='toggleKeepBox(item)'>
-                                            <input class="filled-in chk-col-pink" name="keepBox" [checked]='item.keepBox' type="checkbox">
+                                            <input class="filled-in chk-col-pink" name="keepBox" [disabled]='data.bill.reservationId' [checked]='item.keepBox' type="checkbox">
                                             <label style="padding-left: 0; height: 3px; left: 12px;" for="keepBox"></label>
                                         </td>
                                         <td class="action">

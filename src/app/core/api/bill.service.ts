@@ -41,6 +41,6 @@ export class BillService {
 
   search(params): Observable<any> {
 
-    return this.mainApi.get(this.base_link + '?include=true', params);
+    return this.mainApi.get(this.base_link + '?include=true&', params);
   }
 }

@@ -46,7 +46,8 @@ export class OrdersComponent implements OnInit {
       console.log("main service data: ", data);
       this.fakedData = data.data;
       this.fakedData.forEach(item => {
-        this.getSumOfQuantity(item)
+        this.formatService.getSumOfProp(item, 'quantity')
+        this.formatService.getSumOfProp(item, 'price')
       })
       this.loadingService.hide();
     })
@@ -70,7 +71,8 @@ export class OrdersComponent implements OnInit {
 
         this.orderService.getByParams({userId: element.userId, id: element.id, include: true}).subscribe( listItem => {
           let item = listItem.data[0]
-          this.getSumOfQuantity(item) // update quantity
+          this.formatService.getSumOfProp(item, 'quantity') // update quantity
+          this.formatService.getSumOfProp(item, 'price')
           this.fakedData.splice(this.fakedData.indexOf(element), 1, item);
           this.fakedData = this.fakedData.concat([]);
           if(before != item.status) {
@@ -97,13 +99,5 @@ export class OrdersComponent implements OnInit {
     });
 
     return sum;
-  }
-
-  getSumOfQuantity(item) {
-    let sum = 0
-    item.reservationdetail.forEach(element => {
-      sum += element.quantity
-    })
-    item.quantity = sum
   }
 }

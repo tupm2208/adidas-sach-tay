@@ -121,6 +121,18 @@ export class HistoryComponent implements OnInit {
 
         return;
       }
+
+      if (data == 1) {
+        this.billService.search({id: item.id}).subscribe( bills => {
+          console.log("detail bills close: ", bills)
+          if (bills.total) {
+            this.billData.splice(this.billData.indexOf(item), 1, bills.data[0])
+          } else {
+            this.billData.splice(this.billData.indexOf(item),1);
+          }
+          this.billData = this.billData.concat([]);
+        })
+      }
     })
   }
 

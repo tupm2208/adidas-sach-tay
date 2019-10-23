@@ -1,156 +1,132 @@
-<body class="signup-page">
-  <div class="signup-box">
-    <div class="logo">
-      <a href="javascript:void(0);"><b>Đơn Hàng</b></a>
-       <small>Mã Đơn Hàng: {{orderData.id}}</small> 
-    </div>
-    <div class="card" style="box-shadow: unset">
-      <div class="body">
-        <form id="sign_up" method="POST">
-          <div class="row">
-            <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
-              <div class="select-person-header" style="min-width: 202px;">List Đặt Hàng </div>
-              <mat-card style="padding: 24px 0px; min-width: 240px">
-                <mat-card-content>
-                  <div class="container-fluid">
-                    <div class="row clearfix">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                          <div class="body" style="padding: 0">
-                            <div class="table-responsive">
-                              <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
-                                <thead>
-                                  <tr>
-                                    <th (click)="selectAll()">Tên</th>
-                                    <th>Mã SP | SL</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr *ngFor="let item of listBills; let i = index" [ngStyle]="{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}">
-                                    <td *ngIf="item.user" (click)="selectItem(item)">{{item.user.name}}</td>
-                                    <td *ngIf="item.billdetail">
-                                      <div *ngFor="let prod of item.billdetail">{{prod.productId}} | {{prod.quantity}}</div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- #END# Basic Examples -->
+<section style="padding: 0">
+  <div class="container-fluid">
+      <div class="row clearfix">
+          <div style="text-align: center;" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+              <div class="card" style="margin-bottom: 20px;">
+                  <div class="header">
+                      <h2>
+                          Danh Sách Sản Phẩm
+                      </h2>
                   </div>
-                </mat-card-content>
-              </mat-card>
-            </div>
-
-            <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
-              <div class="select-person-header" style="min-width: 202px">Đơn Hàng </div>
-              <mat-card style="padding: 24px 0px; min-width: 240px">
-                <mat-card-content>
-                  <div class="container-fluid">
-                    <div class="row clearfix">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                          <div class="body" style="padding: 0">
-                            <div class="table-responsive">
-                              <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
-                                <thead>
+                  <div class="body" id='upload'>
+                      <div class="table-responsive">
+                          <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                              <thead>
                                   <tr>
-                                    <th>Mã SP</th>
-                                    <th>Số Lượng</th>
-                                    <th>Giữ Hộp</th>
+                                      <th>Mã sp</th>
+                                      <th>Số lượng</th>
+                                      <th>Giữ hộp</th>
+                                      <th>Giá Web</th>
+                                      <th>code</th>
+                                      <th>phí web</th>
+                                      <th>giá sau code</th>
                                   </tr>
-                                </thead>
-                                <tbody>
-                                  <tr *ngFor="let item of orderData.reservationdetail; let i = index">
-                                    <td>{{item.productId}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>{{item.keepBox}}</td>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor='let item of orderData.reservationdetail'>
+                                      <td><a [href]="item.link" target="_blank"><input [(ngModel)]='item.productId' id="webFee" disabled='true' name="webFee" class="form-control" min="1"></a></td>
+                                      <td style="text-align: center;">{{item.quantity}}</td>
+                                      <td style="text-align: center;">{{item.keepBox}}</td>
+                                      <td><input [(ngModel)]='item.price' id="code" name="code" class="form-control" type="number" min="1"></td>
+                                      <td><input [(ngModel)]='item.code' id="code" name="code" class="form-control" type="number" min="1"></td>
+                                      <td><input [(ngModel)]='item.webFee' id="webFee" name="webFee" class="form-control" type="number" min="1"></td>
+                                      <td style="text-align: center;">{{item.code * item.price +item.webFee | number:"1.0-2"}}</td>
                                   </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
+                              </tbody>
+                              
+                          </table>
                       </div>
-
-                    </div>
-                    <!-- #END# Basic Examples -->
                   </div>
-                </mat-card-content>
-              </mat-card>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <div class="panel panel-primary">
-                <div class="panel-body">
-                  <form name="myform">
-                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-
-                      <div class="form-group">
-                        <label for="ship">Tiền Yên *</label>
-                        <input [(ngModel)]="orderData.yenAmount" name="ship" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="age">Đặt Cọc *</label>
-                        <input [(ngModel)]="orderData.deposit" name="thanhtien7" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="age">Tài Khoản *</label>
-                        <input [(ngModel)]="orderData.account" name="thanhtien6" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="age">Thương Hiệu *</label>
-                        <input [(ngModel)]="orderData.brand" name="thanhtien5" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="age">Tỉ Giá *</label>
-                        <input [(ngModel)]="orderData.exchangeRate" name="thanhtien4" class="form-control" min="1" type="text">
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="lastname">Trạng Thái *</label>
-                        <div>
-                          <select data-validation="required" name="status" [disabled]="orderData.status>4" [(ngModel)]="orderData.status" class="form-control">
-                            <option value="3">Chưa Thanh Toán</option>
-                            <option value="4">Đã Thanh Toán</option>
-                            <option disabled value="5">Chưa Về Kho Nhật</option>
-                            <option disabled value="6">Về Kho Nhật</option>
-                            <option disabled value="7">Về Kho Việt Nam</option>
-                            <option disabled value="8">Hoàn Tất</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="age">Ghi Chú *</label>
-                        <textarea [(ngModel)]="orderData.note" name="thanhtien2" class="form-control" min="3" type="text"></textarea>
-                        <span id="error_age" class="text-danger"></span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
               </div>
-            </div>
+              <button class="btn btn-primary waves-effect" (click)="submit()">submit</button>
+              <button class="btn btn-danger waves-effect" (click)='dialogRef.close()'>cancel</button>
+              <button class="btn btn-danger waves-effect" (click)='deleteReservation()'>Xóa đơn hàng</button>
           </div>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="panel-primary">
+                  <div class="panel-body" id='upload-form'>
+                      <form name="myform">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                          
+                          <div class="form-group">
+                            <label for="age">Thương Hiệu *</label>
+                            <label class="form-control">{{orderData.brand}}</label>
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
 
-          <div style="display: inline-block; width: 100%">
-            <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" style="float:left" type="submit">UPDATE</button>
-            <button class="btn btn-block btn-lg bg-pink waves-effect" style="float:left" mat-dialog-close>CANCEL</button>
+                          <div class="form-group">
+                            <label for="reservationName">Mã Đơn Hàng *</label>
+                            <input [(ngModel)]="orderData.reservationName" name="reservationName" class="form-control" min="1" type="text">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="orderEmail">Email Đặt Hàng *</label>
+                            <input [(ngModel)]="orderData.orderEmail" name="orderEmail" class="form-control" min="1" type="text">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="wayBillCode">Mã Vận Đơn *</label>
+                            <input [(ngModel)]="orderData.wayBillCode" name="wayBillCode" class="form-control" min="1" type="text">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="weight">Khối lượng (kg)</label>
+                            <input [(ngModel)]="orderData.weight" name="weight" class="form-control" min="1" type="number">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="unitPrice">Đơn giá (VND)</label>
+                            <input [ngModel]="orderData.unitPrice| number:'1.0-2'" (ngModelChange)="orderData.unitPrice=getNumber($event)" name="unitPrice" class="form-control" min="1">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+
+                          <!-- <div class="form-group">
+                            <label for="ship">Tiền Yên *</label>
+                            <input [(ngModel)]="orderData.yenAmount" name="ship" class="form-control" min="1" type="text">
+                            <span id="error_age" class="text-danger"></span>
+                          </div> -->
+
+                          <div class="form-group">
+                            <label for="age">Tỉ Giá *</label>
+                            <input [(ngModel)]="orderData.exchangeRate" name="exchangeRate" class="form-control" min="1" type="text">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="age">Đã Thanh Toán *</label>
+                            <input [ngModel]="orderData.deposit| number: '1.0-2'" (ngModelChange)="orderData.deposit=getNumber($event)" name="thanhtien7" class="form-control" min="1">
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="lastname">Trạng Thái *</label>
+                            <div>
+                              <select data-validation="required" name="status" [disabled]="orderData.status>4" [(ngModel)]="orderData.status" class="form-control">
+                                <option value="3">Chưa Thanh Toán</option>
+                                <option value="4">Đã Thanh Toán</option>
+                                <option disabled value="5">Chưa Về Kho Nhật</option>
+                                <option disabled value="6">Về Kho Nhật</option>
+                                <option disabled value="7">Về Kho Việt Nam</option>
+                                <option disabled value="8">Hoàn Tất</option>
+                              </select>
+                            </div>
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="age">Ghi Chú *</label>
+                            <textarea [(ngModel)]="orderData.note" name="thanhtien2" class="form-control" min="3" type="text"></textarea>
+                            <span id="error_age" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
           </div>
-        </form>
       </div>
-    </div>
+      <!-- #END# Basic Examples -->
   </div>
-</body>
+</section>

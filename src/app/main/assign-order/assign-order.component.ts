@@ -54,8 +54,7 @@ export class AssignOrderComponent implements OnInit {
     this.orderData = {
       brand: '',
       result: [],
-      yenAmount: 0,
-      exchangeRate: this.storageService.get("exchangeValue")
+      note: ''
     };
 
     this.options = [];
@@ -66,7 +65,11 @@ export class AssignOrderComponent implements OnInit {
 
     this.getListBill();
 
-    this.userService.search({role: "shiper"}).subscribe( data => {
+    this.userService.search(
+      {
+        role: 'shiper'
+      }
+    ).subscribe( data => {
       
       this.options = data.data;
     })
@@ -96,7 +99,7 @@ export class AssignOrderComponent implements OnInit {
 
   getListBill() {
 
-    this.billService.search({reservationId: null, include: true}).subscribe( data => {
+    this.billService.search({reservationId: null}).subscribe( data => {
 
       this.listBooked = data.data;
       this.listBooked.forEach(element => {
@@ -138,8 +141,12 @@ export class AssignOrderComponent implements OnInit {
           if(item.reservationId) {
 
             element.quantity += elem.quantity;
-            this.orderData.yenAmount += elem.quantity * Number(elem.price)
-            console.log('yenAmount: ', this.orderData.yenAmount)
+            element.price = elem.price
+            element.code = elem.code
+            element.webFee = elem.webFee,
+            element.link = elem.link
+            // this.orderData.yenAmount += elem.quantity * elem.price
+            // console.log('yenAmount: ', this.orderData.yenAmount)
             if (elem.keepBox) { //if customer want to keep box, add number of box to the reservationdetail
               element.keepBox += elem.quantity
             }
@@ -151,7 +158,7 @@ export class AssignOrderComponent implements OnInit {
             } else {
 
               element.quantity -= elem.quantity;
-              this.orderData.yenAmount -= elem.quantity * elem.price
+              // this.orderData.yenAmount -= elem.quantity * elem.price
               if (elem.keepBox) { //remove the number of boxes that we have just added above
                 element.keepBox -= elem.quantity
               }
@@ -162,11 +169,15 @@ export class AssignOrderComponent implements OnInit {
       })
 
       if(flag) {
-        this.orderData.yenAmount += elem.quantity * Number(elem.price)
+        // this.orderData.yenAmount += elem.quantity * elem.price
         this.orderData.result.push({
           productId: elem.productId,
           quantity: elem.quantity,
-          keepBox: elem.keepBox? elem.quantity: 0
+          keepBox: elem.keepBox? elem.quantity: 0,
+          price: elem.price,
+          code: elem.code,
+          webFee: elem.webFee,
+          link: elem.link
         })
       }
       
