@@ -1,0 +1,125 @@
+<section class="content">
+  <div *ngIf="listBooked.length" class="container">
+    <div class="row">
+      <div class="col-md-4  col-sm-6 col-lg-4">
+        <div class="select-person-header">Tạo Đơn Hàng </div>
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <form name="myform">
+              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="form-group">
+                  <label for="user" [ngStyle]="{'color': selectedUser? '': 'red'}" >Người Thanh Toán *</label>
+                  <mat-form-field class="example-full-width" [floatLabel]="'never'">
+                    <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of options | user: {'name': filterUser}" [value]="option.name">
+                        {{ option.name }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <label for="brand">Thương Hiệu *</label>
+                  <input id="brand" name="brand" [(ngModel)]="orderData.brand" class="form-control" type="text" min="1">
+                  <span id="error_age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label for="note">Ghi Chú *</label>
+                  <textarea class="form-control" name="ghichu" [(ngModel)]="orderData.note" rows="3"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  col-sm-6 col-lg-4" style="margin-bottom: 20px">
+        <div class="select-person-header">List Đặt Hàng </div>
+        <mat-card style="padding: 24px 0px;">
+          <mat-card-content>
+            <div class="container-fluid">
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                    <div class="body" style="padding: 0">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
+                          <thead>
+                            <tr>
+                              <th (click)="selectAll()">Tên</th>
+                              <th>Mã SP | SL</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of listBooked | user: {'brand': orderData.brand}; let i = index" [ngStyle]="{'background-color': item.reservationId? i%2? '#ced8c0': '#e1efce': ''}">
+                              <td (click)="selectItem(item)">{{item.user.name}}</td>
+                              <td>
+                                <div *ngFor="let prod of item.billdetail">{{prod.productId}} | {{prod.quantity}}</div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- #END# Basic Examples -->
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4" style="margin-bottom: 20px">
+        <div class="select-person-header">Result </div>
+        <mat-card>
+          <mat-card-content>
+            <div class="container-fluid">
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                    <div class="body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                          <thead>
+                            <tr>
+                              <th>Mã SP</th>
+                              <th>Số Lượng</th>
+                              <th>Giữ Hộp</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>Mã SP</th>
+                              <th>Số Lượng</th>
+                              <th>Giữ Hộp</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr *ngFor="let item of orderData.result">
+                              <td>{{item.productId}}</td>
+                              <td>{{item.quantity}}</td>
+                              <td>{{item.keepBox}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- #END# Basic Examples -->
+            </div>
+            <div style="display: inline-block; width: 100%">
+              <button class="btn btn-block btn-lg bg-cyan waves-effect" style="" (click)="submit()" type="submit">Submit</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>  
+  <body *ngIf="!listBooked.length" class="four-zero-four">
+    <div class="four-zero-four-container">
+        <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
+        <div class="error-message">Không Có Đơn Đặt Hàng</div>
+    </div>
+</body>
+</section>

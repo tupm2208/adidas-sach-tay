@@ -90,7 +90,7 @@ export class OrderComponent implements OnInit {
 
   deleteReservation() {
 
-    if(this.orginalStatus == 4) {
+    if(this.orginalStatus >= 4) {
       this.popupService.showError("Đơn hàng đã thanh toán xong, không thể xóa")
       return
     }

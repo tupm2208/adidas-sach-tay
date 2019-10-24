@@ -116,6 +116,7 @@ export class UploadComponent implements OnInit {
   addProduct(data) {
     if (this.data.bill.reservationId) {
       this.popupDialog.showError("Không thể thêm sản phẩm khi nó đã được giao đặt hàng")
+      return
     }
     data = JSON.parse(JSON.stringify(data))
     data.billId = null;

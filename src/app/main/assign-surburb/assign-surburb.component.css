@@ -1,0 +1,62 @@
+#sortable1, #sortable2, #sortable3, #sortable4 {
+    
+    background-color: #c2e7ea;
+    width: 100%;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px
+  }
+  #sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+  }
+  
+div.select-person-header {
+  background-color: deepskyblue;
+  padding-top: 5px;
+  width: 100%;
+  border: 1px solid #c2e7ea;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.2em;
+  list-style-type: none;
+}
+
+.mat-form-field {
+    display: block !important;
+}
+
+.mat-select-value {
+  color: white !important; 
+}
+
+.mat-raised-button {
+  min-width: 0px !important; 
+}
+
+.ui-selectable-helper {
+    border: 0px dotted black !important;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.palel-primary {
+    border-color: #bce8f1;
+}
+
+.panel-primary>.panel-heading {
+    background: #bce8f1;
+}
+
+.panel-primary>.panel-body {
+    background-color: #EDEDED;
+}
+
+.mat-form-field-infix {
+    border-top: 0;
+}

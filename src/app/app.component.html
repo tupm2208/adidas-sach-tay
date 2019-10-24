@@ -276,7 +276,7 @@
                     </ul>
                 </li>
                 
-                <li>
+                <!-- <li>
                     <a class="menu-toggle">
                         <i class="material-icons">swap_calls</i>
                         <span>Người Nhận Hàng</span>
@@ -292,6 +292,48 @@
                             <a routerLink="/home/receiver">
                                 <i class="material-icons">swap_calls</i>
                                 <span>Giao Đơn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li>
+                    <a class="menu-toggle">
+                        <i class="material-icons">swap_calls</i>
+                        <span>Ship Nội Thành</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li [class]="router.url == '/home/urban-list'? 'active': ''">
+                            <a routerLink="/home/urban-list">
+                                <i class="material-icons">layers</i>
+                                <span>Danh sách ship nội thành</span>
+                            </a>
+                        </li>
+                        <li [class]="router.url == '/home/assign-urban'? 'active': ''">
+                            <a routerLink="/home/assign-urban">
+                                <i class="material-icons">swap_calls</i>
+                                <span>Giao Ship</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="menu-toggle">
+                        <i class="material-icons">swap_calls</i>
+                        <span>Ship Tỉnh</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li [class]="router.url == '/home/surburd-list'? 'active': ''">
+                            <a routerLink="/home/surburd-list">
+                                <i class="material-icons">layers</i>
+                                <span>Danh sách ship tỉnh</span>
+                            </a>
+                        </li>
+                        <li [class]="router.url == '/home/assign-surburd'? 'active': ''">
+                            <a routerLink="/home/assign-surburd">
+                                <i class="material-icons">swap_calls</i>
+                                <span>Giao Ship</span>
                             </a>
                         </li>
                     </ul>

@@ -15,6 +15,10 @@ import { WaitingListBillComponent } from './bills/waiting-list-bill/waiting-list
 import { OrderHistoryComponent } from './orders/order-history/order-history.component';
 import { ReceiveHistoryComponent } from './receive-list/receive-history/receive-history.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { AssignSurburbComponent } from './assign-surburb/assign-surburb.component';
+import { AssignUrbanComponent } from './assign-urban/assign-urban.component';
+import { SurburbShipComponent } from './surburb-ship/surburb-ship.component';
+import { UrbanShipComponent } from './urban-ship/urban-ship.component';
 
 
 export const MainRoutes: Routes = [
@@ -66,5 +70,17 @@ export const MainRoutes: Routes = [
     }, {
         path: 'statistic',
         component: StatisticComponent
+    }, {
+        path: 'assign-surburb',
+        component: AssignSurburbComponent
+    }, {
+        path: 'assign-urban',
+        component: AssignUrbanComponent
+    }, {
+        path: 'surburb-list',
+        component: SurburbShipComponent
+    }, {
+        path: 'urban-list',
+        component: UrbanShipComponent
     }
 ]

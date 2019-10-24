@@ -63,9 +63,9 @@
                                       <td></td>
                                       <td>{{calculateByProp('shipFee')| number: '1.0-2'}}</td>
                                       <td></td>
-                                      <td>{{calculateByProp('total')| number: '1.0-2'}}</td>
+                                      <td>{{calculateTotalFee()| number: '1.0-2'}}</td>
                                       <td>{{calculateByProp('deposit')| number: '1.0-2'}}</td>
-                                      <td>{{calculateByProp('total') - calculateByProp('deposit')| number: '1.0-2'}}</td>
+                                      <td>{{calculateTotalFee() - calculateByProp('deposit')| number: '1.0-2'}}</td>
                                       <td></td>
                                     </tr>
                                      <tr *ngFor="let item of billData | user: {'reservationId': reservationId}">

@@ -158,4 +158,13 @@ export class HistoryComponent implements OnInit {
 
     return sum;
   }
+
+  calculateTotalFee() {
+    let sum = 0;
+    this.billData.forEach(element => {
+      sum += this.formatService.calculateTotalBill(element)
+    });
+
+    return sum
+  }
 }
