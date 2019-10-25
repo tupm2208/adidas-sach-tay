@@ -77,9 +77,9 @@ export class UploadComponent implements OnInit {
         exchangeRate: this.exchangeValue,
         weight: 0,
         unitPrice: 0,
-        billName: '',
+        // billName: '',
         total: 0,
-        helpFee: this.data.user.helpFee
+        helpFee: this.data.user.helpFee? this.data.user.helpFee: 1
       }
     }
   }

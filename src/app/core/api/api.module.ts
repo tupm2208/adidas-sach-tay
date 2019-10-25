@@ -16,6 +16,8 @@ import { WaitingBillDetailService } from './waiting-bill-detail.service';
 import { WaitingOrderService } from './waiting-order.service';
 import { WaitingReceiveService } from './waiting-receive.service';
 import { ExchangeService } from './exchange.service';
+import { UrbanShipService } from './urban-ship.service';
+import { SurburbShipService } from './surburb-ship.service';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { ExchangeService } from './exchange.service';
     WaitingBillDetailService,
     WaitingOrderService,
     WaitingReceiveService,
-    ExchangeService
+    ExchangeService,
+    UrbanShipService,
+    SurburbShipService
   ]
 })
 export class ApiModule {}

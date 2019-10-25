@@ -84,6 +84,9 @@ export class BillsComponent implements OnInit {
     this.dialogService.openBill({user: item.user}).subscribe( data => {
 
       console.log("data order: ", data);
+      data.user = item.user
+      this.fakedData.push(data)
+      this.fakedData = this.fakedData.concat([])
     })
   }
 
@@ -130,7 +133,11 @@ export class BillsComponent implements OnInit {
           this.loadingService.hide()
         })
       }
-      if (data) {
+      if (data == -2) {
+        this.fakedData.splice(orderNum, 1)
+        this.fakedData = this.fakedData.concat([])
+      }
+      else {
         this.billService.search({id: item.id}).subscribe(billList => {
           if(billList.total > 0) {
             this.fakedData.splice(orderNum, 1, billList.data[0]);

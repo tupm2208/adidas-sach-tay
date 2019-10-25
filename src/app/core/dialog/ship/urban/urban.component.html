@@ -1,0 +1,94 @@
+<section style="padding: 0">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <!-- <div style="text-align: center;" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Sản Phẩm
+                        </h2>
+                    </div>
+                    <div class="body" id='upload'>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Tên người nhận</th>
+                                        <th>Sản phẩm | số lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{urbanData.receiverName}}</td>
+                                        <td>
+                                            <div *ngFor='let item of urbanData.billdetail'>{{item.productId}} | {{item.quantity}}</div>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary waves-effect" (click)="update()">submit</button>
+                <button class="btn btn-danger waves-effect" (click)='dialogRef.close()'>cancel</button>
+                <button class="btn btn-danger waves-effect" (click)='delete()'>delete</button>
+            </div> -->
+            <div class="header">
+                <h2>
+                    Đơn Ship
+                </h2>
+            </div>
+            <div>
+                <div class="panel-primary">
+                    <div class="panel-body" id='upload-form'>
+                        <form name="myform">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                
+                                <div class="form-group">
+                                    <label for="remainingMoney">Tiền thu hộ *</label>
+                                    <input [ngModel]="urbanData.remainingMoney | number: '1.0-2'" (ngModelChange)="urbanData.remainingMoney=formatService.replaceCommas($event)" name="remainingMoney" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="shipFee">Phí ship *</label>
+                                    <input id="shipFee" name="shipFee" class="form-control" [ngModel]="urbanData.shipFee | number: '1.0-2'" (ngModelChange)="urbanData.shipFee=formatService.replaceCommas($event)">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="supplementalShip">Bù Ship</label>
+                                    <input [ngModel]="urbanData.supplementalShip | number: '1.0-2'" (ngModelChange)="urbanData.supplementalShip=formatService.replaceCommas($event)" name="supplementalShip" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="status">Trang Thai</label>
+                                    <select [(ngModel)]="urbanData.status" name="status" class="form-control">
+                                        <option value="6">Chưa giao</option>
+                                        <option value="7">Đã giao</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="note">Ghi chú</label>
+                                    <textarea [(ngModel)]="urbanData.note" name="note" class="form-control"> </textarea>
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </form>
+                        <div style="text-align: center">
+                            <button class="btn btn-primary waves-effect" (click)="update()">submit</button>
+                            <button class="btn waves-effect" (click)='delete()'>delete</button>
+                        </div>
+                        <button style="width: 100%; margin-top: 10px" class="btn btn-danger waves-effect" (click)='dialogRef.close()'>cancel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

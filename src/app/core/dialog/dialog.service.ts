@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { UploadComponent } from './product/upload/upload.component';
 import { OrderComponent } from './product/order/order.component';
 import { ReceiveDetailComponent } from './product/receive-detail/receive-detail.component';
+import { UrbanComponent } from './ship/urban/urban.component';
 
 
 @Injectable()
@@ -19,6 +20,15 @@ export class DialogService {
     return this.dialog.open(UploadComponent, {
       width: "80%",
       height:'90%',
+      data: params
+    }).afterClosed();
+  }
+
+  openUrbanShip(params): Observable<any> {
+
+    return this.dialog.open(UrbanComponent, {
+      // width: "80%",
+      // height:'90%',
       data: params
     }).afterClosed();
   }

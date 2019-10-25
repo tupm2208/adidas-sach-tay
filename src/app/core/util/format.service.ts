@@ -88,9 +88,9 @@ export class FormatService {
       case 2: return "Đã Đặt Hàng";
       case 3: return "Chưa Thanh Toán";
       case 4: return "Đã Thanh Toán";
-      case 5: return "Chưa Về Kho Nhật"
-      case 6: return "Về Kho Nhật";
-      case 7: return "Về Kho Việt Nam";
+      case 5: return "Hàng về Việt Nam"
+      case 6: return "Shiper nhận hàng";
+      case 7: return "Khách đã nhận hàng";
       case 8: return "Hoàn Tất";
       default: return "Chưa Đặt Trạng Thái";
     }
@@ -144,6 +144,10 @@ export class FormatService {
       }
     })
     item[prop] = sum
+  }
+
+  replaceCommas(event) {
+    return event.replace(/,/g, "")
   }
 
 }

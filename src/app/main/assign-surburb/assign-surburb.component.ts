@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoadingService } from '../../core/util/loading.service';
 
 import { UserService } from '../../core/api/user.service';
 import { BillService } from '../../core/api/bill.service';
-import { BillDetailService } from '../../core/api/bill-detail.service';
-import { MainService } from '../../core/api/main.service';
 import { PopupService } from '../../core/dialog/popup/popup.service';
-import { StorageService } from '../../core/util/storage.service';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+import { FormatService } from '../../core/util/format.service';
+import { SurburbShipService } from '../../core/api/surburb-ship.service';
 declare var $: any;
 
 @Component({
@@ -25,32 +23,25 @@ export class AssignSurburbComponent implements OnInit {
   myControl = new FormControl();
 
   listBooked = [];
-  surburbData: any = {};
   name = name;
   options = [];
   selectedUser = null;
   filterUser = '';
+  resultList = []
+  note = ''
 
   ps1 = null;
 
   constructor(
     private userService: UserService,
     private billService: BillService,
-    private billDetailService: BillDetailService,
-    private router: Router,
     private loadingService: LoadingService,
-    private mainService: MainService,
     private popupService: PopupService,
-    private storageService: StorageService
+    private formatService: FormatService,
+    private surburbShipService: SurburbShipService
    ) { }
 
   ngOnInit() {
-
-    this.surburbData = {
-      brand: '',
-      result: [],
-      note: ''
-    };
 
     this.options = [];
 
@@ -62,7 +53,7 @@ export class AssignSurburbComponent implements OnInit {
 
     this.userService.search(
       {
-        role: 'shiper'
+        role: 'suburbShiper'
       }
     ).subscribe( data => {
       
@@ -94,7 +85,7 @@ export class AssignSurburbComponent implements OnInit {
 
   getListBill() {
 
-    this.billService.search({reservationId: null}).subscribe( data => {
+    this.billService.search({status: 5}).subscribe( data => {
 
       this.listBooked = data.data;
       this.listBooked.forEach(element => {
@@ -108,75 +99,12 @@ export class AssignSurburbComponent implements OnInit {
 
   selectItem(item) {
 
-    if(this.surburbData.brand &&  item.brand.toUpperCase().indexOf(this.surburbData.brand.toUpperCase()) == -1) {
-
-      return;
+    const index = this.resultList.indexOf(item)
+    if (index == -1) {
+      this.resultList.push(item)
     } else {
-
-      this.surburbData.brand = item.brand;
+      this.resultList.splice(index, 1)
     }
-
-    item.reservationId = !item.reservationId;
-
-    if(!item.reservationId) {
-
-      this.surburbData.brand = '';
-      this.checkAndSetTH();
-    }
-
-    console.log("item: ", item);
-    item.billdetail.forEach(elem => {
-
-      let flag = true;
-      this.surburbData.result.forEach(element => {
-
-        if (element.productId == elem.productId) {
-
-          flag = false;
-          if(item.reservationId) {
-
-            element.quantity += elem.quantity;
-            element.price = elem.price
-            element.code = elem.code
-            element.webFee = elem.webFee,
-            element.link = elem.link
-            // this.surburbData.yenAmount += elem.quantity * elem.price
-            // console.log('yenAmount: ', this.surburbData.yenAmount)
-            if (elem.keepBox) { //if customer want to keep box, add number of box to the reservationdetail
-              element.keepBox += elem.quantity
-            }
-          } else {
-
-            if(element.quantity == elem.quantity) {
-
-              this.surburbData.result.splice(this.surburbData.result.indexOf(element), 1);
-            } else {
-
-              element.quantity -= elem.quantity;
-              // this.surburbData.yenAmount -= elem.quantity * elem.price
-              if (elem.keepBox) { //remove the number of boxes that we have just added above
-                element.keepBox -= elem.quantity
-              }
-            }
-          }
-          return;
-        }
-      })
-
-      if(flag) {
-        // this.surburbData.yenAmount += elem.quantity * elem.price
-        this.surburbData.result.push({
-          productId: elem.productId,
-          quantity: elem.quantity,
-          keepBox: elem.keepBox? elem.quantity: 0,
-          price: elem.price,
-          code: elem.code,
-          webFee: elem.webFee,
-          link: elem.link
-        })
-      }
-      
-    })
   }
 
   refreshPage() {
@@ -187,76 +115,58 @@ export class AssignSurburbComponent implements OnInit {
     })
   }
 
-  selectAll() {
-
-    let flag = true; // == false mean we have to select all, == true mean otherwise
-
-    let th = this.surburbData.brand;
-
-    this.listBooked.forEach( element => {
-
-      if(!element.reservationId && th && element.brand.toUpperCase().indexOf(th.toUpperCase()) != -1) {
-
-        flag = false;
-        return;
-      }
-    })
-
-    this.listBooked.forEach( element => {
-
-      if(element.brand.toUpperCase().indexOf(th.toUpperCase()) == -1) return;
-      if(flag) { 
-
-        this.selectItem(element);
-      } else {
-
-        if(!element.reservationId) {
-          
-          this.selectItem(element);
-        }
-      }
-    })
-  }
-
-  checkBeforeOrder() {
-
-    if(!this.selectedUser) return false;
-    console.log("user pass: ", this.selectedUser)
-
-    if(!this.surburbData.result.length) return false;
-
-    console.log("order pass", this.surburbData.result)
-    // if(!this.surburbData.id) return false;
-
-    return true;
-  }
-
-  checkAndSetTH() {
-
-    this.listBooked.forEach( element => {
-
-      if(element.reservationId) {
-
-        this.surburbData.brand = element.brand;
-        return;
-      }
-    })
-  }
-
   submit() {
-
-    this.loadingService.show();
-
-    if(!this.checkBeforeOrder()) {
-
-      this.popupService.showError("Thông tin không đúng, xin điền lại");
-      this.loadingService.hide();
-      return;
+    if(!this.selectedUser) {
+      this.popupService.showError("Xin hãy chọn shiper");
+      return
     }
 
-    this.surburbData.userId = this.selectedUser.id;
-    this.surburbData.status = 3;
-    this.surburbData.createdDate = new Date();
-    
+    if(!this.resultList.length) {
+      this.popupService.showError("Xin hãy chọn đơn hàng");
+      return
+    }
+    this.loadingService.show();
+    this.resultList.forEach(element => {
+      element.userId = this.selectedUser.id
+      element.billId = element.id
+      if (!element.note) {
+        delete element.note
+      }
+      element.remainingMoney = this.formatService.calculateTotalBill(element) - element.shipFee - element.deposit
+      if (!element.supplementalShip) {
+        element.supplementalShip = 0
+      }
+      element.phone = element.user.phone
+      element.receiverName = element.user.name
+      element.address = element.user.detailAddress + ' ' + element.user.generalAddress
+      element.createdDate = new Date()
+      element.status = 6
+      delete element.id
+    })
+
+    let count = 0
+
+    this.resultList.forEach( element => {
+      this.surburbShipService.create(element).subscribe( data => {
+        console.log("created ok:", data.id)
+      })
+      this.billService.update({id: element.billId, status: 6}).subscribe(bill => {
+        count += 1
+        if(count == this.resultList.length) {
+          this.loadingService.hide()
+          this.refreshPage()
+        }
+      }, error => {
+        count += 1
+        if (count == this.resultList.length) {
+          this.loadingService.hide()
+        }
+        this.popupService.showError("Có lỗi xảy ra!")
+      })
+    })
+  }
+
+  replaceCommas(event) {
+    return Number(event.replace(/,/g, ""))
   }
 }

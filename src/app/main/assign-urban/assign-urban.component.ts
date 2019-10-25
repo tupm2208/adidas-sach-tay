@@ -9,6 +9,8 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+import { FormatService } from '../../core/util/format.service';
+import { UrbanShipService } from '../../core/api/urban-ship.service';
 declare var $: any;
 
 @Component({
@@ -35,6 +37,8 @@ export class AssignUrbanComponent implements OnInit {
     private billService: BillService,
     private loadingService: LoadingService,
     private popupService: PopupService,
+    private formatService: FormatService,
+    private urbanShipService: UrbanShipService
    ) { }
 
   ngOnInit() {
@@ -49,7 +53,7 @@ export class AssignUrbanComponent implements OnInit {
 
     this.userService.search(
       {
-        role: 'innerShip'
+        role: 'urbanShiper'
       }
     ).subscribe( data => {
       
@@ -112,13 +116,57 @@ export class AssignUrbanComponent implements OnInit {
   }
 
   submit() {
+    if(!this.selectedUser) {
+      this.popupService.showError("Xin hãy chọn shiper");
+      return
+    }
 
+    if(!this.resultList.length) {
+      this.popupService.showError("Xin hãy chọn đơn hàng");
+      return
+    }
     this.loadingService.show();
     this.resultList.forEach(element => {
       element.userId = this.selectedUser.id
       element.billId = element.id
-      element.note = this.note
+      if (!element.note) {
+        delete element.note
+      }
+      element.remainingMoney = this.formatService.calculateTotalBill(element) - element.shipFee - element.deposit
+      if (!element.supplementalShip) {
+        element.supplementalShip = 0
+      }
+      element.phone = element.user.phone
+      element.receiverName = element.user.name
+      element.address = element.user.detailAddress + ' ' + element.user.generalAddress
+      element.createdDate = new Date()
+      element.status = 6
       delete element.id
     })
+
+    let count = 0
+
+    this.resultList.forEach( element => {
+      this.urbanShipService.create(element).subscribe( data => {
+        console.log("created ok:", data.id)
+      })
+      this.billService.update({id: element.billId, status: 6}).subscribe(bill => {
+        count += 1
+        if(count == this.resultList.length) {
+          this.loadingService.hide()
+          this.refreshPage()
+        }
+      }, error => {
+        count += 1
+        if (count == this.resultList.length) {
+          this.loadingService.hide()
+        }
+        this.popupService.showError("Có lỗi xảy ra!")
+      })
+    })
+  }
+
+  replaceCommas(event) {
+    return Number(event.replace(/,/g, ""))
   }
 }
