@@ -4,40 +4,40 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { PopupService } from '../../popup/popup.service';
 import { LoadingService } from '../../../util/loading.service';
 import { FormatService } from '../../../util/format.service';
-import { UrbanShipService } from '../../../api/urban-ship.service';
+import { SurburbShipService } from '../../../api/surburb-ship.service';
 import { BillService } from '../../../api/bill.service';
 
 declare let $: any;
 
 @Component({
-  selector: 'app-urban',
-  templateUrl: './urban.component.html',
-  styleUrls: ['./urban.component.css']
+  selector: 'app-surburb',
+  templateUrl: './surburb.component.html',
+  styleUrls: ['./surburb.component.css']
 })
-export class UrbanComponent implements OnInit {
+export class SurburbComponent implements OnInit {
 
-  private urbanData: any = {};
+  private surburbData: any = {};
   private originalStatus = 0
 
   constructor(
-    private dialogRef: MatDialogRef<UrbanComponent>,
+    private dialogRef: MatDialogRef<SurburbComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private popupDialog: PopupService,
     private loading: LoadingService,
     private cdRef:ChangeDetectorRef,
     private formatService: FormatService,
-    private urbanService: UrbanShipService,
+    private surburbService: SurburbShipService,
     private billService: BillService
   ) { }
 
   ngOnInit() {
-    this.urbanData = this.data
+    this.surburbData = this.data
     this.originalStatus = this.data.status
   }
 
   ngAfterViewInit() {
 
-    $('app-urban').parent().parent().attr('id','urban');
+    $('app-surburb').parent().parent().attr('id','surburb');
   }
 
   ngAfterViewChecked() {
@@ -46,8 +46,8 @@ export class UrbanComponent implements OnInit {
 
   delete() {
     // this.popupDialog.showError
-    this.urbanService.delete(this.urbanData.id).subscribe(data => {
-      this.billService.update({id: this.urbanData.billId, status: 5}).subscribe(data => {
+    this.surburbService.delete(this.surburbData.id).subscribe(data => {
+      this.billService.update({id: this.surburbData.billId, status: 5}).subscribe(data => {
         this.showSuccess(-1) // remove signal        
         console.log("deleted!")
       })
@@ -60,16 +60,21 @@ export class UrbanComponent implements OnInit {
 
   update() {
 
-    this.loading.show('urban')
+    if(!this.surburbData.id) {
+      this.dialogRef.close()
+      return
+    }
 
-    this.urbanService.update(this.urbanData).subscribe(data => {
+    this.loading.show('surburb')
+
+    this.surburbService.update(this.surburbData).subscribe(data => {
       this.showSuccess(1) // update signal
     }, error => {
       this.showError()
     })
 
     if (this.originalStatus !== this.data.status) {
-      this.billService.update({id: this.urbanData.billId, status: this.data.status}).subscribe(data => {
+      this.billService.update({id: this.surburbData.billId, status: this.data.status}).subscribe(data => {
         this.showSuccess(1) // remove signal        
       })
     }
@@ -77,7 +82,7 @@ export class UrbanComponent implements OnInit {
 
   showError() {
 
-    this.loading.hide('urban');
+    this.loading.hide('surburb');
     this.dialogRef.updateSize()
     this.popupDialog.showError("có lỗi xảy ra").subscribe( data => {
 
@@ -87,7 +92,7 @@ export class UrbanComponent implements OnInit {
 
   showSuccess(type) {
 
-    this.loading.hide('urban');
+    this.loading.hide('surburb');
     this.dialogRef.updateSize()
     this.popupDialog.showSuccess().subscribe( data => {
 

@@ -1,85 +1,93 @@
 <section class="content">
-    <div *ngIf="listBooked.length" class="">
-      <div class="row">
-        <div class="col-md-4  col-sm-6 col-lg-4">
-          <div class="select-person-header">Tạo Đơn Hàng </div>
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <form name="myform">
-                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                  <div class="form-group">
-                    <label for="user" [ngStyle]="{'color': selectedUser? '': 'red'}" >Shiper nội thành *</label>
-                    <mat-form-field class="example-full-width" [floatLabel]="'never'">
-                      <input type="text" placeholder="Nhập Tên..." style="color: #555" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of options | user: {'name': filterUser}" [value]="option.name">
-                          {{ option.name }}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                  </div>
-                  <div style="display: inline-block; width: 100%">
-                    <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" type="submit">Submit</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8  col-sm-6 col-lg-8" style="margin-bottom: 20px">
-          <div class="select-person-header">List Đặt Hàng </div>
-          <mat-card style="padding: 24px 0px;">
-            <mat-card-content>
-              <div class="container-fluid">
-                <div class="row clearfix">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                      <div class="body" style="padding: 0">
-                        <div class="table-responsive">
-                          <table class="table table-bordered table-striped table-hover js-basic-example dataTable" style="margin-bottom: 0">
-                            <thead>
-                              <tr>
-                                <th (click)="selectAll()">Tên</th>
-                                <th>MãSP|SL</th>
-                                <th>Tiền thu hộ</th>
-                                <th>Phí Ship</th>
-                                <th>Bù Ship</th>
-                                <th>Ghi chú</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let item of listBooked; let i = index" [ngStyle]="{'background-color': resultList.indexOf(item)!= -1? i%2? '#ced8c0': '#e1efce': ''}">
-                                <td (click)="selectItem(item)">{{item.user.name}}</td>
-                                <td>
+  <div *ngIf="listBooked.length" class="">
+    <div class="row">
+      <div class="col-md-12  col-sm-12 col-lg-12" style="margin-bottom: 20px">
+        <div class="select-person-header">List Đặt Hàng </div>
+        <mat-card style="padding: 24px 0px;">
+          <mat-card-content>
+            <div class="container-fluid">
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
+                  <div class="card">
+                    <div class="body" style="padding: 0">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable"
+                          style="margin-bottom: 0">
+                          <thead>
+                            <tr style="text-align: center;">
+                              <th></th>
+                              <th colspan="7" style="text-align: center;">Thông tin đơn hàng</th>
+                              <th colspan="8" style="text-align: center;">Thông tin khách hàng</th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <th>STT</th>
+                              <th>Mã Đơn hàng riêng</th>
+                              <th>Tên SP</th>
+                              <th>SL</th>
+                              <th>KL (KG)</th>
+                              <th>Bay = 0, Bộ = 1</th>
+                              <th>Tiền thu hộ</th>
+                              <th>Ghi chú thêm</th>
+                              <th>Tên khách hàng</th>
+                              <th>SDT</th>
+                              <th>Đường/phố, phường/xã, quận/huyện, tỉnh/thành phố</th>
+                              <th>Số nhà, ngỗ/ngách, hẻm</th>
+                              <th>Giao tối</th>
+                              <th>Shop trả phí</th>
+                              <th>Gía trị đóng bảo hiểm</th>
+                              <th>Lấy tối</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of listBooked; let i = index"
+                              [ngStyle]="{'background-color': i%2? '#ced8c0': '#e1efce'}">
+                              <td>{{i+1}}</td>
+                              <td>{{item.seperatedCode}}</td>
+                              <td>{{item.productName}}</td>
+                              <!-- <td>
                                   <div *ngFor="let prod of item.billdetail">{{prod.productId}} | {{prod.quantity}}</div>
-                                </td>
-                                <td (click)="selectItem(item)">{{formatService.calculateTotalBill(item) - item.shipFee - item.deposit| number: "1.0-2"}}</td>
-                                <td (click)="selectItem(item)">{{item.shipFee| number: "1.0-2"}}</td>
-                                <td style="padding: 0;">
-                                  <input class="form-control" style="padding: 0;height: 42px" [ngModel]='item.supplementalShip| number: "1.0-2"' (ngModelChange)="item.supplementalShip = replaceCommas($event)" name="supplementalShip">
-                                </td>
-                                <td style="padding: 0;">
-                                  <textarea class="form-control"  style="padding: 0;" name="note" [(ngModel)]="item.note"></textarea>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                                </td> -->
+                              <td>{{item.quantity}}</td>
+                              <td>{{item.weight}}</td>
+                              <td>{{item.routeType}}</td>
+                              <td>{{item.remainingMoney| number: '1.0-2'}}</td>
+                              <td>{{item.note + ', Được phép kiểm tra hàng'}}</td>
+                              <td>{{item.receiverName}}</td>
+                              <td>{{item.receiverPhone}}</td>
+                              <td>{{item.generalAddress}}</td>
+                              <td>{{item.detailAddress}}</td>
+                              <td>{{item.isNightShip == 1? 'x': ''}}</td>
+                              <td>{{item.freeShip == 1? 'x': ''}}</td>
+                              <td>{{item.premiumValue| number: '1.0-2'}}</td>
+                              <td>{{item.isGetNight == 1? 'x': ''}}</td>
+                              <td><button (click)='edit(item)'>sửa</button> <button (click)='removeItem(item)'>xóa</button></td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
+                  <div style="display: inline-block;">
+                    <button class="btn btn-block btn-lg bg-cyan waves-effect" (click)="submit()" type="submit">Submit</button>
+                  </div>
                 </div>
-                <!-- #END# Basic Examples -->
               </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
+              <!-- #END# Basic Examples -->
+            </div>
+          </mat-card-content>
+        </mat-card>
       </div>
-    </div>  
-    <body *ngIf="!listBooked.length" class="four-zero-four">
-      <div class="four-zero-four-container">
-          <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
-          <div class="error-message">Không Có Đơn Đặt Hàng</div>
-      </div>
+    </div>
+  </div>
+
+  <body *ngIf="!listBooked.length" class="four-zero-four">
+    <div class="four-zero-four-container">
+      <div class="error-code"><i class="material-icons" style="font-size: inherit;color: darkgrey;">face</i></div>
+      <div class="error-message">Không Có Đơn Đặt Hàng</div>
+    </div>
   </body>
-  </section>
+
+  <div><button (click)='refreshPage()'>refresh</button></div>
+</section>

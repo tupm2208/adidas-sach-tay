@@ -11,6 +11,7 @@ import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import { FormatService } from '../../core/util/format.service';
 import { SurburbShipService } from '../../core/api/surburb-ship.service';
+import { DialogService } from '../../core/dialog/dialog.service';
 declare var $: any;
 
 @Component({
@@ -25,62 +26,27 @@ export class AssignSurburbComponent implements OnInit {
   listBooked = [];
   name = name;
   options = [];
-  selectedUser = null;
-  filterUser = '';
-  resultList = []
   note = ''
 
   ps1 = null;
 
   constructor(
-    private userService: UserService,
     private billService: BillService,
     private loadingService: LoadingService,
     private popupService: PopupService,
     private formatService: FormatService,
-    private surburbShipService: SurburbShipService
+    private surburbShipService: SurburbShipService,
+    private dialogService: DialogService
    ) { }
 
   ngOnInit() {
 
     this.options = [];
 
-    this.myControl = new FormControl();
-
     this.loadingService.show();
 
     this.getListBill();
 
-    this.userService.search(
-      {
-        role: 'suburbShiper'
-      }
-    ).subscribe( data => {
-      
-      this.options = data.data;
-    })
-
-    this.subcribeUser();
-  }
-
-  subcribeUser() {
-
-    this.myControl.valueChanges.subscribe( data => {
-
-      this.filterUser = data;
-
-      for(let i = 0; i < this.options.length; i++) {
-
-        if(this.options[i].name == data) {
-
-          this.selectedUser = this.options[i];
-
-          return;
-        }
-      }
-
-      this.selectedUser = null;
-    })
   }
 
   getListBill() {
@@ -89,7 +55,23 @@ export class AssignSurburbComponent implements OnInit {
 
       this.listBooked = data.data;
       this.listBooked.forEach(element => {
-        delete element.receiveDate
+        // delete element.receiveDate
+        element.billId = element.id
+        element.quantity = this.getPropSum(element, 'quantity')
+        element.remainingMoney = this.formatService.calculateTotalBill(element) - element.deposit
+        element.routeType = 0
+        element.receiverName = element.user.name
+        element.receiverPhone = element.user.phone
+        element.generalAddress = element.user.generalAddress
+        element.detailAddress = element.user.detailAddress
+        element.isNightShip = 1
+        element.freeShip = 1
+        element.premiumValue = 0
+        element.isGetNight = 0
+        element.seperatedCode = ''
+        element.productName = ''
+        element.status = 6
+        delete element.id
       })
 
       console.log("book: ", this.listBooked);
@@ -97,14 +79,22 @@ export class AssignSurburbComponent implements OnInit {
     })
   }
 
-  selectItem(item) {
+  edit(item) {
+    this.dialogService.openSurburbShip(item)
+  }
 
-    const index = this.resultList.indexOf(item)
-    if (index == -1) {
-      this.resultList.push(item)
-    } else {
-      this.resultList.splice(index, 1)
-    }
+  getPropSum(item, prop) {
+    let s = 0
+    item.billdetail.forEach(element => {
+      s += element[prop]
+    });
+
+    return s
+  }
+
+  removeItem(item) {
+    let index = this.listBooked.indexOf(item)
+    this.listBooked.splice(index, 1)
   }
 
   refreshPage() {
@@ -116,49 +106,28 @@ export class AssignSurburbComponent implements OnInit {
   }
 
   submit() {
-    if(!this.selectedUser) {
-      this.popupService.showError("Xin hãy chọn shiper");
-      return
-    }
 
-    if(!this.resultList.length) {
-      this.popupService.showError("Xin hãy chọn đơn hàng");
-      return
-    }
     this.loadingService.show();
-    this.resultList.forEach(element => {
-      element.userId = this.selectedUser.id
-      element.billId = element.id
-      if (!element.note) {
-        delete element.note
-      }
-      element.remainingMoney = this.formatService.calculateTotalBill(element) - element.shipFee - element.deposit
-      if (!element.supplementalShip) {
-        element.supplementalShip = 0
-      }
-      element.phone = element.user.phone
-      element.receiverName = element.user.name
-      element.address = element.user.detailAddress + ' ' + element.user.generalAddress
-      element.createdDate = new Date()
-      element.status = 6
-      delete element.id
+    this.listBooked.forEach(element => {
+      
     })
 
     let count = 0
 
-    this.resultList.forEach( element => {
+    this.listBooked.forEach( element => {
+      element.createdDate = new Date()
       this.surburbShipService.create(element).subscribe( data => {
         console.log("created ok:", data.id)
       })
       this.billService.update({id: element.billId, status: 6}).subscribe(bill => {
         count += 1
-        if(count == this.resultList.length) {
+        if(count == this.listBooked.length) {
           this.loadingService.hide()
           this.refreshPage()
         }
       }, error => {
         count += 1
-        if (count == this.resultList.length) {
+        if (count == this.listBooked.length) {
           this.loadingService.hide()
         }
         this.popupService.showError("Có lỗi xảy ra!")

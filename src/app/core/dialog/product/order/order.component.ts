@@ -11,6 +11,7 @@ import { LoadingService } from '../../../util/loading.service';
 import { PopupService } from '../../../dialog/popup/popup.service';
 import { FormatService } from '../../../util/format.service';
 import { MainService } from '../../../api/main.service';
+import { StokeService } from '../../../api/stoke.service';
 
 declare let $: any;
 
@@ -22,7 +23,9 @@ declare let $: any;
 export class OrderComponent implements OnInit {
 
   orderData: any = {};
+  billList: any = []
   orginalStatus = 0
+  stokeList: any = []
 
   constructor(
     private billService: BillService,
@@ -33,7 +36,8 @@ export class OrderComponent implements OnInit {
     private loadingService: LoadingService,
     private popupService: PopupService,
     private formatService: FormatService,
-    private mainService: MainService
+    private mainService: MainService,
+    private stokeService: StokeService
   ) { }
 
   ngOnInit() {
@@ -44,6 +48,8 @@ export class OrderComponent implements OnInit {
     setTimeout( () => this.loadingService.show('app-order'), 0);
 
     this.getOrder();
+    this.getBillList()
+    this.getStokeList()
   }
 
   getOrder() {
@@ -61,6 +67,22 @@ export class OrderComponent implements OnInit {
       }, 50)
       // delete this.orderData.quantity;
       // delete this.orderData.keepBox;
+    })
+  }
+
+  getBillList() {
+    this.billService.search({reservationId: this.id}).subscribe(data => {
+      this.billList = data.data
+    }, error => {
+      console.log("cannot get bill list!", error)
+    })
+  }
+
+  getStokeList() {
+    this.stokeService.search({reservationId: this.id}).subscribe(data => {
+      this.stokeList = data.data
+    }, error => {
+      console.log("cannot get stoke list")
     })
   }
 
@@ -134,17 +156,92 @@ export class OrderComponent implements OnInit {
         this.dialogRef.close(orderData.status);
       })
 
-      this.billService.update_status({status: orderData.status}, orderData.id).subscribe(result => {
-        console.log("update status ok: ", result)
-      }, error => {
-        console.log("update status failed!", error)
-      })
+      if (this.orginalStatus != orderData.status) {
+        this.billService.update_status({status: orderData.status}, orderData.id).subscribe(result => {
+          console.log("update status ok: ", result)
+  
+          this.updateStatusBillForAdmin();
+        }, error => {
+          console.log("update status failed!", error)
+        })
+      }
     }, error => {
 
       this.loadingService.hide('app-order');
       this.popupService.showError("Có lỗi xảy ra! Xin thử lại");
     })
+  }
 
+  updateStatusBillForAdmin() {
+    const status = this.orderData.status == 5? 6: this.orderData.status
 
+    this.billList.forEach(element => {
+      if(element.user.role == 'admin') {
+        element.status = status
+        console.log("status admin: ", status)
+        this.updateForAdmin(element)
+        this.billService.update(element).subscribe(data => {
+          console.log("update for admin success!", data)
+        })
+      }
+    });
+    
+  }
+
+  updateForAdmin(adminBill) {
+    if(this.orderData.status != this.orginalStatus && (this.orderData.status == 5 || this.orginalStatus == 5)) {
+      this.stokeList.forEach(item => {
+
+        adminBill.billdetail.forEach(element => {
+          if(item.productId == element.productId) {
+            let flag = true // will update
+            if (this.orginalStatus == 5) { // từ trạng thái đã về viết nam, lùi lại trạng thái
+              item.quantity -= element.quantity
+              if(item.quantity <=0 ) {
+                flag = false
+                this.stokeService.delete(item.id).subscribe(() => {
+                  console.log("stoke item deleted!")
+                }, error => {
+                  console.log("error delete stoke item: ", error)
+                })
+              }
+
+            } else {
+              item.quantity += element.quantity
+
+              if(item.quantity == element.quantity) {
+                //create
+                flag = false
+                item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
+                item.orderEmail = this.orderData.orderEmail
+                this.stokeService.create(item).subscribe(data => {
+                  console.log("create ok", data)
+                }, error => {
+                  console.log("created failed: ", error)
+                })
+              }
+            }
+
+            if(flag) {
+              this.stokeService.update(item).subscribe(data => {
+                console.log("update successful!")
+              }, error => {
+                console.log("update error")
+              })
+            }
+          }
+        });
+      });
+      
+      if(!this.stokeList.length) {
+        item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
+        item.orderEmail = this.orderData.orderEmail
+        this.stokeService.create(item).subscribe(data => {
+          console.log("create ok", data)
+        }, error => {
+          console.log("created failed: ", error)
+        })
+      }
+    }
   }
 }

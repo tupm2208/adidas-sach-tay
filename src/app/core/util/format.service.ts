@@ -150,4 +150,7 @@ export class FormatService {
     return event.replace(/,/g, "")
   }
 
+  getStokePrice(reservationDetail, exchangeRate) {
+    return (reservationDetail.code * reservationDetail.price + reservationDetail.webFee) * exchangeRate
+  }
 }

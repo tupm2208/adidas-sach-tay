@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { StorageService } from '../util/storage.service'
 
 @Injectable()
-export class SurburbShipService {
+export class StokeService {
 
-  private base_link = 'surburbship'
+  private base_link = 'stoke'
   constructor( private mainApi: MainApiService, private storage: StorageService) { }
 
   list(): Observable<any> {
@@ -17,6 +17,11 @@ export class SurburbShipService {
   update(params): Observable<any> {
 
     return this.mainApi.patch(this.base_link + '/' + params.id, params);
+  }
+
+  update_status(params, reservationId): Observable<any> {
+
+    return this.mainApi.patch(this.base_link + '?' + 'reservationId=' + reservationId, params);
   }
 
   getById(id): Observable<any> {

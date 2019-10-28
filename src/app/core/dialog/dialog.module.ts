@@ -38,6 +38,7 @@ import { PaymentRequestComponent } from './client/payment-request/payment-reques
 import { ReceiverRequestComponent } from './client/receiver-request/receiver-request.component';
 import { ReceiverWeightComponent } from './client/receiver-weight/receiver-weight.component';
 import { UrbanComponent } from './ship/urban/urban.component';
+import { SurburbComponent } from './ship/surburb/surburb.component';
 
 @NgModule({
   imports: [
@@ -75,7 +76,8 @@ import { UrbanComponent } from './ship/urban/urban.component';
     PaymentRequestComponent,
     ReceiverRequestComponent,
     ReceiverWeightComponent,
-    UrbanComponent
+    UrbanComponent,
+    SurburbComponent
   ],
   entryComponents: [
     ErrorComponent,
@@ -89,7 +91,8 @@ import { UrbanComponent } from './ship/urban/urban.component';
     PaymentRequestComponent,
     ReceiverRequestComponent,
     ReceiverWeightComponent,
-    UrbanComponent
+    UrbanComponent,
+    SurburbComponent
   ],
   providers: [
     DialogService,

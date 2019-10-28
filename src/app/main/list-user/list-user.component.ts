@@ -80,11 +80,11 @@ export class ListUserComponent implements OnInit {
 
     if(type == "client2") return "Khách Buôn";
 
-    if(type == "shiper") return "Shipper";
+    if(type == "shiperjp") return "Shiper Nhật";
 
-    if(type == "buyer") return "Người Mua";
+    if(type == "shiperuk") return "Shiper UK";
 
-    if(type == "receiver") return "Người Nhận";
+    if(type == "urbanShiper") return "Ship Nội Địa";
 
     return "unknown";
   }

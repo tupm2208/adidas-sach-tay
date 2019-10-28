@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import { LoadingService } from '../../../util/loading.service';
 import { UserService } from '../../../api/user.service';
 import { DialogService } from '../../../dialog/dialog.service';
+import { PopupService } from '../../popup/popup.service';
 declare var $:any;
 
 @Component({
@@ -25,7 +26,8 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private loading: LoadingService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
@@ -40,27 +42,11 @@ export class UserComponent implements OnInit {
         address: '',
         id: null,
         password: 'adidas',
-        role: 2,
-        exchangeOdds: 0
+        role: 'client',
+        exchangeOdds: 0,
+        helpFee: 1
       }
     }
-  }
-
-  selectKind(type) {
-
-    if(type == "admin") return "admin"
-
-    if(type == "client") return "Khách Lẻ";
-
-    if(type == "client2") return "Khách Buôn";
-
-    if(type == "shiper") return "Shipper";
-
-    if(type == "buyer") return "Người Mua";
-
-    if(type == "receiver") return "Người Nhận";
-
-    return "Chưa Chọn";
   }
 
   order() {
@@ -105,9 +91,11 @@ export class UserComponent implements OnInit {
 
         console.log("data update: ", data);
         this.loading.hide("user");
-        this.dialogRef.close(this.reload);
+        this.popupService.showSuccess().subscribe(() => {
+          this.dialogRef.close(this.reload);
+        })
       }, error => {
-
+        this.popupService.showError("Xin hãy điền đầy đủ thông tin")
         this.loading.hide("user");
       })
     } else {
@@ -119,9 +107,12 @@ export class UserComponent implements OnInit {
         this.loading.hide("user");
         this.data = data;
         this.reload = data;
-        this.dialogRef.close(this.reload);
+        this.popupService.showSuccess().subscribe(() => {
+          this.dialogRef.close(this.reload);
+        })
       }, error => {
 
+        this.popupService.showError("Xin hãy điền đầy đủ thông tin")
         this.loading.hide("user");
       })
     }

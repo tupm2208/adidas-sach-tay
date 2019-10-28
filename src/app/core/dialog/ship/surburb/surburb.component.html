@@ -1,0 +1,114 @@
+<section style="padding: 0">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="header">
+                <h2>
+                    Đơn Ship
+                </h2>
+            </div>
+            <div>
+                <div class="panel-primary">
+                    <div class="panel-body" id='upload-form'>
+                        <form name="myform">
+                            <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                                
+                                <div class="form-group">
+                                    <label for="seperatedCode">Mã đơn hàng riêng *</label>
+                                    <input [(ngModel)]="surburbData.seperatedCode" name="seperatedCode" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productName">Tên SP *</label>
+                                    <input id="productName" name="productName" class="form-control" [(ngModel)]="surburbData.productName">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quantity">Số lượng</label>
+                                    <input [(ngModel)]="surburbData.quantity" name="quantity" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="weight">Khối lượng</label>
+                                    <input [(ngModel)]="surburbData.weight" name="weight" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="routeType">đường bay/đường bộ</label>
+                                    <select [(ngModel)]="surburbData.routeType" name="routeType" class="form-control">
+                                        <option value="1">Đường bay</option>
+                                        <option value="0">Đường bộ</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="remainingMoney">Tiền thu hộ</label>
+                                    <input [ngModel]="surburbData.remainingMoney | number: '1.0-2'" (ngModelChange)="surburbData.remainingMoney=formatService.replaceCommas($event)" name="remainingMoney" class="form-control">
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="note">Ghi chú thêm</label>
+                                    <textarea [(ngModel)]="surburbData.note" name="note" class="form-control"> </textarea>
+                                    <span id="error_age" class="text-danger"></span>
+                                </div>
+
+                                
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                                
+                                    <div class="form-group">
+                                        <label for="isNightShip">Giao tối</label>
+                                        <select [(ngModel)]="surburbData.isNightShip" name="isNightShip" class="form-control">
+                                            <option value='1'>yes</option>
+                                            <option value='0'>no</option>
+                                        </select>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="freeShip">Shop trả phí</label>
+                                        <select [(ngModel)]="surburbData.freeShip" name="freeShip" class="form-control">
+                                            <option value='1'>yes</option>
+                                            <option value='0'>no</option>
+                                        </select>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="premiumValue">gía trị đóng bảo hiểm</label>
+                                        <input [ngModel]="surburbData.premiumValue | number: '1.0-2'" (ngModelChange)="surburbData.premiumValue=formatService.replaceCommas($event)" name="premiumValue" class="form-control">
+                                        <span id="error_age" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="isGetNight">Lấy tối</label>
+                                        <select [(ngModel)]="surburbData.isGetNight" name="isGetNight" class="form-control">
+                                            <option value='1'>yes</option>
+                                            <option value='0'>no</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group" *ngIf='surburbData.id'>
+                                        <label for="status">Trang Thai</label>
+                                        <select [(ngModel)]="surburbData.status" name="status" class="form-control">
+                                            <option value="6">Đang gửi</option>
+                                            <option value="7">Đã giao</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </form>
+                        <div style="text-align: center">
+                            <button class="btn btn-primary waves-effect" (click)="update()">submit</button>
+                            <button class="btn waves-effect" *ngIf='surburbData.id' (click)='delete()'>delete</button>
+                        </div>
+                        <button  *ngIf='surburbData.id' style="width: 100%; margin-top: 10px" class="btn btn-danger waves-effect" (click)='dialogRef.close()'>cancel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>

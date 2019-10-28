@@ -145,7 +145,7 @@ export class HttpService {
     if (options.headers == null) {
       options.headers = new Headers({
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-        "Authorization": 'bearer ' + this.storageService.get("accessToken")
+        "Authorization": 'Bearer ' + this.storageService.get("accessToken")
       });
     }
     return options;

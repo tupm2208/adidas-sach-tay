@@ -105,13 +105,13 @@
                           <div class="form-group">
                             <label for="lastname">Trạng Thái *</label>
                             <div>
-                              <select data-validation="required" name="status" [disabled]="orderData.status>4" [(ngModel)]="orderData.status" class="form-control">
+                              <select data-validation="required" name="status" [disabled]="orderData.status>5" [(ngModel)]="orderData.status" class="form-control">
                                 <option value="3">Chưa Thanh Toán</option>
                                 <option value="4">Đã Thanh Toán</option>
                                 <option value="5">Về Việt Nam</option>
                                 <!-- <option disabled value="6">Về Kho Nhật</option>
                                 <option disabled value="7">Về Kho Việt Nam</option> -->
-                                <option value="6">Hoàn Tất</option>
+                                <!-- <option value="6">Hoàn Tất</option> -->
                               </select>
                             </div>
                           </div>
