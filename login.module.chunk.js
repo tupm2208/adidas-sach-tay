@@ -166,7 +166,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"login-page\" id=\"login\">\n    <!-- Page Loader -->\n    <!-- #END# Page Loader -->\n    <!-- Overlay For Sidebars -->\n    <div class=\"overlay\"></div>\n    <div class=\"login-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_in\" method=\"POST\">\n                    <div class=\"msg\">Sign in to start your session</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control error\" name=\"username\" [(ngModel)]=\"email\" placeholder=\"email\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"password\" placeholder=\"Password\" required>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"col-xs-8 p-t-5\" (click)=\"changeCheck()\">\n                            <input type=\"checkbox\" name=\"rememberme\" [checked]=\"saveFlag\" class=\"filled-in chk-col-pink\">\n                            <label for=\"rememberme\">Remember Me</label>\n                        </div>\n                        <div class=\"col-xs-4\">\n                            <button class=\"btn btn-block bg-pink waves-effect\" type=\"submit\" (click)=\"login()\">SIGN IN</button>\n                        </div>\n                    </div>\n                    <div class=\"row m-t-15 m-b--20\">\n                        <div class=\"col-xs-6\">\n                            <a [routerLink]=\"['/login/regist']\">Register Now!</a>\n                        </div>\n                        <!-- <div class=\"col-xs-6 align-right\">\n                            <a href=\"forgot-password.html\">Forgot Password?</a>\n                        </div> -->\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<body class=\"login-page\" id=\"login\">\n    <!-- Page Loader -->\n    <!-- #END# Page Loader -->\n    <!-- Overlay For Sidebars -->\n    <div class=\"overlay\"></div>\n    <div class=\"login-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_in\" method=\"POST\">\n                    <div class=\"msg\">Sign in to start your session</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control error\" name=\"username\" [(ngModel)]=\"phone\" placeholder=\"phone\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"password\" placeholder=\"Password\" required>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"col-xs-8 p-t-5\" (click)=\"changeCheck()\">\n                            <input type=\"checkbox\" name=\"rememberme\" [checked]=\"saveFlag\" class=\"filled-in chk-col-pink\">\n                            <label for=\"rememberme\">Remember Me</label>\n                        </div>\n                        <div class=\"col-xs-4\">\n                            <button class=\"btn btn-block bg-pink waves-effect\" type=\"submit\" (click)=\"login()\">SIGN IN</button>\n                        </div>\n                    </div>\n                    <div class=\"row m-t-15 m-b--20\">\n                        <div class=\"col-xs-6\">\n                            <a [routerLink]=\"['/login/regist']\">Register Now!</a>\n                        </div>\n                        <!-- <div class=\"col-xs-6 align-right\">\n                            <a href=\"forgot-password.html\">Forgot Password?</a>\n                        </div> -->\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -214,7 +214,7 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.getSavedAccount = function () {
         this.saveFlag = this.storage.get('saveFlag');
-        this.email = this.storage.get('email');
+        this.phone = this.storage.get('phone');
         this.password = this.storage.get('password');
     };
     LoginComponent.prototype.ngOnInit = function () {
@@ -227,7 +227,7 @@ var LoginComponent = /** @class */ (function () {
         var strategy = "local";
         this.loginService.login({
             strategy: strategy,
-            email: this.email,
+            phone: this.phone,
             password: this.password
         }).subscribe(function (res) {
             console.log("login succeess: ", res);
@@ -254,12 +254,12 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.checkBeforeSaving = function () {
         if (this.saveFlag) {
             this.storage.set('saveFlag', true);
-            this.storage.set('email', this.email);
+            this.storage.set('phone', this.phone);
             this.storage.set('password', this.password);
         }
         else {
             this.storage.set('saveFlag', false);
-            this.storage.set('email', null);
+            this.storage.set('phone', null);
             this.storage.set('password', null);
         }
     };
@@ -401,7 +401,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/regist/regist.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"msg\">Register a new membership</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" name=\"name\" placeholder=\"Your full name\" [(ngModel)]=\"name\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">email</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"email\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" [(ngModel)]=\"email\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"address\" class=\"form-control\" name=\"address\" placeholder=\"Address\" [(ngModel)]=\"address\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" minlength=\"6\" placeholder=\"Password\" [(ngModel)]=\"password\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" minlength=\"6\" placeholder=\"Confirm Password\" [(ngModel)]=\"confirmPassword\" required>\n                        </div>\n                    </div>\n                    <!-- <div class=\"form-group\">\n                        <input type=\"checkbox\" name=\"terms\" id=\"terms\" class=\"filled-in chk-col-pink\">\n                        <label for=\"terms\">I read and agree to the <a href=\"javascript:void(0);\">terms of usage</a>.</label>\n                    </div> -->\n\n                    <button class=\"btn btn-block btn-lg bg-pink waves-effect\" type=\"submit\" (click)=\"regist()\">SIGN UP</button>\n\n                    <div class=\"m-t-25 m-b--5 align-center\">\n                        <a href=\"sign-in.html\">You already have a membership?</a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\">Admin<b>BSB</b></a>\n            <small>Admin BootStrap Based - Material Design</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"msg\">Register a new membership</div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" name=\"name\" placeholder=\"Your full name\" [(ngModel)]=\"name\" required autofocus>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">phone</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"phone\" class=\"form-control\" name=\"phone\" placeholder=\"phone Number\" [(ngModel)]=\"phone\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"generalAddress\" class=\"form-control\" name=\"generalAddress\" placeholder=\"xã - phường-thị trấn\" [(ngModel)]=\"generalAddress\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"detailAddress\" class=\"form-control\" name=\"detailAddress\" placeholder=\"số nhà - ngõ - ngách\" [(ngModel)]=\"detailAddress\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"password\" minlength=\"6\" placeholder=\"Password\" [(ngModel)]=\"password\" required>\n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">lock</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" minlength=\"6\" placeholder=\"Confirm Password\" [(ngModel)]=\"confirmPassword\" required>\n                        </div>\n                    </div>\n                    <!-- <div class=\"form-group\">\n                        <input type=\"checkbox\" name=\"terms\" id=\"terms\" class=\"filled-in chk-col-pink\">\n                        <label for=\"terms\">I read and agree to the <a href=\"javascript:void(0);\">terms of usage</a>.</label>\n                    </div> -->\n\n                    <button class=\"btn btn-block btn-lg bg-pink waves-effect\" type=\"submit\" (click)=\"regist()\">SIGN UP</button>\n\n                    <div class=\"m-t-25 m-b--5 align-center\">\n                        <a href=\"sign-in.html\">You already have a membership?</a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -438,18 +438,19 @@ var RegistComponent = /** @class */ (function () {
         this.loading = loading;
         this.popup = popup;
         this.router = router;
-        this.email = '';
+        this.phone = '';
         this.password = '';
         this.confirmPassword = '';
         this.name = '';
-        this.address = '';
+        this.generalAddress = '';
+        this.detailAddress = '';
     }
     RegistComponent.prototype.ngOnInit = function () {
     };
     RegistComponent.prototype.isValid = function () {
         var message = "invalid";
-        if (!this.email) {
-            message += " email";
+        if (!this.phone) {
+            message += " phone";
         }
         if (!this.password) {
             message += " password";
@@ -460,8 +461,11 @@ var RegistComponent = /** @class */ (function () {
         if (!this.confirmPassword) {
             message += " confirmPassword";
         }
-        if (!this.address) {
-            message += " address";
+        if (!this.generalAddress) {
+            message += " generalAddress";
+        }
+        if (!this.detailAddress) {
+            message += " detailAddress";
         }
         return message;
     };
@@ -472,9 +476,9 @@ var RegistComponent = /** @class */ (function () {
             this.popup.showError(message);
             return;
         }
-        var _a = this, email = _a.email, password = _a.password, address = _a.address, name = _a.name;
+        var _a = this, phone = _a.phone, password = _a.password, generalAddress = _a.generalAddress, name = _a.name, detailAddress = _a.detailAddress;
         var role = 4;
-        this.userService.regist({ email: email, password: password, address: address, name: name, role: role }).subscribe(function (success) {
+        this.userService.regist({ phone: phone, password: password, generalAddress: generalAddress, name: name, role: role, detailAddress: detailAddress }).subscribe(function (success) {
             _this.popup.showSuccess();
         }, function (error) {
             _this.popup.showError(error);

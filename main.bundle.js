@@ -62,7 +62,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1|| router.url.indexOf('payment')!=-1|| router.url.indexOf('receiver-consumer')!=-1\">\n<!-- Overlay For Sidebars -->\n<div class=\"overlay\"></div>\n<!-- #END# Overlay For Sidebars -->\n<div class=\"search-bar\" *ngIf=\"role\">\n    <div class=\"search-icon\">\n        <i class=\"material-icons\">settings</i>\n    </div>\n    <input (keyup.enter)=\"saveRate()\" type=\"number\" [(ngModel)]=\"exchangeValue\" placeholder=\"Nhập Tỉ Giá Hệ Thống\">\n    <div class=\"close-search\" (click)=\"closeRateInput()\">\n        <i class=\"material-icons\">close</i>\n    </div>\n</div>\n<!-- Top Bar -->\n<nav class=\"navbar\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\n            <a class=\"bars\"></a>\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\"></a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li  *ngIf=\"role\" (click)=\"openRateInput()\"><a class=\"js-search\" data-close=\"true\"><i class=\"material-icons\" style=\"font-size: 14px\">trending_up</i><i>Tỉ Giá: {{realRate}}</i></a></li>\n                <!-- Notifications -->\n                 <li class=\"dropdown\">\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"label-count\">7</span>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li class=\"header\">NOTIFICATIONS</li>\n                        <li class=\"body\">\n                            <ul class=\"menu\">\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-light-green\">\n                                            <i class=\"material-icons\">person_add</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>12 new members joined</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-cyan\">\n                                            <i class=\"material-icons\">add_shopping_cart</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>4 sales made</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-red\">\n                                            <i class=\"material-icons\">delete_forever</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-orange\">\n                                            <i class=\"material-icons\">mode_edit</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>Nancy</b> changed name</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-blue-grey\">\n                                            <i class=\"material-icons\">comment</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>John</b> commented your post</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-light-green\">\n                                            <i class=\"material-icons\">cached</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>John</b> updated status</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-purple\">\n                                            <i class=\"material-icons\">settings</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>Settings updated</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> Yesterday\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"footer\">\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\n                        </li>\n                    </ul>\n                </li> \n                <!-- #END# Notifications -->\n                <!-- Tasks -->\n                <!-- <li class=\"dropdown\">\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\n                        <i class=\"material-icons\">flag</i>\n                        <span class=\"label-count\">9</span>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li class=\"header\">TASKS</li>\n                        <li class=\"body\">\n                            <ul class=\"menu tasks\">\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <h4>\n                                            Footer display issue\n                                            <small>32%</small>\n                                        </h4>\n                                        <div class=\"progress\">\n                                            <div class=\"progress-bar bg-pink\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 32%\">\n                                            </div>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <h4>\n                                            Make new buttons\n                                            <small>45%</small>\n                                        </h4>\n                                        <div class=\"progress\">\n                                            <div class=\"progress-bar bg-cyan\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\n                                            </div>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <h4>\n                                            Create new dashboard\n                                            <small>54%</small>\n                                        </h4>\n                                        <div class=\"progress\">\n                                            <div class=\"progress-bar bg-teal\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 54%\">\n                                            </div>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <h4>\n                                            Solve transition issue\n                                            <small>65%</small>\n                                        </h4>\n                                        <div class=\"progress\">\n                                            <div class=\"progress-bar bg-orange\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 65%\">\n                                            </div>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <h4>\n                                            Answer GitHub questions\n                                            <small>92%</small>\n                                        </h4>\n                                        <div class=\"progress\">\n                                            <div class=\"progress-bar bg-purple\" role=\"progressbar\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 92%\">\n                                            </div>\n                                        </div>\n                                    </a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"footer\">\n                            <a href=\"javascript:void(0);\">View All Tasks</a>\n                        </li>\n                    </ul>\n                </li> -->\n                <!-- #END# Tasks -->\n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<!-- #Top Bar -->\n<section>\n    <!-- Left Sidebar -->\n    <aside id=\"leftsidebar\" class=\"sidebar\">\n        <!-- User Info -->\n        <div class=\"user-info\">\n            <div class=\"image\">\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\n            </div>\n        </div>\n        <!-- #User Info -->\n        <!-- Menu -->\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/home'? 'active': ''\">\n                    <a routerLink=\"/home\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Danh Sách Khách Hàng</span>\n                    </a>\n                </li>  \n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">view_list</i>\n                        <span>Khách Hàng</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/bills'? 'active': ''\">\n                            <a routerLink=\"/home/bills\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Đặt Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/bills/waiting-list-bill'? 'active': ''\">\n                            <a routerLink=\"/home/bills/waiting-list-bill\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Chờ Duyệt</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">add_shopping_cart</i>\n                        <span>Người Thanh Toán</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/orders'? 'active': ''\">\n                            <a routerLink=\"/home/orders\">\n                                <i class=\"material-icons\">list</i>\n                                <span>Danh Sách Đơn Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\n                            <a routerLink=\"/home/assignment\">\n                               <i class=\"material-icons\">widgets</i>\n                                <span>Tạo Đơn</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                \n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">swap_calls</i>\n                        <span>Người Nhận Hàng</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\n                            <a routerLink=\"/home/receive-list\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Nhận Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\n                            <a routerLink=\"/home/receiver\">\n                                <i class=\"material-icons\">swap_calls</i>\n                                <span>Giao Đơn</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                \n                \n                <li [class]=\"router.url == '/home/statistic'? 'active': ''\">\n                    <a routerLink=\"/home/statistic\">\n                        <i class=\"material-icons\">trending_up</i>\n                        <span>Thống Kê</span>\n                    </a>\n                </li>    \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n            \n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/client'? 'active': ''\">\n                    <a routerLink=\"/client\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Hóa Đơn</span>\n                    </a>\n                </li>   \n                <li [class]=\"router.url == '/client/waiting'? 'active': ''\">\n                    <a routerLink=\"/client/waiting\">\n                        <i class=\"material-icons\">history</i>\n                        <span>Chưa Duyệt</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('payment')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/payment'? 'active': ''\">\n                    <a routerLink=\"/payment\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Hóa Đơn</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('receiver-consumer')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/receiver-consumer'? 'active': ''\">\n                    <a routerLink=\"/receiver-consumer\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Các Đơn Nhận</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n        <!-- #Menu -->\n        <!-- Footer -->\n        <!-- <div class=\"legal\">\n            <div class=\"copyright\">\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\"></a>.\n            </div>\n            <div class=\"version\">\n                <b>Version: </b> 1.0.5\n            </div>\n        </div> -->\n        <!-- #Footer -->\n    </aside>\n    <!-- #END# Left Sidebar -->\n</section>\n</body>\n<router-outlet></router-outlet>"
+module.exports = "<body *ngIf=\"router.url.indexOf('home')!=-1 || router.url.indexOf('client')!=-1|| router.url.indexOf('payment')!=-1|| router.url.indexOf('receiver-consumer')!=-1\">\n<!-- Overlay For Sidebars -->\n<div class=\"overlay\"></div>\n<!-- #END# Overlay For Sidebars -->\n<div class=\"search-bar\" *ngIf=\"role\">\n    <div class=\"search-icon\">\n        <i class=\"material-icons\">settings</i>\n    </div>\n    <input (keyup.enter)=\"saveRate()\" type=\"number\" [(ngModel)]=\"exchangeValue\" placeholder=\"Nhập Tỉ Giá Hệ Thống\">\n    <div class=\"close-search\" (click)=\"closeRateInput()\">\n        <i class=\"material-icons\">close</i>\n    </div>\n</div>\n<!-- Top Bar -->\n<nav class=\"navbar\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse\" aria-expanded=\"false\"></a>\n            <a class=\"bars\"></a>\n            <a class=\"navbar-brand\" style=\"margin-left: 35px!important\"></a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li  *ngIf=\"role\" (click)=\"openRateInput()\"><a class=\"js-search\" data-close=\"true\"><i class=\"material-icons\" style=\"font-size: 14px\">trending_up</i><i>Tỉ Giá: {{realRate}}</i></a></li>\n                <!-- Notifications -->\n                 <li class=\"dropdown\">\n                    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"label-count\">7</span>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li class=\"header\">NOTIFICATIONS</li>\n                        <li class=\"body\">\n                            <ul class=\"menu\">\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-light-green\">\n                                            <i class=\"material-icons\">person_add</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>12 new members joined</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 14 mins ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-cyan\">\n                                            <i class=\"material-icons\">add_shopping_cart</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>4 sales made</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 22 mins ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-red\">\n                                            <i class=\"material-icons\">delete_forever</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>Nancy Doe</b> deleted account</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-orange\">\n                                            <i class=\"material-icons\">mode_edit</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>Nancy</b> changed name</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 2 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-blue-grey\">\n                                            <i class=\"material-icons\">comment</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>John</b> commented your post</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 4 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-light-green\">\n                                            <i class=\"material-icons\">cached</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4><b>John</b> updated status</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> 3 hours ago\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0);\">\n                                        <div class=\"icon-circle bg-purple\">\n                                            <i class=\"material-icons\">settings</i>\n                                        </div>\n                                        <div class=\"menu-info\">\n                                            <h4>Settings updated</h4>\n                                            <p>\n                                                <i class=\"material-icons\">access_time</i> Yesterday\n                                            </p>\n                                        </div>\n                                    </a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"footer\">\n                            <a href=\"javascript:void(0);\">View All Notifications</a>\n                        </li>\n                    </ul>\n                </li> \n                <li class=\"pull-right\"><a routerLink=\"/login\" class=\"js-right-sidebar\" data-close=\"true\"><i class=\"material-icons\">power_settings_new</i></a></li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<!-- #Top Bar -->\n<section>\n    <!-- Left Sidebar -->\n    <aside id=\"leftsidebar\" class=\"sidebar\">\n        <!-- User Info -->\n        <div class=\"user-info\">\n            <div class=\"image\">\n               <img src=\"assets/images/shop-name.jpg\" width=\"270\" height=\"135\" alt=\"User\" />\n            </div>\n        </div>\n        <!-- #User Info -->\n        <!-- Menu -->\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('home')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/home'? 'active': ''\">\n                    <a routerLink=\"/home\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Danh Sách Khách Hàng</span>\n                    </a>\n                </li>\n                <li [class]=\"router.url == '/home/bills'? 'active': ''\">\n                    <a routerLink=\"/home/bills\">\n                        <i class=\"material-icons\">layers</i>\n                        <span>Danh Sách Đặt Hàng</span>\n                    </a>\n                </li>\n                <!-- <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">view_list</i>\n                        <span>Khách Hàng</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/bills'? 'active': ''\">\n                            <a routerLink=\"/home/bills\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Đặt Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/bills/waiting-list-bill'? 'active': ''\">\n                            <a routerLink=\"/home/bills/waiting-list-bill\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Chờ Duyệt</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li> -->\n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">add_shopping_cart</i>\n                        <span>Người Thanh Toán</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/orders'? 'active': ''\">\n                            <a routerLink=\"/home/orders\">\n                                <i class=\"material-icons\">list</i>\n                                <span>Danh Sách Đơn Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/assignment'? 'active': ''\">\n                            <a routerLink=\"/home/assignment\">\n                               <i class=\"material-icons\">widgets</i>\n                                <span>Tạo Đơn</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                \n                <!-- <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">swap_calls</i>\n                        <span>Người Nhận Hàng</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/receive-list'? 'active': ''\">\n                            <a routerLink=\"/home/receive-list\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh Sách Nhận Hàng</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/receiver'? 'active': ''\">\n                            <a routerLink=\"/home/receiver\">\n                                <i class=\"material-icons\">swap_calls</i>\n                                <span>Giao Đơn</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li> -->\n\n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">swap_calls</i>\n                        <span>Ship Nội Thành</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/urban-list'? 'active': ''\">\n                            <a routerLink=\"/home/urban-list\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh sách ship nội thành</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/assign-urban'? 'active': ''\">\n                            <a routerLink=\"/home/assign-urban\">\n                                <i class=\"material-icons\">swap_calls</i>\n                                <span>Giao Ship</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n\n                <li>\n                    <a class=\"menu-toggle\">\n                        <i class=\"material-icons\">swap_calls</i>\n                        <span>Ship Tỉnh</span>\n                    </a>\n                    <ul class=\"ml-menu\">\n                        <li [class]=\"router.url == '/home/surburb-list'? 'active': ''\">\n                            <a routerLink=\"/home/surburb-list\">\n                                <i class=\"material-icons\">layers</i>\n                                <span>Danh sách ship tỉnh</span>\n                            </a>\n                        </li>\n                        <li [class]=\"router.url == '/home/assign-surburb'? 'active': ''\">\n                            <a routerLink=\"/home/assign-surburb\">\n                                <i class=\"material-icons\">swap_calls</i>\n                                <span>Giao Ship</span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                \n                \n                <li [class]=\"router.url == '/home/statistic'? 'active': ''\">\n                    <a routerLink=\"/home/statistic\">\n                        <i class=\"material-icons\">trending_up</i>\n                        <span>Thống Kê</span>\n                    </a>\n                </li>    \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n            \n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('client')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/client'? 'active': ''\">\n                    <a routerLink=\"/client\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Hóa Đơn</span>\n                    </a>\n                </li>   \n                <li [class]=\"router.url == '/client/waiting'? 'active': ''\">\n                    <a routerLink=\"/client/waiting\">\n                        <i class=\"material-icons\">history</i>\n                        <span>Chưa Duyệt</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('payment')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/payment'? 'active': ''\">\n                    <a routerLink=\"/payment\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Hóa Đơn</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"menu\" *ngIf=\"router.url.indexOf('receiver-consumer')!=-1\">\n            <ul class=\"list\">\n                <li class=\"header\">MAIN NAVIGATION</li>\n                <li [class]=\"router.url == '/receiver-consumer'? 'active': ''\">\n                    <a routerLink=\"/receiver-consumer\">\n                        <i class=\"material-icons\">home</i>\n                        <span>Các Đơn Nhận</span>\n                    </a>\n                </li>  \n                <li class=\"header\">LABELS</li>\n                <li [class]=\"router.url == '/login/change-password'? 'active': ''\">\n                    <a routerLink=\"/login/change-password\">\n                        <i class=\"material-icons\">security</i>\n                        <span>Change Password</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n        <!-- #Menu -->\n        <!-- Footer -->\n        <!-- <div class=\"legal\">\n            <div class=\"copyright\">\n                &copy; 2016 - 2017 <a href=\"javascript:void(0);\"></a>.\n            </div>\n            <div class=\"version\">\n                <b>Version: </b> 1.0.5\n            </div>\n        </div> -->\n        <!-- #Footer -->\n    </aside>\n    <!-- #END# Left Sidebar -->\n</section>\n</body>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -275,12 +275,18 @@ var AppRoutes = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__waiting_order_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__waiting_receive_service__ = __webpack_require__("../../../../../src/app/core/api/waiting-receive.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__exchange_service__ = __webpack_require__("../../../../../src/app/core/api/exchange.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__urban_ship_service__ = __webpack_require__("../../../../../src/app/core/api/urban-ship.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__surburb_ship_service__ = __webpack_require__("../../../../../src/app/core/api/surburb-ship.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__stoke_service__ = __webpack_require__("../../../../../src/app/core/api/stoke.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -324,7 +330,10 @@ var ApiModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__waiting_bill_detail_service__["a" /* WaitingBillDetailService */],
                 __WEBPACK_IMPORTED_MODULE_15__waiting_order_service__["a" /* WaitingOrderService */],
                 __WEBPACK_IMPORTED_MODULE_16__waiting_receive_service__["a" /* WaitingReceiveService */],
-                __WEBPACK_IMPORTED_MODULE_17__exchange_service__["a" /* ExchangeService */]
+                __WEBPACK_IMPORTED_MODULE_17__exchange_service__["a" /* ExchangeService */],
+                __WEBPACK_IMPORTED_MODULE_18__urban_ship_service__["a" /* UrbanShipService */],
+                __WEBPACK_IMPORTED_MODULE_19__surburb_ship_service__["a" /* SurburbShipService */],
+                __WEBPACK_IMPORTED_MODULE_20__stoke_service__["a" /* StokeService */]
             ]
         })
     ], ApiModule);
@@ -432,7 +441,7 @@ var BillService = /** @class */ (function () {
         return this.mainApi.delete(this.base_link + '/' + id);
     };
     BillService.prototype.search = function (params) {
-        return this.mainApi.get(this.base_link + '?', params);
+        return this.mainApi.get(this.base_link + '?include=true&', params);
     };
     BillService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
@@ -983,7 +992,7 @@ var OrderDetailService = /** @class */ (function () {
         return this.mainApi.post(this.base_uri, params);
     };
     OrderDetailService.prototype.update = function (params) {
-        return this.mainApi.put(this.base_uri + '?billId=' + params.billId + '&reservationId=' + params.reservationId, params);
+        return this.mainApi.put(this.base_uri + '?productId=' + params.productId + '&reservationId=' + params.reservationId, params);
     };
     OrderDetailService.prototype.delete = function (params) {
         return this.mainApi.delete(this.base_uri, params);
@@ -1159,6 +1168,174 @@ var ReceiveService = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
     ], ReceiveService);
     return ReceiveService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/api/stoke.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StokeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var StokeService = /** @class */ (function () {
+    function StokeService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+        this.base_link = 'stoke';
+    }
+    StokeService.prototype.list = function () {
+        return this.mainApi.get(this.base_link + '?include=true');
+    };
+    StokeService.prototype.update = function (params) {
+        return this.mainApi.patch(this.base_link + '/' + params.id, params);
+    };
+    StokeService.prototype.update_status = function (params, reservationId) {
+        return this.mainApi.patch(this.base_link + '?' + 'reservationId=' + reservationId, params);
+    };
+    StokeService.prototype.getById = function (id) {
+        return this.mainApi.get(this.base_link + '/' + id);
+    };
+    StokeService.prototype.create = function (params) {
+        return this.mainApi.post(this.base_link, params);
+    };
+    StokeService.prototype.delete = function (id) {
+        return this.mainApi.delete(this.base_link + '/' + id);
+    };
+    StokeService.prototype.search = function (params) {
+        return this.mainApi.get(this.base_link + '?include=true&', params);
+    };
+    StokeService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], StokeService);
+    return StokeService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/api/surburb-ship.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SurburbShipService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SurburbShipService = /** @class */ (function () {
+    function SurburbShipService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+        this.base_link = 'surburbship';
+    }
+    SurburbShipService.prototype.list = function () {
+        return this.mainApi.get(this.base_link + '?include=true');
+    };
+    SurburbShipService.prototype.update = function (params) {
+        return this.mainApi.patch(this.base_link + '/' + params.id, params);
+    };
+    SurburbShipService.prototype.getById = function (id) {
+        return this.mainApi.get(this.base_link + '/' + id);
+    };
+    SurburbShipService.prototype.create = function (params) {
+        return this.mainApi.post(this.base_link, params);
+    };
+    SurburbShipService.prototype.delete = function (id) {
+        return this.mainApi.delete(this.base_link + '/' + id);
+    };
+    SurburbShipService.prototype.search = function (params) {
+        return this.mainApi.get(this.base_link + '?include=true&', params);
+    };
+    SurburbShipService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], SurburbShipService);
+    return SurburbShipService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/api/urban-ship.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UrbanShipService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_main_api_service__ = __webpack_require__("../../../../../src/app/core/util/main-api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage_service__ = __webpack_require__("../../../../../src/app/core/util/storage.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UrbanShipService = /** @class */ (function () {
+    function UrbanShipService(mainApi, storage) {
+        this.mainApi = mainApi;
+        this.storage = storage;
+        this.base_link = 'urbanship';
+    }
+    UrbanShipService.prototype.list = function () {
+        return this.mainApi.get(this.base_link + '?include=true');
+    };
+    UrbanShipService.prototype.update = function (params) {
+        return this.mainApi.patch(this.base_link + '/' + params.id, params);
+    };
+    UrbanShipService.prototype.getById = function (id) {
+        return this.mainApi.get(this.base_link + '/' + id);
+    };
+    UrbanShipService.prototype.create = function (params) {
+        return this.mainApi.post(this.base_link, params);
+    };
+    UrbanShipService.prototype.delete = function (id) {
+        return this.mainApi.delete(this.base_link + '/' + id);
+    };
+    UrbanShipService.prototype.search = function (params) {
+        return this.mainApi.get(this.base_link + '?include=true&', params);
+    };
+    UrbanShipService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["D" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__util_main_api_service__["a" /* MainApiService */], __WEBPACK_IMPORTED_MODULE_2__util_storage_service__["a" /* StorageService */]])
+    ], UrbanShipService);
+    return UrbanShipService;
 }());
 
 
@@ -1477,9 +1654,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 var ConfigService = /** @class */ (function () {
+    // private urlBase = 'https://adidas-backend.herokuapp.com/'
     function ConfigService() {
-        // private urlBase = 'http://0.0.0.0:3030/'
-        this.urlBase = 'https://adidas-backend.herokuapp.com/';
+        this.urlBase = 'http://0.0.0.0:3030/';
     }
     ConfigService.prototype.getBaseURL = function () {
         return this.urlBase;
@@ -2278,12 +2455,16 @@ var ReceiverWeightComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/payment-request/payment-request.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__client_receiver_request_receiver_request_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/receiver-request/receiver-request.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__client_receiver_weight_receiver_weight_component__ = __webpack_require__("../../../../../src/app/core/dialog/client/receiver-weight/receiver-weight.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ship_urban_urban_component__ = __webpack_require__("../../../../../src/app/core/dialog/ship/urban/urban.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ship_surburb_surburb_component__ = __webpack_require__("../../../../../src/app/core/dialog/ship/surburb/surburb.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -2345,7 +2526,9 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_17__client_book_prod_detail_prod_detail_component__["a" /* ProdDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__["a" /* PaymentRequestComponent */],
                 __WEBPACK_IMPORTED_MODULE_20__client_receiver_request_receiver_request_component__["a" /* ReceiverRequestComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__client_receiver_weight_receiver_weight_component__["a" /* ReceiverWeightComponent */]
+                __WEBPACK_IMPORTED_MODULE_21__client_receiver_weight_receiver_weight_component__["a" /* ReceiverWeightComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__ship_urban_urban_component__["a" /* UrbanComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__ship_surburb_surburb_component__["a" /* SurburbComponent */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__popup_error_error_component__["a" /* ErrorComponent */],
@@ -2358,7 +2541,9 @@ var DialogModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_16__client_book_book_component__["a" /* BookComponent */],
                 __WEBPACK_IMPORTED_MODULE_19__client_payment_request_payment_request_component__["a" /* PaymentRequestComponent */],
                 __WEBPACK_IMPORTED_MODULE_20__client_receiver_request_receiver_request_component__["a" /* ReceiverRequestComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__client_receiver_weight_receiver_weight_component__["a" /* ReceiverWeightComponent */]
+                __WEBPACK_IMPORTED_MODULE_21__client_receiver_weight_receiver_weight_component__["a" /* ReceiverWeightComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__ship_urban_urban_component__["a" /* UrbanComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__ship_surburb_surburb_component__["a" /* SurburbComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__dialog_service__["a" /* DialogService */],
@@ -2385,6 +2570,8 @@ var DialogModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_upload_upload_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/upload/upload.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__product_order_order_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/order/order.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__product_receive_detail_receive_detail_component__ = __webpack_require__("../../../../../src/app/core/dialog/product/receive-detail/receive-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ship_urban_urban_component__ = __webpack_require__("../../../../../src/app/core/dialog/ship/urban/urban.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ship_surburb_surburb_component__ = __webpack_require__("../../../../../src/app/core/dialog/ship/surburb/surburb.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2399,12 +2586,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var DialogService = /** @class */ (function () {
     function DialogService(dialog) {
         this.dialog = dialog;
     }
     DialogService.prototype.openBill = function (params) {
         return this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__product_upload_upload_component__["a" /* UploadComponent */], {
+            width: "80%",
+            height: '90%',
+            data: params
+        }).afterClosed();
+    };
+    DialogService.prototype.openUrbanShip = function (params) {
+        return this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__ship_urban_urban_component__["a" /* UrbanComponent */], {
+            // width: "80%",
+            // height:'90%',
+            data: params
+        }).afterClosed();
+    };
+    DialogService.prototype.openSurburbShip = function (params) {
+        return this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__ship_surburb_surburb_component__["a" /* SurburbComponent */], {
             width: "80%",
             height: '90%',
             data: params
@@ -2696,7 +2899,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n    min-width: 340px;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.form-group {\n    margin-bottom: 0px;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n#sortable1, #sortable2, #sortable3, #sortable4 {\n    \n    background-color: #c2e7ea;\n    width: 100%;\n    min-height: 20px;\n    list-style-type: none;\n    margin: 0;\n    padding: 0px\n  }\n\n#sortable1 li, #sortable2 li,  #sortable3 li, #sortable4 li{\n    margin: 0 5px 5px 5px;\n    padding: 5px;\n    font-size: 1.2em;\n  }\n\ndiv.select-person-header {\n  background-color: deepskyblue;\n  padding-top: 5px;\n  width: 100%;\n  border: 1px solid #c2e7ea;\n  color: white;\n  text-align: center;\n  padding: 5px;\n  font-size: 1.2em;\n  list-style-type: none;\n}\n\n.mat-form-field {\n    display: block !important;\n    color: white !important;\n}\n\n.mat-select-value {\n  color: white !important; \n}\n\n.mat-raised-button {\n  min-width: 0px !important; \n}\n\n.ui-selectable-helper {\n    border: 0px dotted black !important;\n}\n\n.form-group {\n    margin-bottom: 0px;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n.mat-form-field-infix {\n    border-top: 0;\n}", ""]);
+exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n.action {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex\n}\n\n#upload tr td{\n    padding: 0;\n}\n\n#upload tr td input{\n    padding: 0;\n}\n\n#upload div table{\n    border: 0;\n}\n\n#upload-form form div .form-group {\n    margin-bottom: 8px;\n}", ""]);
 
 // exports
 
@@ -2709,7 +2912,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/order/order.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n    <div class=\"logo\">\n      <a href=\"javascript:void(0);\"><b>Đơn Hàng</b></a>\n       <small>Mã Đơn Hàng: {{orderData.id}}</small> \n    </div>\n    <div class=\"card\" style=\"box-shadow: unset\">\n      <div class=\"body\">\n        <form id=\"sign_up\" method=\"POST\">\n          <div class=\"row\">\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px;\">List Đặt Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th (click)=\"selectAll()\">Tên</th>\n                                    <th>Mã SP | SL</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of listBills; let i = index\" [ngStyle]=\"{'background-color': item.madh? i%2? '#ced8c0': '#e1efce': ''}\">\n                                    <td *ngIf=\"item.user\" (click)=\"selectItem(item)\">{{item.user.name}}</td>\n                                    <td *ngIf=\"item.billdetail\">\n                                      <div *ngFor=\"let prod of item.billdetail\">{{prod.productId}} | {{prod.quantity}}</div>\n                                    </td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-md-4  col-sm-6 col-lg-4\" style=\"margin-bottom: 20px\">\n              <div class=\"select-person-header\" style=\"min-width: 202px\">Đơn Hàng </div>\n              <mat-card style=\"padding: 24px 0px; min-width: 240px\">\n                <mat-card-content>\n                  <div class=\"container-fluid\">\n                    <div class=\"row clearfix\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"card\">\n                          <div class=\"body\" style=\"padding: 0\">\n                            <div class=\"table-responsive\">\n                              <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\" style=\"margin-bottom: 0\">\n                                <thead>\n                                  <tr>\n                                    <th>Mã SP</th>\n                                    <th>Số Lượng</th>\n                                    <th>Giữ Hộp</th>\n                                  </tr>\n                                </thead>\n                                <tbody>\n                                  <tr *ngFor=\"let item of orderData.reservationdetail; let i = index\">\n                                    <td>{{item.productId}}</td>\n                                    <td>{{item.quantity}}</td>\n                                    <td>{{item.keepBox}}</td>\n                                  </tr>\n                                </tbody>\n                              </table>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n\n                    </div>\n                    <!-- #END# Basic Examples -->\n                  </div>\n                </mat-card-content>\n              </mat-card>\n            </div>\n\n            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-body\">\n                  <form name=\"myform\">\n                    <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                      <div class=\"form-group\">\n                        <label for=\"ship\">Tiền Yên *</label>\n                        <input [(ngModel)]=\"orderData.yenAmount\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Đặt Cọc *</label>\n                        <input [(ngModel)]=\"orderData.deposit\" name=\"thanhtien7\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tài Khoản *</label>\n                        <input [(ngModel)]=\"orderData.account\" name=\"thanhtien6\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Thương Hiệu *</label>\n                        <input [(ngModel)]=\"orderData.brand\" name=\"thanhtien5\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Tỉ Giá *</label>\n                        <input [(ngModel)]=\"orderData.exchangeRate\" name=\"thanhtien4\" class=\"form-control\" min=\"1\" type=\"text\">\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"lastname\">Trạng Thái *</label>\n                        <div>\n                          <select data-validation=\"required\" name=\"status\" [disabled]=\"orderData.status>4\" [(ngModel)]=\"orderData.status\" class=\"form-control\">\n                            <option value=\"3\">Chưa Thanh Toán</option>\n                            <option value=\"4\">Đã Thanh Toán</option>\n                            <option disabled value=\"5\">Chưa Về Kho Nhật</option>\n                            <option disabled value=\"6\">Về Kho Nhật</option>\n                            <option disabled value=\"7\">Về Kho Việt Nam</option>\n                            <option disabled value=\"8\">Hoàn Tất</option>\n                          </select>\n                        </div>\n                      </div>\n\n                      <div class=\"form-group\">\n                        <label for=\"age\">Ghi Chú *</label>\n                        <textarea [(ngModel)]=\"orderData.note\" name=\"thanhtien2\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                        <span id=\"error_age\" class=\"text-danger\"></span>\n                      </div>\n                    </div>\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"display: inline-block; width: 100%\">\n            <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"submit()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n            <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</body>"
+module.exports = "<section style=\"padding: 0\">\n  <div class=\"container-fluid\">\n      <div class=\"row clearfix\">\n          <div style=\"text-align: center;\" class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n              <div class=\"card\" style=\"margin-bottom: 20px;\">\n                  <div class=\"header\">\n                      <h2>\n                          Danh Sách Sản Phẩm\n                      </h2>\n                  </div>\n                  <div class=\"body\" id='upload'>\n                      <div class=\"table-responsive\">\n                          <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                              <thead>\n                                  <tr>\n                                      <th>Mã sp</th>\n                                      <th>Số lượng</th>\n                                      <th>Giữ hộp</th>\n                                      <th>Giá Web</th>\n                                      <th>code</th>\n                                      <th>phí web</th>\n                                      <th>giá sau code</th>\n                                  </tr>\n                              </thead>\n                              <tbody>\n                                  <tr *ngFor='let item of orderData.reservationdetail'>\n                                      <td><a [href]=\"item.link\" target=\"_blank\"><input [(ngModel)]='item.productId' id=\"webFee\" disabled='true' name=\"webFee\" class=\"form-control\" min=\"1\"></a></td>\n                                      <td style=\"text-align: center;\">{{item.quantity}}</td>\n                                      <td style=\"text-align: center;\">{{item.keepBox}}</td>\n                                      <td><input [(ngModel)]='item.price' id=\"code\" name=\"code\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                      <td><input [(ngModel)]='item.code' id=\"code\" name=\"code\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                      <td><input [(ngModel)]='item.webFee' id=\"webFee\" name=\"webFee\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                      <td style=\"text-align: center;\">{{item.code * item.price +item.webFee | number:\"1.0-2\"}}</td>\n                                  </tr>\n                              </tbody>\n                              \n                          </table>\n                      </div>\n                  </div>\n              </div>\n              <button class=\"btn btn-primary waves-effect\" (click)=\"submit()\">submit</button>\n              <button class=\"btn btn-danger waves-effect\" (click)='dialogRef.close()'>cancel</button>\n              <button class=\"btn btn-danger waves-effect\" (click)='deleteReservation()'>Xóa đơn hàng</button>\n          </div>\n          <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12\">\n              <div class=\"panel-primary\">\n                  <div class=\"panel-body\" id='upload-form'>\n                      <form name=\"myform\">\n                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                          \n                          <div class=\"form-group\">\n                            <label for=\"age\">Thương Hiệu *</label>\n                            <label class=\"form-control\">{{orderData.brand}}</label>\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <div class=\"form-group\">\n                            <label for=\"reservationName\">Mã Đơn Hàng *</label>\n                            <input [(ngModel)]=\"orderData.reservationName\" name=\"reservationName\" class=\"form-control\" min=\"1\" type=\"text\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <div class=\"form-group\">\n                            <label for=\"orderEmail\">Email Đặt Hàng *</label>\n                            <input [(ngModel)]=\"orderData.orderEmail\" name=\"orderEmail\" class=\"form-control\" min=\"1\" type=\"text\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <div class=\"form-group\">\n                            <label for=\"wayBillCode\">Mã Vận Đơn *</label>\n                            <input [(ngModel)]=\"orderData.wayBillCode\" name=\"wayBillCode\" class=\"form-control\" min=\"1\" type=\"text\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <div class=\"form-group\">\n                            <label for=\"weight\">Khối lượng (kg)</label>\n                            <input [(ngModel)]=\"orderData.weight\" name=\"weight\" class=\"form-control\" min=\"1\" type=\"number\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <div class=\"form-group\">\n                            <label for=\"unitPrice\">Đơn giá (VND)</label>\n                            <input [ngModel]=\"orderData.unitPrice| number:'1.0-2'\" (ngModelChange)=\"orderData.unitPrice=getNumber($event)\" name=\"unitPrice\" class=\"form-control\" min=\"1\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n\n                          <!-- <div class=\"form-group\">\n                            <label for=\"ship\">Tiền Yên *</label>\n                            <input [(ngModel)]=\"orderData.yenAmount\" name=\"ship\" class=\"form-control\" min=\"1\" type=\"text\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div> -->\n\n                          <div class=\"form-group\">\n                            <label for=\"age\">Tỉ Giá *</label>\n                            <input [(ngModel)]=\"orderData.exchangeRate\" name=\"exchangeRate\" class=\"form-control\" min=\"1\" type=\"text\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n    \n                          <div class=\"form-group\">\n                            <label for=\"age\">Đã Thanh Toán *</label>\n                            <input [ngModel]=\"orderData.deposit| number: '1.0-2'\" (ngModelChange)=\"orderData.deposit=getNumber($event)\" name=\"thanhtien7\" class=\"form-control\" min=\"1\">\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n    \n                          <div class=\"form-group\">\n                            <label for=\"lastname\">Trạng Thái *</label>\n                            <div>\n                              <select data-validation=\"required\" name=\"status\" [disabled]=\"orderData.status>5\" [(ngModel)]=\"orderData.status\" class=\"form-control\">\n                                <option value=\"3\">Chưa Thanh Toán</option>\n                                <option value=\"4\">Đã Thanh Toán</option>\n                                <option value=\"5\">Về Việt Nam</option>\n                                <!-- <option disabled value=\"6\">Về Kho Nhật</option>\n                                <option disabled value=\"7\">Về Kho Việt Nam</option> -->\n                                <!-- <option value=\"6\">Hoàn Tất</option> -->\n                              </select>\n                            </div>\n                          </div>\n    \n                          <div class=\"form-group\">\n                            <label for=\"age\">Ghi Chú *</label>\n                            <textarea [(ngModel)]=\"orderData.note\" name=\"thanhtien2\" class=\"form-control\" min=\"3\" type=\"text\"></textarea>\n                            <span id=\"error_age\" class=\"text-danger\"></span>\n                          </div>\n                        </div>\n                      </form>\n                  </div>\n              </div>\n          </div>\n      </div>\n      <!-- #END# Basic Examples -->\n  </div>\n</section>"
 
 /***/ }),
 
@@ -2729,6 +2932,7 @@ module.exports = "<body class=\"signup-page\">\n  <div class=\"signup-box\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dialog_popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_main_service__ = __webpack_require__("../../../../../src/app/core/api/main.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_stoke_service__ = __webpack_require__("../../../../../src/app/core/api/stoke.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2740,41 +2944,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
 };
 
 
@@ -2788,8 +2957,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var OrderComponent = /** @class */ (function () {
-    function OrderComponent(billService, orderService, orderDetailService, dialogRef, id, loadingService, popupService, formatService, mainService) {
+    function OrderComponent(billService, orderService, orderDetailService, dialogRef, id, loadingService, popupService, formatService, mainService, stokeService) {
         this.billService = billService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
@@ -2799,26 +2969,20 @@ var OrderComponent = /** @class */ (function () {
         this.popupService = popupService;
         this.formatService = formatService;
         this.mainService = mainService;
-        this.listBills = [];
-        this.result = [];
+        this.stokeService = stokeService;
         this.orderData = {};
-        this.counter = 0;
+        this.billList = [];
+        this.orginalStatus = 0;
+        this.stokeList = [];
     }
     OrderComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log("init order data: ", this.id);
         $('app-order').parent().parent().attr('id', 'app-order');
         setTimeout(function () { return _this.loadingService.show('app-order'); }, 0);
-        this.getBills();
         this.getOrder();
-    };
-    OrderComponent.prototype.getBills = function () {
-        var _this = this;
-        this.billService.search({ reservationId: this.id, include: true }).subscribe(function (data) {
-            _this.listBills = data.data;
-            _this.loadingService.hide('app-order');
-            console.log("bill list data: ", data);
-        });
+        this.getBillList();
+        this.getStokeList();
     };
     OrderComponent.prototype.getOrder = function () {
         var _this = this;
@@ -2826,6 +2990,7 @@ var OrderComponent = /** @class */ (function () {
             _this.orderData = data.data[0];
             delete _this.orderData.receiverId;
             delete _this.orderData.finishedDate;
+            _this.orginalStatus = _this.orderData.status;
             console.log("listorder data: ", _this.orderData);
             setTimeout(function () {
                 _this.loadingService.hide('app-order');
@@ -2834,200 +2999,153 @@ var OrderComponent = /** @class */ (function () {
             // delete this.orderData.keepBox;
         });
     };
-    OrderComponent.prototype.selectItem = function (item) {
+    OrderComponent.prototype.getBillList = function () {
         var _this = this;
-        if (this.orderData.status != 3) {
-            this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Đơn Đặt Hàng");
-            return;
-        }
-        console.log("selectItem");
-        item.reservationId = item.reservationId ? null : this.id;
-        item.billdetail.forEach(function (elem) {
-            var flag = true;
-            _this.orderData.reservationdetail.forEach(function (element) {
-                if (element.productId == elem.productId) {
-                    flag = false;
-                    if (item.reservationId) {
-                        item.status = 3;
-                        element.quantity += elem.quantity;
-                        if (elem.keepBox) {
-                            element.keepBox += elem.quantity;
-                        }
-                    }
-                    else {
-                        item.status = 2;
-                        if (element.quantity == elem.quantity) {
-                            _this.orderData.reservationdetail.splice(_this.orderData.reservationdetail.indexOf(element), 1);
-                        }
-                        else {
-                            element.quantity -= elem.quantity;
-                            if (elem.keepBox) {
-                                element.keepBox -= elem.quantity;
-                            }
-                        }
-                    }
-                    return;
-                }
-            });
-            if (flag) {
-                _this.orderData.reservationdetail.push({
-                    productId: elem.productId,
-                    quantity: elem.quantity,
-                    keepBox: elem.keepBox ? elem.quantity : 0,
-                    reservationId: _this.orderData.reservationId,
-                    userId: _this.orderData.userId
-                });
-            }
+        this.billService.search({ reservationId: this.id }).subscribe(function (data) {
+            _this.billList = data.data;
+        }, function (error) {
+            console.log("cannot get bill list!", error);
         });
     };
-    OrderComponent.prototype.checkAndCountNum = function (billDetail) {
-        var flag = true;
-        this.orderData.reservationdetail.forEach(function (element) {
-            if (element.productId == billDetail.productId) {
-                flag = false;
-                element.flag = true;
-            }
-        });
-        if (flag) {
-            this.orderData.reservationdetail.push({
-                productId: billDetail.productId,
-                quantity: 0,
-                keepBox: 0
-            });
-            this.checkAndCountNum(billDetail);
-        }
-    };
-    OrderComponent.prototype.selectAll = function () {
+    OrderComponent.prototype.getStokeList = function () {
         var _this = this;
-        if (this.orderData.status != 3) {
-            this.popupService.showWanning("Hóa Đơn Này Đã Được Thanh Toán Nên Không Thể Gỡ Bỏ Khỏi Đơn Hàng!");
-            return;
-        }
-        var flag = true;
-        this.listBills.forEach(function (element) {
-            if (!element.reservationId) {
-                flag = false;
-                return;
-            }
-        });
-        this.listBills.forEach(function (element) {
-            if (flag) {
-                _this.selectItem(element);
-            }
-            else {
-                if (!element.reservationId) {
-                    _this.selectItem(element);
-                }
-            }
+        this.stokeService.search({ reservationId: this.id }).subscribe(function (data) {
+            _this.stokeList = data.data;
+        }, function (error) {
+            console.log("cannot get stoke list");
         });
     };
-    OrderComponent.prototype.returnArray = function () {
-        return this.listBills.filter(function (element) {
-            return element.reservationId ? false : true;
-        });
-    };
-    OrderComponent.prototype.promisList = function () {
-        var _this = this;
-        var a = [];
-        this.returnArray().forEach(function (element) {
-            a.push(_this.billService.update(element));
-        });
-        console.log("a: ", a);
-        return a;
+    OrderComponent.prototype.getNumber = function (value) {
+        value = value.replace(/,/g, '');
+        return Number(value);
     };
     OrderComponent.prototype.submit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var flag, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.loadingService.show('app-order');
-                        flag = true;
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.promisList()).toPromise().then(function (data) {
-                                _this.counter++;
-                                _this.returnArray().forEach(function (element) {
-                                    element.billdetail.forEach(function (elem) {
-                                        _this.checkAndCountNum(elem);
-                                    });
-                                });
-                            })];
-                    case 1:
-                        result = _a.sent();
-                        this.checkOrder();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    OrderComponent.prototype.updateProductList = function () {
-        return this.orderData.reservationdetail.filter(function (element) {
-            return element.flag ? true : false;
-        });
+        this.loadingService.show('app-order');
+        this.checkOrder();
     };
     OrderComponent.prototype.obserProductList = function () {
         var _this = this;
         var a = [];
-        this.updateProductList().forEach(function (element) {
-            if (element.quantity == 0) {
-                a.push(_this.orderDetailService.delete({ reservationId: _this.id, productId: element.productId }));
-            }
-            else {
-                element.reservationId = _this.id;
-                a.push(_this.orderDetailService.update(element));
-            }
+        this.orderData.reservationdetail.forEach(function (element) {
+            a.push(_this.orderDetailService.update(element));
         });
         return a;
     };
+    OrderComponent.prototype.deleteReservation = function () {
+        var _this = this;
+        if (this.orginalStatus >= 4) {
+            this.popupService.showError("Đơn hàng đã thanh toán xong, không thể xóa");
+            return;
+        }
+        this.loadingService.show('app-order');
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], [
+            this.orderDetailService.delete({ reservationId: this.orderData.id }),
+            this.billService.update_status({ status: 2, reservationId: null }, this.orderData.id)
+        ]).toPromise().then(function (result) {
+            console.log('delete parallel: ', result);
+            _this.orderService.delete(_this.orderData.id).subscribe(function (data) {
+                console.log("delete ok: ", data);
+                _this.loadingService.hide('app-order');
+                _this.dialogRef.close(2);
+            });
+        }, function (error) {
+            console.log("failed to delete: ", error);
+            _this.loadingService.hide('app-order');
+            _this.popupService.showError("Không thể xóa đơn đặt hàng");
+        });
+    };
     OrderComponent.prototype.checkOrder = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var flag;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.obserProductList()).toPromise().then(function (data) {
-                            console.log("data: checkORder: ", data);
-                        }).catch(function (error) {
-                            console.log("catch: ", error);
-                        })];
-                    case 1:
-                        _a.sent();
-                        flag = true;
-                        this.orderData.reservationdetail.forEach(function (element) {
-                            if (element.quantity) {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].forkJoin.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], this.obserProductList()).toPromise().then(function (data) {
+            console.log("data: checkORder: ", data);
+        }).catch(function (error) {
+            console.log("catch: ", error);
+        });
+        this.orderService.update(this.orderData).subscribe(function (orderData) {
+            console.log("update order: ", orderData);
+            _this.loadingService.hide('app-order');
+            _this.popupService.showSuccess().subscribe(function (data) {
+                _this.dialogRef.close(orderData.status);
+            });
+            if (_this.orginalStatus != orderData.status) {
+                _this.billService.update_status({ status: orderData.status }, orderData.id).subscribe(function (result) {
+                    console.log("update status ok: ", result);
+                    _this.updateStatusBillForAdmin();
+                }, function (error) {
+                    console.log("update status failed!", error);
+                });
+            }
+        }, function (error) {
+            _this.loadingService.hide('app-order');
+            _this.popupService.showError("Có lỗi xảy ra! Xin thử lại");
+        });
+    };
+    OrderComponent.prototype.updateStatusBillForAdmin = function () {
+        var _this = this;
+        var status = this.orderData.status == 5 ? 6 : this.orderData.status;
+        this.billList.forEach(function (element) {
+            if (element.user.role == 'admin') {
+                element.status = status;
+                console.log("status admin: ", status);
+                _this.updateForAdmin(element);
+                _this.billService.update(element).subscribe(function (data) {
+                    console.log("update for admin success!", data);
+                });
+            }
+        });
+    };
+    OrderComponent.prototype.updateForAdmin = function (adminBill) {
+        var _this = this;
+        if (this.orderData.status != this.orginalStatus && (this.orderData.status == 5 || this.orginalStatus == 5)) {
+            this.stokeList.forEach(function (item) {
+                adminBill.billdetail.forEach(function (element) {
+                    if (item.productId == element.productId) {
+                        var flag = true; // will update
+                        if (_this.orginalStatus == 5) {
+                            item.quantity -= element.quantity;
+                            if (item.quantity <= 0) {
                                 flag = false;
-                                return;
-                            }
-                        });
-                        if (flag) {
-                            this.orderService.delete(this.id).subscribe(function (data) {
-                                console.log("delete order: ", data);
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showSuccess().subscribe(function (data) {
-                                    console.log("success: ", data);
-                                    _this.dialogRef.close(2);
+                                _this.stokeService.delete(item.id).subscribe(function () {
+                                    console.log("stoke item deleted!");
+                                }, function (error) {
+                                    console.log("error delete stoke item: ", error);
                                 });
-                            }, function (error) {
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showError("Không thể xóa");
-                            });
+                            }
                         }
                         else {
-                            this.orderService.update(this.orderData).subscribe(function (orderData) {
-                                console.log("update order: ", orderData);
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showSuccess().subscribe(function (data) {
-                                    _this.dialogRef.close(orderData.status);
+                            item.quantity += element.quantity;
+                            if (item.quantity == element.quantity) {
+                                //create
+                                flag = false;
+                                item.stokePrice = _this.formatService.getStokePrice(item, _this.orderData.exchangeRate);
+                                item.orderEmail = _this.orderData.orderEmail;
+                                _this.stokeService.create(item).subscribe(function (data) {
+                                    console.log("create ok", data);
+                                }, function (error) {
+                                    console.log("created failed: ", error);
                                 });
+                            }
+                        }
+                        if (flag) {
+                            _this.stokeService.update(item).subscribe(function (data) {
+                                console.log("update successful!");
                             }, function (error) {
-                                _this.loadingService.hide('app-order');
-                                _this.popupService.showError("Có lỗi xảy ra! Xin thử lại");
+                                console.log("update error");
                             });
                         }
-                        return [2 /*return*/];
-                }
+                    }
+                });
             });
-        });
+            // if(!this.stokeList.length) {
+            //   item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
+            //   item.orderEmail = this.orderData.orderEmail
+            //   this.stokeService.create(item).subscribe(data => {
+            //     console.log("create ok", data)
+            //   }, error => {
+            //     console.log("created failed: ", error)
+            //   })
+            // }
+        }
     };
     OrderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -3042,7 +3160,8 @@ var OrderComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_7__util_loading_service__["a" /* LoadingService */],
             __WEBPACK_IMPORTED_MODULE_8__dialog_popup_popup_service__["a" /* PopupService */],
             __WEBPACK_IMPORTED_MODULE_9__util_format_service__["a" /* FormatService */],
-            __WEBPACK_IMPORTED_MODULE_10__api_main_service__["a" /* MainService */]])
+            __WEBPACK_IMPORTED_MODULE_10__api_main_service__["a" /* MainService */],
+            __WEBPACK_IMPORTED_MODULE_11__api_stoke_service__["a" /* StokeService */]])
     ], OrderComponent);
     return OrderComponent;
 }());
@@ -3302,7 +3421,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/upload/child-product/child-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n  <li *ngIf=\"product.billId\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.billId\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.productId? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"productId\" name=\"productId\" class=\"form-control\" [disabled]=\"product.billId\" [(ngModel)]=\"product.productId\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"quantity\" class=\"form-control\" [disabled]=\"reservationId\" [(ngModel)]=\"product.quantity\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a [ngClass]=\"reservationId?'disabled':''\" class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.keepBox? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"price\" class=\"form-control\" [(ngModel)]=\"product.price\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"weight\" class=\"form-control\" [(ngModel)]=\"product.weight\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <!-- <div class=\"form-group\">\n          <label for=\"age\">Thành Tiền *</label>\n          <label name=\"thanhtien\" class=\"form-control\" min=\"1\"> </label>\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\" style=\"clear: both\">\n          <label for=\"lastname\">Loại Sản Phẩm *</label>\n          <div>\n            <select data-validation=\"required\" class=\"form-control\">\n                    <option>1</option>\n                    <option>2</option>\n                    <option>3</option>\n                    <option>4</option>\n                    <option>5</option>\n                  </select>\n          </div>\n          <span id=\"error_lastname\" class=\"text-danger\"></span>\n        </div> -->\n        <!-- <div class=\"form-group\">\n          <label for=\"disc\">Mô Tả</label>\n          <textarea class=\"form-control\" rows=\"3\"></textarea>\n        </div> -->\n      </div>\n    </form>\n  </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\"> <i class=\"material-icons\">add</i> </a>\n</div>"
+module.exports = "<!-- <div class=\"panel panel-primary\">\n  <li *ngIf=\"product.billId\" class=\"dropdown\" style=\"list-style-type: none;\">\n    <a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n    <ul class=\"dropdown-menu pull-right\" style=\"border-radius: 10px; min-width: 0px; padding: 5px;\">\n      <li>\n        <button (click)=\"deleteProduct()\" class=\"btn btn-primary\" style=\"border-radius: 10px;\">confirm</button><button _ngcontent-c6=\"\" style=\"margin-left: 10px;border-radius: 10px;\" class=\"btn btn-danger\">cancel</button>\n      </li>\n    </ul>\n  </li>\n  <a id=\"cancel\"*ngIf=\"!product.billId\" (click)=\"deleteProduct()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" class=\"input-group-addon\" id=\"cancel\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                                    <i class=\"material-icons\">cancel</i>\n                                </a>\n  <div class=\"panel-body\">\n    <form name=\"myform\">\n      <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n        <div class=\"form-group\">\n          <label for=\"age\" [ngStyle]=\"{'color': product.productId? '':'red'}\">Mã Sản Phẩm *</label>\n          <input id=\"productId\" name=\"productId\" class=\"form-control\" [disabled]=\"product.billId\" [(ngModel)]=\"product.productId\" type=\"text\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n                <label for=\"age\">Số Lượng *</label>\n                <input id=\"age\" name=\"quantity\" class=\"form-control\" [disabled]=\"reservationId\" [(ngModel)]=\"product.quantity\" type=\"number\" min=\"1\">\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n              <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                <label for=\"age\">Hộp *</label>\n                <a [ngClass]=\"reservationId?'disabled':''\" class=\"input-group-addon\" style=\"padding: 0; border: 0\"><i style=\"font-size: 35px\" [ngStyle]=\"{'color': product.keepBox? '':'slategrey'}\" (click)=\"toggleHop()\" class=\"material-icons\">check_circle</i></a>\n                <span id=\"error_age\" class=\"text-danger\"></span>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Giá Web *</label>\n          <input id=\"age\" name=\"price\" class=\"form-control\" [(ngModel)]=\"product.price\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"age\">Khối Lượng *</label>\n          <input id=\"age\" name=\"weight\" class=\"form-control\" [(ngModel)]=\"product.weight\" type=\"number\" min=\"1\">\n          <span id=\"error_age\" class=\"text-danger\"></span>\n        </div>\n      </div>\n    </form>\n  </div>\n  <a (click)=\"duplicateProduct()\" class=\"input-group-addon\" id=\"addMore\"> <i class=\"material-icons\">add</i> </a>\n</div> -->\n<td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td><input id=\"age\" name=\"brand\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n  <td>\n      <input class=\"filled-in chk-col-pink\" name=\"keepBox\" [checked]='true' type=\"checkbox\">\n      <label style=\"padding-left: 0; height: 13px; left: 9px;\" for=\"keepBox\"></label>\n  </td>\n  <td class=\"action\"><button style=\"margin-right: 10px\">chép</button> <button>xóa</button></td>"
 
 /***/ }),
 
@@ -3390,7 +3509,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}", ""]);
+exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n.action {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex\n}\n\n#upload tr td{\n    padding: 0;\n}\n\n#upload tr td input{\n    padding: 0;\n}\n\n#upload div table{\n    border: 0;\n}\n\n#upload-form form div .form-group {\n    margin-bottom: 8px;\n}", ""]);
 
 // exports
 
@@ -3403,7 +3522,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/product/upload/upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Đặt Hàng</b></a>\n            <!-- <small>Thông Tin Chi Tiết</small> -->\n        </div>\n        <div class=\"card\" style=\"box-shadow: unset\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\" *ngIf=\"billDetailList.length == 1\">\n                            <app-child-product [product]=\"billDetailList[0]\" [reservationId]=\"data.bill && data.bill.reservationId\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n                    </div>\n\n                    <div class=\"row\" *ngIf=\"billDetailList.length > 1\">\n                        <div class=\"col-md-6 col-lg-6 col-sm-6\" *ngFor=\"let item of billDetailList\">\n                            <app-child-product [product]=\"item\" [reservationId]=\"data.bill && data.bill.reservationId\" (add)=\"addProduct($event)\" (delete)=\"deleteProduct($event)\"></app-child-product>\n                        </div>\n\n                    </div>\n\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div class=\"panel panel-primary\">\n                                <div class=\"panel-body\">\n                                    <form name=\"myform\">\n                                        <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Thương Hiệu *</label>\n                                                <input id=\"age\" name=\"brand\" class=\"form-control\" [ngStyle]=\"{'color': data.bill.brand? '':'red'}\" [(ngModel)]=\"data.bill.brand\" type=\"text\" min=\"1\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"ship\">Tỉ Giá (Tỉ Giá Hệ Thống Lúc Tạo Đơn + Tỉ Giá KH)</label>\n                                                <span class=\"form-control\">{{exchangeValue}}</span>\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"age\">Triết Khấu *</label>\n                                                <input id=\"age\" name=\"tradeDiscount\" class=\"form-control\" [(ngModel)]=\"data.bill.tradeDiscount\" type=\"number\" min=\"0\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"shipFee\">Phí Ship *</label>\n                                                <input [(ngModel)]=\"data.bill.shipFee\" name=\"shipFee\" class=\"form-control\" min=\"1\" type=\"number\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"surcharge\">Phụ Phí *</label>\n                                                <input [(ngModel)]=\"data.bill.surcharge\" name=\"surcharge\" class=\"form-control\" min=\"1\" type=\"numer\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n                                            \n                                            <div class=\"form-group\">\n                                                <label for=\"total\">Thành Tiền * <button (click)=\"calculate()\" class=\"btn btn-primary waves-effect\">Tính</button></label>\n                                                <input [(ngModel)]=\"data.bill.total\" name=\"total\" class=\"form-control\" min=\"1\" type=\"number\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                            <div class=\"form-group\">\n                                                <label for=\"deposit\">Đặt Cọc *</label>\n                                                <input [(ngModel)]=\"data.bill.deposit\" name=\"deposit\" class=\"form-control\" min=\"1\" type=\"number\">\n                                                <span id=\"error_age\" class=\"text-danger\"></span>\n                                            </div>\n\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"regist()\" style=\"float:left\" type=\"submit\">UPDATE</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left\" mat-dialog-close>CANCEL</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<section style=\"padding: 0\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div style=\"text-align: center;\" class=\"col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n                <div class=\"card\" style=\"margin-bottom: 20px;\">\n                    <div class=\"header\">\n                        <h2>\n                            Danh Sách Sản Phẩm\n                        </h2>\n                    </div>\n                    <div class=\"body\" id='upload'>\n                        <div class=\"table-responsive\">\n                            <table class=\"table table-bordered table-striped table-hover js-basic-example dataTable\">\n                                <thead>\n                                    <tr>\n                                        <th>link</th>\n                                        <th>Mã sp</th>\n                                        <th>Số lượng</th>\n                                        <th>Giá Web</th>\n                                        <th>code</th>\n                                        <th>phí web</th>\n                                        <th>giá sau code</th>\n                                        <th>thành tiền</th>\n                                        <th>Giữ hộp</th>\n                                        <th>Chức năng</th>\n                                    </tr>\n                                </thead>\n                                <tbody>\n                                    <tr *ngFor='let item of billDetailList'>\n                                        <td><input [(ngModel)]='item.link' [disabled]='data.bill.reservationId' id=\"link\" name=\"link\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n                                        <td><input [(ngModel)]='item.productId' [disabled]='data.bill.reservationId' id=\"productId\" name=\"productId\" class=\"form-control\" type=\"text\" min=\"1\"></td>\n                                        <td><input [(ngModel)]='item.quantity' [disabled]='data.bill.reservationId' id=\"quantity\" name=\"quantity\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                        <td><input type=\"text\" [ngModel]='item.price | number:\"1.0-2\"' [disabled]='data.bill.reservationId' (ngModelChange)='item.price=Number(replaceCommas($event))' id=\"price\" name=\"price\" class=\"form-control\" min=\"1\"></td>\n                                        <td><input [(ngModel)]='item.code' [disabled]='data.bill.reservationId' id=\"code\" name=\"code\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                        <td><input [(ngModel)]='item.webFee' [disabled]='data.bill.reservationId' id=\"webFee\" name=\"webFee\" class=\"form-control\" type=\"number\" min=\"1\"></td>\n                                        <td><input [ngModel]='item.code * item.price | number:\"1.0-2\"' disabled='true' id=\"afterCodePrice\" name=\"afterCodePrice\" class=\"form-control\"></td>\n                                        <td><input [ngModel]='totalPricePerItem(item) | number: \"1.0-2\"' [disabled]='data.user.role != \"client\"' (ngModelChange)='item.total=Number(replaceCommas($event))' id=\"total\" name=\"total\" class=\"form-control\"></td>\n                                        <td (click)='toggleKeepBox(item)'>\n                                            <input class=\"filled-in chk-col-pink\" name=\"keepBox\" [disabled]='data.bill.reservationId' [checked]='item.keepBox' type=\"checkbox\">\n                                            <label style=\"padding-left: 0; height: 3px; left: 12px;\" for=\"keepBox\"></label>\n                                        </td>\n                                        <td class=\"action\">\n                                            <button (click)='addProduct(item)' style=\"margin-right: 10px\">chép</button>\n                                            <button (click)='deleteProduct(item)'>xóa</button>\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                \n                            </table>\n                        </div>\n                    </div>\n                </div>\n                <button class=\"btn btn-primary waves-effect\" (click)=\"regist()\">submit</button>\n                <button class=\"btn btn-danger waves-effect\" (click)='dialogRef.close()'>cancel</button>\n            </div>\n            <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12\">\n                <div class=\"panel-primary\">\n                    <div class=\"panel-body\" id='upload-form'>\n                        <form name=\"myform\">\n                            <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"brand\">Thương Hiệu *</label>\n                                    <select [(ngModel)]='data.bill.brand' name=\"brand\" class=\"form-control\">\n                                        <option value=\"adidas-jp\">adidas-jp</option>\n                                        <option value=\"adidas-uk\">adidas-uk</option>\n                                        <option value=\"uk\">other</option>\n                                    </select>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"exchangeRate\">Tỉ Giá (Tỉ Giá Hệ Thống Lúc Tạo Đơn + Tỉ Giá KH)</label>\n                                    <span class=\"form-control\">{{exchangeValue}}</span>\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"shipFee\">Phí ship *</label>\n                                    <input id=\"shipFee\" name=\"shipFee\" class=\"form-control\" [ngModel]=\"data.bill.shipFee | number: '1.0-2'\" (ngModelChange)=\"data.bill.shipFee=Number(replaceCommas($event))\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"weight\">Khối lượng *</label>\n                                    <input [(ngModel)]=\"data.bill.weight\" name=\"weight\" class=\"form-control\" min=\"1\" type=\"number\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"unitPrice\">Đơn giá *</label>\n                                    <input [ngModel]=\"data.bill.unitPrice | number: '1.0-2'\" (ngModelChange)=\"data.bill.unitPrice=Number(replaceCommas($event))\" name=\"unitPrice\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"surcharge\">Phụ Phí trên 1 sản phẩm *</label>\n                                    <input [ngModel]=\"data.bill.surcharge | number: '1.0-2'\" (ngModelChange)=\"data.bill.surcharge=Number(replaceCommas($event))\" name=\"surcharge\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"total\">Thành Tiền *</label>\n                                    <input [ngModel]='calculate() | number: \"1.0-2\"' disabled='true' name=\"total\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"deposit\">Đặt Cọc *</label>\n                                    <input [ngModel]=\"data.bill.deposit | number: '1.0-2'\" (ngModelChange)=\"data.bill.deposit=Number(replaceCommas($event))\" name=\"deposit\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"note\">Ghi chú</label>\n                                    <textarea [(ngModel)]=\"data.bill.note\" name=\"note\" class=\"form-control\"> </textarea>\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
 
 /***/ }),
 
@@ -3439,7 +3558,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 var UploadComponent = /** @class */ (function () {
-    function UploadComponent(dialogRef, data, billService, billDetailService, popupDialog, loading, storageService) {
+    function UploadComponent(dialogRef, data, billService, billDetailService, popupDialog, loading, storageService, cdRef) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.billService = billService;
@@ -3447,18 +3566,24 @@ var UploadComponent = /** @class */ (function () {
         this.popupDialog = popupDialog;
         this.loading = loading;
         this.storageService = storageService;
+        this.cdRef = cdRef;
         this.billDetailList = [{
                 productId: '',
                 quantity: 1,
-                tradeDiscount: 0.85,
                 link: '',
                 price: 0,
-                weight: 0,
-                keepBox: 0,
+                keepBox: true,
                 billId: null,
+                code: 0,
+                webFee: 0,
+                afterCodePrice: 0,
+                total: 0
             }];
         this.isError = false;
         this.isNew = false;
+        this.Number = Number;
+        this.console = console;
+        this.message = '';
     }
     UploadComponent.prototype.ngOnInit = function () {
         console.log("data: ", this.data);
@@ -3475,18 +3600,28 @@ var UploadComponent = /** @class */ (function () {
                 status: 2,
                 deposit: 0,
                 shipFee: 0,
-                brand: 'adidas',
-                exchangeRateId: this.exchangeId,
-                tradeDiscount: 0.85,
-                total: 0,
+                brand: 'adidas-jp',
                 surcharge: 0,
-                isWaiting: false,
-                exchangeRate: this.exchangeValue
+                exchangeRate: this.exchangeValue,
+                weight: 0,
+                unitPrice: 0,
+                // billName: '',
+                total: 0,
+                helpFee: this.data.user.helpFee ? this.data.user.helpFee : 1
             };
         }
     };
     UploadComponent.prototype.ngAfterViewInit = function () {
         $('app-upload').parent().parent().attr('id', 'upload');
+    };
+    UploadComponent.prototype.ngAfterViewChecked = function () {
+        this.cdRef.detectChanges();
+    };
+    UploadComponent.prototype.toggleKeepBox = function (item) {
+        item.keepBox = !item.keepBox;
+    };
+    UploadComponent.prototype.replaceCommas = function (event) {
+        return event.replace(/,/g, "");
     };
     UploadComponent.prototype.onClick = function () {
         this.dialogRef.close();
@@ -3496,12 +3631,20 @@ var UploadComponent = /** @class */ (function () {
         return a;
     };
     UploadComponent.prototype.addProduct = function (data) {
+        if (this.data.bill.reservationId) {
+            this.popupDialog.showError("Không thể thêm sản phẩm khi nó đã được giao đặt hàng");
+            return;
+        }
+        data = JSON.parse(JSON.stringify(data));
         data.billId = null;
         this.billDetailList.push(data);
     };
     UploadComponent.prototype.deleteProduct = function (data) {
         var _this = this;
-        console.log("deleting product: ", data);
+        if (this.data.bill.reservationId) {
+            this.popupDialog.showError("không thể xóa sản phẩm khi nó đã được giao đặt hàng");
+            return;
+        }
         if (data.billId) {
             this.loading.show('upload');
             this.billDetailService.delete(data).subscribe(function (del) {
@@ -3509,7 +3652,10 @@ var UploadComponent = /** @class */ (function () {
                 _this.billDetailList.splice(_this.billDetailList.indexOf(data), 1);
                 _this.dialogRef.updateSize();
                 if (_this.billDetailList.length == 0) {
-                    _this.dialogRef.close(-2);
+                    _this.dialogRef.close(-2); // remove signal
+                }
+                else {
+                    _this.dialogRef.close(1); // update signal
                 }
             }, function (error) {
                 console.log(error);
@@ -3525,12 +3671,27 @@ var UploadComponent = /** @class */ (function () {
         }
     };
     UploadComponent.prototype.checkValid = function () {
+        var checkingArray = [];
         for (var i = 0; i < this.billDetailList.length; i++) {
             if (!this.billDetailList[i].productId || !this.billDetailList[i].quantity) {
+                this.message = 'mã sản phẩm và số lượng không được để trống!';
                 return false;
             }
+            if (!checkingArray.includes(this.billDetailList[i].productId)) {
+                checkingArray.push(this.billDetailList[i].productId);
+            }
+        }
+        if (checkingArray.length != this.billDetailList.length) {
+            this.message = 'mã sản phẩm đang bị trùng nhau, xin thử lại';
+            return false;
         }
         return true;
+    };
+    UploadComponent.prototype.totalPricePerItem = function (item) {
+        if (this.data.user.role != 'client') {
+            item.total = ((item.code * item.price + item.webFee) * this.data.bill.exchangeRate * this.data.bill.helpFee + this.data.bill.surcharge) * item.quantity;
+        }
+        return item.total;
     };
     UploadComponent.prototype.registOrUpdate = function () {
         var _this = this;
@@ -3582,8 +3743,11 @@ var UploadComponent = /** @class */ (function () {
     };
     UploadComponent.prototype.regist = function () {
         var _this = this;
-        if (!this.checkValid())
+        if (!this.checkValid()) {
+            this.popupDialog.showError(this.message);
             return;
+        }
+        ;
         this.loading.show('upload');
         if (this.data.bill && this.data.bill.id) {
             this.billService.update(this.data.bill).subscribe(function (data) {
@@ -3623,17 +3787,16 @@ var UploadComponent = /** @class */ (function () {
                 _this.dialogRef.close(_this.data.bill);
             }
             else {
-                _this.dialogRef.close(-1);
+                _this.dialogRef.close(1);
             }
         });
     };
     UploadComponent.prototype.calculate = function () {
-        var _this = this;
         var sum = 0;
         this.billDetailList.forEach(function (element) {
-            sum += element.price * _this.data.bill.tradeDiscount * element.quantity;
+            sum += element.total;
         });
-        this.data.bill.total = sum * this.data.bill.exchangeRate - -this.data.bill.shipFee - -this.data.bill.surcharge;
+        return sum + this.data.bill.unitPrice * this.data.bill.weight + this.data.bill.shipFee;
     };
     UploadComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -3646,9 +3809,296 @@ var UploadComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_3__api_bill_detail_service__["a" /* BillDetailService */],
             __WEBPACK_IMPORTED_MODULE_4__popup_popup_service__["a" /* PopupService */],
             __WEBPACK_IMPORTED_MODULE_5__util_loading_service__["a" /* LoadingService */],
-            __WEBPACK_IMPORTED_MODULE_6__util_storage_service__["a" /* StorageService */]])
+            __WEBPACK_IMPORTED_MODULE_6__util_storage_service__["a" /* StorageService */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]])
     ], UploadComponent);
     return UploadComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/surburb/surburb.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n.action {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex\n}\n\n#upload tr td{\n    padding: 0;\n}\n\n#upload tr td input{\n    padding: 0;\n}\n\n#upload div table{\n    border: 0;\n}\n\n#upload-form form div .form-group {\n    margin-bottom: 8px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/surburb/surburb.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section style=\"padding: 0\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"header\">\n                <h2>\n                    Đơn Ship\n                </h2>\n            </div>\n            <div>\n                <div class=\"panel-primary\">\n                    <div class=\"panel-body\" id='upload-form'>\n                        <form name=\"myform\">\n                            <div class=\"col-md-6 col-sm-12 col-lg-6 col-xs-12\">\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"seperatedCode\">Mã đơn hàng riêng *</label>\n                                    <input [(ngModel)]=\"surburbData.seperatedCode\" name=\"seperatedCode\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"productName\">Tên SP *</label>\n                                    <input id=\"productName\" name=\"productName\" class=\"form-control\" [(ngModel)]=\"surburbData.productName\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"quantity\">Số lượng</label>\n                                    <input [(ngModel)]=\"surburbData.quantity\" name=\"quantity\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"weight\">Khối lượng</label>\n                                    <input [(ngModel)]=\"surburbData.weight\" name=\"weight\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"routeType\">đường bay/đường bộ</label>\n                                    <select [(ngModel)]=\"surburbData.routeType\" name=\"routeType\" class=\"form-control\">\n                                        <option value=\"1\">Đường bay</option>\n                                        <option value=\"0\">Đường bộ</option>\n                                    </select>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"remainingMoney\">Tiền thu hộ</label>\n                                    <input [ngModel]=\"surburbData.remainingMoney | number: '1.0-2'\" (ngModelChange)=\"surburbData.remainingMoney=formatService.replaceCommas($event)\" name=\"remainingMoney\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"note\">Ghi chú thêm</label>\n                                    <textarea [(ngModel)]=\"surburbData.note\" name=\"note\" class=\"form-control\"> </textarea>\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                \n                            </div>\n                            <div class=\"col-md-6 col-sm-12 col-lg-6 col-xs-12\">\n                                \n                                    <div class=\"form-group\">\n                                        <label for=\"isNightShip\">Giao tối</label>\n                                        <select [(ngModel)]=\"surburbData.isNightShip\" name=\"isNightShip\" class=\"form-control\">\n                                            <option value='1'>yes</option>\n                                            <option value='0'>no</option>\n                                        </select>\n                                    </div>\n    \n                                    <div class=\"form-group\">\n                                        <label for=\"freeShip\">Shop trả phí</label>\n                                        <select [(ngModel)]=\"surburbData.freeShip\" name=\"freeShip\" class=\"form-control\">\n                                            <option value='1'>yes</option>\n                                            <option value='0'>no</option>\n                                        </select>\n                                    </div>\n    \n                                    <div class=\"form-group\">\n                                        <label for=\"premiumValue\">gía trị đóng bảo hiểm</label>\n                                        <input [ngModel]=\"surburbData.premiumValue | number: '1.0-2'\" (ngModelChange)=\"surburbData.premiumValue=formatService.replaceCommas($event)\" name=\"premiumValue\" class=\"form-control\">\n                                        <span id=\"error_age\" class=\"text-danger\"></span>\n                                    </div>\n\n                                    <div class=\"form-group\">\n                                        <label for=\"isGetNight\">Lấy tối</label>\n                                        <select [(ngModel)]=\"surburbData.isGetNight\" name=\"isGetNight\" class=\"form-control\">\n                                            <option value='1'>yes</option>\n                                            <option value='0'>no</option>\n                                        </select>\n                                    </div>\n                                    \n                                    <div class=\"form-group\" *ngIf='surburbData.id'>\n                                        <label for=\"status\">Trang Thai</label>\n                                        <select [(ngModel)]=\"surburbData.status\" name=\"status\" class=\"form-control\">\n                                            <option value=\"6\">Đang gửi</option>\n                                            <option value=\"7\">Đã giao</option>\n                                        </select>\n                                    </div>\n                                </div>\n                        </form>\n                        <div style=\"text-align: center\">\n                            <button class=\"btn btn-primary waves-effect\" (click)=\"update()\">submit</button>\n                            <button class=\"btn waves-effect\" *ngIf='surburbData.id' (click)='delete()'>delete</button>\n                        </div>\n                        <button  *ngIf='surburbData.id' style=\"width: 100%; margin-top: 10px\" class=\"btn btn-danger waves-effect\" (click)='dialogRef.close()'>cancel</button>\n                    </div>\n                </div>\n                \n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/surburb/surburb.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SurburbComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_surburb_ship_service__ = __webpack_require__("../../../../../src/app/core/api/surburb-ship.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+var SurburbComponent = /** @class */ (function () {
+    function SurburbComponent(dialogRef, data, popupDialog, loading, cdRef, formatService, surburbService, billService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.popupDialog = popupDialog;
+        this.loading = loading;
+        this.cdRef = cdRef;
+        this.formatService = formatService;
+        this.surburbService = surburbService;
+        this.billService = billService;
+        this.surburbData = {};
+        this.originalStatus = 0;
+    }
+    SurburbComponent.prototype.ngOnInit = function () {
+        this.surburbData = this.data;
+        this.originalStatus = this.data.status;
+    };
+    SurburbComponent.prototype.ngAfterViewInit = function () {
+        $('app-surburb').parent().parent().attr('id', 'surburb');
+    };
+    SurburbComponent.prototype.ngAfterViewChecked = function () {
+        this.cdRef.detectChanges();
+    };
+    SurburbComponent.prototype.delete = function () {
+        var _this = this;
+        // this.popupDialog.showError
+        this.surburbService.delete(this.surburbData.id).subscribe(function (data) {
+            _this.billService.update({ id: _this.surburbData.billId, status: 5 }).subscribe(function (data) {
+                _this.showSuccess(-1); // remove signal        
+                console.log("deleted!");
+            });
+        });
+    };
+    SurburbComponent.prototype.checkValid = function () {
+    };
+    SurburbComponent.prototype.update = function () {
+        var _this = this;
+        if (!this.surburbData.id) {
+            this.dialogRef.close();
+            return;
+        }
+        this.loading.show('surburb');
+        this.surburbService.update(this.surburbData).subscribe(function (data) {
+            _this.showSuccess(1); // update signal
+        }, function (error) {
+            _this.showError();
+        });
+        if (this.originalStatus !== this.data.status) {
+            this.billService.update({ id: this.surburbData.billId, status: this.data.status }).subscribe(function (data) {
+                _this.showSuccess(1); // remove signal        
+            });
+        }
+    };
+    SurburbComponent.prototype.showError = function () {
+        this.loading.hide('surburb');
+        this.dialogRef.updateSize();
+        this.popupDialog.showError("có lỗi xảy ra").subscribe(function (data) {
+            console.log("close error!");
+        });
+    };
+    SurburbComponent.prototype.showSuccess = function (type) {
+        var _this = this;
+        this.loading.hide('surburb');
+        this.dialogRef.updateSize();
+        this.popupDialog.showSuccess().subscribe(function (data) {
+            _this.dialogRef.close(type);
+        });
+    };
+    SurburbComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-surburb',
+            template: __webpack_require__("../../../../../src/app/core/dialog/ship/surburb/surburb.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/ship/surburb/surburb.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_3__util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */],
+            __WEBPACK_IMPORTED_MODULE_4__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_5__api_surburb_ship_service__["a" /* SurburbShipService */],
+            __WEBPACK_IMPORTED_MODULE_6__api_bill_service__["a" /* BillService */]])
+    ], SurburbComponent);
+    return SurburbComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/urban/urban.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n    margin: 0;\n}\n\nlabel.form-control{\n    /* padding: 11px 0px;\n    font-weight: 97; */\n    border: none!important; \n    /* font-size: 16px; */\n    /* text-align: center; */\n}\n\n.input-group input[type=\"text\"], .input-group .form-control {\n    border: ridge; \n    -webkit-box-shadow: none; \n            box-shadow: none;\n    padding-left: 0;\n}\n\n.signup-page {\n    background-color: #00BCD4;\n    padding-left: 0;\n    max-width: 100%;\n    margin: 0% auto;\n    overflow-x: unset;\n}\n\n.card {\n     margin-bottom: 0px; \n}\n\n.btn-block {\n    width: 30%;\n    margin-left: 10%;\n    margin-right: 10%\n}\n\n.btn-block + .btn-block {\n     margin-top: 0px; \n}\n\n.input-group {\n    margin-bottom: 14px;\n}\n\nlabel {\n    /* font-weight: unset; */\n    width: 100%;\n}\n\n.unFill {\n    border-bottom: 1px solid red!important;\n}\n\na.disabled {\n    color: gray;\n    cursor: not-allowed;\n    text-decoration: underline;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\nth, td {\n    padding: 5px;\n    text-align: left;\n}\n\n#sign_up{\n\n    max-height: 400px;\n}\n\n.card {\n    -webkit-box-shadow: 0;\n            box-shadow: 0;\n}\n\n.palel-primary {\n    border-color: #bce8f1;\n}\n\n.panel-primary>.panel-heading {\n    background: #bce8f1;\n}\n\n.panel-primary>.panel-body {\n    background-color: #EDEDED;\n}\n\n.action {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex\n}\n\n#upload tr td{\n    padding: 0;\n}\n\n#upload tr td input{\n    padding: 0;\n}\n\n#upload div table{\n    border: 0;\n}\n\n#upload-form form div .form-group {\n    margin-bottom: 8px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/urban/urban.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section style=\"padding: 0\">\n    <div class=\"container-fluid\">\n        <div class=\"row clearfix\">\n            <div class=\"header\">\n                <h2>\n                    Đơn Ship\n                </h2>\n            </div>\n            <div>\n                <div class=\"panel-primary\">\n                    <div class=\"panel-body\" id='upload-form'>\n                        <form name=\"myform\">\n                            <div class=\"col-md-12 col-sm-12 col-lg-12 col-xs-12\">\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"remainingMoney\">Tiền thu hộ *</label>\n                                    <input [ngModel]=\"urbanData.remainingMoney | number: '1.0-2'\" (ngModelChange)=\"urbanData.remainingMoney=formatService.replaceCommas($event)\" name=\"remainingMoney\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"shipFee\">Phí ship *</label>\n                                    <input id=\"shipFee\" name=\"shipFee\" class=\"form-control\" [ngModel]=\"urbanData.shipFee | number: '1.0-2'\" (ngModelChange)=\"urbanData.shipFee=formatService.replaceCommas($event)\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"supplementalShip\">Bù Ship</label>\n                                    <input [ngModel]=\"urbanData.supplementalShip | number: '1.0-2'\" (ngModelChange)=\"urbanData.supplementalShip=formatService.replaceCommas($event)\" name=\"supplementalShip\" class=\"form-control\">\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n                                \n                                <div class=\"form-group\">\n                                    <label for=\"status\">Trang Thai</label>\n                                    <select [(ngModel)]=\"urbanData.status\" name=\"status\" class=\"form-control\">\n                                        <option value=\"6\">Chưa giao</option>\n                                        <option value=\"7\">Đã giao</option>\n                                    </select>\n                                </div>\n\n                                <div class=\"form-group\">\n                                    <label for=\"note\">Ghi chú</label>\n                                    <textarea [(ngModel)]=\"urbanData.note\" name=\"note\" class=\"form-control\"> </textarea>\n                                    <span id=\"error_age\" class=\"text-danger\"></span>\n                                </div>\n                            </div>\n                        </form>\n                        <div style=\"text-align: center\">\n                            <button class=\"btn btn-primary waves-effect\" (click)=\"update()\">submit</button>\n                            <button class=\"btn waves-effect\" (click)='delete()'>delete</button>\n                        </div>\n                        <button style=\"width: 100%; margin-top: 10px\" class=\"btn btn-danger waves-effect\" (click)='dialogRef.close()'>cancel</button>\n                    </div>\n                </div>\n                \n            </div>\n        </div>\n        <!-- #END# Basic Examples -->\n    </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/core/dialog/ship/urban/urban.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UrbanComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_format_service__ = __webpack_require__("../../../../../src/app/core/util/format.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_urban_ship_service__ = __webpack_require__("../../../../../src/app/core/api/urban-ship.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_bill_service__ = __webpack_require__("../../../../../src/app/core/api/bill.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+var UrbanComponent = /** @class */ (function () {
+    function UrbanComponent(dialogRef, data, popupDialog, loading, cdRef, formatService, urbanService, billService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.popupDialog = popupDialog;
+        this.loading = loading;
+        this.cdRef = cdRef;
+        this.formatService = formatService;
+        this.urbanService = urbanService;
+        this.billService = billService;
+        this.urbanData = {};
+        this.originalStatus = 0;
+    }
+    UrbanComponent.prototype.ngOnInit = function () {
+        this.urbanData = this.data;
+        this.originalStatus = this.data.status;
+    };
+    UrbanComponent.prototype.ngAfterViewInit = function () {
+        $('app-urban').parent().parent().attr('id', 'urban');
+    };
+    UrbanComponent.prototype.ngAfterViewChecked = function () {
+        this.cdRef.detectChanges();
+    };
+    UrbanComponent.prototype.delete = function () {
+        var _this = this;
+        // this.popupDialog.showError
+        this.urbanService.delete(this.urbanData.id).subscribe(function (data) {
+            _this.billService.update({ id: _this.urbanData.billId, status: 5 }).subscribe(function (data) {
+                _this.showSuccess(-1); // remove signal        
+                console.log("deleted!");
+            });
+        });
+    };
+    UrbanComponent.prototype.checkValid = function () {
+    };
+    UrbanComponent.prototype.update = function () {
+        var _this = this;
+        this.loading.show('urban');
+        this.urbanService.update(this.urbanData).subscribe(function (data) {
+            _this.showSuccess(1); // update signal
+        }, function (error) {
+            _this.showError();
+        });
+        if (this.originalStatus !== this.data.status) {
+            this.billService.update({ id: this.urbanData.billId, status: this.data.status }).subscribe(function (data) {
+                _this.showSuccess(1); // remove signal        
+            });
+        }
+    };
+    UrbanComponent.prototype.showError = function () {
+        this.loading.hide('urban');
+        this.dialogRef.updateSize();
+        this.popupDialog.showError("có lỗi xảy ra").subscribe(function (data) {
+            console.log("close error!");
+        });
+    };
+    UrbanComponent.prototype.showSuccess = function (type) {
+        var _this = this;
+        this.loading.hide('urban');
+        this.dialogRef.updateSize();
+        this.popupDialog.showSuccess().subscribe(function (data) {
+            _this.dialogRef.close(type);
+        });
+    };
+    UrbanComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-urban',
+            template: __webpack_require__("../../../../../src/app/core/dialog/ship/urban/urban.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/core/dialog/ship/urban/urban.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__popup_popup_service__["a" /* PopupService */],
+            __WEBPACK_IMPORTED_MODULE_3__util_loading_service__["a" /* LoadingService */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */],
+            __WEBPACK_IMPORTED_MODULE_4__util_format_service__["a" /* FormatService */],
+            __WEBPACK_IMPORTED_MODULE_5__api_urban_ship_service__["a" /* UrbanShipService */],
+            __WEBPACK_IMPORTED_MODULE_6__api_bill_service__["a" /* BillService */]])
+    ], UrbanComponent);
+    return UrbanComponent;
 }());
 
 
@@ -3717,7 +4167,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/core/dialog/user/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"signup-page\" id=\"user\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Khách Hàng</b></a>\n            <small>Thông Tin Chi Tiết</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.name\" name=\"name\" placeholder=\"Tên Khách Hàng\" autofocus> \n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">phone</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.phone\" name=\"phone\" placeholder=\"Số Điện Thoại\" autofocus> \n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">email</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.email\" name=\"email\" placeholder=\"Số Email\" autofocus> \n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.address\" name=\"address\" placeholder=\"Số Địa Chỉ\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">account_circle</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <select [(ngModel)]=\"data.role\" name=\"role\" class=\"form-control\">\n                                <option>Loại Khách Hàng</option>\n                                <option value=\"client\">Khách lẻ</option>\n                                <option value=\"client2\">Khách Buôn</option>\n                                <option value=\"shiper\">Shipper</option>\n                                <option value=\"buyer\">Người Mua</option>\n                                <option value=\"receiver\">Người Nhận</option>\n                            </select>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">trending_up</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"number\" class=\"form-control\" [(ngModel)]=\"data.exchangeOdds\" name=\"exchangeOdds\" placeholder=\"Tỉ Giá\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\n                        <a (click)=\"order()\"  [ngClass]=\"!data.name || !data.phone? 'disabled': ''\">Đặt Hàng</a>\n                    </div>\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\n                        <a (click)=\"gotoHistory()\">Xem Lịch Sử Giao Dịch</a>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"update()\" style=\"float:left; padding: 10px;\" type=\"submit\">{{data.id? \"UPDATE\": \"CREATE\"}}</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left; padding: 10px;\" (click)=\"dialogRef.close(reload)\">CANCEL</button>\n                    </div>\n                    \n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
+module.exports = "<body class=\"signup-page\" id=\"user\">\n    <div class=\"signup-box\">\n        <div class=\"logo\">\n            <a href=\"javascript:void(0);\"><b>Khách Hàng</b></a>\n            <small>Thông Tin Chi Tiết</small>\n        </div>\n        <div class=\"card\">\n            <div class=\"body\">\n                <form id=\"sign_up\" method=\"POST\">\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">person</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.name\" name=\"name\" placeholder=\"Tên Khách Hàng\" autofocus> \n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">phone</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.phone\" name=\"phone\" placeholder=\"Số Điện Thoại\" autofocus> \n                        </div>\n                    </div>\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.generalAddress\" name=\"generalAddress\" placeholder=\"Xã - Phường ...\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">home</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"data.detailAddress\" name=\"detailAddress\" placeholder=\"Số nhà - ngách ...\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">account_circle</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <select [(ngModel)]=\"data.role\" name=\"role\" class=\"form-control\">\n                                <option>Loại Khách Hàng</option>\n                                <option value=\"client\">Khách lẻ</option>\n                                <option value=\"client2\">Khách Buôn</option>\n                                <option value=\"shiperjp\">ShipperJP</option>\n                                <option value=\"shiperuk\">ShipperUK</option>\n                                <option value=\"urbanShiper\">Ship nội thành</option>\n                                <!-- <option value=\"suburbShiper\">Ship tỉnh</option> -->\n                            </select>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">trending_up</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"number\" class=\"form-control\" [(ngModel)]=\"data.helpFee\" name=\"helpFee\" placeholder=\"Phí mua hộ\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"input-group\">\n                        <span class=\"input-group-addon\">\n                          <i class=\"material-icons\">trending_up</i>\n                      </span>\n                        <div class=\"form-line\">\n                            <input type=\"number\" class=\"form-control\" [(ngModel)]=\"data.exchangeOdds\" name=\"exchangeOdds\" placeholder=\"Tỉ Giá\" autofocus>\n                        </div>\n                    </div>\n\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\n                        <a (click)=\"order()\"  [ngClass]=\"!data.name || !data.phone? 'disabled': ''\">Đặt Hàng</a>\n                    </div>\n                    <div class=\"m-t-25 m-b--5 align-center\" style=\"margin-bottom: 20px\">\n                        <a (click)=\"gotoHistory()\">Xem Lịch Sử Giao Dịch</a>\n                    </div>\n\n                    <div style=\"display: inline-block; width: 100%\">\n                        <button class=\"btn btn-block btn-lg bg-cyan waves-effect\" (click)=\"update()\" style=\"float:left; padding: 10px;\" type=\"submit\">{{data.id? \"UPDATE\": \"CREATE\"}}</button>\n                        <button class=\"btn btn-block btn-lg bg-pink waves-effect\" style=\"float:left; padding: 10px;\" (click)=\"dialogRef.close(reload)\">CANCEL</button>\n                    </div>\n                    \n                </form>\n            </div>\n        </div>\n    </div>\n</body>"
 
 /***/ }),
 
@@ -3732,6 +4182,7 @@ module.exports = "<body class=\"signup-page\" id=\"user\">\n    <div class=\"sig
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_loading_service__ = __webpack_require__("../../../../../src/app/core/util/loading.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_user_service__ = __webpack_require__("../../../../../src/app/core/api/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dialog_dialog_service__ = __webpack_require__("../../../../../src/app/core/dialog/dialog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popup_popup_service__ = __webpack_require__("../../../../../src/app/core/dialog/popup/popup.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3750,14 +4201,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var UserComponent = /** @class */ (function () {
-    function UserComponent(dialogRef, data, userService, router, loading, dialogService) {
+    function UserComponent(dialogRef, data, userService, router, loading, dialogService, popupService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.userService = userService;
         this.router = router;
         this.loading = loading;
         this.dialogService = dialogService;
+        this.popupService = popupService;
         this.isNew = false;
         this.listOrderProduct = [];
         this.reload = null;
@@ -3771,25 +4224,11 @@ var UserComponent = /** @class */ (function () {
                 address: '',
                 id: null,
                 password: 'adidas',
-                role: 2,
-                exchangeOdds: 0
+                role: 'client',
+                exchangeOdds: 0,
+                helpFee: 1
             };
         }
-    };
-    UserComponent.prototype.selectKind = function (type) {
-        if (type == "admin")
-            return "admin";
-        if (type == "client")
-            return "Khách Lẻ";
-        if (type == "client2")
-            return "Khách Buôn";
-        if (type == "shiper")
-            return "Shipper";
-        if (type == "buyer")
-            return "Người Mua";
-        if (type == "receiver")
-            return "Người Nhận";
-        return "Chưa Chọn";
     };
     UserComponent.prototype.order = function () {
         var _this = this;
@@ -3823,8 +4262,11 @@ var UserComponent = /** @class */ (function () {
             this.userService.update(this.data).subscribe(function (data) {
                 console.log("data update: ", data);
                 _this.loading.hide("user");
-                _this.dialogRef.close(_this.reload);
+                _this.popupService.showSuccess().subscribe(function () {
+                    _this.dialogRef.close(_this.reload);
+                });
             }, function (error) {
+                _this.popupService.showError("Xin hãy điền đầy đủ thông tin");
                 _this.loading.hide("user");
             });
         }
@@ -3835,8 +4277,11 @@ var UserComponent = /** @class */ (function () {
                 _this.loading.hide("user");
                 _this.data = data;
                 _this.reload = data;
-                _this.dialogRef.close(_this.reload);
+                _this.popupService.showSuccess().subscribe(function () {
+                    _this.dialogRef.close(_this.reload);
+                });
             }, function (error) {
+                _this.popupService.showError("Xin hãy điền đầy đủ thông tin");
                 _this.loading.hide("user");
             });
         }
@@ -3856,7 +4301,8 @@ var UserComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_4__api_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_3__util_loading_service__["a" /* LoadingService */],
-            __WEBPACK_IMPORTED_MODULE_5__dialog_dialog_service__["a" /* DialogService */]])
+            __WEBPACK_IMPORTED_MODULE_5__dialog_dialog_service__["a" /* DialogService */],
+            __WEBPACK_IMPORTED_MODULE_6__popup_popup_service__["a" /* PopupService */]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -3940,9 +4386,9 @@ var FormatService = /** @class */ (function () {
             case 2: return "Đã Đặt Hàng";
             case 3: return "Chưa Thanh Toán";
             case 4: return "Đã Thanh Toán";
-            case 5: return "Chưa Về Kho Nhật";
-            case 6: return "Về Kho Nhật";
-            case 7: return "Về Kho Việt Nam";
+            case 5: return "Hàng về Việt Nam";
+            case 6: return "Shiper nhận hàng";
+            case 7: return "Khách đã nhận hàng";
             case 8: return "Hoàn Tất";
             default: return "Chưa Đặt Trạng Thái";
         }
@@ -3963,6 +4409,32 @@ var FormatService = /** @class */ (function () {
             sum += element.price * item.tradeDiscount * element.quantity;
         });
         item.total = sum * item.exchangeRate - -item.shipFee - -item.surcharge;
+    };
+    FormatService.prototype.calculateTotalBill = function (bill) {
+        var sum = 0;
+        bill.billdetail.forEach(function (element) {
+            sum += element.total;
+        });
+        sum += bill.unitPrice * bill.weight + bill.shipFee;
+        return sum;
+    };
+    FormatService.prototype.getSumOfProp = function (item, prop) {
+        var sum = 0;
+        item.reservationdetail.forEach(function (element) {
+            if (prop === 'price') {
+                sum += (element[prop] + element.webFee) * element.quantity;
+            }
+            else {
+                sum += element[prop];
+            }
+        });
+        item[prop] = sum;
+    };
+    FormatService.prototype.replaceCommas = function (event) {
+        return event.replace(/,/g, "");
+    };
+    FormatService.prototype.getStokePrice = function (reservationDetail, exchangeRate) {
+        return (reservationDetail.code * reservationDetail.price + reservationDetail.webFee) * exchangeRate;
     };
     FormatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Injectable */])(),
@@ -4129,7 +4601,7 @@ var HttpService = /** @class */ (function () {
         if (options.headers == null) {
             options.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
                 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-                "Authorization": 'bearer ' + this.storageService.get("accessToken")
+                "Authorization": 'Bearer ' + this.storageService.get("accessToken")
             });
         }
         return options;
