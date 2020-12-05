@@ -231,17 +231,27 @@ export class OrderComponent implements OnInit {
             }
           }
         });
+
+        if(!this.stokeList.length) {
+          item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
+          item.orderEmail = this.orderData.orderEmail
+          this.stokeService.create(item).subscribe(data => {
+            console.log("create ok", data)
+          }, error => {
+            console.log("created failed: ", error)
+          })
+        }
       });
       
-      if(!this.stokeList.length) {
-        item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
-        item.orderEmail = this.orderData.orderEmail
-        this.stokeService.create(item).subscribe(data => {
-          console.log("create ok", data)
-        }, error => {
-          console.log("created failed: ", error)
-        })
-      }
+      // if(!this.stokeList.length) {
+      //   item.stokePrice = this.formatService.getStokePrice(item, this.orderData.exchangeRate)
+      //   item.orderEmail = this.orderData.orderEmail
+      //   this.stokeService.create(item).subscribe(data => {
+      //     console.log("create ok", data)
+      //   }, error => {
+      //     console.log("created failed: ", error)
+      //   })
+      // }
     }
   }
 }
